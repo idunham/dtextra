@@ -1,0 +1,13 @@
+CC = gcc
+SRCS	= ElecDisp.c parse.c bit_tab.c list.c
+
+OBJS	= ElecDisp.o parse.o bit_tab.o list.o
+
+DEFINES = -I.
+CDEBUGFLAGS = -g
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(Xmtds,$(OBJS))
+
+depend::
+	$(DEPEND) $(DEPENDFLAGS) $(ALLDEFINES) $(SRCS)

@@ -1,0 +1,11 @@
+to compile
+
+    cd ElecDisp
+    xmkmf
+    make clean
+    make
+
+    cd ..
+    xmkmf
+    make clean
+    make

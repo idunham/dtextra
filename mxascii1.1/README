@@ -1,0 +1,52 @@
+Jun 22, 1996
+
+Motified version of XAscii by kkirksey@eng.auburn.edu.
+This program uses XmString Converter (used in about dialog) by Krist Paquay,
+email: krist@tpg.tpg.oz.au.
+
+to compile, at the shell prompt, type:
+
+    xmkmf
+    make
+
+the binary is mxascii.
+
+The class of the program is MXascii. If you want to chage look and feel,
+look the app resources file is MXascii.ad. Copy this to the place where you
+keep your X resources as MXascii. Or append it with your .Xdefaults file.
+The prgram is written with appropriate fallback resources, therefore X
+resources file is not necessary. It supports all standard X toolkit command
+line options.
+    
+
+Copyright
+---------
+Copyright 1996 by Muhammad A Muquit.
+ 
+Permission to use, copy, modify, distribute this software is hereby granted,
+provided this copyright notice appear in all copies and that both that
+copyright notice and this permission notice appear in supporting
+documentation, and the name of my employer SEMCOR, Inc. and Company not be
+used in in advertising or publicity pertaining to distribution of the
+software without specific, written prior permission.
+ 
+The software is provided "as is" without express or implied warranty.
+ 
+I disclaim all warranties with regard to this software, including all implied
+warranties of merchantability and fitness, in no event shell me or my employer
+SEMCOR, Inc. be liable for any special, indirect or consequential damages or
+any damages whatsoever resulting from loss of use, data or profits, whether
+in an action of contract, negligence or other tortious action, arising out of
+or in connection with the use or performance of this software.
+---------------------------------------------------------------
+
+If you have any suggestion or bug report, please send me mail at:
+   ma_muquit@fccc.edu
+
+   URL: http://www.fccc.edu/users/muquit
+
+If you use this program, please let me know. 
+
+
+-- muquit
+Initial Release: Sep-02-96 
