@@ -1,0 +1,45 @@
+diff -Npru src.orig/libmotifmm/Component.cpp src/libmotifmm/Component.cpp
+--- src.orig/libmotifmm/Component.cpp    2011-07-09 05:08:20.000000000 -0400
++++ src/libmotifmm/Component.cpp    2011-07-16 22:58:19.404894487 -0400
+@@ -565,6 +565,30 @@ void Component::drawClockHands(XPoint* h
+   XtSetValues(widget, args, 2);
+ }
+ 
++void Component::drawBatteryBar(unsigned int percent, bool draining)
++{
++  Arg args[2];
++  Colormap colormap;
++  GC gc;
++  Pixmap p;
++  XColor fill;
++
++  XtSetArg(args[0], XmNlabelPixmap, &p);
++  XtGetValues(widget, args, 1);
++
++  Display *display = XtDisplay(widget);
++  gc = XCreateGC(display, p, NULL, 0);
++  colormap = DefaultColormap(display, 0);
++  XParseColor(display, colormap, draining ? "#FF0000" : "#00FF00", &fill);
++  XAllocColor(display, colormap, &fill);
++  XSetForeground(display, gc, fill.pixel);
++  XFillRectangle(display, p, gc, 6, 4, percent >= 100 ? 33 : percent * 33 / 100, 11);
++
++  XtSetArg(args[0], XmNlabelType, XmPIXMAP);
++  XtSetArg(args[1], XmNlabelPixmap, p);
++  XtSetValues(widget, args, 2);
++}
++
+ void Component::drawText(int x, int y, std::string text)
+ {
+   Arg args[2];
+diff -Npru src.orig/libmotifmm/include/motifmm/Component.h src/libmotifmm/include/motifmm/Component.h
+--- src.orig/libmotifmm/include/motifmm/Component.h    2011-07-09 05:07:10.000000000 -0400
++++ src/libmotifmm/include/motifmm/Component.h    2011-07-16 20:50:39.141660964 -0400
+@@ -79,6 +79,7 @@ public:
+   virtual void setIconPlacement(int iconPlacement);
+   virtual void setText(std::string text);
+   virtual void drawClockHands(XPoint* hour, XPoint* minute, int points);
++  virtual void drawBatteryBar(unsigned int percent, bool draining);
+   virtual void drawText(int x, int y, std::string text);
+   virtual void setNoResize(bool noResize);
+   virtual void setToggled(bool toggled);

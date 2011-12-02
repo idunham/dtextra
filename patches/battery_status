@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# The specific device may need to be changeable
+bat=BAT1
+
+full=$(     awk -vFS=': +' '$1 == "last full capacity" { print $2 }' /proc/acpi/battery/"$bat"/info )
+rate=$(     awk -vFS=': +' '$1 == "present rate"       { print $2 }' /proc/acpi/battery/"$bat"/state)
+remaining=$(awk -vFS=': +' '$1 == "remaining capacity" { print $2 }' /proc/acpi/battery/"$bat"/state)
+status=$(   awk -vFS=': +' '$1 == "charging state"     { print $2 }' /proc/acpi/battery/"$bat"/state)
+
+
+# First value: battery status (1 for charging, -1 for discharging, 0 for charged)
+if [ "$status" = discharging ] ; then
+    echo -n '-1 '
+elif [ "$status" = charging ] ; then
+    echo -n '1 '
+elif [ "$status" = charged ] ; then
+    echo '0 100 0'
+    exit 0
+else
+    exit 1
+fi
+
+
+# Ensure we are working in the expected units
+[ "${full#* }" != mWh -o "${rate#* }" != mW -o "${remaining#* }" != mWh ] && exit 2
+#echo CHARGE
+
+# Second value: charge remaining (in integral percentage)
+percent=$(( 100 * ${remaining%% *} / ${full%% *} ))
+if [ "$percent" -ge 0 ] ; then
+    echo -n "$percent "
+else
+    exit 3
+fi
+
+
+# Third value: seconds remaining (either time to charge or time to discharge)
+if [ "$status" = discharging ] ; then
+    echo $(( 3600 * ${remaining%% *} / ${rate%% *} ))
+elif [ "$status" = charging ] ; then
+    echo $(( 3600 * (${full%% *} - ${remaining%% *}) / ${rate%% *} ))
+else
+    exit 4
+fi

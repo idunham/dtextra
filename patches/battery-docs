@@ -1,0 +1,20 @@
+QUOTES with files:
+I've mostly been using OpenCDE on a laptop, and when on a laptop, I require a battery monitor in front of me at all times.  The following will recognize a new special menus.ini group "<Battery>" to place a monitor on dtpanel.  I'd appreciate any reviews to make sure I didn't do something too stupid.
+
+First, this is a script that outputs the actual battery status information for modern Linux kernels.  I haven't looked at how this data is found on *BSD or other operating systems, so I figured making this part a script would allow easier porting.  It should be saved under share/opencde/dtpanel/scripts/battery_status with mode 755.
+(battery_status / dtbattery.openbsd.sh)
+
+"This is an image over which the status will be drawn on the panel.  I originally intended to have different pixmaps for when the battery is charging and discharging, but then I remembered that I can't draw.  Save this as share/opencde/pixmaps/battery.xpm with mode 644."
+(battery.xpm)
+Now for the actual code changes:  I tried to break up the functions as was done with the "<Clock>" code for consistency.  This first patch is the change to dtpanel. 
+(panel_bat.diff)
+
+Finally, the change to libmotifmm--this is just a function to draw a progress bar similar to the function to draw the clock hands.  It's probably worth noting that the geometry of the progress bar is hard-coded based on the design of the battery pixmap to make things align properly.
+(motifmm_bat.diff)
+
+You will need to add this to menus.ini:
+
+<Battery>
+  pixmap=battery.xpm
+
+

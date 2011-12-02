@@ -1,0 +1,267 @@
+diff --git a/src/Makefile b/src/Makefile
+index 355f633..c6711c4 100755
+--- a/src/Makefile
++++ b/src/Makefile
+@@ -6,6 +6,7 @@ all:
+     @${MAKE} -C dtlogin
+     @${MAKE} -C dtsplash
+     @${MAKE} -C dtpanel
++    @${MAKE} -C dtrun
+ 
+ clean:
+     @${MAKE} -C libmotifmm clean
+@@ -15,4 +16,5 @@ clean:
+     @${MAKE} -C dtlogin clean
+     @${MAKE} -C dtsplash clean
+     @${MAKE} -C dtpanel clean
++    @${MAKE} -C dtrun clean
+ 
+diff --git a/src/dtrun/Makefile b/src/dtrun/Makefile
+new file mode 100755
+index 0000000..c7d9aaf
+--- /dev/null
++++ b/src/dtrun/Makefile
+@@ -0,0 +1,19 @@
++include ../../config.Mk
++
++OBJ=main.o RunWindow.o
++OUT=../../bin/dtrun
++
++.SUFFIXES: .o
++
++.PHONY: all
++all: ${OUT}
++
++${OUT}: ${OBJ}
++    ${CPP} -o ${OUT} ${OBJ} -L../../lib ${LDFLAGS} -lmotifmm -lopencde
++
++.cpp.o:
++    ${CPP} ${CPPFLAGS} -DPLATFORM_${PLATFORM} -c -I../../include $< -o $@
++
++.PHONY: clean
++clean:
++    rm -f ${OUT} ${OBJ}
+diff --git a/src/dtrun/RunWindow.cpp b/src/dtrun/RunWindow.cpp
+new file mode 100755
+index 0000000..671c7b8
+--- /dev/null
++++ b/src/dtrun/RunWindow.cpp
+@@ -0,0 +1,137 @@
++/* 
++ * RunWindow.cpp
++ *
++ * Copyright 2011 Robert Tomsick. All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without 
++ * modification, are permitted provided that the following conditions are met:
++ * 
++ *    1. Redistributions of source code must retain the above copyright 
++ *       notice, this list of conditions and the following disclaimer.
++ *    2. Redistributions in binary form must reproduce the above copyright 
++ *       notice, this list of conditions and the following disclaimer in the 
++ *       documentation and/or other materials provided with the distribution.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY ROBERT TOMSICK ``AS IS'' AND ANY EXPRESS OR 
++ * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
++ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN 
++ * NO EVENT SHALL THE FREEBSD PROJECT OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
++ * INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
++ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
++ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND 
++ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
++ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF 
++ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++ 
++/**
++ * Dtrun.  It runs things.  Basically the GUI equivalent of system()
++ * plus a cancel button.  Not much more to say than that.
++ */
++
++#include "RunWindow.h"
++
++#include <opencde.h>
++
++RunWindow::RunWindow() : Motif::Window("RunWindow")
++{
++  this->setTitle("Run");
++  this->setWidth(RunWindow::width);
++  this->setHeight(RunWindow::height);
++  this->setCloseFunction(FUNCTION(RunWindow::onClose));
++
++  mainPanel.reset(new Motif::Panel("mainPanel", getContentPanel()));
++  mainPanel->setLeftAttachment(Motif::Attachment::FORM);
++  mainPanel->setRightAttachment(Motif::Attachment::FORM);
++  mainPanel->setTopAttachment(Motif::Attachment::FORM);
++  mainPanel->setBottomAttachment(Motif::Attachment::FORM);
++  mainPanel->setLeftOffset(0);
++  mainPanel->setRightOffset(0);
++  mainPanel->setShadowThickness(1);
++
++  /* Command input */
++  pathText.reset(new Motif::Text("pathText", mainPanel.get()));
++  pathText->setActivateFunction(FUNCTION(RunWindow::onRunButtonPressed));
++  
++  pathText->setTopAttachment(Motif::Attachment::FORM);
++  pathText->setTopOffset(10);
++  
++  pathText->setLeftAttachment(Motif::Attachment::FORM);
++  pathText->setLeftOffset(10);
++  
++  pathText->setRightAttachment(Motif::Attachment::WIDGET);
++  pathText->setRightOffset(10);
++  
++  pathText->setShadowThickness(2);
++  
++  
++  /* Run */
++  runButton.reset(new Motif::Button("runButton", mainPanel.get()));
++  runButton->setActivateFunction(FUNCTION(RunWindow::onRunButtonPressed));
++  
++  runButton->setRightAttachment(Motif::Attachment::WIDGET);
++  runButton->setRightOffset(10);
++  
++  runButton->setTopAttachment(Motif::Attachment::FORM);
++  runButton->setTopOffset(6);
++  
++  runButton->setText("Run");
++  runButton->setShadowThickness(2);
++  runButton->setShowAsDefault(1);
++  
++  
++  /* Close */
++  closeButton.reset(new Motif::Button("cancelButton", mainPanel.get()));
++  closeButton->setActivateFunction(FUNCTION(RunWindow::onClose));
++  
++  closeButton->setRightAttachment(Motif::Attachment::FORM);
++  closeButton->setRightOffset(10);
++  
++  closeButton->setTopAttachment(Motif::Attachment::FORM);
++  closeButton->setTopOffset(14);
++  
++  closeButton->setText("Cancel");
++  closeButton->setShadowThickness(2);
++  
++  /* set our widget attachment now that everything's been created */
++  runButton->setRightWidget(closeButton.get());
++  
++  pathText->setRightWidget(runButton.get());
++  
++  
++  this->setMwmFunctions(Motif::MwmFunctions::ALL | Motif::MwmFunctions::RESIZE | Motif::MwmFunctions::MAXIMIZE);
++    
++  this->setVisible(true);
++  pathText->setFocus();
++}
++
++RunWindow::~RunWindow()
++{
++
++}
++
++void RunWindow::onClose(void* caller)
++{
++  exit(EXIT_SUCCESS);
++}
++
++
++void RunWindow::onRunButtonPressed(void* caller)
++{
++  /* FIXME: handle exec ourselves.  Do we really want this going
++   * through to system()?
++   */
++  
++  /* since we don't want to be too careless, let's do a tiny bit of
++   * sanity checking before we dump this into system()...
++   */
++  std::string text = pathText->getText();
++  if (text.empty() || 
++      std::string::npos == text.find_last_not_of(" \t\f\v\n\r"))
++  {
++    return;
++  }
++   
++  OpenCDE::Shell::executeFork(this->pathText->getText());
++  exit(EXIT_SUCCESS);
++}
+diff --git a/src/dtrun/RunWindow.h b/src/dtrun/RunWindow.h
+new file mode 100755
+index 0000000..85259f3
+--- /dev/null
++++ b/src/dtrun/RunWindow.h
+@@ -0,0 +1,26 @@
++#ifndef RUNWINDOW_H
++#define RUNWINDOW_H
++
++#include <motifmm.h>
++
++class RunWindow : public Motif::Window
++{
++private:
++  static const int width = 360;
++  static const int height = 50;
++  std::auto_ptr<Motif::Panel> mainPanel;
++  std::auto_ptr<Motif::Text> pathText;
++  std::auto_ptr<Motif::Button> runButton;
++  std::auto_ptr<Motif::Button> closeButton;
++
++public:
++  RunWindow();
++  ~RunWindow();
++
++  void onClose(void* caller);
++  void onRunButtonPressed(void* caller);
++
++};
++
++#endif
++
+diff --git a/src/dtrun/main.cpp b/src/dtrun/main.cpp
+new file mode 100755
+index 0000000..9e34dcf
+--- /dev/null
++++ b/src/dtrun/main.cpp
+@@ -0,0 +1,43 @@
++#include <motifmm.h>
++#include <opencde.h>
++
++#include "RunWindow.h"
++
++void safe_main(int argc, char* argv[])
++{
++  OpenCDE::Environment::initialize(argc, argv);
++  Motif::Application::addFallbackResource("*shadowThickness: 1");
++  Motif::Application::addFallbackResource("*highlightThickness: 2");
++  Motif::Application::addFallbackResource("*highlightColor: #B24D7A");
++  Motif::Application::addFallbackResource("*background: #AEB2C3");
++  Motif::Application::addFallbackResource("*editorScrolledText.background: White");
++  Motif::Application::initialize("Dtrun", argc, argv);
++
++  try
++  {
++    new RunWindow();
++  }
++  catch(std::exception& e)
++  {
++    Motif::MessageBox::show("exceptionMessageBox", e.what(), "Exception", Motif::MessageBoxType::ERROR);
++  }
++
++  Motif::Application::run();
++}
++
++int main(int argc, char* argv[])
++{
++  try
++  {
++    safe_main(argc, argv);
++
++    return 0;
++  }
++  catch(std::exception& e)
++  {
++    std::cout << "Exception: " << e.what() << std::endl;
++
++    return 1;
++  }
++}
++

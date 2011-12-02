@@ -1,0 +1,118 @@
+--- a/src/dtsplash/SplashDialog.cpp
++++ b/src/dtsplash/SplashDialog.cpp
+@@ -4,6 +4,16 @@
+ 
+ SplashDialog::SplashDialog() : Motif::Dialog("splashDialog")
+ {
++  SplashDialog::init(DEFAULT_SPLASH_TIME);
++}
++
++SplashDialog::SplashDialog(unsigned int seconds) : Motif::Dialog("splashDialog")
++{
++  SplashDialog::init(seconds);
++}
++
++void SplashDialog::init(unsigned int seconds)
++{
+   setStyle(Motif::Style::SYSTEM);
+   setDecorations(Motif::Decorations::NONE);
+   setWidth(Motif::Application::getScreenWidth());
+@@ -41,9 +51,12 @@ SplashDialog::SplashDialog() : Motif::Dialog("splashDialog")
+   vendorLogoLabel->setWidth(512);
+   vendorLogoLabel->setHeight(128);
+ 
++
++  /* set up our timer to exit */
++  int ms = seconds * 1000;
+   timer.reset(new Motif::Timer());
+   timer->setIntervalFunction(FUNCTION(SplashDialog::onTimerTick));
+-  timer->start(3000);
++  timer->start(ms);
+ 
+   setVisible(true);
+ }
+diff --git a/src/dtsplash/SplashDialog.h b/src/dtsplash/SplashDialog.h
+index 9609701..6539cb4 100755
+--- a/src/dtsplash/SplashDialog.h
++++ b/src/dtsplash/SplashDialog.h
+@@ -6,12 +6,16 @@
+ class SplashDialog : public Motif::Dialog
+ {
+ private:
++  /** Default length of time to display the splash screen (seconds.) */
++  static const int DEFAULT_SPLASH_TIME = 3;
+   std::auto_ptr<Motif::Panel> vendorLogoPanel;
+   std::auto_ptr<Motif::Label> vendorLogoLabel;
+   std::auto_ptr<Motif::Timer> timer;
++  void init(unsigned int seconds);
+ 
+ public:
+   SplashDialog();
++  SplashDialog(unsigned int seconds);
+   ~SplashDialog();
+ 
+   void onTimerTick(void* caller);
+diff --git a/src/dtsplash/main.cpp b/src/dtsplash/main.cpp
+index 2c8d12d..83e6ad3 100755
+--- a/src/dtsplash/main.cpp
++++ b/src/dtsplash/main.cpp
+@@ -1,8 +1,11 @@
+ #include <motifmm.h>
+ #include <opencde.h>
++#include <unistd.h>
+ 
+ #include "SplashDialog.h"
+ 
++void print_usage();
++
+ void safe_main(int argc, char* argv[])
+ {
+   OpenCDE::Environment::initialize(argc, argv);
+@@ -12,10 +15,35 @@ void safe_main(int argc, char* argv[])
+   Motif::Application::addFallbackResource("*lockDialog.background: Black");
+   Motif::Application::addFallbackResource("*password.background: Gray50");
+   Motif::Application::initialize("Dtsplash", argc, argv);
+-
++  
++  /* parse command line args */
++  int c;
++  extern char *optarg;
++  int seconds = -1;
++  
++  while ((c = getopt(argc, argv, "s:h?")) != -1)
++  {
++    switch (c)
++    {
++      case 's':
++        seconds = atoi(optarg);
++        break;
++      case 'h':
++      case '?':
++        print_usage();
++    break;
++    }
++  }
++  
+   try
+   {
+-    new SplashDialog();
++    if (seconds == 0 || seconds == -1) {
++      new SplashDialog();
++    }
++    else
++    {
++      new SplashDialog(seconds);
++    }
+   }
+   catch(std::exception& e)
+   {
+@@ -41,3 +69,9 @@ int main(int argc, char* argv[])
+   }
+ }
+ 
++void print_usage()
++{
++  std::cout << "Usage: dtsplash [-s seconds] [-h]" << std::endl;
++  exit(0);
++}
++

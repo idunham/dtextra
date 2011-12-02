@@ -1,0 +1,105 @@
+diff -Npru src.orig/dtpanel/PanelWindow.cpp src/dtpanel/PanelWindow.cpp
+--- src.orig/dtpanel/PanelWindow.cpp    2011-07-09 05:20:42.000000000 -0400
++++ src/dtpanel/PanelWindow.cpp    2011-07-17 11:21:06.961015165 -0400
+@@ -6,6 +6,7 @@ PanelWindow::PanelWindow() : Motif::Wind
+ {
+   clockButtonIndex = -1;
+   calButtonIndex = -1;
++  batteryButtonIndex = -1;
+   hasDesktopsPanel = false;
+   std::vector<std::string> sectionNames;
+   ini.reset(new OpenCDE::Ini(OpenCDE::Environment::getHome() + "/.opencde/" + OpenCDE::Environment::getName() + "/menus.ini"));
+@@ -231,6 +232,14 @@ PanelWindow::PanelWindow() : Motif::Wind
+         calTimer->setIntervalFunction(FUNCTION(PanelWindow::onCalTimerTick));
+         onCalTimerTick(NULL);
+       }
++      else if(menuEntries.at(entryIndex) == "Battery")
++      {
++        batteryButtonIndex = iconButtons.size() - 1;
++        batteryTimer.reset(new Motif::Timer());
++        batteryTimer->start(30000);
++        batteryTimer->setIntervalFunction(FUNCTION(PanelWindow::onBatteryTimerTick));
++        onBatteryTimerTick(NULL);
++      }
+       else
+       {
+       iconButtons.at(iconButtons.size() - 1)->setLabelType(Motif::LabelType::PIXMAP);
+@@ -614,3 +623,59 @@ void PanelWindow::onClockTimerTick(void*
+   iconButtons.at(clockButtonIndex)->drawClockHands(hourHand,minuteHand,numPoints);
+ }
+ 
++void PanelWindow::onBatteryTimerTick(void* caller)
++{
++  int state;
++  int percent;
++  int seconds;
++
++  int width = iconButtons.at(batteryButtonIndex)->getWidth();
++  int height = iconButtons.at(batteryButtonIndex)->getHeight();
++
++  std::string batstat = OpenCDE::Shell::executeFetch(OpenCDE::Environment::getPrefix() + "/share/opencde/dtpanel/scripts/battery_status");
++  sscanf(batstat.c_str(), "%d %d %d", &state, &percent, &seconds);
++
++  int percent_x = 19;
++  int percent_y = 31;
++  char percent_string[8];
++
++  if(percent < 0)
++  {
++    percent = 0;
++  }
++  else if(percent > 100)
++  {
++    percent = 100;
++  }
++  sprintf(percent_string, "%u%%", percent);
++  if(percent >= 10)
++  {
++    percent_x -= 3;
++  }
++  if(percent >= 100)
++  {
++    percent_x -= 3;
++  }
++
++  int time_x = 13;
++  int time_y = 46;
++  char time_string[8];
++
++  if(seconds < 0 || seconds >= 360000)
++  {
++    seconds = 0;
++  }
++  sprintf(time_string, "%u:%02u", seconds / 3600, seconds / 60 % 60);
++  if(seconds >= 36000)
++  {
++    time_x -= 3;
++  }
++
++  iconButtons.at(batteryButtonIndex)->setPixmap(OpenCDE::Environment::getPrefix() + "/share/opencde/pixmaps/battery.xpm");
++  iconButtons.at(batteryButtonIndex)->setWidth(width);
++  iconButtons.at(batteryButtonIndex)->setHeight(height);
++  iconButtons.at(batteryButtonIndex)->drawBatteryBar(percent, state < 0);
++  iconButtons.at(batteryButtonIndex)->drawText(percent_x, percent_y, percent_string);
++  iconButtons.at(batteryButtonIndex)->drawText(time_x, time_y, time_string);
++}
++
+diff -Npru src.orig/dtpanel/PanelWindow.h src/dtpanel/PanelWindow.h
+--- src.orig/dtpanel/PanelWindow.h    2011-07-09 05:03:35.000000000 -0400
++++ src/dtpanel/PanelWindow.h    2011-07-16 15:21:15.399741736 -0400
+@@ -40,6 +40,8 @@ private:
+   std::auto_ptr<Motif::Timer> clockTimer;
+   int calButtonIndex;
+   std::auto_ptr<Motif::Timer> calTimer;
++  int batteryButtonIndex;
++  std::auto_ptr<Motif::Timer> batteryTimer;
+ 
+ public:
+   PanelWindow();
+@@ -62,6 +64,7 @@ public:
+   void onMenuWindowClose(MenuWindow* menuWindow);
+   void onClockTimerTick(void* caller);
+   void onCalTimerTick(void* caller);
++  void onBatteryTimerTick(void* caller);
+ 
+   OpenCDE::Ini* getIni(); 
