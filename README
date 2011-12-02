@@ -1,0 +1,63 @@
+This is a bunch of "extras" you may enjoy using with OpenCDE.
+It is assumed that you will have OpenMotif, OpenCDE, and so on
+installed; any additional dependencies should be documented here.
+
+Xlt is included with Lesstif, but not regular Motif versions.
+
+LICENSE
+Each package has its own license;
+dtexec,dtscan:	2-clause BSD
+	-thanks to mghis
+nebula:		3-clause BSD
+Xlt:		LGPL
+mxascii,mxkill:	GPL2+ (no version included by author)
+meditres:	MIT (despite the spec file)
+xmastm,mppp:	Not specified (same author as mx*)
+xterm_177_motif:MIT
+xplore:		GPL2
+	Xg widgets (included): MIT-style
+xps:		Mostly GPL (v2 included), see README
+
+
+DEPENDENCIES
+Run-time:
+	dtscan:	sane-utils (scanimage),imagemagick
+	meditres: Xlt (if not using ./configure --disable-shared)
+	xmppp/mppp: pppd
+Compile-time:
+	xmkmf (Imake)
+	meditres: Xlt
+	autotools-type stuff for xterm-177-motif, xps, Xlt, nebula, meditres
+
+CHANGES
+Sept 4
+-MoxFM has been dropped due to its UI, instability on my own system, and the
+availability of a better file manager: xplore
+-Xplore 1.2a has been added, with 2 externs changed to make it build on new 
+systems (tested on Debian Squeeze)
+-Xg is included in Xplore 1.2a
+-Tarball removal
+-mppp1.1b *.tmpl previously updated to avoid XmClientLibs issue
+-makefile tweaks in dt{scan,exec}
+-patches/ added
+
+NOTES:
+xmkmf -a (or xmkmf; make Makefiles; make depends) will set up imake-based
+software.  Edit *.tmpl to configure the installation.
+"find ./|grep config.cache|xargs rm" is a good idea before running configure;
+otherwise you may end up configuring for Debian on a BSD system,
+or rather getting failed compiles for half the software
+Be sure to run xmkmf or configure before running make, if the software
+uses such a framework.
+I'm considering a .cpio.bz2/xz archive, to save space; feel free to comment.
+patches/ contains several old patches for OpenCDE, which may be useful or may
+not work.  I included dtrun, the dtsplash -s <seconds> patch, & the battery 
+status patches (with scripts)
+
+
+
+TODO:
+./Makefile
+(targets: configure [PREFIX] all clean install [PREFIX DESTDIR] tarball)
+Copy in the FWF distribution?
+Add dt{auth,mount,wifi}?
