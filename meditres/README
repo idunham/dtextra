@@ -1,0 +1,185 @@
+$Header: /cvsroot-fuse/meditres/meditres/README,v 1.1.1.1 2001/08/15 13:00:09 dannybackx Exp $
+
+This is README.editres2
+
+written by Volker Gering, 08/07/97
+
+last change 17.12.97	printing in postscript
+
+
+
+Content:
+
+What is this about?
+What are the changes implemented to editres2?
+How to use a XToolkit program with editres
+Package list
+How to build editres2
+
+
+
+What is this about?
+-------------------
+I enhanced the program "editres" written by Cris D. Peterson, MIT X Consortium.
+This version of editres is based on the sources from the X11R6(.0) contrib
+directory (without I18N support, it will be added later). I am trying to add
+new functionality and better "usability" to editres. This version of editres
+is not complete but you can use a few of the new features I would like to add.
+
+I am still looking for a new name to show that this is an enhanced version of
+the original editres. Since I had no better ideas I call it editres2. Suggestions
+are welcome.
+
+
+What are the changes implemented to editres2?
+---------------------------------------------
+I changed the way the user can navigate through the widget tree of the client
+(the client is the program which widget tree is analysed by editres). You can
+fold a big widget tree to deal with subtrees. It is possible to search nodes
+by several categories.
+
+There are a lot of new action routines to configure editres2 as you like with
+the resource file ("Editres"). Most of the functions in the menu bar can be
+activated by keypress (= accelerators. When you use the Motif window manager or
+other Motif programs sometimes the pulldown menues could not be activated. Must
+be a bug in the XawSimpleMenu or any other Xaw widget). The actual configuration
+can be find out and changed by looking and editing the actual resource file.
+To get the path to the actual resource file there is a small program called
+"xrp" (.ftp://avahi.inria.fr/pub/xrp.tar.gz)
+
+I changed the outfit a little bit. The area for the tree is larger than the
+original version. Editres2 shows a few more status information, a "scrollable
+list" for the recent <n> messages (<n> should be configurable as many other
+parameters in a dialog, optional program parameters or resource file) and more
+menu buttons. Most of the new menu buttons have still no function. I am not
+ready with my programming. Feel free to add new functionality (but please
+tell me about).
+
+There are new resources and commandline parameters. I explain the parameters,
+the new application resources are similar (i.e. "-numFlashes 4" can be
+given as a resource like ".Editres.numFlashes: 4"). Application resources
+couldn't be set interactively by 'Resource->Set Resource' or by loading a
+new resource file! The commandline parameters are:
+
+-debug			get debug information (not yet supported)
+-numFlashes <n>		number of flashes to locate a widget in client
+-flashTime <n>		time of each flash im milliseconds
+-saveResourceFile <s>	name of file to save created resources by resource box
+
+-winID <n>		window ID of root window from client to connect to
+			(editres tries to get the widget tree immediately after
+			 startup from this client)
+-resFile <s>		resource file to load into the client after getting
+			the widget tree from the client
+-terminate		terminate editres after loading a new resource file
+			into a client
+
+With "-winID" and "-resFile" it is possible to change the language of a
+program without changing its internal state! In the future I extract this
+functionality to a small programm called "batchres".
+
+Editres2 can print the widget tree to a postscript file.
+
+
+How to use a XToolkit programs with editres
+-------------------------------------------
+Editres is a tool for debugging widgets and their resources. Widgets are
+introduced with the XToolkit. There are a lot of widget sets based on the
+XToolkit, for example the Athena Widget Set (Xaw), OSF/Motif (Xm), OpenLook
+and some others (I heard about InterViews (iv) and XView (xv) but don't
+know much about them). With editres you can analyse the widget tree of a
+client and manipulate its resources online. The client must understand the
+editres protocol (introduced with X11R5 in the Misc Utilities libraries, Xmu.
+There are some implementations for X11R4). It is not possible to read or set
+application resources (loaded by XtGetApplicationResources).
+
+Programs which use the Xaw library have the editres protocol built in. Some
+Motif vendors also build editres support to their implementations by adding
+the editres protocol th the vendorShellWidgetClass (like SGI and Digital).
+LessTif has already editres support built in. If you have a motif program
+with motif as a shared library and you point the motif shared library to
+the LessTif shared library your program should automatically support the
+editres protocol.
+
+If you use a widget set implementation that doesn't support the editres
+protocol (like Sun's Motif) and want your program to be able to communicate
+with editres just do the following three things:
+
+1. Add "#include <X11/Xmu/Editres.h>"
+2. For every shell widget you want to be able to be selected by editres, add
+   "XtAddEventHandler(mysh,NoEventMask,True,_XEditResCheckMessages,(XtPointer)NULL);"
+  This is only for one shell widget neccessary, if you have more shell widgets
+  managed my the window manager (subclass of WMShell) the event handler can
+  be added to every shell widget for convenience (only shell with this event
+  handler recognizes the selection by editres). Editres always gets the whole
+  widget tree if it can establish a communication to a client program.
+3. Link your program with the X11 Misc Utilities library (Xmu):
+  "gcc myprog.c -o myprog -lXm -lXmu -lXt -lX11"
+
+The libXmu library is not fully implemented. Normally it is not possible to
+get the value of a resource (MB2 in the resource box retrieves a "NoValue").
+The file "editres.patch" patches the sources of the misc utilities libraries.
+With this patch it should be possible to get the values of the resources from
+the client. The file "editres.patch" is from Peter Derr.
+
+More information about editres can be found at Ken Lee's
+http://www.rahul.net/kenton/editres.html
+
+
+Package list
+------------
+README.editres2
+	(this file)
+
+editres2.tar.gz contains
+	actions.c
+	comm.c
+	editres.c
+	geometry.c
+	handler.c
+	setvalues.c
+	svpopup.c
+	utils.c
+	widgets.c
+	wtree.c
+	editresP.h
+	Edit-col.ad
+	Editres
+	Editres.ad
+	Imakefile
+	README.editres2
+	editres-col.xpm
+	editres.tex
+	editres2.xbm
+	editres2.xpm
+	editres2_64.xpm
+	editres2_64_.xbm
+	editres2_64_.xpm
+	editres2_64_bw.xbm
+	editres2_64_bw.xpm
+	editres2_64_gr.xpm
+	editres2_crop.xpm
+	editres2_ss.xpm
+
+editres.patch
+	(this is a patch for the library 'libXmu'. The function 'GetValues'
+	 for the editres protocol is not fully implemented. So you get the
+	 response "NoValue" in editres if you try to read a resource value
+	 from the client by mouse button 2 in the resource box. To use
+	 this function you have to get the sources for the XMiscUtilities
+	 library libXmu from ftp.x.org, patch it an generate your own
+	 libXmu.)
+
+
+How to build editres2
+---------------------
+It should be easy to generate the executable for editres:
+	xmkmf
+	make depend
+	make
+
+
+
+Author
+------
+Volker Gering, gering@gsse.sni.de

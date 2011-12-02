@@ -1,0 +1,232 @@
+# Generated automatically from Makefile.in by configure.
+## $XFree86: xc/programs/xterm/Makefile.in,v 3.41 2003/03/09 23:39:12 dickey Exp $ ##
+##
+## Copyright 2002,2003 by Thomas E. Dickey
+##
+##                         All Rights Reserved
+##
+## Permission to use, copy, modify, and distribute this software and its
+## documentation for any purpose and without fee is hereby granted,
+## provided that the above copyright notice appear in all copies and that
+## both that copyright notice and this permission notice appear in
+## supporting documentation, and that the name of the above listed
+## copyright holder(s) not be used in advertising or publicity pertaining
+## to distribution of the software without specific, written prior
+## permission.
+##
+## THE ABOVE LISTED COPYRIGHT HOLDER(S) DISCLAIM ALL WARRANTIES WITH REGARD
+## TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+## AND FITNESS, IN NO EVENT SHALL THE ABOVE LISTED COPYRIGHT HOLDER(S) BE
+## LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+## WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+SHELL		= /bin/sh
+
+#### Start of system configuration section. ####
+
+srcdir		= .
+x		= #@PROG_EXT@
+
+CC		= gcc
+CPP		= gcc -E
+AWK		= gawk
+LINK		= $(CC) $(CFLAGS)
+
+INSTALL		= /usr/bin/install -c
+INSTALL_PROGRAM	= ${INSTALL}
+INSTALL_DATA	= ${INSTALL} -m 644
+transform	= s,x,x,
+
+X_LIBS		=  -L/usr/X11R6/lib
+X_EXTRA_LIBS	= 
+
+EXTRA_CFLAGS	= 
+EXTRA_LOADFLAGS	= 
+
+CPPFLAGS	= -I. -I$(srcdir) -DHAVE_CONFIG_H  -I/usr/X11R6/include  -D_GNU_SOURCE
+CFLAGS		= -g -O2 $(EXTRA_CFLAGS)
+LDFLAGS		=   -L/usr/X11R6/lib
+LIBS		= -lXft -lfreetype -lXrender -lXrender -lXm -lXaw -lXmu -lXext -lXt  -lSM -lICE -lX11 -lnsl  -lncurses 
+
+prefix		= /usr
+exec_prefix	= ${prefix}
+
+manext		= 1
+bindir		= ${exec_prefix}/bin
+libdir		= ${exec_prefix}/lib
+mandir		= ${prefix}/man/man$(manext)
+appsdir		= $(libdir)/X11/app-defaults
+
+#### End of system configuration section. ####
+
+RM              = rm -f
+LINT		= lint
+
+DESTDIR		=
+BINDIR		= $(DESTDIR)$(bindir)
+LIBDIR		= $(DESTDIR)$(libdir)
+MANDIR		= $(DESTDIR)$(mandir)
+APPSDIR		= $(DESTDIR)$(appsdir)
+
+INSTALL_DIRS    = $(BINDIR) $(APPSDIR) $(MANDIR)
+
+CLASS		= XTerm
+EXTRAHDR	=  Tekparse.h
+EXTRASRC	=  TekPrsTbl.c Tekproc.c
+EXTRAOBJ	=  TekPrsTbl.o Tekproc.o
+SCROLLBAR_SRC=scrollbar_motif.c
+SCROLLBAR_OBJ=scrollbar_motif.o
+MAIN_OBJ=main_motif.o
+
+          SRCS1 = button.c charproc.c charsets.c cursor.c \
+	  	  data.c doublechr.c fontutils.c input.c \
+		  $(MAINSRC) menu.c misc.c print.c ptydata.c \
+		  screen.c $(SCROLLBAR_SRC) tabs.c util.c xstrings.c \
+		  VTPrsTbl.c $(EXTRASRC)
+          OBJS1 = button.o charproc.o charsets.o cursor.o \
+	  	  data.o doublechr.o fontutils.o input.o \
+		  $(MAIN_OBJ) menu.o misc.o print.o ptydata.o \
+		  screen.o $(SCROLLBAR_OBJ) tabs.o util.o xstrings.o \
+		  VTPrsTbl.o $(EXTRAOBJ)
+          SRCS2 = resize.c xstrings.c
+          OBJS2 = resize.o xstrings.o
+           SRCS = $(SRCS1) $(SRCS2)
+           OBJS = $(OBJS1) $(OBJS2)
+           HDRS = VTparse.h data.h error.h main.h menu.h proto.h \
+                  ptyx.h version.h xstrings.h xterm.h $(EXTRAHDR)
+       PROGRAMS = xterm$x resize$x
+
+all:	$(PROGRAMS)
+
+.SUFFIXES : .i .def .hin
+
+.c.o:
+# compiling
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $(srcdir)/$*.c
+
+.c.i:
+# compiling
+	$(CPP) -C $(CPPFLAGS) $*.c >$@
+
+.def.hin:
+	grep '^CASE_' $< | $(AWK) '{printf "#define %s %d\n", $$1, n++}' >$@
+
+main.o : main.h version.h
+
+$(OBJS1) : xterm.h ptyx.h xtermcfg.h
+main.o resize.o screen.o : xterm_io.h
+
+xterm$x : $(OBJS1)
+	$(LINK) $(LDFLAGS) -o $@ $(OBJS1) $(X_LIBS) $(X_EXTRA_LIBS) $(LIBS) $(EXTRA_LOADFLAGS)
+
+resize$x : $(OBJS2)
+	$(SHELL) $(srcdir)/plink.sh $(LINK) $(LDFLAGS) -o $@ $(OBJS2) $(X_LIBS) $(X_EXTRA_LIBS) $(LIBS)
+
+256colres.h : $(srcdir)/256colres.pl
+	-rm -f $@
+	perl $(srcdir)/256colres.pl > $@
+
+88colres.h : $(srcdir)/88colres.pl
+	-rm -f $@
+	perl $(srcdir)/88colres.pl > $@
+
+charproc.o : main.h 
+
+TRANSFORM = sed 's/$x$$//'|sed '$(transform)'|sed 's/$$/$x/'
+actual_xterm  = `echo xterm|    sed '$(transform)'`
+actual_resize = `echo resize|   sed '$(transform)'`
+binary_xterm  = `echo xterm$x|  $(TRANSFORM)`
+binary_resize = `echo resize$x| $(TRANSFORM)`
+binary_uxterm = `echo uxterm|   $(TRANSFORM)`
+
+install \
+install-bin \
+install-full :: xterm$x resize$x $(BINDIR)
+	$(SHELL) $(srcdir)/sinstall.sh "$(INSTALL_PROGRAM)" xterm$x  /usr/X11R6/bin/xterm $(BINDIR)/$(binary_xterm)
+	$(INSTALL_PROGRAM) -s -m  755 resize$x $(BINDIR)/$(binary_resize)
+	$(INSTALL_PROGRAM) -m  755 $(srcdir)/uxterm $(BINDIR)/$(binary_uxterm)
+
+install \
+install-man \
+install-full :: $(MANDIR)
+	$(SHELL) $(srcdir)/minstall.sh "$(INSTALL_DATA)" $(srcdir)/xterm.man    $(MANDIR)/$(actual_xterm).$(manext)
+	$(SHELL) $(srcdir)/minstall.sh "$(INSTALL_DATA)" $(srcdir)/resize.man   $(MANDIR)/$(actual_resize).$(manext)
+
+install \
+install-app \
+install-full :: $(APPSDIR)
+	@echo installing $(APPSDIR)/$(CLASS)
+	@sed -e s/XTerm/$(CLASS)/ $(srcdir)/XTerm.ad >XTerm.tmp
+	@$(INSTALL_DATA) XTerm.tmp $(APPSDIR)/$(CLASS)
+	@echo installing $(APPSDIR)/$(CLASS)-color
+	@sed -e s/XTerm/$(CLASS)/ $(srcdir)/XTerm-col.ad >XTerm.tmp
+	@$(INSTALL_DATA) XTerm.tmp $(APPSDIR)/$(CLASS)-color
+	@echo installing $(APPSDIR)/UXTerm
+	@sed -e s/XTerm/$(CLASS)/ $(srcdir)/UXTerm.ad >XTerm.tmp
+	@$(INSTALL_DATA) XTerm.tmp $(APPSDIR)/UXTerm
+	@rm -f XTerm.tmp
+
+install ::
+	@echo 'Completed installation of executables and documentation.'
+	@echo 'Use "make install-ti" to install terminfo description.'
+
+TERMINFO_DIR = $(DESTDIR)${prefix}/lib/terminfo
+SET_TERMINFO = TERMINFO=$(TERMINFO_DIR)
+
+install-full \
+install-ti :: $(TERMINFO_DIR)
+	$(SET_TERMINFO) tic $(srcdir)/terminfo
+	@echo 'Completed installation of terminfo description.'
+
+install-full \
+install-tc ::
+	@test -f /etc/termcap && echo 'You must install the termcap entry manually by editing /etc/termcap'
+
+installdirs: $(INSTALL_DIRS)
+
+uninstall:
+	-$(RM) $(BINDIR)/$(binary_xterm)
+	-$(RM) $(BINDIR)/$(binary_resize)
+	-$(RM) $(BINDIR)/$(binary_uxterm)
+	-$(RM) $(MANDIR)/$(actual_xterm).$(manext)
+	-$(RM) $(MANDIR)/$(actual_resize).$(manext)
+	-$(RM) $(APPSDIR)/$(CLASS)
+	-$(RM) $(APPSDIR)/$(CLASS)-color
+	-$(RM) $(APPSDIR)/UXTerm
+
+mostlyclean:
+	-$(RM) *.[ois] XtermLog.* .pure core *~ *.bak *.BAK *.out *.tmp
+
+clean: mostlyclean
+	-$(RM) $(PROGRAMS)
+
+distclean: clean
+	-$(RM) Makefile config.status config.cache config.log xtermcfg.h
+
+realclean: distclean
+	-$(RM) tags TAGS ctlseqs.ps
+
+ctlseqs.ps : ctlseqs.ms
+	tbl ctlseqs.ms | groff -ms >$@
+
+lint:
+	$(LINT) $(CPPFLAGS) $(SRCS1)
+	$(LINT) $(CPPFLAGS) $(SRCS2)
+
+tags:
+	ctags $(SRCS) $(HDRS)
+
+TAGS:
+	etags $(SRCS) $(HDRS)
+
+$(TERMINFO_DIR) $(INSTALL_DIRS):
+	$(SHELL) ${srcdir}/mkdirs.sh $@
+
+ALWAYS:
+
+depend : $(TABLES)
+	makedepend -- $(CPPFLAGS) -- $(SRCS)
+
+# DO NOT DELETE THIS LINE -- make depend depends on it.

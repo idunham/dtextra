@@ -1,0 +1,131 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:613: checking host system type
+configure:672: checking for gcc
+configure:785: checking whether the C compiler (gcc  ) works
+configure:801: gcc -o conftest    conftest.c  1>&5
+configure:827: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:832: checking whether we are using GNU C
+configure:860: checking whether gcc accepts -g
+configure:892: checking how to run the C preprocessor
+configure:973: checking whether gcc needs -traditional
+configure:1023: checking for mawk
+configure:1064: checking for a BSD compatible install
+configure:1138: checking for AIX
+configure:1162: checking for POSIXized ISC
+configure:1193: checking for ncurses/term.h
+configure:1193: checking for stdlib.h
+configure:1193: checking for termios.h
+configure:1193: checking for unistd.h
+configure:1230: checking whether time.h and sys/time.h may both be included
+configure:1268: checking for size_t in <sys/types.h> or <stdio.h>
+configure:1307: checking for ANSI C header files
+configure:1411: checking for time_t
+configure:1457: checking for bcopy
+configure:1457: checking for gethostname
+configure:1457: checking for getlogin
+configure:1457: checking for memmove
+configure:1457: checking for strerror
+configure:1457: checking for strftime
+configure:1457: checking for tcgetattr
+configure:1457: checking for waitpid
+configure:1511: checking for memmove
+configure:1670: checking for full tgetent function
+configure:1764: checking for partial tgetent function
+configure:1803: checking for termcap.h
+configure:1854: checking for lastlog.h
+configure:1854: checking for paths.h
+configure:1891: checking for lastlog path
+configure:1939: checking for utmp implementation
+configure:2013: checking if utmp.ut_host is declared
+configure:2051: checking if utmp.ut_name is declared
+configure:2107: checking for exit-status in utmp
+configure:2159: checking if utmp.ut_xtime is declared
+configure:2225: checking if utmp.ut_session is declared
+configure:2264: checking if utmp is SYSV flavor
+configure:2308: checking if you want to link with utempter
+configure:2374: checking if external errno is declared
+configure:2421: checking if external errno exists
+configure:2467: checking for tty group name
+configure:2532: checking if we may use tty group
+configure:2599: checking for gcc option to accept ANSI C
+configure:2730: checking for working const
+configure:2808: checking for sys/wait.h that is POSIX.1 compatible
+configure:2852: checking for POSIX wait functions
+configure:2897: checking if this platform has SYSV flavor
+configure:2949: checking for elf_begin in -lelf
+configure:3038: checking if we must define _GNU_SOURCE
+configure:3099: checking for X
+configure:3547: checking for socket in -lsocket
+configure:3594: checking for gethostname in -lnsl
+configure:3729: checking for dnet_ntoa in -ldnet
+configure:3770: checking for dnet_ntoa in -ldnet_stub
+configure:3818: checking for gethostbyname
+configure:3916: checking for connect
+configure:4008: checking for remove
+configure:4100: checking for shmat
+configure:4201: checking for IceConnectionNumber in -lICE
+configure:4311: checking for XOpenDisplay in -lX11
+configure:4351: checking for XtAppInitialize in -lXt
+configure:4479: checking for X11/DECkeysym.h
+configure:4479: checking for X11/Sunkeysym.h
+configure:4479: checking for X11/Xpoll.h
+configure:4544: checking for XextCreateExtension in -lXext
+configure:4605: checking for X11/Xaw/SimpleMenu.h
+configure:4617: gcc -c -g -O2  -I/usr/X11R6/include  -D_GNU_SOURCE conftest.c 1>&5
+configure:4668: checking for XawSimpleMenuAddGlobalActions in -lXaw -lXmu
+configure:4680: gcc -o conftest -g -O2  -I/usr/X11R6/include  -D_GNU_SOURCE   -L/usr/X11R6/lib conftest.c  -lSM -lICE -lXaw -lXmu -lXext -lXt  -lSM -lICE -lX11 -lnsl  -lncurses  1>&5
+configure:4717: checking for declaration of fd_set
+configure:4794: checking for IRIX 6.5 baud-rate redefinitions
+configure:4841: checking for grantpt
+configure:4944: checking for xterm
+configure:4979: checking for XKB Bell extension
+configure:5024: checking for Xutf8LookupString
+configure:5082: checking if we should use imake to help
+configure:5107: checking for xmkmf
+./configure: line 5163: /usr/X11R6/bin/xmkmf: No such file or directory
+configure:5278: checking for default terminal-id
+configure:5299: checking for default terminal-type
+configure:5316: checking for private terminfo-directory
+configure:5357: checking for motif scrollbar support
+configure:5389: checking if you want active-icons
+configure:5415: checking if you want ANSI color
+configure:5441: checking if you want 16 colors like aixterm
+configure:5465: checking if you want 256 colors
+configure:5492: checking if you want 88 colors
+configure:5523: checking if you want blinking cursor
+configure:5547: checking if you want printable 128-159
+configure:5573: checking if you want bold colors mapped like IBM PC
+configure:5597: checking if you want separate color-classes
+configure:5621: checking if you want color-mode enabled by default
+configure:5647: checking if you want support for color highlighting
+configure:5671: checking if you want support for doublesize characters
+configure:5695: checking if you want fallback-support for box characters
+configure:5719: checking if you want to use FreeType library
+configure:5741: checking for X FreeType libraries
+configure:5793: checking if you want support for HP-style function keys
+configure:5819: checking if you want support for SCO-style function keys
+configure:5845: checking if you want support for internationalization
+configure:5871: checking if you want support for initial-erase setup
+configure:5897: checking if you want support for input-method
+configure:5917: checking if X libraries support input-method
+configure:5973: checking if you want support for logging
+configure:6024: checking if you want support for iconify/maximize translations
+configure:6048: checking if you want NumLock to override keyboard tables
+configure:6072: checking if you want support for pty-handshaking
+configure:6096: checking if you want support for right-scrollbar
+configure:6122: checking if you want check for redundant name-change
+configure:6146: checking if you want support for session management
+configure:6170: checking if you want to use termcap-query/report
+configure:6194: checking if you want support for tek4014
+configure:6224: checking if you want pulldown menus with a toolbar
+configure:6287: checking if you want VT52 emulation
+configure:6311: checking if you want to use luit
+configure:6337: checking if you want wide-character support
+configure:6366: checking if you want DECterm Locator support
+configure:6392: checking if you want -ziconbeep option
+configure:6419: checking if you want debugging traces
+configure:6448: checking if you want to see long compiling messages
+configure:6488: checking if you want magic cookie emulation
+configure:6517: checking if you want to turn on gcc warnings
