@@ -1,0 +1,41 @@
+...\" ** $Id: XltSetClientIcon.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltSetClientIcon 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltSetClientIcon\fP \-
+Convenience function to 
+set the XtNiconMask and XtNiconPixmap shell resources of the given widget
+to those obtained by calling XpmCreatePixmapFromData with the given pixmap.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltSetClientIcon(\fBwidget, icon\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	char **	\fBicon\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltSetClientIcon\fP 
+XFreePixmap any XtNiconMask or XtNiconPixmap currently installed in the given
+widget, reads the pixmap data with XpmCreatePixmapFromData and set the
+XtNiconMask and XtNiconPixmap.
+.IP "\fBparent\fP"
+The parent widget ID
+.IP "\fBicon\fP"
+The pixmap data
+.PP 
+.SH RETURN VALUE
+None
+.SH RELATED INFORMATION
+.na
+.ad

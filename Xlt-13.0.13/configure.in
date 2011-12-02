@@ -1,0 +1,281 @@
+#
+# $Id: configure.in,v 1.107 2005/05/20 11:57:01 rwscott Exp $
+#
+
+AC_INIT(lib/Xlt.h)
+
+dnl
+dnl This is so we don't end up using the ones for LessTif
+dnl if pulled from CVS with LessTif
+dnl
+AC_CONFIG_AUX_DIR(.)
+
+#
+#  1. Start with version information of `0:0:0' for each libtool library.
+#
+#  2. Update the version information only immediately before a public
+#     release of your software.  More frequent updates are unnecessary,
+#     and only guarantee that the current interface number gets larger
+#     faster.
+#
+#  3. If the library source code has changed at all since the last
+#     update, then increment REVISION (`C:R:A' becomes `C:R+1:A').
+#
+#  4. If any interfaces have been added, removed, or changed since the
+#     last update, increment CURRENT, and set REVISION to 0.
+#
+#  5. If any interfaces have been added since the last public release,
+#     then increment AGE.
+#
+#  6. If any interfaces have been removed since the last public release,
+#     then set AGE to 0.
+#
+#   **Never** try to set the interface numbers so that they correspond
+#   to the release number of your package!
+
+CURRENT=13
+REVISION=0
+AGE=13
+
+dnl
+dnl Override a default in libtool.
+dnl
+AC_DISABLE_STATIC
+
+AM_MAINTAINER_MODE
+
+AC_SUBST(CURRENT)
+AC_SUBST(REVISION)
+AC_SUBST(AGE)
+
+NEXT_AGE=`expr $AGE + 1`
+NEXT_REVISION=`expr $REVISION + 1`
+NEXT_CURRENT=`expr $CURRENT + 1`
+AC_SUBST(NEXT_AGE)
+AC_SUBST(NEXT_REVISION)
+AC_SUBST(NEXT_CURRENT)
+
+dnl Run test in a subshell; some versions of sh will print an error if
+dnl an executable is not found, even if stderr is redirected.
+dnl Redirect stdin to placate older versions of autoconf.  Sigh.
+if (aclocal --print-ac-dir) </dev/null >/dev/null 2>&1
+then
+    ACLOCALDIR=`aclocal --print-ac-dir`
+fi
+AC_SUBST(ACLOCALDIR)
+if test -f configure.ac
+then
+    CONFIGURE_SRC=configure.ac
+else
+    CONFIGURE_SRC=configure.in
+fi
+AC_SUBST(CONFIGURE_SRC)
+
+AM_CONDITIONAL(Aclocal, test x$ACLOCALDIR != x )
+
+AM_INIT_AUTOMAKE(Xlt,$CURRENT.$REVISION.$AGE)
+
+AM_CONFIG_HEADER(config.h)
+
+AC_PROG_CC
+AC_AIX
+AM_PROG_CC_STDC
+AC_HEADER_STDC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AM_PROG_LIBTOOL
+AC_PROG_MAKE_SET
+AC_PATH_XTRA
+
+dnl
+dnl Checks for various non-ANSI headers and functions
+dnl (often unused within the code ...)
+dnl
+AC_CHECK_HEADERS(netdb.h  netinet/in.h)
+AC_CHECK_HEADERS(sys/select.h  sys/socket.h  sys/time.h  sys/types.h)
+AC_CHECK_HEADERS(unistd.h)
+
+AC_FUNC_SELECT_ARGTYPES
+
+AC_CHECK_FUNCS(access  bind  close  drand48  dup2  execlp  _exit    fork)
+AC_CHECK_FUNCS(listen  pipe  popen  putenv   read  socket  srand48  vfprintf)
+
+dnl Check for sin() within -lm
+LT_NEED_LIBM
+
+dnl Search for Motif
+AC_FIND_MOTIF
+
+if test -n "$motif_includes"; then
+  if test "x$motif_includes" != "xNONE"; then 
+    MOTIF_CFLAGS="-I$motif_includes"
+  fi
+fi
+if test -n "$motif_libraries"; then
+  if test "x$motif_libraries" != "xNONE"; then
+    MOTIF_LDFLAGS="-L$motif_libraries -lXm"
+  fi
+fi
+
+xlt_save_CPPFLAGS="$CPPFLAGS"
+CPPFLAGS="$MOTIF_CFLAGS $X_CFLAGS $CPPFLAGS"
+AC_CHECK_HEADERS(Xm/XpmP.h, motif_xpm="yes", motif_xpm="no")
+if test "$motif_xpm" = "yes"
+then
+    #
+    # This is a work-around for a broken LessTif XpmP.h file
+    #
+    AC_MSG_CHECKING(Whether XpmP.h defines XpmCreatePixmapFromData)
+    AC_EGREP_CPP(yes,
+    [
+    #include <Xm/XpmP.h>
+    #ifdef XpmCreatePixmapFromData
+    yes
+    #endif
+    ],
+    motif_xpm='yes', motif_xpm='no')
+    if test "$motif_xpm" = "yes"
+    then
+	AC_MSG_RESULT(yes)
+	AC_DEFINE(HAVE_XPM, [], [Define if you have libXpm])
+    else
+	AC_MSG_RESULT(no)
+	AC_FIND_XPM
+    fi
+else
+    AC_FIND_XPM
+fi
+CPPFLAGS="$xlt_save_CPPFLAGS"
+
+#
+# Add the appropriate dependancies.
+#
+MOTIF_LIBADD="\$(link_motif) \$(X_LIBS) -lXt \$(X_PRE_LIBS) \$(XPM_LIBS) -lX11 \$(X_EXTRA_LIBS)"
+MOTIF_LDADD="\$(link_motif)"
+MRM_LDADD="\$(MOTIF_LDFLAGS) -lMrm"
+AC_SUBST(MOTIF_LIBADD)
+AC_SUBST(MOTIF_LDADD)
+AC_SUBST(MRM_LDADD)
+
+
+dnl Already done by the X checks?!
+LT_HAVE_GETHOSTBYNAME
+dnl Our special test
+LT_HAVE_GETSERVBYNAME
+
+# dmalloc debugging support
+LT_WITH_DMALLOC
+
+dnl
+dnl Of course it will be Motif enhanced. None of this
+dnl library will build without Motif. Simply define it.....
+AC_DEFINE(SCIPLOT_WITH_MOTIF, [], [Define or it won't work])
+
+dnl AC_MSG_CHECKING(whether to enable basic UIL support for SciPlot widget)
+dnl AC_ARG_ENABLE(sciplot-with-uil,
+dnl [  --enable-sciplot-with-uil,      enable basic UIL support for SciPlot widget (default)],
+dnl [
+dnl if test x$enable_sciplot_with_uil = xyes; then
+dnl   SP_withuil="yes"
+dnl   AC_DEFINE(SCIPLOT_WITH_UIL)
+dnl else
+dnl   SP_withuil="no"
+dnl fi
+dnl ],
+dnl SP_withuil="yes"
+dnl AC_DEFINE(SCIPLOT_WITH_UIL)
+dnl )
+dnl AC_MSG_RESULT($SP_withuil)
+dnl 
+dnl AM_CONDITIONAL(SciPlotWithUil, test "$SP_withuil" = "yes")
+
+if test x$GCC = xyes
+then
+    CFLAGS="$CFLAGS -Wall"
+fi
+
+dnl Check for exuberant ctags
+AC_HAVE_EXCTAGS
+
+dnl
+dnl Make sure these are substituted
+dnl
+AC_SUBST(CFLAGS)
+AC_SUBST(MOTIF_CFLAGS)
+AC_SUBST(MOTIF_LIBS)
+
+dnl for libtool
+AC_SUBST(AS)
+AC_SUBST(DLLTOOL)
+AC_SUBST(OBJDUMP)
+
+AC_OUTPUT( \
+Makefile \
+scripts/Xlt.spec \
+doc/Makefile \
+doc/Strokes.3 \
+doc/StrokeInstall.3 \
+doc/Xlt.3 \
+doc/XltAnimatedButton.3 \
+doc/XltAppShell.3 \
+doc/XltAppInitialize.3 \
+doc/XltBubbleButton.3 \
+doc/XltCheckArgSize.3 \
+doc/XltCreateAnimatedButton.3 \
+doc/XltCreateBubbleButton.3 \
+doc/XltCreateFilePicker.3 \
+doc/XltCreateHost.3 \
+doc/XltCreateNumEntry.3 \
+doc/XltDisplayOptions.3 \
+doc/XltDisplayFallbackResources.3 \
+doc/XltEntrySB.3 \
+doc/XltFilePicker.3 \
+doc/XltFilePickerGetChild.3 \
+doc/XltFilePickerSetString.3 \
+doc/XltFilePickerGetString.3 \
+doc/XltFontChooser.3 \
+doc/XltGetValues.3 \
+doc/XltHost.3 \
+doc/XltHostSelect.3 \
+doc/XltHostSendData.3 \
+doc/XltHostSendString.3 \
+doc/XltHostCreateTranscript.3 \
+doc/XltHostDiscardOutput.3 \
+doc/XltNumEntry.3 \
+doc/XltNumEntryGetChild.3 \
+doc/XltRedirectStdErr.3 \
+doc/XltSelectionBox.3 \
+doc/XltSelectDebugLevel.3 \
+doc/XltSetClientIcon.3 \
+doc/XltSetValues.3 \
+doc/XltSlideContext.3 \
+doc/XltToolBarAddItem.3 \
+doc/XltToolBarConfigure.3 \
+doc/XltWaitTillMapped.3 \
+doc/XltWorking.3 \
+doc/XltYesNo.3 \
+doc/XltRdbPutString.3 \
+doc/XltAppAddTimeOut.3 \
+lib/Makefile \
+tests/Makefile \
+tests/AnimatedButton/Makefile \
+tests/AppShell/Makefile \
+tests/BubbleButton/Makefile \
+tests/EntrySB/Makefile \
+tests/FilePicker/Makefile \
+tests/FontChooser/Makefile \
+tests/Host/Makefile \
+tests/ListTree/Makefile \
+tests/NodeButton/Makefile \
+tests/NumEntry/Makefile \
+tests/SciPlot/Makefile \
+tests/SelectionBox/Makefile \
+tests/Slide/Makefile \
+tests/Strokes/Makefile \
+tests/ToolBar/Makefile \
+tests/WaitTillMapped/Makefile \
+tests/YesNo/Makefile \
+tests/Rdb/Makefile \
+tests/LiteClue/Makefile \
+scripts/Makefile )

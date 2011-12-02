@@ -1,0 +1,44 @@
+...\" ** $Id: XltNumEntryGetChild.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltNumEntryGetChild 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltNumEntryGetChild\fP \- Convenience function to get the widget ID of
+one of the standard children.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/NumEntry.h>
+.sp \n(PDu
+Widget XltNumEntryGetChild(\fBwidget, child\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	unsigned char	\fBchild\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltNumEntryGetChild\fP 
+Get the widget ID of one of the standard children of a NumEntry widget.
+.IP "\fBwidget\fP"
+The widget ID of the NumEntry widget.
+.IP "\fBchild\fP"
+One of 
+XltNUMENTRY_TEXT
+XltNUMENTRY_LAB
+XltNUMENTRY_UP
+XltNUMENTRY_DN
+.PP 
+For a complete description of NumEntry, see
+\fIXltNumEntry(3X)\fP
+.SH RETURN VALUE
+Returns the widget ID of the child or NULL.
+.SH RELATED INFORMATION
+.na
+\fIXltNumEntry(3X)\fP.
+.ad

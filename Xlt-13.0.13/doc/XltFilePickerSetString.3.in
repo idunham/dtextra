@@ -1,0 +1,38 @@
+...\" ** $Id: XltFilePickerSetString.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltFilePickerSetString 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltFilePickerSetString\fP \- Function to set the string shown in the
+TextField of a FilePicker widget.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/FilePicker.h>
+.sp \n(PDu
+Widget XltFilePickerSetString(\fBwidget, string\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	char 	\fB*string\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltFilePickerSetString\fP 
+sets the XmNvalue of the FilePicker TextField to string.
+.IP "\fBwidget\fP"
+The XltFilePicker widget ID
+.IP "\fBstring\fP"
+The string to put into the TextField.
+.PP 
+For a complete description of FilePicker, see
+\fIXltFilePicker(3X)\fP
+.SH RELATED INFORMATION
+.na
+\fIXltFilePicker(3X)\fP.
+.ad

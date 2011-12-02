@@ -1,0 +1,44 @@
+...\" ** $Id: XltFilePickerGetChild.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltFilePickerGetChild 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltFilePickerGetChild\fP \- Convenience function to get the widget ID of
+one of the standard children.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/FilePicker.h>
+.sp \n(PDu
+Widget XltFilePickerGetChild(\fBwidget, child\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	unsigned char	\fBchild\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltFilePickerGetChild\fP 
+Get the widget ID of one of the standard children of a FilePicker widget.
+.IP "\fBwidget\fP"
+The widget ID of the FilePicker widget.
+.IP "\fBchild\fP"
+One of 
+XltFILEPICKER_TEXT
+XltFILEPICKER_LAB
+XltFILEPICKER_BUTTON
+XltFILEPICKER_DN
+.PP 
+For a complete description of FilePicker, see
+\fIXltFilePicker(3X)\fP
+.SH RETURN VALUE
+Returns the widget ID of the child or NULL.
+.SH RELATED INFORMATION
+.na
+\fIXltFilePicker(3X)\fP.
+.ad

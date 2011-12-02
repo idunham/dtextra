@@ -1,0 +1,95 @@
+'\" t
+.ds ]W @PACKAGE@ Version @VERSION@
+.TH "" 3 "" "Version 3.0" "Free Widget Foundation"
+.SH NAME
+XltFontChooser
+.SH DESCRIPTION
+The \fIXltFontChooser\fP widget allows a user to select a font by choosing
+its XLFD font name fields.
+The widget is subclassed from XmMessageBox which means it inherits its
+behavior.
+.PP
+This is a rather simple widget (less than 600 lines),
+it can create a hell of a widget hierarchy though.
+.I "Editres"
+will amaze you.
+
+.SS "Public variables"
+
+.ps -2
+.TS
+center box;
+cBsss
+lB|lB|lB|lB
+l|l|l|l.
+XltFontChooser
+Name	Class	Type	Default
+XltNshowDemo	XltCShowDemo	Boolean	True
+XltNfontName	XltCFontName	String	NULL
+XltNdemoString	XltCDemoString	String	"The quick brown fox jumps over the lazy dog."
+XltNcountString	XltCCountString	String	"%d matching fonts"
+XltNpattern	XltCPattern	String	"-*-*-*-*-*-*-*-*-*-*-*-*-*-*"
+XltNsortCriteria	XltNSortCriteria	String	"aaaaaannnnanaa"
+
+.TE
+.ps +2
+
+
+.TP
+.I "XltNshowDemo"
+Whether to show a string in the font selected by the user.
+(Or the first one that applies the selection, if multiple).
+
+.TP
+.I "XltNfontName"
+This is the name of the selected font.
+
+.TP
+.I "XltNdemoString"
+This string is shown to demonstrate the selected font.
+
+.TP
+.I "XltNcountString"
+This string is used to print the amount of matching fonts.
+
+.TP
+.I "XltNpattern"
+This string is used to specify the initial query for fonts.
+The default value will retrieve all fonts with XLFD compliant names.
+
+.TP
+.I "XltNsortCriteria"
+This string of exactly 14 characters indicates the sorting order used for
+the menu buttons.
+n or N mean numeric, a or A indicate alphabetic sort order,
+any other character means don't sort.
+
+.SS "Selected inherited resources"
+
+.TP
+.I "XmNokCallback"
+
+Allows an application to get a call,
+query XltNfontName using GetValues,
+and take appropriate action.
+
+.TP
+.I "XmNcancelCallback"
+
+.SH CLASS HIERARCHY
+
+These manuals of the superclasses describe the inherited resources :
+.PP
+.BR Object (3)
+.PP
+.BR Rect (3)
+.PP
+.BR UnNamedObj (3)
+.PP
+.BR Core (3)
+.PP
+.BR XmManager (3)
+.PP
+.BR XmBulletinBoard (3)
+.PP
+.BR XmMessageBox (3)

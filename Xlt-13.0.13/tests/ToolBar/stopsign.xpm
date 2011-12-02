@@ -1,0 +1,42 @@
+/* XPM */
+static char *stopsign[] = {
+/* width height num_colors chars_per_pixel */
+"    32    32        3            1",
+/* colors */
+". s None c None",
+"# c #000000",
+"a c #f30000",
+/* pixels */
+"..........############..........",
+".........#............#.........",
+"........#.aaaaaaaaaaaa.#........",
+".......#.aaaaaaaaaaaaaa.#.......",
+"......#.aaaaaaaaaaaaaaaa.#......",
+".....#.aaaaaaaaaaaaaaaaaa.#.....",
+"....#.aaaaaaaaaaaaaaaaaaaa.#....",
+"...#.aaaaaaaaaaaaaaaaaaaaaa.#...",
+"..#.aaaaaaaaaaaaaaaaaaaaaaaa.#..",
+".#.aaaaaaaaaaaaaaaaaaaaaaaaaa.#.",
+"#.aaa...aa.....aa...aa....aaaa.#",
+"#.aa.aaa.aaa.aaa.aaa.a.aaa.aaa.#",
+"#.aa.aaaaaaa.aaa.aaa.a.aaa.aaa.#",
+"#.aa.aaaaaaa.aaa.aaa.a.aaa.aaa.#",
+"#.aaa.aaaaaa.aaa.aaa.a.aaa.aaa.#",
+"#.aaaa.aaaaa.aaa.aaa.a....aaaa.#",
+"#.aaaaa.aaaa.aaa.aaa.a.aaaaaaa.#",
+"#.aaaaaa.aaa.aaa.aaa.a.aaaaaaa.#",
+"#.aaaaaa.aaa.aaa.aaa.a.aaaaaaa.#",
+"#.aaaaaa.aaa.aaa.aaa.a.aaaaaaa.#",
+"#.aa.aaa.aaa.aaa.aaa.a.aaaaaaa.#",
+"#.aaa...aaaa.aaaa...aa.aaaaaaa.#",
+".#.aaaaaaaaaaaaaaaaaaaaaaaaaa.#.",
+"..#.aaaaaaaaaaaaaaaaaaaaaaaa.#..",
+"...#.aaaaaaaaaaaaaaaaaaaaaa.#...",
+"....#.aaaaaaaaaaaaaaaaaaaa.#....",
+".....#.aaaaaaaaaaaaaaaaaa.#.....",
+"......#.aaaaaaaaaaaaaaaa.#......",
+".......#.aaaaaaaaaaaaaa.#.......",
+"........#.aaaaaaaaaaaa.#........",
+".........#............#.........",
+"..........############.........."
+};

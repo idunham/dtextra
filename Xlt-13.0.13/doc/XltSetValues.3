@@ -1,0 +1,47 @@
+...\" ** $Id: XltSetValues.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltSetValues 3X "" "" "" ""
+.ds )H Eric Howe
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltSetValues\fP \- Convenience safety wrapper for \fBXtSetValues\fR(3X).
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltSetValues(w, a, n)
+.ta .5i 1.5i
+.nf
+	Widget w;
+	Arg a[];
+	Cardinal n;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltSetValues\fP
+simply asserts (using \fBXltCheckArgSize\fR(3X)) that \fIa\fR contains at
+least \fIn\fR elements and then calls \fBXtSetValues\fR(3X).
+.PP
+An alternative is to use \fBXtVaSetValues\fR(3X).  \fBXtVaSetValues\fR(3X)
+makes the machine work harder but few would notice any performance difference.
+However, if you already have an application that makes extensive use of
+\fBXtSetValues\fR(3X), using \fBXltSetValues\fR will be easier than changing
+everything to \fBXtVaSetValues\fR(3X).
+.PP
+Note that the \fIa\fR parameter must be an array of Arg, a pointer to an Arg
+will not work.
+.PP 
+.SH RETURN VALUE
+None but \fBabort\fR(3) may be called.
+.SH SEE ALSO
+.BR XltGetValues (3X),
+.BR XltCheckArgSize (3X),
+.BR assert (3).
+
+.na
+.ad

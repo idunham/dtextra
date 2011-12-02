@@ -1,0 +1,120 @@
+'\" t
+...\" ** $Id: XltFilePicker.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltFilePicker 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltFilePicker\fP \- The FilePicker widget class
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/FilePicker.h>
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+XltFilePicker is a convenience widget composed of a XmLabel(3), XmTextField(3), 
+and a XltBubbleButton(3).  A file name can be typed into the TextField or,
+if you press the "Browse" button an XmFileSelectionDialog(3) is popped up.
+Any selection made in the FileSelectionDialog is placed in the TextField.
+.PP 
+The user can specify resources in a resource file for the automatically
+created widgets. The following is a list of the names of these widgets.
+.PP 
+Label \- "Label"
+.PP 
+TextField \- "Text"
+.PP 
+BubbleButton \- "Button"
+.PP 
+.SS "Classes"
+FilePicker inherits behavior and resources from the
+\fICore\fP, \fIComposite\fP, \fIConstraint\fP, \fIXmManager\fP, and
+\fIXmForm\fP classes.
+.PP 
+The class pointer is \fIXltFilePickerWidgetClass\fP.
+.PP 
+The class name is \fIXltFilePicker\fP.
+.SS "New Resources"
+The following table defines a set of widget resources used by the programmer
+to specify data.  The programmer can also set the resource values for the
+inherited classes to set attributes for this widget.  To reference a
+resource by name or by class in a .Xdefaults file, remove the \fIXmN\fP or
+\fIXmC\fP prefix and use the remaining letters.  To specify one of the defined
+values for a resource in a .Xdefaults file, remove the \fIXm\fP prefix and use
+the remaining letters (in either lowercase or uppercase, but include any
+underscores between words).
+The codes in the access column indicate if the given resource can be
+set at creation time (C),
+set by using \fIXtSetValues\fP (S),
+retrieved by using \fIXtGetValues\fP (G), or is not applicable (N/A).
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ XltFilePicker Resource Set
+Name	Class	Type	Default	Access
+_
+XmNfileSelectionDialog	XtCFileSelectionDialog	Widget	dynamic	CSG
+XmNvalue	XmCValue	String	""	CSG
+.TE
+.KE
+.in
+.sp 1
+.IP "\fIXmNfileSelectionDialog\fP"
+This is the widget ID of the FileSelectionDialog to use.  If not specified
+one is created and shared amongst all members of the class.
+.IP "\fIXmNvalue\fP"
+This is the same as the value of the TextField widget.
+
+.SS "Inherited Resources"
+NumEntry inherits behavior and resources from the following
+superclasses.  For a complete description of each resource, refer to the
+man page for that superclass.
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ Core Resource Set
+Name	Class	Type	Default	Access
+_
+XmNdestroyCallback	XmCCallback	XtCallbackList	NULL	C
+XmNscreen	XmCScreen	Screen *	dynamic	CG
+.wH
+.tH
+.TE
+.KE
+.in
+.sp 1
+.wH
+.in  
+.SS "Behavior"
+XltFilePicker behavior is described below:
+.IP
+XltFilePicker is a convenience widget composed of a XmLabel(3), XmTextField(3), 
+and a XltBubbleButton(3).  A file name can be typed into the TextField or,
+if you press the "Browse" button an XmFileSelectionDialog(3) is popped up.
+Any selection made in the FileSelectionDialog is placed in the TextField.
+
+.SS "Virtual Bindings"
+The bindings for virtual keys are vendor specific.
+For information about bindings for virtual buttons and keys, see \fIVirtualBindings(3X)\fP.
+.SH RELATED INFORMATION
+.na
+\fIXltCreateFilePicker(3X)\fP,
+\fIXltFilePickerGetChild(3X)\fP,
+\fIXltFilePickerGetString(3X)\fP,
+\fIXltFilePickerSetString(3X)\fP,
+.ad

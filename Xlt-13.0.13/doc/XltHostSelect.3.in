@@ -1,0 +1,44 @@
+...\" ** $Id: XltHostSelect.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltHostSelect 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltHostSelect\fP \- Convenience function to display a dialog that
+allows you to select a host/port pair.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.sp \n(PDu
+Widget XltHostSelect(\fBparent, host\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBparent\fI;
+	Widget 	\fBhost\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltHostSelect\fP 
+Displays a dialog that allows you to select the host/port pair to
+connect to. Pressing OK will disconnect from the current host/port
+and establish a connection to the specified host/port.  If the parent
+of the Host widget is not realized, the connection attempt will be
+deferred until such time that it is.  This allows the main window of
+the application to get mapped before the connection is attempted.  This
+function is useful as the activateCallback of a menu button.
+.IP "\fBparent\fP"
+The parent widget ID
+.IP "\fBhost\fP"
+The widget ID of the Host connection.
+.PP 
+For a complete description of Host, see
+\fIXltHost(3X)\fP
+.SH RELATED INFORMATION
+.na
+\fIXltHost(3X)\fP.
+.ad

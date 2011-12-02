@@ -1,0 +1,384 @@
+==============
+2004/09/26 14:08:54
+author: rwscott
+configure.in(1.105)
+
+working_version 11.1.11 -> 11.2.11
+==============
+2005/01/26 00:54:55
+author: rwscott
+lib/Rdb.c(1.3)
+
+When saving the RESOURCE_MANAGER property you also need to
+XrmSetDatabase, so that the application see the new contents
+right away. Discovered while saving preferences in xmtvguide.
+==============
+2005/01/26 23:04:37
+author: rwscott
+lib/Rdb.c(1.4)
+
+A much better way to get the new resource into the current database
+is to put it there, not replace the whole db. This avoids database
+corruption during the creation of the app (I hope)
+==============
+2005/04/18 15:34:51
+author: dannybackx
+NEWS(1.6)
+configure.in(1.106)
+doc/Makefile.am(1.8)
+lib/Makefile.am(1.58)
+tests/Makefile.am(1.17)
+
+Add the old version of LiteClue to keep track of the original verson.
+Michel will be updating this soon.
+==============
+2005/04/21 13:32:10
+author: mbardiaux
+AUTHORS(1.4)
+
+Added Danny
+==============
+2005/05/19 16:17:06
+author: rwscott
+lib/HostP.h(1.6)
+
+The start of being able to save the contents of the transcript from
+the transcript popup menu.
+==============
+2005/05/19 18:52:30
+author: dannybackx
+lib/HostTranscript.c(1.14)
+
+Add <stdio.h> to be able to compile.
+==============
+2005/05/20 11:57:01
+author: rwscott
+configure.in(1.107)
+lib/HostTranscript.c(1.15)
+
+You can now save the contents of the HostTranscript window via the
+transcript popup menu.
+
+Adjust the .so numbers because a couple of things were added to the
+Host instance record. All apps linked with the last version should
+pick up this new functionality for free. Anything that sub-classes
+XltHost should be re-compiled.
+==============
+2005/09/03 12:50:17
+author: rwscott
+lib/NumEntry.c(1.18)
+
+Plug a leak on SetValues of the value.
+==============
+2005/09/03 13:07:56
+author: rwscott
+MaintainerMode.am(1.2)
+
+
+Don't update MaintainerMode.am with the installed version. This package
+needs a slightly different version :(
+==============
+2005/09/12 20:56:03
+author: rwscott
+doc/Makefile.am(1.9)
+
+A couple of files included twice
+==============
+2005/09/15 14:10:08
+author: rwscott
+lib/Host.c(1.32)
+lib/Host.h(1.6)
+
+
+Sometimes you can't tell when a socket has gone away, server reboot etc,
+so this adds a function to force a re-connect to the server.
+==============
+2005/09/16 12:55:48
+author: rwscott
+Makefile.am(1.27)
+
+
+Add a Makefile.am snippet that will automagically generate the rpm spec file
+and make the rpm package.
+==============
+
+
+Executive Summary
+Of 275 files, 14 changed, and 261 had no change
+
+File                                 Current Rev. Last Release 
+.cvsignore                           1.7          1.7          No Change
+AUTHORS                              1.4          1.3          
+COPYING                              1.1          1.1          No Change
+COPYING.LIB                          1.1          1.1          No Change
+CVSMake                              1.16         1.16         No Change
+ChangeLog                            1.22         1.22         No Change
+INSTALL                              1.2          1.2          No Change
+MaintainerMode.am                    1.2          1.1          
+Makefile.am                          1.27         1.26         
+NEWS                                 1.6          1.5          
+README                               1.5          1.5          No Change
+ac_find_motif.m4                     1.3          1.3          No Change
+ac_find_xlt.m4                       1.15         1.15         No Change
+ac_find_xpm.m4                       1.5          1.5          No Change
+acinclude.m4                         1.22         1.22         No Change
+configure.in                         1.107        1.104        
+spec.am                              1.1          1.1          No Change
+CVSROOT/checkoutlist                 1.4          1.4          No Change
+CVSROOT/commit_prep                  1.1          1.1          No Change
+CVSROOT/commitinfo                   1.5          1.5          No Change
+CVSROOT/config                       1.1          1.1          No Change
+CVSROOT/cvswrappers                  1.1          1.1          No Change
+CVSROOT/editinfo                     1.1          1.1          No Change
+CVSROOT/log_accum                    1.6          1.6          No Change
+CVSROOT/loginfo                      1.16         1.16         No Change
+CVSROOT/modules                      1.1          1.1          No Change
+CVSROOT/notify                       1.1          1.1          No Change
+CVSROOT/rcsinfo                      1.1          1.1          No Change
+CVSROOT/syncmail                     1.4          1.4          No Change
+CVSROOT/taginfo                      1.1          1.1          No Change
+CVSROOT/verifymsg                    1.1          1.1          No Change
+doc/.cvsignore                       1.2          1.2          No Change
+doc/ListTree.gif                     1.1          1.1          No Change
+doc/ListTree.html                    1.1          1.1          No Change
+doc/ListTreeProg.html                1.3          1.3          No Change
+doc/ListTreeTitle.gif                1.1          1.1          No Change
+doc/LiteClue.html                    1.1          1.1          No Change
+doc/Makefile.am                      1.9          1.7          
+doc/SciPlot.html                     1.2          1.2          No Change
+doc/SciPlotDemo.gif                  1.1          1.1          No Change
+doc/SciPlotDemo.html                 1.1          1.1          No Change
+doc/SciPlotExample.gif               1.1          1.1          No Change
+doc/SciPlotProg.html                 1.3          1.3          No Change
+doc/SciPlotTitle.gif                 1.1          1.1          No Change
+doc/StrokeInstall.3.in               1.1          1.1          No Change
+doc/Strokes.3.in                     1.1          1.1          No Change
+doc/TreeFSel.gif                     1.1          1.1          No Change
+doc/Xlt.3.in                         1.3          1.3          No Change
+doc/XltAnimatedButton.3.in           1.1          1.1          No Change
+doc/XltAppAddTimeOut.3.in            1.1          1.1          No Change
+doc/XltAppInitialize.3.in            1.1          1.1          No Change
+doc/XltAppShell.3.in                 1.1          1.1          No Change
+doc/XltBubbleButton.3.in             1.1          1.1          No Change
+doc/XltCheckArgSize.3.in             1.1          1.1          No Change
+doc/XltCreateAnimatedButton.3.in     1.1          1.1          No Change
+doc/XltCreateBubbleButton.3.in       1.1          1.1          No Change
+doc/XltCreateFilePicker.3.in         1.1          1.1          No Change
+doc/XltCreateHost.3.in               1.1          1.1          No Change
+doc/XltCreateNumEntry.3.in           1.1          1.1          No Change
+doc/XltDisplayFallbackResources.3.in 1.1          1.1          No Change
+doc/XltDisplayOptions.3.in           1.1          1.1          No Change
+doc/XltEntrySB.3.in                  1.1          1.1          No Change
+doc/XltFilePicker.3.in               1.1          1.1          No Change
+doc/XltFilePickerGetChild.3.in       1.1          1.1          No Change
+doc/XltFilePickerGetString.3.in      1.1          1.1          No Change
+doc/XltFilePickerSetString.3.in      1.1          1.1          No Change
+doc/XltFontChooser.3.in              1.1          1.1          No Change
+doc/XltGetValues.3.in                1.1          1.1          No Change
+doc/XltHost.3.in                     1.3          1.3          No Change
+doc/XltHostCreateTranscript.3.in     1.1          1.1          No Change
+doc/XltHostDiscardOutput.3.in        1.1          1.1          No Change
+doc/XltHostSelect.3.in               1.1          1.1          No Change
+doc/XltHostSendData.3.in             1.1          1.1          No Change
+doc/XltHostSendString.3.in           1.1          1.1          No Change
+doc/XltNumEntry.3.in                 1.1          1.1          No Change
+doc/XltNumEntryGetChild.3.in         1.1          1.1          No Change
+doc/XltRdbPutString.3.in             1.1          1.1          No Change
+doc/XltRedirectStdErr.3.in           1.1          1.1          No Change
+doc/XltSelectDebugLevel.3.in         1.1          1.1          No Change
+doc/XltSelectionBox.3.in             1.1          1.1          No Change
+doc/XltSetClientIcon.3.in            1.1          1.1          No Change
+doc/XltSetValues.3.in                1.1          1.1          No Change
+doc/XltSlideContext.3.in             1.1          1.1          No Change
+doc/XltToolBarAddItem.3.in           1.1          1.1          No Change
+doc/XltToolBarConfigure.3.in         1.1          1.1          No Change
+doc/XltWaitTillMapped.3.in           1.1          1.1          No Change
+doc/XltWorking.3.in                  1.1          1.1          No Change
+doc/XltYesNo.3.in                    1.1          1.1          No Change
+doc/lgpl.html                        1.1          1.1          No Change
+doc/new.gif                          1.1          1.1          No Change
+doc/new.png                          1.1          1.1          No Change
+lib/.cvsignore                       1.4          1.4          No Change
+lib/AnimatedButton.c                 1.7          1.7          No Change
+lib/AnimatedButton.h                 1.3          1.3          No Change
+lib/AnimatedButtonP.h                1.2          1.2          No Change
+lib/AppShell.c                       1.7          1.7          No Change
+lib/AppShell.h                       1.2          1.2          No Change
+lib/AppShellP.h                      1.3          1.3          No Change
+lib/BubbleButton.c                   1.17         1.17         No Change
+lib/BubbleButton.h                   1.5          1.5          No Change
+lib/BubbleButtonP.h                  1.7          1.7          No Change
+lib/DisplayFallbackResources.c       1.5          1.5          No Change
+lib/DisplayOptions.c                 1.6          1.6          No Change
+lib/EntrySB.c                        1.7          1.7          No Change
+lib/EntrySB.h                        1.1          1.1          No Change
+lib/EntrySB.w                        1.2          1.2          No Change
+lib/EntrySBP.h                       1.1          1.1          No Change
+lib/FilePicker.c                     1.9          1.9          No Change
+lib/FilePicker.h                     1.2          1.2          No Change
+lib/FilePickerP.h                    1.2          1.2          No Change
+lib/FontChooser.c                    1.19         1.19         No Change
+lib/FontChooser.h                    1.5          1.5          No Change
+lib/FontChooserP.h                   1.7          1.7          No Change
+lib/Host.c                           1.32         1.30         
+lib/Host.h                           1.6          1.5          
+lib/HostP.h                          1.6          1.5          
+lib/HostTranscript.c                 1.15         1.12         
+lib/ListTree.c                       1.20         1.20         No Change
+lib/ListTree.h                       1.13         1.13         No Change
+lib/ListTreeP.h                      1.5          1.5          No Change
+lib/LiteClue.c                       1.2          1.2          No Change
+lib/LiteClue.h                       1.1          1.1          No Change
+lib/LiteClueP.h                      1.1          1.1          No Change
+lib/Makefile.am                      1.58         1.57         
+lib/NodeButton.c                     1.6          1.6          No Change
+lib/NodeButton.h                     1.2          1.2          No Change
+lib/NodeButtonP.h                    1.2          1.2          No Change
+lib/NumEntry.c                       1.18         1.17         
+lib/NumEntry.h                       1.3          1.3          No Change
+lib/NumEntryP.h                      1.4          1.4          No Change
+lib/Rdb.c                            1.4          1.1          
+lib/RedirectStdErr.c                 1.10         1.10         No Change
+lib/SciPlot.c                        1.17         1.17         No Change
+lib/SciPlot.h                        1.7          1.7          No Change
+lib/SciPlot.uil                      1.1          1.1          No Change
+lib/SciPlotP.h                       1.9          1.9          No Change
+lib/SciPlotUtil.c                    1.7          1.7          No Change
+lib/SciPlotUtil.h                    1.4          1.4          No Change
+lib/SelectDebugLevel.c               1.8          1.8          No Change
+lib/SelectionBox.c                   1.6          1.6          No Change
+lib/SelectionBox.h                   1.3          1.3          No Change
+lib/SelectionBoxP.h                  1.2          1.2          No Change
+lib/SetClientIcon.c                  1.10         1.10         No Change
+lib/SlideC.c                         1.4          1.4          No Change
+lib/SlideC.h                         1.2          1.2          No Change
+lib/SlideCP.h                        1.4          1.4          No Change
+lib/Sound.c                          1.8          1.8          No Change
+lib/Sound.h                          1.4          1.4          No Change
+lib/Stroke.c                         1.7          1.7          No Change
+lib/Stroke.h                         1.4          1.4          No Change
+lib/Timer.c                          1.1          1.1          No Change
+lib/Timer.h                          1.1          1.1          No Change
+lib/ToolBar.c                        1.19         1.19         No Change
+lib/Working.c                        1.10         1.10         No Change
+lib/Xlt.h                            1.10         1.10         No Change
+lib/YesNo.c                          1.6          1.6          No Change
+lib/calc.c                           1.18         1.18         No Change
+lib/calc.h                           1.3          1.3          No Change
+scripts/.cvsignore                   1.1          1.1          No Change
+scripts/Makefile.am                  1.2          1.2          No Change
+scripts/Xlt.def.dist                 1.1          1.1          No Change
+scripts/Xlt.spec.in                  1.1          1.1          No Change
+scripts/parselog                     1.1          1.1          No Change
+tests/.cvsignore                     1.1          1.1          No Change
+tests/Makefile.am                    1.17         1.16         
+tests/AnimatedButton/.cvsignore      1.2          1.2          No Change
+tests/AnimatedButton/Makefile.am     1.15         1.15         No Change
+tests/AnimatedButton/eye.xpm         1.1          1.1          No Change
+tests/AnimatedButton/eye1.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye10.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye11.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye12.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye13.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye14.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye15.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye16.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye17.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye18.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye19.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye2.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye20.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye21.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye22.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye23.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye24.xpm       1.1          1.1          No Change
+tests/AnimatedButton/eye3.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye4.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye5.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye6.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye7.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye8.xpm        1.1          1.1          No Change
+tests/AnimatedButton/eye9.xpm        1.1          1.1          No Change
+tests/AnimatedButton/test3.c         1.5          1.5          No Change
+tests/AnimatedButton/test4.c         1.8          1.8          No Change
+tests/AppShell/.cvsignore            1.3          1.3          No Change
+tests/AppShell/Makefile.am           1.13         1.13         No Change
+tests/AppShell/test1.c               1.1          1.1          No Change
+tests/BubbleButton/.cvsignore        1.3          1.3          No Change
+tests/BubbleButton/Makefile.am       1.16         1.16         No Change
+tests/BubbleButton/dates.xpm         1.1          1.1          No Change
+tests/BubbleButton/test1.c           1.5          1.5          No Change
+tests/BubbleButton/test2.c           1.2          1.2          No Change
+tests/EntrySB/.cvsignore             1.2          1.2          No Change
+tests/EntrySB/Makefile.am            1.13         1.13         No Change
+tests/EntrySB/test1.c                1.6          1.6          No Change
+tests/FilePicker/.cvsignore          1.4          1.4          No Change
+tests/FilePicker/Makefile.am         1.13         1.13         No Change
+tests/FilePicker/test1.c             1.2          1.2          No Change
+tests/FontChooser/.cvsignore         1.4          1.4          No Change
+tests/FontChooser/Makefile.am        1.12         1.12         No Change
+tests/FontChooser/test1.c            1.2          1.2          No Change
+tests/FontChooser/test2.c            1.4          1.4          No Change
+tests/Host/.cvsignore                1.2          1.2          No Change
+tests/Host/Makefile.am               1.15         1.15         No Change
+tests/Host/test1.c                   1.9          1.9          No Change
+tests/ListTree/.cvsignore            1.4          1.4          No Change
+tests/ListTree/Makefile.am           1.13         1.13         No Change
+tests/ListTree/demo.c                1.7          1.7          No Change
+tests/LiteClue/.cvsignore            1.1          1.1          No Change
+tests/LiteClue/LiteClueTest.c        1.2          1.2          No Change
+tests/LiteClue/LiteClue_test.c       1.2          1.2          No Change
+tests/LiteClue/LiteClue_test.h       1.1          1.1          No Change
+tests/LiteClue/LiteClue_test.xd      1.1          1.1          No Change
+tests/LiteClue/LiteClue_testP.h      1.1          1.1          No Change
+tests/LiteClue/LiteClue_test_cb.c    1.2          1.2          No Change
+tests/LiteClue/LiteClue_test_stubs.c 1.1          1.1          No Change
+tests/LiteClue/Makefile.am           1.2          1.2          No Change
+tests/NodeButton/.cvsignore          1.2          1.2          No Change
+tests/NodeButton/Makefile.am         1.13         1.13         No Change
+tests/NodeButton/test5.c             1.5          1.5          No Change
+tests/NumEntry/.cvsignore            1.2          1.2          No Change
+tests/NumEntry/Makefile.am           1.14         1.14         No Change
+tests/NumEntry/test3.c               1.7          1.7          No Change
+tests/Rdb/.cvsignore                 1.1          1.1          No Change
+tests/Rdb/Makefile.am                1.1          1.1          No Change
+tests/Rdb/test1.c                    1.1          1.1          No Change
+tests/SciPlot/.cvsignore             1.6          1.6          No Change
+tests/SciPlot/Makefile.am            1.21         1.21         No Change
+tests/SciPlot/data.txt               1.1          1.1          No Change
+tests/SciPlot/example.c              1.4          1.4          No Change
+tests/SciPlot/example.uil            1.3          1.3          No Change
+tests/SciPlot/realtime.c             1.2          1.2          No Change
+tests/SciPlot/xyplot.c               1.4          1.4          No Change
+tests/SelectionBox/.cvsignore        1.2          1.2          No Change
+tests/SelectionBox/Makefile.am       1.8          1.8          No Change
+tests/SelectionBox/test1.c           1.3          1.3          No Change
+tests/Slide/.cvsignore               1.4          1.4          No Change
+tests/Slide/Makefile.am              1.8          1.8          No Change
+tests/Slide/test1.c                  1.3          1.3          No Change
+tests/Strokes/.cvsignore             1.2          1.2          No Change
+tests/Strokes/Makefile.am            1.14         1.14         No Change
+tests/Strokes/test1.c                1.6          1.6          No Change
+tests/ToolBar/.cvsignore             1.2          1.2          No Change
+tests/ToolBar/Makefile.am            1.13         1.13         No Change
+tests/ToolBar/dates.xpm              1.2          1.2          No Change
+tests/ToolBar/floppy3.xpm            1.2          1.2          No Change
+tests/ToolBar/icon.xpm               1.2          1.2          No Change
+tests/ToolBar/icon_s.xpm             1.2          1.2          No Change
+tests/ToolBar/lesstif.xpm            1.2          1.2          No Change
+tests/ToolBar/new_acc.xpm            1.2          1.2          No Change
+tests/ToolBar/new_trans.xpm          1.2          1.2          No Change
+tests/ToolBar/open.xpm               1.2          1.2          No Change
+tests/ToolBar/plot_acc.xpm           1.2          1.2          No Change
+tests/ToolBar/print.xpm              1.2          1.2          No Change
+tests/ToolBar/recur_trans.xpm        1.2          1.2          No Change
+tests/ToolBar/stopsign.xpm           1.2          1.2          No Change
+tests/ToolBar/test1.c                1.6          1.6          No Change
+tests/ToolBar/view_acc.xpm           1.2          1.2          No Change
+tests/ToolBar/view_trans.xpm         1.2          1.2          No Change
+tests/WaitTillMapped/.cvsignore      1.2          1.2          No Change
+tests/WaitTillMapped/Makefile.am     1.13         1.13         No Change
+tests/WaitTillMapped/test1.c         1.4          1.4          No Change
+tests/YesNo/.cvsignore               1.2          1.2          No Change
+tests/YesNo/Makefile.am              1.13         1.13         No Change
+tests/YesNo/test5.c                  1.4          1.4          No Change

@@ -1,0 +1,50 @@
+...\" ** $Id: XltAppInitialize.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltAppInitialize 3X "" "" "" ""
+.ds )H Eric Howe
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltAppInitialize\fP \- Replacement for XtAppInitialize which uses an
+XltAppShell instead of an Xt ApplicationShell.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/AppShell.h>
+.sp \n(PDu
+Widget XltAppInitialize(ac, cls, opts, num_opts, argc, argv, fallbacks, a, n)
+.ta .5i 1.5i
+.nf
+	XtAppContext *ac;
+	String cls;
+	XmrOptionDescList opts;
+	Cardinal num_opts;
+	int *argc;
+	char **argv;
+	char *fallbacks;
+	ArgList a;
+	Cardinal n;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltAppInitialize\fP is a drop-in replacement for \fIXtAppInitialize\fR(3X)
+which uses an Xlt AppShell widget instead of an Xt ApplicationShell widget.
+The type of shell created is the only difference between this function and
+\fIXtAppInitialize\fR(3X).
+.PP
+Applications which use X11R6 should use \fIXtOpenApplication\fR(3X) which
+allows you to specify the type of shell widget to create.
+.PP 
+.SH RETURN VALUE
+The AppShell widget.
+.SH SEE ALSO
+.BR XtAppInitialize (3X),
+.BR XtVaAppInitialize (3X),
+.BR XtOpenApplication (3X),
+.BR XtVaOpenApplication (3X).
+
+.na
+.ad

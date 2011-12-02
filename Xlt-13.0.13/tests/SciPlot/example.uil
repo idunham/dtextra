@@ -1,0 +1,100 @@
+module helloworld
+    version = 'v1.0'
+    names = case_sensitive
+
+include file 'SciPlot.uil';
+
+procedure 
+    SciPlotCreate();
+    exit();
+
+object
+   app_main : XmMainWindow {
+   arguments {
+      XmNworkWindow = XmForm myform;
+      XmNmenuBar = XmMenuBar bar;
+   };
+	controls {
+       XmMenuBar bar;
+       XmForm myform;
+	};
+};
+
+object bar : XmMenuBar {
+    arguments {
+       XmNmenuHelpWidget = XmCascadeButton help;
+    };
+    controls {
+       XmCascadeButton file;
+       XmCascadeButton help;
+    };
+};
+
+object file : XmCascadeButton {
+   arguments { 
+      XmNlabelString = "File";
+      XmNmnemonic = keysym('F');
+   };
+   controls {
+      XmPulldownMenu file_pd;
+   };
+};
+
+object file_pd : XmPulldownMenu {
+   controls {
+      XmPushButton exit_pb;
+   };
+};
+object exit_pb : XmPushButton {
+   arguments { 
+      XmNlabelString = "Exit"; 
+      XmNmnemonic = keysym('x');
+   };
+   callbacks {
+      XmNactivateCallback = procedure exit();
+   };
+};
+        
+object help : XmCascadeButton {
+   arguments { 
+      XmNlabelString = "Help"; 
+      XmNmnemonic = keysym('H'); 
+   };
+};
+
+object myform : XmForm {
+   arguments {
+!       XmNresizePolicy = XmRESIZE_ANY;
+   };
+   controls {
+       user_defined plot;
+   };
+};
+
+object 
+   plot : user_defined procedure SciPlotCreate() {
+      arguments {
+        XmNheight = 200 ;
+        XmNwidth = 200 ;
+         XtNshowLegend = false;
+         XtNshowTitle = false;
+         XtNshowXLabel = false;
+         XtNshowYLabel = false;
+         XtNxAutoScale = true;
+         XtNyAutoScale = false;
+         XtNdoubleBuffer = true;
+!         XtNaxisFont = 20;
+!         XtNplotTitle = "Demo of Plot Widget" ;
+!         XtNxLabel = "X Axis (units)" ;
+!         XtNyLabel = "Y Axis (units)" ;
+!         XtNchartType = XtPOLAR ;
+         XtNdegrees = true ;
+         XmNtopAttachment = XmATTACH_FORM;
+         XmNleftAttachment = XmATTACH_FORM;
+         XmNrightAttachment = XmATTACH_FORM;
+         XmNbottomAttachment = XmATTACH_FORM;
+         XmNresizable = true;
+      };
+};
+
+end module;

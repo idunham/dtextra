@@ -1,0 +1,34 @@
+...\" ** $Id: XltYesNo.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltYesNo 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltYesNo\fP \- Convenience function to bring up a YesNo dialog.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+Boolean XltYesNo(\fBwidget, question\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	String	\fBquestion\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltYesNo\fP 
+Spins in a local event loop processing XEvents until user has chosen.
+.IP "\fBwidget\fP"
+The parent widget.
+.PP 
+.SH RETURN VALUE
+Returns user choice.
+.SH RELATED INFORMATION
+.na
+.ad

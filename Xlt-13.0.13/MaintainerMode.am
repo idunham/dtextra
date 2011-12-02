@@ -1,0 +1,55 @@
+
+if MAINTAINER_MODE
+
+working_version:
+	@sed -e's/^REVISION=@REVISION@/REVISION=@NEXT_REVISION@/' @CONFIGURE_SRC@ >$$ && mv $$ @CONFIGURE_SRC@
+	@cvs -Q commit -m "working_version @CURRENT@.@REVISION@.@AGE@ -> @CURRENT@.@NEXT_REVISION@.@AGE@" @CONFIGURE_SRC@
+
+UpdateCheck:
+	@cvs -Qn tag -Fc DummyTag >/dev/null
+
+changelog:
+	@cvs -Q log -rlatest-release: | $(srcdir)/scripts/parselog latest-release >ChangeLog
+
+change-release: UpdateCheck changelog
+	@sed -e's/^REVISION=@REVISION@/REVISION=@NEXT_REVISION@/' @CONFIGURE_SRC@ >$$ && mv $$ @CONFIGURE_SRC@
+	@$(MAKE) dist
+	@cvs -Q commit -m "change-release @CURRENT@.@REVISION@.@AGE@ -> @CURRENT@.@NEXT_REVISION@.@AGE@" @CONFIGURE_SRC@ ChangeLog
+	@cvs -Q tag -d latest-release
+	@cvs -Q tag -f @PACKAGE@-@CURRENT@_@NEXT_REVISION@_@AGE@
+	@cvs -Q tag -F latest-release
+	@$(MAKE) working_version
+
+interface-add-release: UpdateCheck changelog
+	@echo @PACKAGE@-@NEXT_CURRENT@.0.@NEXT_AGE@
+	@sed -e's/^REVISION=@REVISION@/REVISION=0/' -e's/^CURRENT=@CURRENT@/CURRENT=@NEXT_CURRENT@/' -e's/^AGE=@AGE@/AGE=@NEXT_AGE@/' @CONFIGURE_SRC@ >$$ && mv $$ @CONFIGURE_SRC@
+	@$(MAKE) dist
+	@cvs -Q commit -m "interface-add-release @CURRENT@.@REVISION@.@AGE@ -> @NEXT_CURRENT@.0.@NEXT_AGE@" @CONFIGURE_SRC@ ChangeLog
+	@cvs -Q tag -d latest-release
+	@cvs -Q tag -f @PACKAGE@-@NEXT_CURRENT@_0_@NEXT_AGE@
+	@cvs -Q tag -F latest-release
+	@$(MAKE) working_version
+
+interface-remove-release: UpdateCheck changelog
+	@echo @PACKAGE@-@NEXT_CURRENT@.0.0
+	@sed -e's/^CURRENT=@CURRENT@/CURRENT=@NEXT_CURRENT@/' -e's/^REVISION=@REVISION@/REVISION=0/' -e's/^AGE=@AGE@/AGE=0/' @CONFIGURE_SRC@ >$$ && mv $$ @CONFIGURE_SRC@
+	@$(MAKE) dist
+	@cvs -Q commit -m "interface-remove-release @CURRENT@.@REVISION@.@AGE@ -> @NEXT_CURRENT@.0.0" @CONFIGURE_SRC@ ChangeLog
+	@cvs -Q tag -d latest-release
+	@cvs -Q tag -f @PACKAGE@-@NEXT_CURRENT@_0_0
+	@cvs -Q tag -F latest-release
+	@$(MAKE) working_version
+
+else
+
+changelog:
+	@echo "Only available when you run ./configure --enable-maintainer-mode"
+
+UpdateCheck: changelog
+change-release: changelog
+interface-add-release: changelog
+interface-remove-release: changelog
+working_version: changelog
+
+endif
+

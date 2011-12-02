@@ -1,0 +1,122 @@
+'\" t
+...\" ** $Id: XltBubbleButton.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltBubbleButton 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltBubbleButton\fP \- The BubbleButton widget class
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/BubbleButton.h>
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+BubbleButton is a sub-class of PushButton and inherits all of PushButton's
+functionality.
+.PP 
+Next paragraph
+.PP 
+Next paragraph
+.SS "Classes"
+BubbleButton inherits behavior and resources from
+\fICore\fP,
+\fIPrimitive\fP,
+\fILabel\fP, and
+\fIPushButton\fP classes.
+.PP 
+The class pointer is \fIXltBubbleButtonWidgetClass\fP.
+.PP 
+The class name is \fIXltBubbleButton\fP.
+.SS "New Resources"
+The following table defines a set of widget resources used by the programmer
+to specify data.  The programmer can also set the resource values for the
+inherited classes to set attributes for this widget.  To reference a
+resource by name or by class in a .Xdefaults file, remove the \fIXmN\fP or
+\fIXmC\fP prefix and use the remaining letters.  To specify one of the defined
+values for a resource in a .Xdefaults file, remove the \fIXm\fP prefix and use
+the remaining letters (in either lowercase or uppercase, but include any
+underscores between words).
+The codes in the access column indicate if the given resource can be
+set at creation time (C),
+set by using \fIXtSetValues\fP (S),
+retrieved by using \fIXtGetValues\fP (G), or is not applicable (N/A).
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ XltBubbleButton Resource Set
+Name	Class	Type	Default	Access
+_
+XltNbubbleString	XltCBubbleString	XmString	dynamic	CSG
+XltNshowBubble	XltCShowBubble	Boolean	True	CSG
+XltNdelay	XltCDelay	int	1000	CSG
+XltNmouseOverString	XltCMouseOverString	XmString	NULL	CSG
+XltNmouseOverPixmap	XltCMouseOverPixmap	Pixmap	None	CSG
+XltNbubbleDuration	XltCBubbleDuration	int	0	CSG
+.TE
+.KE
+.in
+.sp 1
+.IP "\fIXltNbubbleString\fP"
+The string displayed in the bubble.
+.IP "\fIXltNbubbleDuration\fP"
+If the pointer remains within the button for this long, the bubble will be
+un-posted. If this value is zero, the bubble remains posted as long as the
+pointer is in the button. This resource is new as of release 5.0.5.
+.IP "\fIXltNshowBubble\fP"
+Used to enable/disable showing the bubble.
+.IP "\fIXltNdelay\fP"
+The time to wait before displaying the bubble.
+.IP "\fIXltNmouseOverString\fP"
+If not NULL and the labelType is XmSTRING, this is the string shown when the
+pointer is in the window.
+.IP "\fIXltNmouseOverPixmap\fP"
+If not None and the labelType is XmPIXMAP, this is the pixmap shown when the
+pointer is in the window.
+
+.SS "Inherited Resources"
+Host inherits behavior and resources from the following
+superclasses.  For a complete description of each resource, refer to the
+man page for that superclass.
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ PushButton Resource Set
+Name	Class	Type	Default	Access
+_
+.wH
+.tH
+.TE
+.KE
+.in
+.sp 1
+.wH
+.in  
+
+.SS "Behavior"
+XltBubbleButton behavior is described below:
+.IP
+
+.SS "Virtual Bindings"
+The bindings for virtual keys are vendor specific.
+For information about bindings for virtual buttons and keys, see \fIVirtualBindings(3X)\fP.
+.SH RELATED INFORMATION
+.na
+\fIXmPushButton(3X)\fP,
+\fIXltCreateBubbleButton(3X)\fP,
+.ad

@@ -1,0 +1,38 @@
+SPEC_FILE = $(PWD)/$(PACKAGE).spec
+
+rpm: $(PACKAGE)-$(VERSION).tar.gz spec
+	rm -rf "/tmp/$(PACKAGE)-buildroot"
+	cp $(PACKAGE)-$(VERSION).tar.gz /usr/src/redhat/SOURCES
+	rpmbuild -ba $(SPEC_FILE)
+	rm -rf "/tmp/$(PACKAGE)-buildroot"
+
+spec: spec-header spec-file-list
+
+spec-header:
+	@echo "Summary:   Xlt : LessTif/Motif extension library" >$(SPEC_FILE)
+	@echo "Name: $(PACKAGE)" >>$(SPEC_FILE)
+	@echo "Version: $(VERSION)" >>$(SPEC_FILE)
+	@echo "Release: 1" >>$(SPEC_FILE)
+	@echo "Copyright: Free to use but copyrighted" >>$(SPEC_FILE)
+	@echo "Group: System Environment/Libraries" >>$(SPEC_FILE)
+	@echo "License: LGPL" >>$(SPEC_FILE)
+	@echo "Prefixes:  /usr/X11R6 /usr/doc" >>$(SPEC_FILE)
+	@echo "BuildRoot: /tmp/$(PACKAGE)-buildroot" >>$(SPEC_FILE)
+	@echo "Source: http://prdownloads.sourceforge.net/xlt/Xlt-$(VERSION).tar.gz?download" >>$(SPEC_FILE)
+	@echo "%description" >>$(SPEC_FILE)
+	@echo "%{summary}" >>$(SPEC_FILE)
+	@echo "%prep" >>$(SPEC_FILE)
+	@echo "%setup" >>$(SPEC_FILE)
+	@echo "./configure" >>$(SPEC_FILE)
+	@echo "%build" >>$(SPEC_FILE)
+	@echo "make" >>$(SPEC_FILE)
+	@echo "%install" >>$(SPEC_FILE)
+	@echo "make install DESTDIR=\"%{buildroot}\"" >>$(SPEC_FILE)
+	@echo "%files" >>$(SPEC_FILE)
+
+spec-file-list: spec-header
+	@rm -f $(SPEC_FILE).list
+	@$(MAKE) $(AM_MAKEFLAGS) install mkinstalldirs=":" INSTALL="echo >>$(SPEC_FILE).list" INSTALL_DATA="echo >>$(SPEC_FILE).list" install_sh="echo >>$(SPEC_FILE).list" install_sh_DATA='echo >>$(SPEC_FILE).list'
+	@awk 'function base(shit){while (index(shit, "/") > 0) { shit = substr(shit, index(shit, "/") + 1) } return shit } {if (index($$NF, "/usr/X11R6/man/man") > 0) exten = ".gz"; else exten = "" ; if ($$1 != $$NF && (base($$1) == base($$NF) || base($$1) == base($$NF) "i" || base($$1) == base($$NF) "T")) printf("%s%s\n", $$NF, exten)}' $(SPEC_FILE).list >>$(SPEC_FILE)
+	@rm -f $(SPEC_FILE).list
+

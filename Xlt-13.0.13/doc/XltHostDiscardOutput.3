@@ -1,0 +1,35 @@
+...\" ** $Id: XltHostDiscardOutput.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltHostDiscardOutput 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltHostDiscardOutput\fP \- Convenience function to get rid of any data
+in the output queue.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.sp \n(PDu
+Widget XltHostDiscardOutput(\fBhost\fI)
+.ta .5i 1.5i
+.nf
+	Widget 	\fBhost\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltHostDiscardOutput\fP 
+Throws away any data that is waiting to be output to the host.
+.IP "\fBhost\fP"
+The widget ID of the Host connection.
+.PP 
+For a complete description of Host, see
+\fIXltHost(3X)\fP
+.SH RELATED INFORMATION
+.na
+\fIXltHost(3X)\fP.
+.ad

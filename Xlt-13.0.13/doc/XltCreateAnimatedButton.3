@@ -1,0 +1,45 @@
+...\" ** $Id: XltCreateAnimatedButton.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltCreateAnimatedButton 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltCreateAnimatedButton\fP \- Convenience function to create an AnimatedButton widget
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/AnimatedButton.h>
+.sp \n(PDu
+Widget XltCreateAnimatedButton(\fBparent, name, arglist, argcount\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBparent\fI;
+	String	\fBname\fI;
+	ArgList	\fBarglist\fI;
+	Cardinal	\fBargcount\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltCreateAnimatedButton\fP create an instance of a AnimatedButton widget and
+returns the associated widget ID.
+.IP "\fBparent\fP"
+The parent widget ID
+.IP "\fBname\fP"
+The widget name.
+.IP "\fBarglist\fP"
+The arglist.
+.IP "\fBargcount\fP"
+The number of args in arglist.
+.PP 
+For a complete description of AnimatedButton, see
+\fIXltAnimatedButton(3X)\fP
+.SH RETURN VALUE
+Returns the AnimatedButton widget ID.
+.SH RELATED INFORMATION
+.na
+\fIXltAnimatedButton(3X)\fP.
+.ad

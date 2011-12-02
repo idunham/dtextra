@@ -1,0 +1,43 @@
+/* XPM */
+static char *new_trans[] = {
+/* width height num_colors chars_per_pixel */
+"    32    32        4            1",
+/* colors */
+". c #000000",
+"# c #ffffff",
+"a s None c None",
+"b c #828282",
+/* pixels */
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaa..............bbbaaaaaaaaa",
+"aaaaaa..............bbbaaaaaaaaa",
+"aaaaaa..............bbbaaaaaaaaa",
+"aaaaaabbbbbb...bbbbbbbbaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaa...baaaaaaaaaaaaaaaa",
+"aaaaaaaaaaaabbbbaa..aaaaaaaaaaaa",
+"aaaaaaaaaaaaaaaaaa..aaaaaaaaaaaa",
+"aaaaaaaaaaaaaaaa.......aaaaaaaaa",
+"aaaaaaaaaaaaaaaa.......aaaaaaaaa",
+"aaaaaaaaaaaaaaa...bb....aaaaaaaa",
+"aaaaaaaaaaaaaaa...aabbbbaaaaaaaa",
+"aaaaaaaaaaaaaaab...aaaaaaaaaaaaa",
+"aaaaaaaaaaaaaaab...aaaaaaaaaaaaa",
+"aaaaaaaaaaaaaaab...aaaaaaaaaaaaa",
+"aaaaaaaaaaaaaaaabb..aaaaaaaaaaaa",
+"aaaaaaaaaaaaaaaaaab....aaaaaaaaa",
+"aaaaaaaaaaaaaaaaaaab....aaaaaaaa",
+"aaaaaaaaaaaaaaaaaaab....aaaaaaaa",
+"aaaaaaaaaaaaaaa...aa....aaaaaaaa",
+"aaaaaaaaaaaaaaab.......baaaaaaaa",
+"aaaaaaaaaaaaaaaabb..bbbaaaaaaaaa",
+"aaaaaaaaaaaaaaaabb..bbbaaaaaaaaa",
+"aaaaaaaaaaaaaaaaaa..aaaaaaaaaaaa"
+};

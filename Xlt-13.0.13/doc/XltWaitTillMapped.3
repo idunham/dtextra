@@ -1,0 +1,34 @@
+...\" ** $Id: XltWaitTillMapped.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltWaitTillMapped 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltWaitTillMapped\fP \- Convenience function to spin in a local event
+loop, processing XEvents until the given widget is mapped.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltWaitTillMapped(\fBwidget\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltWaitTillMapped\fP 
+Spins in a local event loop processing XEvents until widget is mapped.
+.IP "\fBwidget\fP"
+The widget to wait for.
+.PP 
+.SH RETURN VALUE
+None
+.SH RELATED INFORMATION
+.na
+.ad

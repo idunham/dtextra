@@ -1,0 +1,185 @@
+'\" t
+.ds ]W @PACKAGE@ Version @VERSION@
+.TH "" 3 "" "Version 3.0" "Free Widget Foundation"
+.SH NAME
+XltEntrySB
+.SH DESCRIPTION
+The \fIXltEntrySB\fP widget implements a valuator that can be changed either
+by entering a value in an \fIXmTextEntry\fP field, or by moving an
+\fIXmScale\fP.  The value is a float, but it is passed as a
+string because C cannot cast floats to pointers.  This is the Motif
+version of MmwEntrySB.
+ 
+
+
+
+
+.SS "Public variables"
+
+.ps -2
+.TS
+center box;
+cBsss
+lB|lB|lB|lB
+l|l|l|l.
+XltEntrySB
+Name	Class	Type	Default
+XtNminval	XtCMinval	String 	"0.0"
+XtNmaxval	XtCMaxval	String 	"100.0"
+XtNdecimals	XtCDecimals	int 	0 
+XtNvalue	XtCValue	String 	"0.0"
+XtNscrollWidth	XtCScrollWidth	Dimension 	200 
+XtNtextWidth	XtCTextWidth	int 	7 
+XtNlabel	XtCLabel	String 	NULL 
+XtNvalueChanged	XtCValueChanged	Callback	NULL 
+
+.TE
+.ps +2
+
+
+.TP
+.I "XtNminval"
+\fIminval\fP and \fImaxval\fP are the minimum and maximum values for the
+valuator, respectively.  \fIdecimals\fP indicates how many decimal places
+should be indicated in the text entry field, and may be zero.
+	
+
+
+
+
+.TP
+.I "XtNmaxval"
+
+
+
+.TP
+.I "XtNdecimals"
+
+
+
+.TP
+.I "XtNvalue"
+This is the value of the Widget.
+	
+
+
+
+The following resources are only used on creation:
+
+
+
+
+
+
+.TP
+.I "XtNscrollWidth"
+The width of the scrollbar is specified by \fIscrollWidth\fP.  
+	
+
+
+
+
+.TP
+.I "XtNheight"
+This is the overall height of the widget.  If not specified, one is
+calculated. 
+        
+
+
+
+
+.TP
+.I "XtNtextWidth"
+This is the number of characters in the text entry widget
+        
+
+
+
+
+.TP
+.I "XtNlabel"
+The label, if any, to be used for the scrollbar.
+	
+
+
+
+
+.TP
+.I "XtNvalueChanged"
+The \fIvalueChanged\fP callback is invoked when the value changes via a new
+text entry or the slider moving
+	
+
+
+
+.ps -2
+.TS
+center box;
+cBsss
+lB|lB|lB|lB
+l|l|l|l.
+XmManager
+Name	Class	Type	Default
+XtNbottom_shadow_color	XtCBottom_shadow_color	Pixel 	0 
+XtNbottom_shadow_pixmap	XtCBottom_shadow_pixmap	Pixmap 	0 
+XtNforeground	XtCForeground	Pixel 	0 
+XtNhelp_callback	XtCHelp_callback	Callback	NULL 
+XtNhighlight_color	XtCHighlight_color	Pixel 	0 
+XtNhighlight_pixmap	XtCHighlight_pixmap	Pixmap 	None 
+XtNinitial_focus	XtCInitial_focus	Widget 	NULL 
+navigationType	XtCNavigationType	NavigationType	XmTAB_GROUP 
+XtNshadow_thickness	XtCShadow_thickness	Dimension 	0 
+XtNstring_direction	XtCString_direction	XMStringDirection 	0 
+XtNtop_shadow_color	XtCTop_shadow_color	Pixel 	0 
+XtNtop_shadow_pixmap	XtCTop_shadow_pixmap	Pixmap 	None 
+XtNtraversal_on	XtCTraversal_on	Boolean 	True 
+XtNunit_type	XtCUnit_type	Unsigned  char 	XmPIXELS 
+XtNuser_data	XtCUser_data	XTPointer 	NULL 
+
+.TE
+.ps +2
+
+.ps -2
+.TS
+center box;
+cBsss
+lB|lB|lB|lB
+l|l|l|l.
+Composite
+Name	Class	Type	Default
+XtNchildren	XtCChildren	WidgetList 	NULL 
+insertPosition	XtCInsertPosition	XTOrderProc 	NULL 
+numChildren	XtCNumChildren	Cardinal 	0 
+
+.TE
+.ps +2
+
+.ps -2
+.TS
+center box;
+cBsss
+lB|lB|lB|lB
+l|l|l|l.
+Core
+Name	Class	Type	Default
+XtNx	XtCX	Position 	0 
+XtNy	XtCY	Position 	0 
+XtNwidth	XtCWidth	Dimension 	0 
+XtNheight	XtCHeight	Dimension 	0 
+borderWidth	XtCBorderWidth	Dimension 	0 
+XtNcolormap	XtCColormap	Colormap 	NULL 
+XtNdepth	XtCDepth	Int 	0 
+destroyCallback	XtCDestroyCallback	XTCallbackList 	NULL 
+XtNsensitive	XtCSensitive	Boolean 	True 
+XtNtm	XtCTm	XTTMRec 	NULL 
+ancestorSensitive	XtCAncestorSensitive	Boolean 	False 
+accelerators	XtCAccelerators	XTTranslations 	NULL 
+borderColor	XtCBorderColor	Pixel 	0 
+borderPixmap	XtCBorderPixmap	Pixmap 	NULL 
+background	XtCBackground	Pixel 	0 
+backgroundPixmap	XtCBackgroundPixmap	Pixmap 	NULL 
+mappedWhenManaged	XtCMappedWhenManaged	Boolean 	True 
+XtNscreen	XtCScreen	Screen *	NULL 
+
+.TE
+.ps +2

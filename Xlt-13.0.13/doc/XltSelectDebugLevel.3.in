@@ -1,0 +1,39 @@
+...\" ** $Id: XltSelectDebugLevel.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltSelectDebugLevel 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltSelectDebugLevel\fP \- Convenience function to bring up a dialog to select a Debug Level.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltSelectDebugLevel(\fBwidget, *DebugLevelPtr, *reason\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	int *\fBDebugLevelPtr\fI;
+	XmPushButtonCallbackStruct *\fBreason\fI
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltSelectDebugLevel\fP 
+Allows User to select from a list of Debug Levels.
+.IP "\fBwidget\fP"
+The parent widget.
+.IP "\fBDebugLevelPtr\fP"
+Array of Debug levels
+.IP "\fBreason\fP"
+Argument to Callback.
+.PP 
+.SH RETURN VALUE
+None.
+.SH RELATED INFORMATION
+.na
+.ad

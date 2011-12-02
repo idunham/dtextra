@@ -1,0 +1,41 @@
+...\" ** $Id: XltHostSendData.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltHostSendData 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltHostSendData\fP \- Function to send binary data to a Host
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.sp \n(PDu
+Widget XltHostSendData(\fBhost, data, len\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBhost\fI;
+	char 	\fB*data\fI;
+	int	\fBlen\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltHostSendData\fP 
+sends len bytes of data, pointed to by data, to the connected Host.
+.IP "\fBhost\fP"
+The Host widget ID
+.IP "\fBdata\fP"
+The data to send.
+.IP "\fBlen\fP"
+The number of bytes to send.
+.PP 
+For a complete description of Host, see
+\fIXltHost(3X)\fP
+.SH RELATED INFORMATION
+.na
+\fIXltHost(3X)\fP.
+\fIXltHostSendString(3X)\fP.
+.ad

@@ -1,0 +1,121 @@
+'\" t
+...\" ** $Id: XltAppShell.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltAppShell 3X "" "" "" ""
+.ds )H Eric Howe
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltAppShell\fP \- The AppShell widget class
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/AppShell.h>
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+AppShell is a sub-class of Xt's ApplicationShell which provides easy support
+for private colormaps and non-default visuals.
+.SS "Classes"
+AppShell inherits behavior and resources from
+\fICore\fP,
+\fIComposite\fP,
+\fIShell\fP,
+\fIWMShell\fP,
+\fIVendorShell\fP,
+\fITopLevelShell\fP,
+\fIApplicationShell\fP, classes.
+.PP 
+The class pointer is \fIXltAppShellWidgetClass\fP.
+.PP 
+The class name is \fIXltAppShell\fP.
+.SS "New Resources"
+The following table defines a set of widget resources used by the programmer
+to specify data.  The programmer can also set the resource values for the
+inherited classes to set attributes for this widget.  To reference a
+resource by name or by class in a .Xdefaults file, remove the \fIXltN\fP or
+\fIXltC\fP prefix and use the remaining letters.  To specify one of the defined
+values for a resource in a .Xdefaults file, remove the \fIXlt\fP prefix and use
+the remaining letters (in either lowercase or uppercase, but include any
+underscores between words).
+The codes in the access column indicate if the given resource can be
+set at creation time (C),
+set by using \fIXtSetValues\fP (S),
+retrieved by using \fIXtGetValues\fP (G), or is not applicable (N/A).
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ XltAppShell Resource Set
+Name	Class	Type	Default	Access
+_
+XltNappDepth	XltCAppDepth	int	dynamic	C
+XltNappUsePrivateColormap	XltCAppUsePrivateColormap	Boolean	dynamic	C
+XltNappUseEditres	XltCAppUseEditres	Boolean	True	C
+XltNappVisualClass	XltCAppVisualClass	XltRVisualClass	dynamic	C
+XltNappVisualID	XltCAppVisualID	XltRVisualID	dynamic	C
+.TE
+.KE
+.in
+.sp 1
+.IP "\fIXltNappDepth\fP"
+The color depth to use.
+.IP "\fIXltNappUsePrivateColormap\fP"
+Whether a private colormap should be used.  If you specify a non-default
+visual, a private colormap will be used regardless of what this resource is
+set to.
+.IP "\fIXltNappUseEditres\fP"
+If this resource is \fITrue\fR and your X libraries support the editres
+protocol, then an editres event handler will be attached to the shell widget.
+If your Motif is really LessTif, then this resource is ignored since LessTif's
+VendorShell widget already supplies editres support.
+.IP "\fIXltNappVisualClass\fP"
+The visual class to use.  This should be \fIDirectColor\fR, \fIGrayScale\fR,
+\fIPseudoColor\fR, \fIStaticColor\fR, \fIStaticGray\fR, or \fITrueColor\fR.
+.IP "\fIXltNappVisualID\fP"
+The raw visual ID to use.  Visual IDs are server specific so this resource
+should only be used as a last resort.  You can get a list of visual IDs from
+\fBxdpyinfo\fR(1X).  This resource takes precedence over the other resources.
+
+.SS "Inherited Resources"
+XltAppShell inherits behavior and resources from the following
+superclasses.  For a complete description of each resource, refer to the
+man page for that superclass.
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ ApplicationShell Resource Set
+Name	Class	Type	Default	Access
+_
+.wH
+.tH
+.TE
+.KE
+.in
+.sp 1
+.wH
+.in  
+
+.SS "Behavior"
+XltAppShell behavior is described below:
+.IP
+
+.SS "Virtual Bindings"
+The bindings for virtual keys are vendor specific.
+For information about bindings for virtual buttons and keys, see \fIVirtualBindings(3X)\fP.
+.SH RELATED INFORMATION
+.na
+\fIApplicationShell(3X)\fP
+.ad

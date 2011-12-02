@@ -1,0 +1,34 @@
+...\" ** $Id: XltRedirectStdErr.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltRedirectStdErr 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltRedirectStdErr\fP \- Convenience function to display stderr output in a
+XmScrolledText dialog window.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+int XltRedirectStdErr(\fBparent\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBparent\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltRedirectStdErr\fP 
+captures anything sent to stderr and displays it in an XmScrolledText dialog.
+.IP "\fBparent\fP"
+The parent widget ID
+.PP 
+.SH RETURN VALUE
+0 if successful, 1 else.
+.SH RELATED INFORMATION
+.na
+.ad

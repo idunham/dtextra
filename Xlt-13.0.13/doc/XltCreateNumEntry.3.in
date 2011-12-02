@@ -1,0 +1,45 @@
+...\" ** $Id: XltCreateNumEntry.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltCreateNumEntry 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltCreateNumEntry\fP \- Convenience function to create a NumEntry widget
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/NumEntry.h>
+.sp \n(PDu
+Widget XltCreateNumEntry(\fBparent, name, arglist, argcount\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBparent\fI;
+	String	\fBname\fI;
+	ArgList	\fBarglist\fI;
+	Cardinal	\fBargcount\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltCreateNumEntry\fP create an instance of a NumEntry widget and
+returns the associated widget ID.
+.IP "\fBparent\fP"
+The parent widget ID
+.IP "\fBname\fP"
+The widget name.
+.IP "\fBarglist\fP"
+The arglist.
+.IP "\fBargcount\fP"
+The number of args in arglist.
+.PP 
+For a complete description of NumEntry, see
+\fIXltNumEntry(3X)\fP
+.SH RETURN VALUE
+Returns the NumEntry widget ID.
+.SH RELATED INFORMATION
+.na
+\fIXltNumEntry(3X)\fP.
+.ad

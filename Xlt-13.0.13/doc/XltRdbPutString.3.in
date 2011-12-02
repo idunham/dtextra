@@ -1,0 +1,45 @@
+...\" ** $Id: XltRdbPutString.3.in,v 1.1 2004/07/03 13:38:31 rwscott Exp $
+...\" **
+.TH XltRdbPutString 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltRdbPutString\fP \-
+Convenience function to 
+add a string to the RESOURCE_MANAGER property of the root window.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltRdbPutString(\fBwidget, specifier, value\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+	String	\fBspecifier\fI;
+	String	\fBvalue\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltRdbPutString\fP 
+is used to add a String to the RESOURCE_MANAGER property on the root window
+of the screen associated with widget. The resource name consists of the
+name of the application concatenated with a dot and specifier. This behaves
+much the same as "xrdb -merge".
+.IP "\fBwidget\fP"
+Any widget, used to get the display to set the property on.
+.IP "\fBspecifier\fP"
+The name of the resource to set.
+.IP "\fBvalue\fP"
+The value of the resource.
+.PP 
+.SH RETURN VALUE
+None
+.SH RELATED INFORMATION
+.na
+\fIxrdb(1)\fP,
+.ad

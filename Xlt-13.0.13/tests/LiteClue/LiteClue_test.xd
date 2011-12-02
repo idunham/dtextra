@@ -1,0 +1,766 @@
+module 'LiteClue_test'
+version = 43;
+prelude = '#include "LiteClue_testP.h"';
+applicationName = 'LiteClue_test';
+generateNameC = * './LiteClue_test.c';
+generateNameCMainProgram = * './LiteClue_test.c';
+generateNameStubs = './LiteClue_test_stubs.c';
+generateNameExterns = * './LiteClue_test.h';
+generateNameResDB = * './LiteClue_test';
+generateCHeaderFile = 'LiteClue_test.h';
+generateNameMakefile = * 'Makefile';
+generateMask = 4325384;
+useMask = 1;
+ansiC = 1;
+generateNewMakefile = 1;
+generateMakeTemplate = 0;
+useCPixmaps = 0;
+useUILPixmaps = 0;
+useCHeaders = 1;
+useCUILHeaders = 0;
+CPPFlavour = 0;
+useCPPHeaders = 0;
+useCPPHeadersMFCWindows = 0;
+useCPPHeadersMFCMotif = 0;
+value
+	'kat' : icon ( 
+	160 120 32 1
+	kat_color_table : color_table (
+		color ( '#000000' )= ' ',
+		color ( '#AB25E1' )= '.',
+		color ( '#A93DCE' )= 'o',
+		color ( '#811CAA' )= 'O',
+		color ( '#1F0828' )= 'a',
+		color ( '#9E22D0' )= 'b',
+		color ( '#FEE9FF' )= 'c',
+		color ( '#A824DD' )= 'd',
+		color ( '#B026E8' )= 'e',
+		color ( '#921FC0' )= 'f',
+		color ( '#9B21CC' )= 'g',
+		color ( '#A523D9' )= 'h',
+		color ( '#7C1AA3' )= 'i',
+		color ( '#CCCCCC' )= 'j',
+		color ( '#8D1EBA' )= 'k',
+		color ( '#A626D9' )= 'l',
+		color ( '#641584' )= 'm',
+		color ( '#B670C7' )= 'n',
+		color ( '#76199C' )= 'p',
+		color ( '#B628EF' )= 'q',
+		color ( '#48105E' )= 'r',
+		color ( '#C6A4CC' )= 's',
+		color ( '#891DB5' )= 't',
+		color ( '#6A168C' )= 'u',
+		color ( '#360B48' )= 'v',
+		color ( '#8A20B5' )= 'w',
+		color ( '#851DAF' )= 'x',
+		color ( '#54126E' )= 'y',
+		color ( '#5C1479' )= 'z',
+		color ( '#9721C7' )= 'A',
+		color ( '#A123D4' )= 'B',
+		color ( '#711894' )= 'C');
+	'kat' :  icon (
+		color_table = kat_color_table,
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnfbosjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjniBeqojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzxBqqesjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsribqqenjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnnjjjjjjjjjjjjjjjjjjjjjjjjjjsrigqqqnjjjjjjjjjssjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfzyinsjjjjjjjjjjjjjjjjjjjjjjsvpAqqqojjjjjjsnwiwjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsAxuvazunnjjjjjjjjjjjjjjjjjjjjrCfqqqljjssoimymuCjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnxfOCyvaavzwnsjjjjjjjjjjjjjjjjrufenqqozavryzuumrsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjotftOCmraaaavyConjjjjjjjjjjjjjzOflwzavvryzmuuuzvnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjkkfkxipuzvaaaaaavyinnssnsnssnowyvaavrryzzmuuumzaCjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsOkfktxipumyvaaavymiCxkwkkffffOkuzrrryzzmmuuuumyarjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnpkffkxOipCmzyzpOxtkffAAggbbbbbbggAfiummmuuuumzyarsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjopkffktxOipmCixtkfAAggbBBBhhhhhhhhhhBgfOCuuummzyaanjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjoikffkktiuCixtkfAAgbBBhhhddd.........dhBgxCummzyaawjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjtOkfffxuCiOtkfAAgbbBhhhdd....eeeeeeeee..dhbOuzzraaCjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnpOkffiuCixtkfAAgbBBhhdd....eeeeeeeeeeeeee..hfuzyaarsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnuOkfCupixwkfAggbBBhhdd...eeeeeeqqqqqqqqqqee.dbiraaanjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjoCxkCupixtkfAAgbBBhhdd...eeeeeeqqqqqqqqqqqqqee.Bpaaanjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjwpxympixuyOAAgbbBhhfOd...eeeeeqqkqqqqqqqqqByBqe.hCvaojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjppzmCiOtkfymggbBBhfa v...eeeeqha aqqqqqqqiyqqqqeehCazsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnpzzupOxtkfAprkbBBhz   ..eeeeqqO   lqqqqimtqqqqqqe.Byvsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnmyuCiOtpmmCAgurkBhta r..eeeqqqqa reqq.vywqqqqqqqqe.banjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjtrzCpOxtkfftCmpbCBhhdd..xpmvyOAqqnnnnivOqqqqqqqqqqqedCwjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjpymCiOxtkffAAgfppxrzddxa       voscnrnsqqqqqqqqqqqqe.Bpjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjszzupiOxtkffAAgbbBpiyCv           rancccsnqqqqqqqqqqqedlsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnrmupiOxtkffAAggbBBBAa        a    mcccccsqqqqqqqqqqqe.Bsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjmymCpiOxtkffAAggbbBBO        rnsv   jccccsnqqqqqqqqqqe.hnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrymCpiOxtkffAAAgbbBBv        vnsy   rccccsnqqqqqqqqqqe.hAjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjvymCpiOxryvmyyryrrvv          aa    ayyyywzCwipmmqqqee.hojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrymCpiOxtpuuyCiCCppxa               rsnooCoippxqqqqeee.hAjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsrymupiuyCtkkffAAAggbv               oqqqqqqqqqeeeeeee..hAsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvymuCpiOxtwkfffAAAggp              vqqqqqqqqeeeeeeee..dBAsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvyzuCpiOOxtkkfffAAAgwa            avweeeeeeeeeeeeee..dhBfsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjvyzmuCpiOxxtkkfffAAprtua        ay.krm..............dhBgksjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjvrymuCpiiOxxtkkffCvxAggkuv    ayfhhddzyx..........ddhhbAxjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrryzmuCpiOOxttkiryfAAAAggga z vBBhhhhhuvvAddddddddhhBbgfwjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvrzmuCppiOOxpzvOkfffAAAgy vbavuBBBBhhhAuCzhhhhhhhhBbgAtnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvryzmuCppiOmvztwkkfffAAmaaggp aubBBBBBBBzxpuhhBBBbbgAkisjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzvryzmuCpivvpxxttkkkffr axAAgravrbbbbBBBBupizBbbbgAAkxnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnaryzmuuCpziOOxxxiuuva aOfAAAAr vavugbbbbbOfbgggAAfkxpsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjmvryzmuuCppiiOOia    ykfffffAAya aaavgggggggAAAffkxinjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvvryzmmuCCpiiOra ayiwkkkfffffftvaaapAAAAAAAfffktximsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvvryzmmuCCppiumuOxxxttwkkkkfffffxxffffffffkktxOipsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnavryzzmuuCCppiiOOOxxxxtttwkkkkkkkkkkkkkkwtxOipmnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnavryyzmmuuCCppiiiOOOxxxxxttttttttttttxxxOipCmnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvvrryzzmmuuCCpppiiiOOOOOxxxxxxxxxxxOOOipCuznjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvvvryyzzmmuuCCCpppiiiiiiOOOOOOOiiiippCumysjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrvvrryyzzmmuuuCCCCppppppppppppppCCCumzCsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsrvvrryyzzzmmmuuuuCCCCCCCCCCCuuumzyynjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsnavvrrryyyzzzmmmmmuuuuuummmmzzyriojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnyavvrrryyyyzzzzzzzzzzzyyrrypqqgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsnravvvvrrrrrrrrrrrrrvrrmklqqbsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjraaaaavvvvvvvvvvaamjzzxlqqBjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsaaaaaaaaavvryymOiOkjnyxBqqdsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnavyzutfwbBhd....dBAsnyObqq.sjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrrzupOtfAbBhd.....hAnsrigqq.ojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjvrzupOtfAbBhd.....hgAsvpAeqenjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvymCixwfAbBhd.....dBAsrCA.qeAjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzrymCixkfAbBhd.....dBAorufdqeojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsnnnnvrzupixkfAbBhd.....dhgACOlqqqgjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnOOAdBCvyzupOxkfAbBhd......hbfwonccndjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnzCxAdttmymCpOxkfAbBhdd.....dBxitbqscnnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjCympxAfAAkzmCiOtkfAbBhdd.....dBupxfb.qqqnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnrzCOkAgbbgxuCiOtkfAbBhhd.....dOCitfgB.qqqnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvyuitAbhhhhbCpixtkfAbBhhd.....BmpOkAbhh.qqqsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzrmpxfghd..dhApixtfAAbBhhd.....Cuixfghd...eqnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvyuitABd.ee.dBxOxwfAAbBBhdd...xmCiwABd.ee..eesjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzrzCOkgh.eeee.hgOxkfAAbBBhdd...umCOkAB.eeee...ojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjvrmpxfbdeeqqqedBkxkfAAbBBhdd..Azupxkgh.eqqqeddojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvyuptABdeqqqqe.hgxkfAAbBBhdd..mzupxfgh.qqqqe.BBsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzrzuitAB.eqqqqe.hbtkfAAgbBhe..fyzuixfbheqqqqq.hbnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjarzCikAh.qqqqqqedbfOgqogbBBnneCyzuixfbdqnqqqqehgojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvrzCOkgh.qcsqqqedBAOBqqgbBAqsqmyzuixfbdqcsqqqedgfsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvrzCOkgheqccqqqedBAxhqqBbAf.sqzyzCixfbdqccqqqedbfsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvymCOkgh.qccqqqedBAkdqqhbptdsqzyzCixfbhqccqqqedbksjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvymCOkgh.qcsqqqedBAf.qqbbpxBsquyzuixfghqssqqqedbknjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjmvymCOkgh.qqqqqeedBAAqqeAbuibnquyzuixfgheqqqqqedbfnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjmvymCOkAB.eqqqqe.hbAgqqeAbrpgqnuyzupxkgB.qqqqqedbkojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvrzCOkABdeqqqee.hbwbqq.fbzufqnxyzupOkABdeqqqe.hgknjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvrzCitAbd.eeeeedBgxhqqdwbrmfesfrzupOkAbh.eeee.hgtsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnvrzuitfbh.eeee.dBAkdqqhgbyztdnbrzmCOtfbh.eee.dBAtsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvrzupxfgBd..e.dhbAf.qqbgbyrOBnqrymCixfgBd....hbAOjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjarympOkAbhd..dhBgfA.qeAgbyribqquymCixkAbhd..dhgfijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrvymCOtfgBhddhBbAxgeqetgbzvpAqqxyzupOkfgBhddhbAkijjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjyvrzuixfAbBhhBbgfxbqq.tgbrvuAeqbrzuCitfAbBhBBgfxnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvrzupOwfgbbBbgAxxBqqdtgbzamf.qqzymCixkfgbbbgAkinjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjvvymCixkfAgggAfpkhqqhAgbrazthqqOyzupOtkAAggAfxwjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsvrzupOtkfAAffxuf.qqbAgbzayOBqq.yzmCixtffAfftinjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjrrymCiOtkkkktCCA.qeAtgAraribqqeuyzupixtkkktOpjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjnrrzmCiOxttxOyigeqetiiOravpgqqqirzmCpixxxxOCnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjmvrzuCpiOOizrObqq.xCppvavCfeqqAryzmCpiiiiCnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzvyzmCCppCvyxBqqdpuuzaavmk.qqBrryzmuCpCuOjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjCvryzmmuuazkdqqhmzzraaazwdqqhrryyzmmmmnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjsCrrztgbvuf.qqgzyraavayxBqq.CiABtyzCsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjuigeqvmkbqeAikxCzOvrikBqhxfdqeojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjzOBnovukBhfkAddpOgzvyiAhbOfqnqfjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjCpbeyrOBqqhthnqfkdzvukdqegkhe.ojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjszxAvyxhsq.khnqgkdzvCfesqbpfgfnjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjniOrrObeeBOgddiigzamkheeACCosjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjCuwggwmiwxpziCvypfgAojjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjCzCnsjnnjjsnnssCuinjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj' );
+ );
+	'exit_in' : icon ( 
+	32 32 6 1
+	exit_in_color_table : color_table (
+		color ( 'DodgerBlue' )= ' ',
+		color ( '#000000000000' )= '.',
+		color ( '#FFFFFFFFFFFF' )= 'o',
+		color ( 'Orange' )= 'O',
+		color ( 'Gold' )= 'a',
+		color ( 'firebrick' )= 'b');
+	'exit_in' :  icon (
+		color_table = exit_in_color_table,
+'                                ',
+'                                ',
+'  .............                 ',
+'  ..oooooooooo.                 ',
+'  .O.aoaoaoaoa.                 ',
+'  .bO.oaoaoaoa.   ...           ',
+'  .ObO.oaoaoao.   ....          ',
+'  .bObO.oaoaoa.  .....          ',
+'  .ObObO.oaoao.  .....          ',
+'  .bObOb.aoaoa.   ...           ',
+'  .ObObO.oaoao....   .....      ',
+'  .bObOb.aoaoa.............     ',
+'  .ObObO.oaoao.   .....  ..     ',
+'  .bObOb.aoaoa.     ...  ..     ',
+'  .ObO.O.oaoao.     ...   ..    ',
+'  .bOb.b.aoaoa.     ...   ..    ',
+'  .ObObO.oaoao.     ...         ',
+'  .bObOb.oaooa.    ....         ',
+'  .ObObO.aaaaa.   ......   ..   ',
+'  ..ObOb.......   ..  ... ....  ',
+'    .ObO.aoaoao   ..   ..... .  ',
+'     .Ob.oaoaoao ..     ...     ',
+'      .O.aoaoaoao..             ',
+'       ..oaoaoaoa..             ',
+'         aoaoaoa...a            ',
+'          aoaoaoaoaoaoa         ',
+'           aoaoaoaoaoaoa        ',
+'            aoaoaoaoaoaoaoa     ',
+'             aoaoaoaoaoaoaoa    ',
+'              aoaoaoaoaoaoaoa   ',
+'               aoaoaoaoaoaoaoa  ',
+'              aoaoaoaoaoaoaoaoa ' );
+ );
+	'exit' : icon ( 
+	32 32 6 1
+	exit_color_table : color_table (
+		color ( 'DodgerBlue' )= ' ',
+		color ( '#000000000000' )= '.',
+		color ( '#FFFFFFFFFFFF' )= 'o',
+		color ( 'Orange' )= 'O',
+		color ( 'Gold' )= 'a',
+		color ( 'firebrick' )= 'b');
+	'exit' :  icon (
+		color_table = exit_color_table,
+'                                ',
+' .............                  ',
+' ..oooooooooo.                  ',
+' .O.aoaoaoaoa.                  ',
+' .bO.oaoaoaoa.   ...            ',
+' .ObO.oaoaoao.   ....           ',
+' .bObO.oaoaoa.  .....           ',
+' .ObObO.oaoao.  .....           ',
+' .bObOb.aoaoa.   ...            ',
+' .ObObO.oaoao....   .....       ',
+' .bObOb.aoaoa.............      ',
+' .ObObO.oaoao.   .....  ..      ',
+' .bObOb.aoaoa.     ...  ..      ',
+' .ObO.O.oaoao.     ...   ..     ',
+' .bOb.b.aoaoa.     ...   ..     ',
+' .ObObO.oaoao.     ...          ',
+' .bObOb.oaooa.    ....          ',
+' .ObObO.aaaaa.   ......   ..    ',
+' ..ObOb.......   ..  ... ....   ',
+'   .ObO.aoaoao   ..   ..... .   ',
+'    .Ob.oaoaoao ..     ...      ',
+'     .O.aoaoaoao..              ',
+'      ..oaoaoaoa..              ',
+'        aoaoaoa...a             ',
+'         aoaoaoaoaoaoa          ',
+'          aoaoaoaoaoaoa         ',
+'           aoaoaoaoaoaoaoa      ',
+'            aoaoaoaoaoaoaoa     ',
+'             aoaoaoaoaoaoaoa    ',
+'              aoaoaoaoaoaoaoa   ',
+'             aoaoaoaoaoaoaoaoa  ',
+'                                ' );
+ );
+	'copy_in' : icon ( 
+	32 32 5 1
+	copy_in_color_table : color_table (
+		color ( '#000000' )= ' ',
+		color ( '#4169E1' )= '.',
+		color ( '#FFEBCD' )= 'o',
+		color ( '#FFFFFF' )= 'O',
+		color ( '#CFCFCF' )= 'a');
+	'copy_in' :  icon (
+		color_table = copy_in_color_table,
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaa        aaaaaaaaaaaaaaaaa',
+'aaaaaa  oooooo aaaaaaaaaaaaaaaaa',
+'aaaaa   oo   o aaaaaaaaaaaaaaaaa',
+'aaaaa oooooooo aaaaaaaaaaaaaaaaa',
+'aaaaa o  o  oo aa.aaaaaaaaaaaaaa',
+'aaaaa oooooooo a...aaaaaaaaaaaaa',
+'aaaaa o     oo aa...aa.aaaaaaaaa',
+'aaaaa oooooooo aaa...a.aaaaaaaaa',
+'aaaaa o o o  o aaaa....aaaaaaaaa',
+'aaaaa oooooooo aaaaa...aaaaaaaaa',
+'aaaaa o  o   o aaa.....aaaaaaaaa',
+'aaaaa oooooooo aaaaaaaaaaaaaaaaa',
+'aaaaa          aaaaaa        aaa',
+'aaaaaaaaaaaaaaaaaaaa  OOOOOO aaa',
+'aaaaaaaaaaaaaaaaaaa   OO   O aaa',
+'aaaaaaaaaaaaaaaaaaa OOOOOOOO aaa',
+'aaaaaaaaaaaaaaaaaaa O  O  OO aaa',
+'aaaaaaaaaaaaaaaaaaa OOOOOOOO aaa',
+'aaaaaaaaaaaaaaaaaaa O     OO aaa',
+'aaaaaaaaaaaaaaaaaaa OOOOOOOO aaa',
+'aaaaaaaaaaaaaaaaaaa O O O  O aaa',
+'aaaaaaaaaaaaaaaaaaa OOOOOOOO aaa',
+'aaaaaaaaaaaaaaaaaaa O  O   O aaa',
+'aaaaaaaaaaaaaaaaaaa OOOOOOOO aaa',
+'aaaaaaaaaaaaaaaaaaa          aaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' );
+ );
+	'copy' : icon ( 
+	32 32 5 1
+	copy_color_table : color_table (
+		color ( '#000000' )= ' ',
+		color ( '#4169E1' )= '.',
+		color ( '#FFEBCD' )= 'o',
+		color ( '#FFFFFF' )= 'O',
+		color ( '#CFCFCF' )= 'a');
+	'copy' :  icon (
+		color_table = copy_color_table,
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaa        aaaaaaaaaaaaaaaaaa',
+'aaaaa  oooooo aaaaaaaaaaaaaaaaaa',
+'aaaa   oo   o aaaaaaaaaaaaaaaaaa',
+'aaaa oooooooo aaaaaaaaaaaaaaaaaa',
+'aaaa o  o  oo aa.aaaaaaaaaaaaaaa',
+'aaaa oooooooo a...aaaaaaaaaaaaaa',
+'aaaa o     oo aa...aa.aaaaaaaaaa',
+'aaaa oooooooo aaa...a.aaaaaaaaaa',
+'aaaa o o o  o aaaa....aaaaaaaaaa',
+'aaaa oooooooo aaaaa...aaaaaaaaaa',
+'aaaa o  o   o aaa.....aaaaaaaaaa',
+'aaaa oooooooo aaaaaaaaaaaaaaaaaa',
+'aaaa          aaaaaa        aaaa',
+'aaaaaaaaaaaaaaaaaaa  OOOOOO aaaa',
+'aaaaaaaaaaaaaaaaaa   OO   O aaaa',
+'aaaaaaaaaaaaaaaaaa OOOOOOOO aaaa',
+'aaaaaaaaaaaaaaaaaa O  O  OO aaaa',
+'aaaaaaaaaaaaaaaaaa OOOOOOOO aaaa',
+'aaaaaaaaaaaaaaaaaa O     OO aaaa',
+'aaaaaaaaaaaaaaaaaa OOOOOOOO aaaa',
+'aaaaaaaaaaaaaaaaaa O O O  O aaaa',
+'aaaaaaaaaaaaaaaaaa OOOOOOOO aaaa',
+'aaaaaaaaaaaaaaaaaa O  O   O aaaa',
+'aaaaaaaaaaaaaaaaaa OOOOOOOO aaaa',
+'aaaaaaaaaaaaaaaaaa          aaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' );
+ );
+	'open_in' : icon ( 
+	32 32 5 1
+	open_in_color_table : color_table (
+		color ( 'grey75' )= ' ',
+		color ( '#000000000000' )= '.',
+		color ( '#FFFFFFFF0000' )= 'o',
+		color ( '#FFFFFFFFFFFF' )= 'O',
+		color ( 'DarkOliveGreen4' )= 'a');
+	'open_in' :  icon (
+		color_table = open_in_color_table,
+'                                ',
+'                                ',
+'                                ',
+'                                ',
+'                                ',
+'         .....                  ',
+'        .oOOOo.                 ',
+'      ..OOOoOOO...............  ',
+'      .OOoOOOoOOOoOOOoOOOoOOO.  ',
+'      .oOOOoOOOoOOOoOOOoOOOoO.  ',
+'      .OOoOOOoOOOoOOOoOOOoOOO.  ',
+'      .oOOOoOOOoOOOoOOOoOOOoO.  ',
+'   ........................OO.  ',
+'   .aoaoaoaoaoaoaoaoaoaoao.oO.  ',
+'   .oaoaoaoaoaoaoaoaoaoaoa.OO.  ',
+'   .aoaoaoaoaoaoaoaoaoaoao.oO.  ',
+'    .aoaoaoaoaoaoaoaoaoaoao.O.  ',
+'    .oaoaoaoaoaoaoaoaoaoaoa.O.  ',
+'    .aoaoaoaoaoaoaoaoaoaoao.O.  ',
+'    .oaoaoaoaoaoaoaoaoaoaoa.O.  ',
+'     .oaoaoaoaoaoaoaoaoaoaoa..  ',
+'     .aoaoaoaoaoaoaoaoaoaoao..  ',
+'     .oaoaoaoaoaoaoaoaoaoaoa..  ',
+'     .aoaoaoaoaoaoaoaoaoaoao..  ',
+'      .aoaoaoaoaoaoaoaoaoaoao.  ',
+'      .oaoaoaoaoaoaoaoaoaoaoa.  ',
+'      .aoaoaoaoaoaoaoaoaoaoao.  ',
+'      ........................  ',
+'                                ',
+'                                ',
+'                                ',
+'                                ' );
+ );
+	'open' : icon ( 
+	32 32 5 1
+	open_color_table : color_table (
+		color ( 'grey75' )= ' ',
+		color ( '#000000000000' )= '.',
+		color ( '#FFFFFFFF0000' )= 'o',
+		color ( '#FFFFFFFFFFFF' )= 'O',
+		color ( 'DarkOliveGreen4' )= 'a');
+	'open' :  icon (
+		color_table = open_color_table,
+'                                ',
+'                                ',
+'                                ',
+'                                ',
+'        .....                   ',
+'       .oOOOo.                  ',
+'     ..OOOoOOO...............   ',
+'     .OOoOOOoOOOoOOOoOOOoOOO.   ',
+'     .oOOOoOOOoOOOoOOOoOOOoO.   ',
+'     .OOoOOOoOOOoOOOoOOOoOOO.   ',
+'     .oOOOoOOOoOOOoOOOoOOOoO.   ',
+'  ........................OO.   ',
+'  .aoaoaoaoaoaoaoaoaoaoao.oO.   ',
+'  .oaoaoaoaoaoaoaoaoaoaoa.OO.   ',
+'  .aoaoaoaoaoaoaoaoaoaoao.oO.   ',
+'   .aoaoaoaoaoaoaoaoaoaoao.O.   ',
+'   .oaoaoaoaoaoaoaoaoaoaoa.O.   ',
+'   .aoaoaoaoaoaoaoaoaoaoao.O.   ',
+'   .oaoaoaoaoaoaoaoaoaoaoa.O.   ',
+'    .oaoaoaoaoaoaoaoaoaoaoa..   ',
+'    .aoaoaoaoaoaoaoaoaoaoao..   ',
+'    .oaoaoaoaoaoaoaoaoaoaoa..   ',
+'    .aoaoaoaoaoaoaoaoaoaoao..   ',
+'     .aoaoaoaoaoaoaoaoaoaoao.   ',
+'     .oaoaoaoaoaoaoaoaoaoaoa.   ',
+'     .aoaoaoaoaoaoaoaoaoaoao.   ',
+'     ........................   ',
+'                                ',
+'                                ',
+'                                ',
+'                                ',
+'                                ' );
+ );
+object 'CopyShell' : XmDialogShell {
+	arguments {
+	name = 'CopyShell';
+	lastGenName = 'CopyShell';
+	createPreludeStatus = 1;
+	preInstantiation = 'void create_CopyShell (Widget parent)
+';
+	XmNallowShellResize = true;
+	XmNminWidth = 300;
+	XmNminHeight = 150;
+	};
+object 'CopyForm' : XmForm {
+	arguments {
+	name = 'CopyForm';
+	lastGenName = 'CopyForm';
+	XmNautoUnmanage = false;
+	};
+object 'CopyLabel' : XmLabel {
+	arguments {
+	name = 'CopyLabel';
+	lastGenName = 'CopyLabel';
+	XmNlabelString = 'LiteClue_test Copy Dialog';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+};
+object 'CopyOkBtn' : XmPushButton {
+	arguments {
+	name = 'CopyOkBtn';
+	was_selected = true;
+	lastGenName = 'CopyOkBtn';
+	generateResName = true;
+	XmNwidth = 70;
+	XmNheight = 35;
+	XmNlabelString = 'Ok';
+	XmNrecomputeSize = false;
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+	callbacks {
+	XmNactivateCallback = '
+CopyOkBtn_cb(  )
+';
+	};
+};
+    attachments {
+    attachment {
+	XmNleftAttachment = 1 0 20;
+	XmNtopAttachment = 1 0 20;
+    };
+    attachment {
+	XmNrightAttachment = 1 0 10;
+	XmNleftAttachment = 0 0 0;
+	XmNbottomAttachment = 1 0 10;
+	XmNtopAttachment = 0 0 0;
+    };
+    };
+};
+};
+object 'LiteClueTestShell' : XmDialogShell {
+	arguments {
+	name = 'LiteClueTestShell';
+	lastGenName = 'LiteClueTestShell';
+	createPreludeStatus = 2;
+	preInstantiation = 'void create_LiteClueTestShell (Display *display, char *app_name, int app_argc, char **app_argv)
+';
+	XmNbackground = color('grey75');
+	XmNallowShellResize = true;
+	XmNtitle = 'LiteClue_test';
+	XmNminWidth = 300;
+	XmNminHeight = 300;
+	XmNprimary = 1;
+	};
+object 'MainForm' : XmForm {
+	arguments {
+	name = 'MainForm';
+	lastGenName = 'MainForm';
+	preRealisation = 'InstallLiteClues() ;
+';
+	XmNautoUnmanage = false;
+	};
+object '1' : XmMenuBar {
+	arguments {
+	name = 'MenuBar';
+	lastGenName = 'menuBar1';
+	XmNmenuHelpWidget = 'HelpCascade';
+	};
+object 'FileCascade' : XmCascadeButton {
+	arguments {
+	name = 'FileCascade';
+	lastGenName = 'FileCascade';
+	XmNlabelString = 'File';
+	XmNmnemonic = 'F';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+object 'FileMenu' : XmPulldownMenu {
+	arguments {
+	name = 'FileMenu';
+	lastGenName = 'FileMenu';
+	};
+object 'FileOpenBtn' : XmPushButton {
+	arguments {
+	name = 'FileOpenBtn';
+	lastGenName = 'FileOpenBtn';
+	XmNlabelString = 'Open';
+	XmNmnemonic = 'O';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+};
+object 'FileExitBtn' : XmPushButton {
+	arguments {
+	name = 'FileExitBtn';
+	lastGenName = 'FileExitBtn';
+	XmNlabelString = 'Exit';
+	XmNmnemonic = 'x';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+	callbacks {
+	XmNactivateCallback = '
+QuitButton_cb(  )
+';
+	};
+};
+};
+};
+object 'EditCascade' : XmCascadeButton {
+	arguments {
+	name = 'EditCascade';
+	lastGenName = 'EditCascade';
+	XmNlabelString = 'Edit';
+	XmNmnemonic = 'E';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+object 'EditMenu' : XmPulldownMenu {
+	arguments {
+	name = 'EditMenu';
+	lastGenName = 'EditMenu';
+	};
+object 'EditCutBtn' : XmPushButton {
+	arguments {
+	name = 'EditCutBtn';
+	lastGenName = 'EditCutBtn';
+	XmNlabelString = 'Cut';
+	XmNmnemonic = 't';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+};
+object 'EditCopyBtn' : XmPushButton {
+	arguments {
+	name = 'EditCopyBtn';
+	lastGenName = 'EditCopyBtn';
+	XmNlabelString = 'Copy';
+	XmNmnemonic = 'C';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+	callbacks {
+	XmNactivateCallback = '
+EditCopyBtn_cb(  )
+';
+	};
+};
+object 'EditPasteBtn' : XmPushButton {
+	arguments {
+	name = 'EditPasteBtn';
+	lastGenName = 'EditPasteBtn';
+	XmNlabelString = 'Paste';
+	XmNmnemonic = 'P';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+};
+};
+};
+object 'HelpCascade' : XmCascadeButton {
+	arguments {
+	name = 'HelpCascade';
+	lastGenName = 'HelpCascade';
+	XmNlabelString = 'Help';
+	XmNmnemonic = 'H';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+object 'HelpMenu' : XmPulldownMenu {
+	arguments {
+	name = 'HelpMenu';
+	lastGenName = 'HelpMenu';
+	};
+object 'HelpAboutBtn' : XmPushButton {
+	arguments {
+	name = 'HelpAboutBtn';
+	lastGenName = 'HelpAboutBtn';
+	XmNlabelString = 'About';
+	XmNmnemonic = 'A';
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+};
+};
+};
+};
+object 'QuitButton' : XmPushButton {
+	arguments {
+	name = 'QuitButton';
+	lastGenName = 'QuitButton';
+	generateResName = true;
+	XmNwidth = 70;
+	XmNheight = 35;
+	XmNlabelString = 'Quit';
+	XmNrecomputeSize = false;
+	XmNfontList = font('-adobe-helvetica-bold-r-*-*-14-*-*-*-*-*-*-*');
+	};
+	callbacks {
+	XmNactivateCallback = '
+QuitButton_cb(  )
+';
+	};
+};
+object 'ToolbarFrame' : XmFrame {
+	arguments {
+	name = 'ToolbarFrame';
+	lastGenName = 'ToolbarFrame';
+	XmNshadowType = 8;
+	XmNmarginHeight = 2;
+	XmNmarginWidth = 2;
+	};
+object 'ToolbarForm' : XmForm {
+	arguments {
+	name = 'ToolbarForm';
+	lastGenName = 'ToolbarForm';
+	};
+object 'ToolbarOpenBtn' : XmPushButton {
+	arguments {
+	name = 'ToolbarOpenBtn';
+	lastGenName = 'ToolbarOpenBtn';
+	generateResName = true;
+	XmNwidth = 37;
+	XmNheight = 37;
+	XmNhighlightThickness = 0;
+	XmNlabelPixmap = '<open>';
+	XmNlabelType = 1;
+	XmNrecomputeSize = false;
+	XmNarmPixmap = '<open_in>';
+	};
+};
+object 'ToolbarCopyBtn' : XmPushButton {
+	arguments {
+	name = 'ToolbarCopyBtn';
+	lastGenName = 'ToolbarCopyBtn';
+	generateResName = true;
+	XmNwidth = 37;
+	XmNheight = 37;
+	XmNhighlightThickness = 0;
+	XmNlabelPixmap = '<copy>';
+	XmNlabelType = 1;
+	XmNrecomputeSize = false;
+	XmNarmPixmap = '<copy_in>';
+	};
+};
+object 'ToolbarExitBtn' : XmPushButton {
+	arguments {
+	name = 'ToolbarExitBtn';
+	lastGenName = 'ToolbarExitBtn';
+	generateResName = true;
+	XmNwidth = 37;
+	XmNheight = 37;
+	XmNhighlightThickness = 0;
+	XmNlabelPixmap = '<exit>';
+	XmNlabelType = 1;
+	XmNrecomputeSize = false;
+	XmNarmPixmap = '<exit_in>';
+	};
+};
+    attachments {
+    attachment {
+	XmNleftAttachment = 1 0 10;
+	XmNtopAttachment = 1 0;
+    };
+    attachment {
+	XmNrightAttachment = 0 0 0;
+	XmNleftAttachment = 3 1 5;
+	XmNbottomAttachment = 0 0 0;
+	XmNtopAttachment = 4 1 0;
+    };
+    attachment {
+	XmNrightAttachment = 0 0 0;
+	XmNleftAttachment = 3 2 5;
+	XmNbottomAttachment = 0 0 0;
+	XmNtopAttachment = 4 2 0;
+    };
+    };
+};
+};
+object '2' : XmLabel {
+	arguments {
+	lastGenName = 'label2';
+	generateResName = true;
+	XmNborderWidth = 2;
+	XmNlabelPixmap = '<kat>';
+	XmNmarginWidth = 0;
+	XmNmarginHeight = 0;
+	XmNlabelType = 1;
+	};
+};
+    attachments {
+    attachment {
+	XmNrightAttachment = 1 0;
+	XmNleftAttachment = 1 0;
+	XmNtopAttachment = 1 0;
+    };
+    attachment {
+	XmNrightAttachment = 1 0 10;
+	XmNleftAttachment = 0 0 0;
+	XmNbottomAttachment = 1 0 10;
+	XmNtopAttachment = 0 0 0;
+    };
+    attachment {
+	XmNrightAttachment = 1 0 0;
+	XmNleftAttachment = 1 0;
+	XmNtopAttachment = 3 1 0;
+    };
+    attachment {
+	XmNleftAttachment = 1 0 70;
+	XmNtopAttachment = 3 3 20;
+    };
+    };
+};
+};
+end module;

@@ -1,0 +1,47 @@
+...\" ** $Id: XltHostCreateTranscript.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltHostCreateTranscript 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltHostCreateTranscript\fP \- Convenience function to 
+create a XmScrolledText widget to display the ascii input from a XltHost(3)
+stream and, send anything typed into the transcript to the XltHost stream.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.sp \n(PDu
+Widget XltHostCreateTranscript(\fBparent, host, args_in, n_in\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBparent\fI;
+	Widget 	\fBhost\fI;
+	Args	\fB*args_in\fI;
+	Cardinal	\fBn_in\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltHostCreateTranscript\fP 
+Creates an un-managed XmScrolledText widget which displays all data from
+the given Host widget and, sends all typed data to the Host widget.
+
+.IP "\fBparent\fP"
+The parent widget ID
+.IP "\fBhost\fP"
+The widget ID of the Host connection.
+.IP "\fBargs_in\fP"
+Args passed to XmCreateScrolledText.
+.IP "\fBn_in\fP"
+n passed to XmCreateScrolledText.
+.PP 
+For a complete description of Host, see
+\fIXltHost(3X)\fP
+.SH RELATED INFORMATION
+.na
+\fIXltHost(3X)\fP.
+.ad

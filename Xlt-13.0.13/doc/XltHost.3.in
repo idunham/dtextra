@@ -1,0 +1,215 @@
+'\" t
+...\" ** $Id: XltHost.3.in,v 1.3 2004/08/22 15:59:00 rwscott Exp $
+...\" **
+.TH XltHost 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltHost\fP \- The Host widget class
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+Host is used by an application to communicate with a process via a tcp/ip
+socket connection.
+.PP 
+Next paragraph
+.PP 
+Next paragraph
+.SS "Classes"
+Host inherits behavior and resources from the
+\fIObject\fP class.
+.PP 
+The class pointer is \fIXltHostWidgetClass\fP.
+.PP 
+The class name is \fIXltHost\fP.
+.SS "New Resources"
+The following table defines a set of widget resources used by the programmer
+to specify data.  The programmer can also set the resource values for the
+inherited classes to set attributes for this widget.  To reference a
+resource by name or by class in a .Xdefaults file, remove the \fIXmN\fP or
+\fIXmC\fP prefix and use the remaining letters.  To specify one of the defined
+values for a resource in a .Xdefaults file, remove the \fIXm\fP prefix and use
+the remaining letters (in either lowercase or uppercase, but include any
+underscores between words).
+The codes in the access column indicate if the given resource can be
+set at creation time (C),
+set by using \fIXtSetValues\fP (S),
+retrieved by using \fIXtGetValues\fP (G), or is not applicable (N/A).
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ XltHost Resource Set
+Name	Class	Type	Default	Access
+_
+XltNasciiInputCallback	XtCCallback	XtCallbackList	NULL	C
+XltNbinaryInputCallback	XtCCallback	XtCallbackList	NULL	C
+XltNconnectCallback	XtCCallback	XtCallbackList	NULL	C
+XltNdelay	XltCDelay	int	0	CSG
+XltNdisconnectCallback	XtCCallback	XtCallbackList	NULL	C
+XltNhostType	XtCHostType	unsigned char	XltHOST_CLIENT	CSG
+XltNinputCallback	XtCCallback	XtCallbackList	NULL	C
+XltNname	XltCName	String	"localhost"	CSG
+XltNoutputCallback	XtCCallback	XtCallbackList	NULL	C
+XltNport	XltCPort	String	dynamic	CSG
+XltNterminator	XltCTerminator	String	"\\r\\n"	CSG
+.TE
+.KE
+.in
+.sp 1
+.IP "\fIXltNasciiInputCallback\fP"
+Specifies the list of callbacks that is called when
+one line of input has been received. A line is terminated by
+either \\r or \\n.  A blank line, "\\r\\n", will not invoke
+the callback.
+The reason sent by the callback is \fIXltCR_ASCIIINPUT\fP.
+.IP "\fIXltNbinaryInputCallback\fP"
+Specifies the list of callbacks that is called when
+binary data is received. Binary data is defined according
+to the Block Arguments in the Tektronix TekScope Programmer Manual.
+The reason sent by the callback is \fIXltCR_BINARYINPUT\fP.
+.IP "\fIXltNconnectCallback\fP"
+Specifies the list of callbacks that is called when
+the connection is established. A connection is not attempted
+until the parent of the Host widget, usually the ApplicationShell,
+has been realized.
+The reason sent by the callback is \fIXltCR_CONNECT\fP.
+.IP "\fIXmNdelay\fP"
+Specifies the minimum amount of time to delay between sending
+characters to the socket.
+.IP "\fIXltNdisconnectCallback\fP"
+Specifies the list of callbacks that is called when
+the connection is closed.
+The reason sent by the callback is \fIXltCR_DISCONNECT\fP.
+.IP "\fIXltNhostType\fP"
+Either XltHOST_CLIENT or XltHOST_SERVER.
+.IP "\fIXltNinputCallback\fP"
+Specifies the list of callbacks that is called when
+data is received.
+The reason sent by the callback is \fIXltCR_INPUT\fP.
+.IP "\fIXltNname\fP"
+Specifies the hostname to connect to, stdin if "-".
+An XtGetValues on this resource returns a pointer to the actual string
+in the widget. \fBDo not free this string.\fP If the hostType is XltHOST_SERVER
+this resource is not used.
+.IP "\fIXltNoutputCallback\fP"
+Specifies the list of callbacks that is called when
+data byte is transmitted.
+.IP "\fIXltNport\fP"
+Specifies the TCP service port to connect to. If not specified the name
+of the application will be used.
+An XtGetValues on this resource returns a pointer to the actual string
+in the widget. \fBDo not free this string.\fP If the hostType is XltHOST_SERVER
+this resource is the port that the listen socket is created on.
+.IP "\fIXltNterminator\fP"
+Specifies a string that is appended to data send by XltHostSendString(3x).
+An XtGetValues on this resource returns a pointer to the actual string
+in the widget. \fBDo not free this string.
+
+.SS "Inherited Resources"
+Host inherits behavior and resources from the following
+superclasses.  For a complete description of each resource, refer to the
+man page for that superclass.
+.P 
+.sp 1
+.in 0
+.KS
+.TS 
+center;
+cBp7 ssss
+lBp6 lBp6 lBp6 lBp6 lBp6
+lp6 lp6 lp6 lp6 lp6.
+ Object Resource Set
+Name	Class	Type	Default	Access
+_
+XmNdestroyCallback	XmCCallback	XtCallbackList	NULL	C
+XmNscreen	XmCScreen	Screen *	dynamic	CG
+.wH
+.tH
+.TE
+.KE
+.in
+.sp 1
+.wH
+.in  
+.SS "Callback Information"
+A pointer to the following structure is passed to each callback:
+.sS
+.iS
+.ta .25i 1.1i
+.nf
+typedef struct
+{
+	int	\fBreason\fI;
+	char	\fB* data\fI;
+	int	\fBlen\fI;
+	int	\fBinput_size\fI;
+	int	\fBinput_need\fI;
+} XltHostCallbackStruct;
+.iE
+.sE
+.wH
+.fi
+.IP "\fBreason\fP"
+Indicates why the callback was invoked
+.IP "\fBdata\fP"
+Points to the data that triggered the callback.
+This is undefined if reason is XltCR_CONNECT.
+.IP "\fBlen\fP"
+Is the amount of data pointed to by data.
+This is undefined if reason is XltCR_CONNECT.
+This is the amount of data in the output queue if the reason is XltCR_OUTPUT.
+This is the amount of data read, but not yet processed, if the reason is
+XltCR_INPUT. Setting this field to 0 in the callback will ignore the data.
+.IP "\fBinput_size\fP"
+Is the amount of binary data received so far.
+This is only defined if reason is XltCR_INPUT and is only meaningful
+during a binary data transfer.
+.IP "\fBinput_need\fP"
+Is the amount of binary data we expect to receive.
+This is only defined if reason is XltCR_INPUT and is only meaningful
+during a binary data transfer.
+.SS "Behavior"
+XltHost behavior is described below:
+.IP
+Host will attempt to make a connection to the host name
+and port when its parent, which should be the ApplicationShell,
+is realized. If the name or port is changed the current connection
+is closed and a new connection will be established.  The connection
+callback is called when the stream is successfully opened. If the hostType is
+XltHOST_SERVER the listen socket is created when the parent is realized. 
+Clients that connect to this port will then receive all of the data sent
+with XltHostSendData/XltHostSendString.
+
+Data sent to the Host, via XltHostSendData(3x) or XltHostSendString(3x),
+is sent to the stream one byte at a time with a delay of XltNdelay
+between bytes.  Additionally, XltHostSendString will append the 
+XltNTerminator string to the data.
+
+Data read from the stream is collected and passed to the various
+input callbacks as appropriate.
+
+.SS "Virtual Bindings"
+The bindings for virtual keys are vendor specific.
+For information about bindings for virtual buttons and keys, see \fIVirtualBindings(3X)\fP.
+.SH RELATED INFORMATION
+.na
+\fIObject(3X)\fP,
+\fIXltCreateHost(3X)\fP,
+\fIXltHostSelect(3X)\fP,
+\fIXltHostSendData(3X)\fP,
+\fIXltHostSendString(3X)\fP,
+\fIXltHostCreateTranscript(3X)\fP, and
+\fIXltHostDiscardOutput(3X)\fP.
+.ad

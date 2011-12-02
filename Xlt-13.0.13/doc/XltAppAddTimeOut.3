@@ -1,0 +1,53 @@
+...\" ** $Id: XltAppAddTimeOut.3.in,v 1.1 2004/07/03 17:39:43 rwscott Exp $
+...\" **
+.TH XltAppAddTimeOut 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+XltAppAddTimeOut, XltRemoveTimeOut, XltTimeOutQuery \- register, remove and query timeouts
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Timer.h>
+
+.sp \n(PDu
+XltIntervalId XltAppAddTimeOut(\fIapp_context\fP, \fIinterval\fP, \fIproc\fP, \fIclient_data\fP)
+.br
+	XtAppContext	\fIapp_context\fP;
+.br
+	unsigned long	\fIinterval\fP;
+.br
+	XltTimerCallbackProc	\fIproc\fP;
+.br
+	XtPointer	\fIclient_data\fP;
+.LP
+unsigned long XltRemoveTimeOut(\fItimer\fP)
+.br
+	XltIntervalId	\fItimer\fP;
+.LP
+unsigned long XltTimeOutQuery(\fItimer\fP)
+.br
+	XltIntervalId	\fItimer\fP;
+.SH DESCRIPTION
+.fi
+\fIXltAppAddTimeOut\fP creates a timeout and returns an identifier for it.
+The timeout value is set to interval. The callback procedure is called when the
+interval elapses, and then the timeout is removed.
+.IP "\fBapp_context\fP"
+Specifies the application context for which the timer is to be set.
+.IP "\fBclient_data\fP"
+Specifies the argument that is to be passed to the specified procedure when done.
+.IP "\fBinterval\fP"
+Specifies the time interval in milliseconds.
+.IP "\fBproc\fP"
+Specifies the procedure that is to be called when time expires.
+.IP "\fBtimer\fP"
+Specifies the ID for the timeout request to be destroyed/queried.
+.PP 
+.SH RETURN VALUE
+Returns the XltIntervalId associated with this timer.
+.SH RELATED INFORMATION
+.na
+\fIXtAppAddTimeOut(3X)\fP.
+.ad

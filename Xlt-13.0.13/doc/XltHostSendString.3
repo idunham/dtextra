@@ -1,0 +1,40 @@
+...\" ** $Id: XltHostSendString.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltHostSendString 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltHostSendString\fP \- Function to send a NULL terminated string to a Host
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.sp \n(PDu
+Widget XltHostSendString(\fBhost, string\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBhost\fI;
+	String 	\fBstring\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltHostSendString\fP 
+sends string to the connected Host with the XltNterminator string appended.
+The string is sent by calling
+\fIXltHostSendData(3X)\fP.
+.IP "\fBhost\fP"
+The Host widget ID
+.IP "\fBstring\fP"
+The string to send.
+.PP 
+For a complete description of Host, see
+\fIXltHost(3X)\fP
+.SH RELATED INFORMATION
+.na
+\fIXltHost(3X)\fP.
+\fIXltHostSendData(3X)\fP.
+.ad

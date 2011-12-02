@@ -1,0 +1,45 @@
+...\" ** $Id: XltCreateHost.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltCreateHost 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltCreateHost\fP \- Convenience function to create a Host widget
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Host.h>
+.sp \n(PDu
+Widget XltCreateHost(\fBparent, name, arglist, argcount\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBparent\fI;
+	String	\fBname\fI;
+	ArgList	\fBarglist\fI;
+	Cardinal	\fBargcount\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltCreateHost\fP create an instance of a Host widget and
+returns the associated widget ID.
+.IP "\fBparent\fP"
+The parent widget ID
+.IP "\fBname\fP"
+The widget name.
+.IP "\fBarglist\fP"
+The arglist.
+.IP "\fBargcount\fP"
+The number of args in arglist.
+.PP 
+For a complete description of Host, see
+\fIXltHost(3X)\fP
+.SH RETURN VALUE
+Returns the Host widget ID.
+.SH RELATED INFORMATION
+.na
+\fIXltHost(3X)\fP.
+.ad

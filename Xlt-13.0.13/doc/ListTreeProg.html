@@ -1,0 +1,495 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head><title>XltListTree Widget Man Page</title></head>
+<body>
+<h1><a name="top">XltListTree Widget Programmer's Reference</a></h1>
+
+
+<ul>
+<li><a href="#usage">Usage</a>
+
+<ul>
+<li><a href="#item">List Items</a>
+</ul>
+<li><a href="#res">New Resources</a>
+<li><a href="#cb">Callbacks</a>
+<ul>
+<li><a href="#cbres">Callback Resources</a>
+<li><a href="#cbact">Activate Callback</a>
+<li><a href="#cbhi">Highlight Callback</a>
+<li><a href="#cbmenu">Menu Callback</a>
+<li><a href="#cbitem">Item Destroy Callback</a>
+</ul>
+<li><a href="#historical">Historical Callbacks</a>
+<li><a href="#pub">Public Functions</a>
+<ul>
+<li><a href="#creat">Widget Creation Functions</a>
+<li><a href="#ref">List Refresh Functions</a>
+<li><a href="#listitem">List Item Manipulation Functions</a>
+<li><a href="#listorder">List Item Ordering Functions</a>
+<li><a href="#listfind">List Item Searching Functions</a>
+<li><a href="#listhl">List Highlighting Functions</a>
+</ul>
+</ul>
+
+
+<ul><li>
+<a href="ListTree.html">Back to XltListTree home page</a>
+</ul>
+
+<p>To create the XltListTree widget, use the following code as an example:
+<pre>
+        tree=XltCreateScrolledXltListTree(parent,"tree",NULL,0);
+</pre>
+
+<p>This example creates an empty XltListTree widget as the child of
+some container widget named parent.  The XltListTree widget now creates its own
+scrollbars and does not have to be placed in a scrolling container widget.
+It is also now dependent on the Motif widget set; I broke my rules about
+using Motif in non-free programs because the LessTif project is far enough
+along that the scrollbars are quite stable.  Once LessTif is complete, there
+will be no reason to use any other toolkit.
+
+<p>List items must be
+added to the widget using convenience functions, because I couldn't think of
+a good way to add heirarchal items through resources.  The convenience
+function method is also very easy, so this design decision wasn't difficult.
+
+<p>Adding items to the list is outlined below:
+<pre>
+int i;
+XltListTreeItem *level1,*level2;
+
+	level1=XltListTreeAdd(tree,NULL,"Item 1");
+	level1=XltListTreeAdd(tree,NULL,"Item 2");
+	level2=XltListTreeAdd(tree,level1,"Item 3");
+</pre>
+
+<p>This adds three items to the XltListTree widget <i>tree</i>,
+where <i>Item 3</i> is a child of
+<i>Item 2</i>, and both <i>Item 1</i> and <i>Item 2</i> are root level items.
+See
+<a href="#pub">Public Functions</a>
+below for descriptions of all of the convenience
+functions.
+
+<h3><a name="item">List Items</a></h3>
+
+<p>The following structure is returned from the XltListTreeAdd convenience
+function, and is used whenever an item is referenced.
+
+<pre>
+typedef struct _XltListTreeItem {
+  Boolean       open;
+  Boolean       highlighted;
+  char          *text;
+  int           length;
+  int           x,y,ytext;
+  int           count;
+  Dimension     height;
+  XltListTreeItemType type;
+  struct _XltListTreeItem  *parent,*firstchild,*prevsibling,*nextsibling;
+  Pixmap        openPixmap,closedPixmap;
+  XtPointer     user_data;
+} XltListTreeItem;
+</pre>
+
+<p>When this structure is returned for an item, the value points to the actual
+item, not a copy of the item.  Do not modify any value in the structure
+except for the user_data entry, which is provided for your use.  (Use the
+<b>XltListTreeRenameItem()</b> public function to modify the text
+in the item.)
+
+<p>I'll rephrase this for emphasis:  the items returned from the widget are
+the actual items the widget uses when it draws the tree.  So, unless you want
+to Mess Things Up Real Good and crash your program, don't fiddle with the
+item structure.
+
+<p>OK, disclaimer out of the way, there is a lot of information available
+here that I didn't want to take away from you, gentle programmer.  Stuff like
+<i>open</i> may be safely modified, but stay away from changing any of the
+positions or dimensions.  Bad news to mess with those.
+
+<p>Really, Really, Really, don't modify parent, firstchild, prevsibling,
+ or nextsibling.
+
+<p>I mean it, because it is possible to throw the widget into an infinite
+loop.
+
+<p>Trust me.
+
+
+<p><hr><h2><a name="res">New Resources</a></h2>
+<p>The XltListTree widget defines the following new resources:
+<table border>
+<tr><th>Name<th>Class<th>Type<th>Default
+<tr><td>XtNbranchOpenPixmap<td>XtCPixmap<td>Pixmap<td>XtUnspecifiedPixmap
+<tr><td>XtNbranchPixmap<td>XtCPixmap<td>Pixmap<td>XtUnspecifiedPixmap
+<tr><td>XtNclickPixmapToOpen<td>XtCBoolean<td>Boolean<td>True
+<tr><td>XtNdoIncrementalHighlightCallback<td>XtCBoolean<td>Boolean<td>False
+<tr><td>XtNfont<td>XtCFont<td>XFontStruct*<td>XtDefaultFont
+<tr><td>XtNforeground<td>XtCForeground<td>Pixel<td>XtDefaultForeground
+<tr><td>XtNhighlightPath<td>XtCBoolean<td>Boolean<td>False
+<tr><td>XtNhorizontalSpacing<td>XtCMargin<td>Dimension<td>2
+<tr><td>XtNindent<td>XtCMargin<td>Dimension<td>0
+<tr><td>XtNleafOpenPixmap<td>XtCPixmap<td>Pixmap<td>XtUnspecifiedPixmap
+<tr><td>XtNleafPixmap<td>XtCPixmap<td>Pixmap<td>XtUnspecifiedPixmap
+<tr><td>XtNlineWidth<td>XtCMargin<td>Dimension<td>0
+<tr><td>XtNmargin<td>XtCMargin<td>Dimension<td>2
+<tr><td>XtNspacing<td>XtCMargin<td>Dimension<td>4
+<tr><td>XtNverticalSpacing<td>XtCMargin<td>Dimension<td>0
+</table>
+
+<p>
+<dl>
+<dt>XtNbranchOpenPixmap
+<dd>Pixmap to use for an item that is open and has children.
+
+<dt>XtNbranchOpenPixmap
+<dd>Pixmap to use for an item that is closed and has children.
+
+<dt>XtNclickPixmapToOpen
+<dd>If True, a single click on the pixmap of an item is equivalent to a double
+click on the item's text.
+
+<dt>XtNdoIncrementalHighlightCallback
+<dd>Calls the highlight callback after each item is highlighted; otherwise
+only calls the callback after the button has been released and all items have
+been highlighted.
+
+<dt>XtNfont
+<dd>Font to use for items.
+
+<dt>XtNforeground
+<dd>Foreground color for text.  Also used for the bitmap color, if any of
+the Pixmap resources is defined instead as a bitmap.
+
+<dt>XtNhighlightPath
+<dd>Highlights the item's parents when an item is opened.
+
+<dt>XtNhorizontalSpacing
+<dd>Pixel distance between the Pixmap and item text.
+
+<dt>XtNindent
+<dd>Pixel distance to indent a new level of items.  Note that this distance
+is in addition to the width of the Pixmap.
+
+<dt>XtNleafOpenPixmap
+<dd>Pixmap to use for an item that is open and does not have children.
+
+<dt>XtNleafPixmap
+<dd>Pixmap to use for an item that is closed and does not have children.
+
+<dt>XtNlineWidth
+<dd>Specifies the line width used to draw the list heirarchy.
+
+<dt>XtNmargin
+<dd>Pixel distance between the border of the widget and any text or Pixmap.
+
+<dt>XtNverticalSpacing
+<dd>Pixel distance between neighboring items in the list.
+
+</dl>
+
+<p><hr><h2><a name="cb">Callbacks</a></h2>
+
+<h3><a name="cbres">Callback Resources</a></h3>
+<p>The XltListTree widget defines the following callback resources:
+
+<dl>
+<dt>XtNactivateCallback
+<dd>Called when any item is opened or closed.
+<dt>XtNhighlightCallback
+<dd>Called when any item is highlighted.
+<dt>XtNmenuCallback
+<dd>Called when the right mouse button is pressed over an item.
+<dt>XtNdestroyItemCallback
+<dd>Called for each items that is deleted.  This allows for the graceful
+freeing of anything allocated for user_data.
+</dl>
+
+<h3><a name="cbact">Activate Callback</a></h3>
+<p>This callback is called whenever an item is opened, or if an item is
+explicitly closed.  The following structure is sent to the callback.
+
+<pre>
+typedef struct _XltListTreeActivateStruct {
+        int             reason;
+        XltListTreeItem    *item;
+        Boolean         open;
+        XltListTreeItem    **path;
+        int             count;
+} XltListTreeActivateStruct;
+</pre>
+
+<dl>
+<dt>reason
+<dd>One of two constants, XtBRANCH or XtLEAF, indicating that the item
+has children or does not, respectively.
+
+<dt>item
+<dd>Pointer to the item selected (or unselected).
+
+<dt>open
+<dd>The state of the selected item.
+
+<dt>path
+<dd>The path from the root of the list to the selected item, including the
+selected item.
+
+<dt>count
+<dd>The number of items in <i>path</i>.
+</dl>
+
+
+<h3><a name="cbhi">Highlight Callback</a></h3>
+<p>This callback is called whether the item is opened or closed, and
+is passed the following structure.
+
+<pre>
+typedef struct _XltListTreeMultiReturnStruct {
+        XltListTreeItem    **items;
+        int             count;
+} XltListTreeMultiReturnStruct;
+</pre>
+
+<dl>
+<dt>items
+<dd>Pointer to a list of pointers that holds all of the highlighted items.
+
+<dt>count
+<dd>The number of highlighted items.
+</dl>
+
+
+<h3><a name="cbmenu">Menu Callback</a></h3>
+<p>This callback can be used to post a menu over the item, or some other
+application defined function may be implemented.  It is passed the ItemReturn
+structure.
+
+<pre>
+typedef struct _XltListTreeItemReturnStruct {
+  int		reason;
+  XltListTreeItem	*item;
+  XEvent	*event;
+} XltListTreeItemReturnStruct;
+</pre>
+
+<dl>
+<dt>reason
+<dd>The constant XtMENU.
+
+<dt>item
+<dd>Pointer to the highlighted item.
+
+<dt>event
+<dd>The XEvent that triggered the callback (should be cast to a pointer to
+an XButtonEvent).
+</dl>
+
+
+<h3><a name="cbitem">Item Destroy Callback</a></h3>
+<p>Called whenever an item is deleted, the callback function is passed the
+ItemReturn structure.
+
+<pre>
+typedef struct _XltListTreeItemReturnStruct {
+  int		reason;
+  XltListTreeItem	*item;
+  XEvent	*event;
+} XltListTreeItemReturnStruct;
+</pre>
+
+<dl>
+<dt>reason
+<dd>The constant XtDESTROY.
+
+<dt>item
+<dd>Pointer to the highlighted item.
+
+<dt>event
+<dd>This is not used and is assigned the value NULL.
+</dl>
+
+
+<p><hr><h2><a name="historical">Historical Callbacks</a></h2>
+
+<p>Three other callbacks did exist in previous versions of the widget, but I
+removed them.  I warned ya! :)
+
+
+<p><hr><h2><a name="pub">Public Functions</a></h2>
+<p>All changes to the widget are reflected immediately, unless a call to
+XltListTreeRefreshOff() is made before updating.  XltListTreeRefreshOn() must be
+called before the list will start to update itself again.
+
+<p>I could probably have gone on forever writing convenience functions for
+more and more generalized states, but I'd still be typing the source code, and
+not working on this here primo-excellent documentation. :)  So, this is where
+the "batteries not included" phrase enters in:  it is up to you to customize
+the widget for your own use.  The entire tree of items contained in the
+widget is available for parsing by you by calling <b>XltListTreeFirstItem()</b>
+and using the <i>firstchild</i> and <i>nextsibling</i> fields of the
+<b>XltListTreeItem</b> structure.
+
+<p>Be careful not to copy over the <i>text</i> field of a <b>XltListTreeItem</b>,
+because it is a malloced string.  Use <b>XltListTreeRenameItem()</b> if you need
+to change a name.
+
+<ul>
+<li>
+<h3><a name="creat">Widget Creation Functions</a></h3>
+<dl>
+<dt>Widget <b>XltCreateScrolledXltListTree</b>(Widget parent, char *name,
+Arg *args, Cardinal count)
+<dd>Creates a XltListTree widget as a child of an XmScrolledWindow (which in
+turn is a child of <i>parent</i>), and returns its widget ID.
+</dl>
+
+<li>
+<h3><a name="ref">List Refresh Functions</a></h3>
+<dl>
+<dt>void <b>XltListTreeRefreshOff</b>(XltListTreeWidget w)
+<dd>Turns off the automatic updating of the list.  Useful when adding many
+items to the list.
+
+<dt>void <b>XltListTreeRefreshOn</b>(XltListTreeWidget w)
+<dd>Turns on the automatic updating.
+</dl>
+
+<li>
+<h3><a name="listitem">List Item Manipulation Functions</a></h3>
+<dl>
+<dt>XltListTreeItem *<b>XltListTreeAdd</b>(XltListTreeWidget w, XltListTreeItem *parent, char *string)
+<dd>Adds an item to the list as a child of <i>parent</i>.  If <i>parent</i> is
+NULL, adds the item as a root item.  All items are added at the end of
+the list of children of that parent; i.e. they are not sorted.
+Returns NULL if an error occurs.
+
+<dt>int <b>XltListTreeDelete</b>(XltListTreeWidget w, XltListTreeItem *item)
+<dd>Removes <i>item</i> and all of its children from the list.
+Returns 1 if successful, 0 if failure.
+
+<dt>int <b>XltListTreeDeleteChildren</b>(XltListTreeWidget w, XltListTreeItem *item)
+<dd>Removes only the children of <i>item</i> from the list.  
+Returns 1 if successful, 0 if failure.
+
+<dt>void <b>XltListTreeRenameItem</b>(XltListTreeWidget w, XltListTreeItem *item, char *string)
+<dd>Changes the text of <i>item</i> to <i>string</i>.
+
+<dt>int <b>XltListTreeReparent</b>(XltListTreeWidget w, XltListTreeItem *item, XltListTreeItem *newparent)
+<dd>Moves <i>item</i> to become a new child of <i>newparent</i>.
+Returns 1 if successful, 0 if failure.
+
+<dt>int <b>XltListTreeReparentChildren</b>(XltListTreeWidget w, XltListTreeItem *item, XltListTreeItem *newparent)
+<dd>Moves the children of <i>item</i> to become a new children
+of <i>newparent</i>.
+Returns 1 if successful, 0 if failure.
+
+<dt>void <b>XltListTreeGetPathname(XltListTreeReturnStruct * ret, char *dir)</b>
+<dd>
+Copies the path of the given list structure to the supplied pointer.
+
+<dt>void <b>XltListTreeGetPathnameFromItem(XltListTreeItem * item, char *dir)</b>
+<dd>
+Copies the path of the given item to the supplied pointer.
+
+<dt>Position <b>XltListTreeGetItemPosition(XltListTreeWidget w, XltListTreeItem * item)</b>
+<dd>
+Retrieves the Position of the given item
+
+</dl>
+
+<li>
+<h3><a name="listorder">List Item Ordering Functions</a></h3>
+<dl>
+<dt>int <b>XltListTreeOrderChildren</b>(XltListTreeWidget w, XltListTreeItem *item)
+<dd>Alphabetize the children of <i>item</i>.
+Returns 1 if successful, 0 if failure.
+
+<dt>int <b>XltListTreeOrderSiblings</b>(XltListTreeWidget w, XltListTreeItem *item)
+<dd>Alphabetize all siblings of <i>item</i>.
+Returns 1 if successful, 0 if failure.
+
+<dt>int <b>XltListTreeUserOrderChildren</b>(XltListTreeWidget w, XltListTreeItem *item,int (*func)())
+<dd>Orders the children of <i>item</i> according to a user-specified
+procedure.
+Returns 1 if successful, 0 if failure.
+
+<dt>int <b>XltListTreeUserOrderSiblings</b>(XltListTreeWidget w, XltListTreeItem *item,int (*func)())
+<dd>Orders all siblings of <i>item</i> according to a user-specified
+procedure.
+Returns 1 if successful, 0 if failure.
+
+<dt>Note for the user order subroutines:
+<dd>  func() should be a pointer to
+a function that can be fed to qsort().  I.e. it takes two void pointers
+and returns an integer that is negative if the first item should be listed
+before the second, positive if the first should be listed after the second,
+and zero if the two items go in the same position.  The list that is sorted
+by qsort is a list of XltListTreeItem pointers, so each void pointer to your
+sorting function must cast into a pointer to a XltListTreeItem pointer.  A bit
+of code would probably make this clearer:  the following code is from
+XltListTree.c that is used to alphabetize the list.
+
+<pre>
+int
+AlphabetizeItems(const void *item1, const void *item2)
+{
+  return strcmp((*((XltListTreeItem **) item1))-&gt;text,
+		(*((XltListTreeItem **) item2))-&gt;text);
+}
+</pre>
+
+</dl>
+
+<li>
+<h3><a name="listfind">List Item Searching Functions</a></h3>
+<dl>
+<dt>XltListTreeItem *<b>XltListTreeFirstItem</b>(XltListTreeWidget w)
+<dd>Returns the first item in list.  Returns NULL if there are no items
+in the list.
+
+<dt>XltListTreeItem *<b>XltListTreeFindSiblingName</b>(XltListTreeWidget w, XltListTreeItem *item, char *name)
+<dd>Searches for <i>name</i> among the siblings of <i>item</i>.
+Returns NULL if the name is not found.
+
+<dt>XltListTreeItem *<b>XltListTreeFindChildName</b>(XltListTreeWidget w, XltListTreeItem *item, char *name)
+<dd>Searches for <i>name</i> among the children of <i>item</i>.
+Returns NULL if the name is not found.
+
+</dl>
+
+<li>
+<h3><a name="listhl">List Highlighting Functions</a></h3>
+<dl>
+<dt>void <b>XltListTreeHighlightItem</b>(XltListTreeWidget w, XltListTreeItem *item)
+<dd>Highlights <i>item</i> and unhighlights previously highlighted items.
+
+<dt>void <b>XltListTreeHighlightAll</b>(XltListTreeWidget w)
+<dd>Highlights all items currently visible in the widget.  Only top level
+items and items that are direct descendants of open items are highlighted.
+I.e. items whose parents are closed are <b>not</b> highlighted.
+
+<dt>void <b>XltListTreeClearHighlighted</b>(XltListTreeWidget w)
+<dd>Unhighlights any items currently selected in the widget.
+
+<dt>void <b>XltListTreeGetHighlighted</b>(XltListTreeWidget w,XltListTreeMultiReturnStruct *ret)
+<dd>Fills the return struct with the items currently selected in the widget.
+
+<dt>void <b>XltListTreeSetHighlighted</b>(XltListTreeWidget w, XltListTreeItem **items, int count, Boolean clear)
+<dd>Unhighlights any previously highlighted items if <i>clear</i> is True.
+Then, highlights <i>count</i>
+items from the list <i>items</i>.  If count is negative, the list <i>items</i>
+should be NULL terminated.
+
+</dl>
+</ul>
+
+<hr>
+
+<br>	<a href=ListTree.html>XltListTree</a> :
+	<a href=ListTreeProg.html>Programmer's Reference</a>
+</body>
+</html>
+

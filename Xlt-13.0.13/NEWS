@@ -1,0 +1,14 @@
+$Header: /cvsroot/xlt/Xlt/NEWS,v 1.6 2005/04/18 15:34:51 dannybackx Exp $
+
+Check out ChangeLog for long list of changes to this package.
+
+Moved to a new CVS !
+	See http://sourceforge.net/projects/xlt
+
+Changed the API of ListTree so it has Xlt prefixes everywhere.
+	Previously it was just "ListTreeXXX()", now it's XltListTreeXXX().
+	Add a call to open/close part of the tree.
+	Add a resource (XltDefaultMode) to indicate whether the tree is
+		open or closed by default.
+
+Add the LiteClue widget.

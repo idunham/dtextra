@@ -1,0 +1,37 @@
+...\" ** $Id: XltFilePickerGetString.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltFilePickerGetString 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltFilePickerGetString\fP \- Function to get the XmNvalue from the TextField
+part of a FilePicker.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/FilePicker.h>
+.sp \n(PDu
+String XltFilePickerGetString(\fBwidget\fI)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fI;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltFilePickerGetString\fP 
+returns the XmNvalue from the TextField part of the FilePicker.
+.IP "\fBwidget\fP"
+The FilePicker widget ID
+.PP 
+For a complete description of FilePicker, see
+\fIXltFilePicker(3X)\fP
+.SH RETURN VALUE
+Returns the String from the TextField
+.SH RELATED INFORMATION
+.na
+\fIXltFilePicker(3X)\fP.
+.ad

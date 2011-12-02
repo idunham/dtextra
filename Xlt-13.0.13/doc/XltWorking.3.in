@@ -1,0 +1,51 @@
+...\" ** $Id: XltWorking.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltWorking 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltWorking\fP \- Convenience function to display a Working dialog, and
+update the bar graph in the dialog.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+Boolean XltWorking(\fBwidget, question, percent_done\fP)
+.ta .5i 1.5i
+.nf
+	Widget	\fBwidget\fP;
+	String	\fBquestion\fP;
+	int	\fBpercentdone\fP;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltWorking\fP 
+Creates a dialog containing a message string, a bar showing the percentage
+of the task complete, and an abort button. When called with a percent_done
+value of zero the dialog is managed, and a timer installed to update the bar
+every second. If question is not NULL, the message string in the dialog is
+set to this. When called with a percent_done of 100, the dialog is un-managed.
+If called with a percent_done of -1, only the message is changed. Any value
+between 0 and 100 will cause the bar graph to be updated the next time the 
+timer fires, and processes any pending timer and X events. If the return value
+is True, the user has requested that the task should be aborted.
+.IP "\fBwidget\fP"
+The widget to wait for.
+.IP "\fBquestion\fP"
+The message to display in the working dialog. Or NULL, meaning no change.
+.IP "\fBpercent_done\fP"
+The percentage of the task complete. 0 will cause the dialog to be managed.
+100 will cause the dialog to be un-managed. -1 will update the question only.
+Any value between 0 and 100 will update the bar graph.
+.PP 
+.SH RETURN VALUE
+Boolean, if True the abort button was pushed, or the window was closed by the
+window manager.
+.SH RELATED INFORMATION
+.na
+.ad

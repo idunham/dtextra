@@ -1,0 +1,46 @@
+...\" ** $Id: XltCheckArgSize.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltCheckArgSize 3X "" "" "" ""
+.ds )H Eric Howe
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+\fIXltCheckArgSize\fP \- Convenience macro for asserting that an ArgList is
+large enough.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltCheckArgSize(a, n)
+.ta .5i 1.5i
+.nf
+	Arg a[];
+	Cardinal n;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltCheckArgSize\fP
+simply asserts (using \fBassert\fR(3)) that \fIa\fR contains at least \fIn\fR
+elements.  This macro will generally be used with arrays of \fIArg\fR but
+it will work with any array (such as arrays of strings that you are about to
+pass to \fBexecvp\fR(3) and \fBexecv\fR(3)).
+.PP
+If you've ever debugged a stack corruption because you said "\fCArg a[3]\fR"
+when you meant "\fRArg a[4]\fR", you'll understand why you want to use this
+macro.
+.PP
+Note that the \fIa\fR parameter must be an array, a pointer will not work.
+.PP 
+.SH RETURN VALUE
+None but it may cause \fBabort\fR(3) to be called.
+.SH SEE ALSO
+.BR XltGetValues (3X),
+.BR XltSetValues (3X),
+.BR assert (3).
+
+.na
+.ad

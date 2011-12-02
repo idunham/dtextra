@@ -1,0 +1,41 @@
+...\" ** $Id: XltDisplayOptions.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltDisplayOptions 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltDisplayOptions\fP \- Convenience function to display command line
+options to stderr.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltDisplayOptions(\fBoptions\fP, \fBnum_options\fP)
+.ta .5i 1.5i
+.nf
+	XrmOptionDescList \fBoptions\fP;
+	Cardinal	\fBnum_options\fP;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltDisplayOptions\fP 
+will print the command line options to stderr. The arguments are the same
+as those passed to XtAppInitialize(3).
+.IP "\fBoptions\fP"
+Specifies an array of XrmOptionDescRec which describe how to parse the command
+line.
+.IP "\fBnum_options\fP"
+Specifies the number of elements in options.
+.PP 
+.SH RETURN VALUE
+None
+.SH RELATED INFORMATION
+XtAppInialize(3)
+XltDisplayFallbackResources(3)
+.na
+.ad

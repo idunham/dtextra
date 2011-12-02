@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head><title>ListTree Widget Web Page</title></head>
+
+<body>
+<h1><a name="top">ListTree Widget <img src=ListTreeTitle.gif alt=""></a></h1>
+
+<p>A low resource widget designed to display text strings in a "directory
+list" sort of structure.
+
+
+<ul>
+<li><a href="#screen">Screen Shots</a>
+<ul>
+<li><a href="#fmt">Basic Demo</a>
+</ul>
+<li><a href="#new"><img src=new.gif align=bottom alt="[New!]">Important version 3.0 changes</a>
+<li><a href="#overview">Overview</a>
+<li><a href="#feat">Features</a>
+<li><a href="#reqs">Requirements</a>
+<li><a href="#history">History</a>
+<li><a href="#note">Author's Note</a>
+<li><a href="#thanks">Thanks</a>
+<li><a href="#copyright">Copyright</a>
+</ul>
+
+
+<ul><li>
+<a href="ListTreeProg.html">Programmer's Documentation</a>
+</ul>
+
+<p><hr><h2><a name="screen">Screen Shots</a></h2>
+
+<h3><a name="fmt">Basic Demo</a></h3>
+<p>This picture shows the formatting of the ListTree widget:
+<p><img src=ListTree.gif alt="">
+
+<p><hr><h2><a name="new"><img src=new.gif align=bottom alt="[New!]">Important version 3.0 changes</a></h2>
+
+<p>The ListTree is now entirely Motif/LessTif based!  Due to my involvement
+with the <a href="http://www.hungry.com/products/lesstif">LessTif project</a>,
+it only operates as a child of an XmScrolledWindow.  (I think
+that standardization on one user interface for unix is necessary for the
+survival of our favorite class of operating system, but that's another
+discussion. :)
+
+<p>One of the most important changes (besides the Motif dependency)
+is that Version 3 doesn't suffer from the ~64,000 pixel limit height of an X11
+widget.  This version only draws items that are shown in the window, rather
+than rendering the entire list while clipping to the visible window.
+
+<p>All features from version 2.0 have been retained, and many new features
+have been added.  New features include the ability to specify pixmaps on
+a per-item basis, and multiple discontinuous select.  To be added before
+the final version 3 release will be keyboard traversal.
+
+<p><hr><h2><a name="overview">Overview</a></h2>
+
+<p>The ListTree Widget is small list widget capable of displaying lists of
+text strings (with an optional pixmap) in a heirarchal directory list sort
+of format.  Unlike all of the other freely available tree widgets that I could
+find, this widget does not use widgets for each item displayed in the tree.
+Instead, it is a list of text strings that contain pointers to parents and
+children in the tree.  This reduces memory usage over widget tree widgets, and
+also simplifies use.
+
+<p>This widget was designed for use in file manager type programs, so an
+optional pixmap is available for displaying to the left of the text item.  The
+pixmap has an open and closed state, and different types of pixmaps are
+available for items with and without children.  Currently, pixmaps for
+different file types are not available.
+
+<p>The lists are activated by clicking the left mouse button on the Pixmap
+of the item, or double clicking ond the name of the item.  The state of the
+item is then toggled, and if the item is open, its children are displayed.
+Ranges of items can also be toggled by clicking and dragging the left mouse
+button over the names of the items you want to highlight.
+
+<p><hr><h2><a name="feat">Features</a></h2>
+<p>Features provided in the widget include the following:
+
+<ul>
+<li>Pixmap displayed to the left of the text string
+<li>Individually specified pixmaps per item
+<li>Default pixmaps for open and closed states
+<li>Item highlighting (single, multiple, or discontinuous select)
+<li>Double click name or single click on icon to open or close
+<li>Callbacks: (called when selected or unselected)
+<ul>
+<li>Activate
+<li>Highlight
+<li>Menu (when right button pressed)
+<li>Item Destroy
+<ul>
+<li>Any item
+<li>Item with children
+<li>Item without children
+</ul>
+</ul>
+<li>Selectable line width
+<li>Selectable font
+<li>Various spacing options
+<li>Convenience Functions:
+<ul>
+<li>Add Item
+<li>Delete Item (also deletes dependent children)
+<li>Reparent Item
+<li>Reparent item's children
+<li>Order items
+<li>Order item's children
+<li>Search for item text
+<li>Highlight item
+</ul>
+</ul>
+
+<p><hr><h2><a name="reqs">Requirements</a></h2>
+
+<p>The ListTree code requires X11R5 or later and an ANSI C compiler.  The
+code may compile on a non-ANSI compiler if it supports new style function
+definitions.
+
+<p>The widget now requires Motif or
+<a href="ftp://ftp.hungry.com/pub/lesstif/">LessTif</a>.
+
+<p><hr><h2><a name="history">History</a></h2>
+
+<p>This code was originally developed on an IBM RS/6000 running AIX 4.1
+and X11R5.  Version 2.0 was developed on a Linux machine running kernel
+1.3.* and XFree86 3.1.2 (X11R6).  Version 3.0 was developed on Linux 2.0
+using the LessTif toolkit.  It
+was also tested on two other machines: a DEC Alpha/AXP running OSF/1 3.0
+with X11R5; and an SGI Indigo running IRIX 4.0.5 with X11R4.
+
+<p><hr><h2><a name="note">Author's Note</a></h2>
+
+<p>This widget is supplied as freeware, in the hope that it will be useful for
+developers in the X community.  If you do use this widget, I do request that
+you include mention of the ListTree widget in the documentation.  Also,
+remember to include a copy of the entire copyright and permission notice!
+Thanks.
+
+<p>Patches, improvements, suggestions, bug reports, job offers, volleyball
+games, and money you love donating to programmers who make your life <b>so</b>
+much easier are welcome at <tt>&lt;rwmcm@orion.ae.utexas.edu&gt;</tt>.
+I will periodically post patches and improvements to ftp.x.org and the
+ListTree web page at
+<a href="http://www.ae.utexas.edu/~rwmcm/ListTree.html">http://www.ae.utexas.edu/~rwmcm/ListTree.html</a>
+<P>
+<img src=new.gif align=bottom alt="[New!]">Meanwhile this widget is
+part of the
+<A HREF="http://www.lesstif.org/Xlt.html">Xlt widget set</A>!
+
+<p><hr><h2><a name="thanks">Thanks</a></h2>
+
+<p>Thanks to the following people for providing fixes and suggestions:
+
+<ul>
+<li>Alan Marcinkowski <tt>&lt;alan@paragon.com&gt;</tt>
+<li>Kevin Carson <tt>&lt;kcarson@direct.ca&gt;</tt>
+<li>Tessa Lau <tt>&lt;tlau@allegra.att.com&gt;</tt>
+<li>Pierre Duchene <tt>&lt;pierre@ovs.com&gt;</tt>
+<li>Oyvind Yrke <tt>&lt;oyvind@stavanger.geco-prakla.slb.com&gt;</tt>
+<li>Douglas Kosovic <tt>&lt;douglask@dstc.edu.au&gt;</tt>
+<li>Lance Holden <tt>&lt;Lance.Holden@dsto.defence.gov.au&gt;</tt>
+</ul>
+
+<p><hr><h2><a name="copyright">Copyright</a></h2>
+
+<p>Copyright (c) 1996 Robert W. McMullen
+
+<p><h6><small>
+This library is free software; you can redistribute it and/or
+modify it under the terms of the GNU Library General Public
+License as published by the Free Software Foundation; either
+version 2 of the License, or (at your option) any later version.
+</small></h6>
+
+<p><h6><small>
+This library is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+Library General Public License for more details.
+</small></h6>
+
+<p><h6><small>
+You should have received a copy of the GNU Library General Public
+License along with this library; if not, write to the Free
+Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+</small></h6>
+
+<hr>
+
+<br>	<a href=ListTree.html>ListTree</a> :
+	<a href=ListTreeProg.html>Programmer's Reference</a>
+
+</body>
+</html>

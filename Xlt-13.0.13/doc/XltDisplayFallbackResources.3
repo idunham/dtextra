@@ -1,0 +1,38 @@
+...\" ** $Id: XltDisplayFallbackResources.3.in,v 1.1 2001/06/22 21:38:52 amai Exp $
+...\" **
+.TH XltDisplayFallbackResources 3X "" "" "" ""
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+\fIXltDisplayFallbackResources\fP \- Convenience function to display 
+the application fallback resources
+to stderr in a format suitable for an app_defaults file.
+.SH SYNOPSIS
+.nf
+.sS
+.iS
+\&#include <Xlt/Xlt.h>
+.sp \n(PDu
+void XltDisplayFallbackResources(\fBfallback_resources\fP)
+.ta .5i 1.5i
+.nf
+	String \fB*fallback_resources\fP;
+.wH
+.fi
+.iE
+.sE
+.SH DESCRIPTION
+.fi
+\fIXltDisplayFallbackResources\fP 
+will print the command fallback resources to stderr. The argument is the same
+as that passed to XtAppInitialize(3).
+.IP "\fBfallback_resources\fP"
+Specifies a NULL-terminated array of resource specification strings.
+.PP 
+.SH RETURN VALUE
+None
+.SH RELATED INFORMATION
+XtAppInialize(3)
+XltDisplayOptions(3)
+.na
+.ad

@@ -1,0 +1,107 @@
+.TH STROKES 5
+.ds )H Rick Scott
+.ds ]W Xlt Version 13.0.13
+.SH NAME
+Strokes - X(1) action invocation with simple mouse movements
+.SH DESCRIPTION
+
+What are strokes?  Simply put, they are a method to invoke program actions
+with mouse 
+drags.  They are defined by the following grid:
+.IP "" 20
+.nf
+1 2 3
+4 5 6
+7 8 9
+.fi
+.PP
+Stroke 456 is the horizontal movement from left to right
+with the stroke button pressed.  Holding down the stroke
+button and tracing out the letter `C' would be stroke 3214789.
+Simple, right?
+
+.PP
+The Stroke library allows you to add strokes to any X(1) program with
+one simple function call, StrokeInstall(3). For example:
+
+.IP "" 12
+.nf
+W = XmCreateMessageDialog(Parent,
+	"StrokeEnabledDialog",
+	NULL, 0);
+StrokeInstall(W);
+.fi
+.PP
+will enable strokes in the dialog W.
+
+
+.PP
+When a stroke is entered the action corresponding to the stroke is 
+called.  For the above example the action `Stroke-456' would be called
+when `456 is stroked'.
+.PP
+In order to specify a different action you can specify this with
+the `strokes' resource for the Widget that the strokes have been 
+installed in. So `*StrokeEnabledDialog.strokes: 456 ManagerGadgetSelect'
+would call the ManagerGadgetSelect action of the message dialog when 456
+is stroked. The exact syntax is:
+.PP
+Resource.strokes: stroke action [[,stroke action]...]
+
+.SS
+.B Resources
+
+.TP
+.B strokes: stroke action [[,stroke action]...]
+This provides a mapping of strokes to actions.  By default the
+action `Stroke-456' is called for stroke `456'.
+
+.TP
+.B strokeSlop: int
+This is used to define a buffer zone between the boxes of the grid.
+The amount of slop tolerated is actually the resulting box dimension
+divided by this slop number. Therefore the larger the slop number
+the more accurate your strokes must be.  A value approaching 3 will
+make it all but impossible to recognize a stroke.  The default value
+is currently 20.
+Run the stroke(1) program with StrokeDebug turned on to show what this
+means.
+
+.TP
+.B strokeDebug: True | False
+Turns on `stroke debug mode'.  In this mode the strokes are not erased
+from the screen when the button is released and a grid is drawn around
+the stroke.  Try the stroke(1) program to see what I mean.
+
+.TP
+.B strokeButton: 1 | 2 | 3 | 4 | 5
+Specifies the button to be used to draw strokes. By default Btn3
+is used.
+
+.TP
+.B strokeSound: sound file
+If given, the contents of this resource will be provided as
+an argument to the `PlaySound' action at the conclusion of 
+the stroke.  If the PlaySound action
+is not defined in your application do not specify this resource.
+Specifically the following call is made:
+
+.nf
+XtCallActionProc(W, "PlaySound", NULL, "sound file", 1);
+.fi
+
+.SH AUTHOR
+.nf
+Rick Scott <rwscott@alumni.uwaterloo.ca>
+Check out LessTif at http://www.LessTif.org
+.fi
+.SH SEE ALSO
+stroke(1)
+StrokeInstall(3)
+StrokeRemove(3)
+StrokeSetButton(3)
+StrokeGetButton(3)
+StrokeSetDebug(3)
+StrokeGetDebug(3)
+StrokeSetMapping(3)
+StrokeGetMapping(3)

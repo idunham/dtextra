@@ -1,0 +1,90 @@
+.TH StrokeInstall 3
+.ds )H Rick Scott
+.ds ]W @PACKAGE@ Version @VERSION@
+.SH NAME
+StrokeInstall - Enable Strokes in a Widget
+
+.SH SYNOPSIS
+#include <Stroke.h>
+
+.nf
+void StrokeInstall(Widget W);
+void StrokeRemove(Widget W);
+
+void StrokeSetButton(Widget W, int button);
+int StrokeGetButton(Widget W);
+
+void StrokeSetDebug(Widget W, Boolean Debug);
+Boolean StrokeGetDebug(Widget W);
+
+void StrokeSetMapping(Widget W, String Map);
+String StrokeGetMapping(Widget W);
+.fi
+
+.SH DESCRIPTION
+Enable Strokes to be recognized in the given widget. It first
+retrieves the resources and installs an Xt event for button
+press, release and, motion on the given widget and all of its
+children.  Therefore this function should not be called until
+all of the widgets children have been added.
+
+.SS
+.B Resources
+Resources are specified as if they belong to the widget that
+the strokes are enabled in.
+
+.TP
+.B strokes: stroke action [[,stroke action]...]
+This provides a mapping of strokes to actions.  By default the
+action `Stroke-456' is called for stroke `456'.
+
+.TP
+.B strokeSlop: int
+This is used to define a buffer zone between the boxes of the grid.
+The amount of slop tolerated is actually the resulting box dimension
+divided by this slop number. Therefore the larger the slop number
+the more accurate your strokes must be.  A value approaching 3 will
+make it all but impossible to recognize a stroke.  The default value
+is currently 20.
+Run the stroke(1) program with StrokeDebug turned on to show what this
+means.
+
+.TP
+.B strokeDebug: True | False
+Turns on `stroke debug mode'.  In this mode the strokes are not erased
+from the screen when the button is released and a grid is drawn around
+the stroke.  Try the stroke(1) program to see what I mean.
+
+.TP
+.B strokeButton: 1 | 2 | 3 | 4 | 5
+Specifies the button to be used to draw strokes. By default Btn3
+is used.
+
+.TP
+.B strokeSound: sound file
+If given, the contents of this resource will be provided as
+an argument to the `PlaySound' action at the conclusion of 
+the stroke.  If the PlaySound action
+is not defined in your application do not specify this resource.
+Specifically the following call is made:
+
+.nf
+XtCallActionProc(W, "PlaySound", NULL, "sound file", 1);
+.fi
+
+
+.SH AUTHOR
+.nf
+Rick Scott <rwscott@alumni.uwaterloo.ca>
+Check out LessTif at http://www.LessTif.org
+.fi
+.SH SEE ALSO
+stroke(1)
+StrokeInstall(3)
+StrokeRemove(3)
+StrokeSetButton(3)
+StrokeGetButton(3)
+StrokeSetDebug(3)
+StrokeGetDebug(3)
+StrokeSetMapping(3)
+StrokeGetMapping(3)

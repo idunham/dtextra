@@ -1,0 +1,55 @@
+                   README for libXlt
+                   =================
+
+
+XltBubbleButton - XmPushButton sub-class with tool-tips, bubble-help, 
+	annoying clutter on the screen, or what ever it's called these days.
+
+XltAnimatedButton - XltBubbleButton sub-class for displaying a sequence of
+	Pixmaps, or XmStrings, as an animation.
+
+XltEntrySB - A combination of an XmScale and XmTextField for numeric entry.
+
+XltFilePicker - A combination XmLabel, XmTextField, and XltBubbleButton that
+	pops up an XmFileSelectionDialog and displays the selection.
+
+XltHost - an object sub-class that opens a TCP/IP stream and returns the
+	data from the stream with callbacks.
+
+XltNumEntry - An XmLabel, XmTextField and a couple of XmArrowButtons for 
+	numeric data entry.  This has a built in calculator, so you can
+	enter "4 * sin(PI)" as "4 * sin(PI)" instead of ".2192".  It's
+	pretty cool, if I do say so myself.
+
+SciPlot - plotting widget.
+
+Strokes - The next thing in UI design, available here first!  Beats "themes"
+	hands down, this is actually usefull!
+
+XltDisplayFallbackResources - A function to print the compiled in FallBack
+	resources to stderr in a resource file format.
+
+XltDisplayOptions - A function to print the command line options to stderr.
+
+XltHostTranscript - A function to create a dialog that displays all incoming
+	data on a Host stream in an XmScrolledText widget.
+
+XltRedirectStdErr - A function that captures stderr and displays it in a
+	dialog.
+
+XltSetClientIcon - A function to set the ApplicationShell iconPixmap and
+	iconMask with the xpm data.
+
+Sound - Easily add actions and resources to play sound files.
+
+XltTooBarAddItem - A function that makes it easy to add XltBubbleButtons that
+	display xpm icons to an XmRowColumn, for use as a tool bar.
+
+XltWorking - Pops up a dialog that displays the percentage of a task complete
+	without having to convert the task to a WorkProc, and without haveing
+	to worry about un-managing the dialog before it is actually mapped.
+
+XltYesNo - An "in-line" dialog for simple questions.
+
+XltAppShell - A drop-in replacement for Xt's applicationShell
+      which makes supporting private colormaps and non-default visual a no-brainer.

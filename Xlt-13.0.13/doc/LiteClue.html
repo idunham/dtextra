@@ -1,0 +1,268 @@
+<H3> 
+<p align=center>The LiteClue Widget 
+</H3> 
+</p><a name="ALiteClueDoc"></a><p><ident origin="/usr3/cgi/doc/xform/LiteClue.doc">
+<H3><a name="H1">1. Copyright 
+</a></H3>
+<br><p>Copyright 1995 Computer Generation, Inc.  You 
+may reproduce this document without charge provided 
+this copyright notice appears.  The software described 
+in this document is copyrighted under separate terms.  Please see 
+the source code.  
+<p>The software is provided &quot;as is&quot;, without warranty of any kind, express 
+or implied, including but not limited to the warranties of 
+merchantability, fitness for a particular purpose and noninfringement.  
+In no event shall Computer Generation, inc.  nor the author be liable for 
+any claim, damages or other liability, whether in an action of contract, 
+tort or otherwise, arising from, out of or in connection with the 
+software or the use or other dealings in the software.  
+<p>The author welcomes comments and suggestions.  <br>Gary Aviv <br>Computer Generation, Inc.,<br>gary@compgen.com<br>404-705-2811<br><p><br><H3><a name="H2">2. Introduction 
+</a></H3>
+<br><p><p align=center><IMG src="LiteClue.gif"><p><p>LiteClue is a widget 
+which pops a one line help 
+message when the user passes the pointer over another &quot;watched&quot; widget.  This is 
+known by various names in the industry such as hints, clues, tips 
+and balloon help.  
+<p>Clues are particularly helpful for push buttons that contain graphic 
+pixmaps rather than text.  They obviate the need to place text within graphics 
+in the button which creates internationalization problems.  
+A clue may be attached to virtually any widget that has a window (no gadgets).  
+LiteClue does not require Motif 
+<p>None of this affects the behaviour of the watched widget itself.  
+LiteClue monitors enter and leave events of the watched widget's 
+window passively.  
+<p>LiteClue inherits behaviour and ewsources from OverrideShell.  
+<p>The class pointer is xcgLiteClueWidgetClass.  
+<p>The class name is xcgLiteClue.  
+<p><br><H3><a name="H3">3. Distribution Kit 
+</a></H3>
+<br><p>The source distribution kit contains the following files: 
+<p><DL><DT>
+<b>LiteClue.c LiteClue.h LiteClueP.h </b> 
+<DD>
+The LiteClue widget source code 
+<DT>
+<b>LiteClueTest.c</b> 
+<DD>
+A small demonstration program 
+<DT>
+<b>Imake</b> 
+<DD>
+an Imake file.  
+</DL><p>LiteClue has been compiled successfully on NCR MPRAS, 
+Digital OSF/Unix, and Linux.  
+<p>To build the test program: 
+<p><pre>
+	xmkmf
+	make
+</pre><p><br><p><H3><a name="H4">4. Resources 
+</a></H3>
+<br><p>LiteClue adds the following resources to those it inherits.  The resource class 
+is obtained by replacing the N by a C in the resource name (eg: 
+XtNfont is the name XtNfont is the class.  The access types are 
+C (resource may be set at create time), S (may be se using XtSetValues), or 
+G (may be read using XtGetValues).  
+<p><HR><DL><DT>
+<b>XtNfont</b> 
+<DD>
+Type = FontSet, Default = &quot;-adobe-new century schoolbook-bold-r-normal-*-12-*, Access = C<br>The font used to display the clue.  
+<HR><DT>
+<b>XtNforeground</b> 
+<DD>
+Type = Pixel, Default = &quot;black&quot;, Access = C<br>The color used to render the clue text 
+</DL><HR><p>The background color resource <b>XtNbackground</b> of the clue popup is 
+inherited from OverrideShell.  
+<p><br><H3><a name="H5">5. Callbacks 
+</a></H3>
+<br><p>LiteClue adds no new callbacks over those it inherite.  
+<p><H3><a name="H6">6. Translations 
+</a></H3>
+<br><p>LiteClue has no translations.  
+<p><H3><a name="H7">7. LiteClue API 
+</a></H3>
+<br><p>LiteClue contains the following functions that control the widget behaviour.  
+<p><H3><a name="H7.1">7.1 XcgLiteClueAddWidget -- Add a widget to be watched.  
+</a></H3>
+<br><DL><DT>
+<b>Function</b> 
+<DD>
+ 
+A widget will be added to the LiteClue watched list.  
+Clues are given for sensitive watched widgets when the pointer enters its 
+window.  If the widget is already watched, the passed text replaces its 
+current clue text.  
+If text is null, the widget is still added, if it is not already 
+in the list, but no clue will appear.  Text may be specified 
+with XcgLiteClueAddWidget in a subsequent call.  
+When text is null and the widget is already in the list, its 
+text is not changed.  
+When a widget will is added to the watched list, it automatically 
+becomes sensitive.  Otherwise, its sensitivity is not changed.  
+A watched widget which is not sensitive retains its context but clues 
+are suppressed.  
+None of this affects the behaviour of the watched widget itself.  
+LiteClue monitors enter and leave events of the watched widget's 
+window passively.  
+<p><DT>
+<b>C-call</b> 
+<DD>
+void XcgLiteClueAddWidget(Widget w, Widget watch, char * text, int size, int option ) 
+<p><DT>
+<b>Input</b> 
+<DD>
+ 
+<DL><DT>
+<b>w </b> 
+<DD>
+LiteClue widget 
+<DT>
+<b>watch </b> 
+<DD>
+the widget for which clues will be given 
+<DT>
+<b>text </b> 
+<DD>
+pointer to buffer containing text.  Must be null terminated 
+<DT>
+<b>size </b> 
+<DD>
+size of text, if 0, it will be computed (strlen) 
+<DT>
+<b>option </b> 
+<DD>
+option mask - must be zero 
+</DL><p><DT>
+<b>Output</b> 
+<DD>
+Nothing 
+</DL><p><br><H3><a name="H7.2">7.2 XcgLiteClueDeleteWidget -- Delete a widget that is watched.  
+</a></H3>
+<br><p><DL><DT>
+<b>Function</b> 
+<DD>
+A widget is deleted from the watched list and its resources are 
+freed.  LiteClue is no longer given for the widget.  
+If the widget is not watched, nothing is done.  
+None of this affects the behaviour of the watched widget itself, just whether 
+a clue is poped for the widget.  
+<p><DT>
+<b>C-call</b> 
+<DD>
+void XcgLiteClueDeleteWidget(Widget w, Widget watch) 
+<p><DL><DT>
+<b>w </b> 
+<DD>
+LiteClue widget 
+<DT>
+<b>watch </b> 
+<DD>
+the widget to remove from watched list 
+</DL><p><DT>
+<b>Output</b> 
+<DD>
+Nothing 
+</DL><p><H3><a name="H7.3">7.3 XcgLiteClueSetSensitive - Enable/disable clues for watched widget.  
+</a></H3>
+<br><p><DL><DT>
+<b>Function</b> 
+<DD>
+When a watched widget is sensitive, a clue is poped up when the 
+pointer enters its window.  When a watched widget is insensitive, 
+the widget is retained in the watched list but no clue is poped.  
+The sensitivity of a watched widget relative to clues is set or reset 
+by this function.  
+The Xt sensitivity of the watched widget is not altered by this function.  
+<p><DT>
+<b>C-call</b> 
+<DD>
+void XcgLiteClueSetSensitive(Widget w, Widget watch, Boolean sensitive) 
+<p><DL><DT>
+<b>w </b> 
+<DD>
+LiteClue widget 
+<DT>
+<b>watch </b> 
+<DD>
+the widget to alter sensitivity 
+<DT>
+<b>sensitive</b> 
+<DD>
+True - restore sensitivity<br>False - make insensitivity 
+</DL><p><DT>
+<b>Output</b> 
+<DD>
+Nothing 
+</DL><p><br><H3><a name="H7.4">7.4 XcgLiteClueGetSensitive - Get sensitivity setting for watched widget.  
+</a></H3>
+<br><p><DL><DT>
+<b>Function</b> 
+<DD>
+When a watched widget is sensitive, a clue is poped up when the 
+pointer enters its window.  When a watched widget is insensitive, 
+the widget is retained in the watched list but no clue is poped.  
+The sensitivity state of a watched widget relative to clues is returned 
+by this function.  
+The Xt sensitivity of a widget is a totally independent concept.  
+<p><DT>
+<b>C-call</b> 
+<DD>
+ 
+<p><DL><DT>
+<b>w </b> 
+<DD>
+LiteClue widget 
+<DT>
+<b>watch </b> 
+<DD>
+the widget for which to get sensitivity state.  If NULL 
+first watched widget is used.  If there are no watched widgets, 
+False is returned.  
+</DL><p><DT>
+<b>Output</b> 
+<DD>
+Nothing 
+<p><DT>
+<b>Return</b>		 
+<DD>
+True - watched widget is sensitive<br>False - watched widget is not sensitive 
+</DL><p><br><H3><a name="H7.5">7.5 Internationalization 
+</a></H3>
+<br><p>The LiteClue widget is designed to allow the display of internationalized 
+text.  This has been tested on a limited basis with Japanese.  
+<p>In order to make use of internationalization, you must have support 
+in your operating system for the desired locale and must have the 
+needed fonts.  In some cases, you may use the X provided locale 
+support instead.  At initialization, you should have code that 
+looks something like: 
+<p><pre>
+	if (setlocale(LC_ALL,&quot;&quot;) == NULL)
+		fprintf(stderr, &quot;LiteCluetest: Can't set locale\n&quot;);
+	if (!XSupportsLocale())
+	{
+		fprintf(stderr, &quot;LiteCluetest: X does not support locale\n&quot;);
+		setlocale(LC_ALL,NULL) ;
+	}
+	if (XSetLocaleModifiers(&quot;&quot;) == NULL)
+		fprintf(stderr, &quot;LiteCluetest: Can't XSetLocaleModifiers\n&quot;);
+</pre><p>If you need the X locale package, add the following: 
+<p><pre>
+	#define X_LOCALE
+	#include &lt;X11/Xlocale.h&gt;
+</pre><p><br>LiteClue makes use of the XR5 Font Set technology.  All 
+font resources are converted to Font Sets.  For example, for Japanese 
+you will need three fonts for each font set: 
+<p><pre>
+*normalFont: \
+-sony-fixed-medium-r-normal--0-110-100-100-c-0-jisx0201.1976-0,\
+-adobe-new century schoolbook-medium-r-normal-*-14-*,\
+-jis-fixed-medium-r-normal--16-110-100-100-c-160-jisx0208.1983-0
+
+*h1Font: \
+-sony-fixed-medium-r-normal--0-170-100-100-c-0-jisx0201.1976-0,\
+-adobe-new century schoolbook-bold-r-normal-*-24-*,\
+-jis-fixed-medium-r-normal--24-170-100-100-c-240-jisx0208.1983-0
+
+! etc for each font resource
+</pre><p>Finally, you must set the environment symbol LANG to the appropriate locale.  
+For Japanese, one possibility is &quot;LANG=ja_JP.eucJP&quot;.  
+<br><title>LiteClue Widget</title>
