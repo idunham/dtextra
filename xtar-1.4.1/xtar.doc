@@ -1,0 +1,132 @@
+
+
+
+ xtar(1)                                                             xtar(1)
+
+
+
+
+ NAME
+      xtar 1.4 - view contents of a tar file
+
+ SYNOPSIS
+      xtar [Xoptions] [tarfile[.gz|.Z]]
+
+ DESCRIPTION
+      XTar is a Motif program for viewing and manipulating tar archives
+      (which may be compressed).  The contents of the archive are displayed
+      in the main window and various options are available from pulldown and
+      popup menus.
+
+      The main window shows the name of the file currently displayed, its
+      size and its size when unpacked.
+
+      The main XTar pulldown menu has the following options:
+
+      OPEN             Open a new tar file.
+
+      UNPACK ALL       Unpack the entire archive.  All files are extracted
+                       in the same directory as the tar archive itself.
+
+      UNPACK ALL AS... Unpack the entire archive somewhere else.  This
+                       allows you to select another location to extract the
+                       tar archive.  You can interactively select a
+                       directory from the file selection box or type in the
+                       name of a new directory which will be created.
+
+      SEARCH...        Perform a regular expression search on the FILENAMES
+                       in the tar file.  This can also be activated by
+                       pressing '/' in the main window.
+
+      NEXT             Search for the next occurence of the regular
+                       expression.  This can also be activated by pressing
+
+      CONVERT UID/GID  Convert user IDs and group IDs to names on the
+                       current system.
+
+      QUIT             Exit XTar.
+
+      The Option pulldown menu allows you to perform actions on the
+      currently selected file.  A similar menu is available by pressing the
+      right mouse button in the list window.  Furthermore if you set the
+      resource "showPB" to True then buttons are displayed at the bottom of
+      the main window to perform these actions too.  They are as follows:
+
+      VIEW             View a file.  This uses the XTar resource "mappings"
+                       to display the selected file.  If the file ending
+                       matches one in the list then the appropriate external
+                       viewer is called; otherwise it is assumed to be text
+                       and a window is opened.  The text window also shows
+
+
+
+                                    - 1 -          Formatted:  July 17, 1995
+
+
+
+
+
+
+ xtar(1)                                                             xtar(1)
+
+
+
+
+                       the currently selected file and its size.
+
+      EXTRACT          If you have selected a file, this extracts that file
+                       into the current directory.  If you have selected a
+                       directory this unpacks it in the same directory as
+                       the the tar file.
+
+      EXTRACT AS...    Allows you to save the file or directory under
+                       another name.  If you try and extract a directory
+                       into a directory which does not exist, then it is
+                       created first.
+
+      The Set Attributes pulldown menu allows you to set permissions,
+      ownership, and, if you are root, the group id and time stamp, on
+      extracted files.  To enable these options simply toggle the
+      corresponding button.
+
+      The Info pulldown menu allows you to access copyright information and
+      the xtar man page.
+
+ AUTHOR
+      Rik Turnbull, University of Liverpool <rik@csc.liv.ac.uk>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    - 2 -          Formatted:  July 17, 1995
+
+
+

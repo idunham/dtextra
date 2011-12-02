@@ -1,0 +1,58 @@
+xtar 1.4
+========
+o Fixed bug which caused problems with tar files without directory indices.
+o Added "Convert UID/GID" to main menu - this shows the user name and group
+  names corresponding to the user and group IDs of each file.
+o Common library now uses Henry Spencer's regex routines (Copyright (c) 1986
+  by University of Toronto), which hopefully solve portability problems.
+o Removed atexit() function call which also has portability problems.
+o Corrected slight error in Imakefile.
+o Used Youri N. Podchosov's rewritten num_decimal() function which means I 
+  don't have to link with the maths library anymore.
+o Moved the window dimensions to the app-defaults file where they belong.
+o Double click in the list to view the file.
+o Fixed a bug in file_load() which meant files were not getting closed.
+o Two new defines _USE_UTIMES and _USE_GETWD added for awkward NeXT.
+o Properly formatted man page, thanks to DaviD W. Sanderson.
+o Made fonts and window sizes much larger to compensate for my deteriorating
+  eyesight. [Edit them to your liking in the app-default file].
+o Added a "Save As.." option to text file viewer. Also you can edit the file
+  and then save it out (useful?).
+o Compiled in multi-coloured University logo on the About... box.
+
+xtar 1.3.1 [Dec 12 1994]
+==========
+o Fixed a bug which cropped when files are multiples of 512byte blocks.
+
+xtar 1.3 [Dec 5 1994]
+========
+o Spawn an external viewer (mosaic style) when we encounter a file ending we
+  recognise - this enables viewing of graphics & animations inside the tar
+  archive. (Configurable via resources).
+o Only root can extract files with ownership and group ID intact.
+o Use gzip -d to uncompress files, rather than gunzip.
+o Fixes to file selection box routines so that new files are filtered before
+  the window is displayed.
+o More Motif1.1/X11R4 hacks.
+o Changes to Xbr library to give names to menu widgets. This allows the Time
+  Stamp and Permission toggles to be set from resources.
+o Added a _INTEGRATE #define for use when integrating XTar into other
+  applications - this is primarily for using the XTar proggy inside XBrowser
+  [which is why it was originally written!].
+o Configured imake to use template file XTar.tmpl
+o Wrote Makefiles for those without imake
+o No longer use strerror() which seems not to be portable
+
+xtar 1.2 [Jun 28 1994]
+========
+o Added option to unpack tar archive into a selected directory. 
+o Now displays information about size of current tar archive and its size when
+  unpacked.
+o User can now set time stamp, permissions, ownership and group ID on files
+  when they have been extracted.
+o Ported to more platforms and Motif1.1/X11R4 compatible.
+o Deleted lots of obsolete code.
+
+xtar 1.1 [Jun  7 1994]
+========
+o First release.

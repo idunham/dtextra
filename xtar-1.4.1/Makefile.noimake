@@ -1,0 +1,153 @@
+###############################################################################
+# The following variables are for the installation of XTar:
+#    BINDIR			Where to install the binary
+#    LIBDIR			Where to install help file
+#    MANDIR			Where to install the man page
+#    MANSFX			Suffix for man page
+#    APPDIR			Where to install the app-defaults
+##############################################################################
+BINDIR = /usr/local/bin/X11
+LIBDIR = /usr/local/lib/X11/xtar
+MANDIR = /usr/local/man/man1
+MANSFX = 1
+APPDIR = /usr/lib/X11/app-defaults
+
+###############################################################################
+# You may need to set the following variables for your system:
+#    CC				Ansi C compiler to use
+#    OPTIMISATION		Flag to switch optimisation or debugging on
+#    ANSIFLAG			Flag to switch compiler to ANSI C mode
+#    RANLIB			Set to /bin/true if you do not need this
+#    XMINC                      Motif header files
+#    XINC			X11 header files
+#    XMLIB			Motif library
+#    XTOOLLIB			Xt Intrinsic toolkit library
+#    XLIB			X11 library and extensions
+# Also the following definitions are necessary on some systems:
+#    BSD_SIGNALS		Use BSD rather than system 5 signals
+#    
+##############################################################################
+
+###############################################################################
+# HPArchitecture
+###############################################################################
+CC = cc
+
+OPTIMISATION = +O3
+ANSIFLAG =     -Ae
+
+RANLIB = /bin/true
+
+DEFINES =
+
+XMINC = -I/usr/include/Motif1.2
+XINC  = -I/usr/include/X11R5 
+
+XMLIB =    -L/usr/lib/Motif1.2 -lXm -lPW
+XTOOLLIB = -L/usr/lib/X11R5 -lXt
+XLIB =     -L/usr/lib/X11R5 -lXext -lX11
+
+###############################################################################
+# SunArchitecture
+###############################################################################
+# CC = acc
+# 
+# OPTIMISATION =
+# ANSIFLAG =
+# 
+# RANLIB =
+# 
+# DEFINES = -D_BSD_SIGNALS
+# 
+# XMINC =
+# XINC  =
+# 
+# XMLIB =    -lXm
+# XTOOLLIB = -lXt
+# XLIB =     -lXext -lX11
+# 
+###############################################################################
+# RsArchitecture
+###############################################################################
+# CC = bsdcc
+# 
+# OPTIMISATION =
+# ANSIFLAG =
+# 
+# RANLIB =
+# 
+# DEFINES = -D_BSD_SIGNALS
+# 
+# XMINC =
+# XINC  =
+# 
+# XMLIB =    -lXm
+# XTOOLLIB = -lXt
+# XLIB =     -lXext -lX11
+# 
+###############################################################################
+# i386SVR4Architecture
+###############################################################################
+# CC = cc
+# 
+# OPTIMISATION =
+# ANSIFLAG =
+# 
+# RANLIB =
+# 
+# DEFINES =
+# 
+# XMINC = -I/usr/X/include
+# XINC  =
+# 
+# XMLIB =    -L/usr/lib -lXm -lXIM -lgen
+# XTOOLLIB = -lXt
+# XLIB =     -lXext -lX11
+# 
+###############################################################################
+# There should be no need to edit below this line
+###############################################################################
+SRCS = about.c help.c xtar.c
+OBJS = $(SRCS:.c=.o)
+
+COMLIB = common/libcommon.a
+XBRLIB = Xbr/libXbr.a
+
+INCLUDES = -Icommon -IXbr $(XMINC) $(XINC)
+
+CFLAGS = $(ANSIFLAG) $(OPTIMISATION) $(DEFINES) $(INCLUDES)
+
+LIBS = -LXbr -lXbr -Lcommon -lcommon $(XMLIB) $(XTOOLLIB) $(XLIB)
+
+xtar: $(OBJS) $(COMLIB) $(XBRLIB)
+	$(CC) $(LDFLAGS) -o xtar $(OBJS) $(LIBS)
+
+$(COMLIB):
+	(cd common; $(MAKE) -f Makefile.noimake "CC=$(CC)" "CFLAGS=$(CFLAGS)" "RANLIB=$(RANLIB)")
+
+$(XBRLIB):
+	(cd Xbr; $(MAKE) -f Makefile.noimake "CC=$(CC)" "CFLAGS=$(CFLAGS)" "RANLIB=$(RANLIB)")
+
+clean:
+	rm -f xtar $(OBJS)
+	(cd common; $(MAKE) -f Makefile.noimake clean)
+	(cd Xbr; $(MAKE) -f Makefile.noimake clean)
+
+install: xtar
+	@echo "Installing xtar in $(BINDIR)/xtar"; \
+	cp xtar $(BINDIR); \
+	chmod a+x $(BINDIR)/xtar; \
+	if [ ! -d $(LIBDIR) ]; \
+	then \
+		mkdir $(LIBDIR); \
+		chmod a+rx $(LIBDIR); \
+	fi; \
+	echo "Installing xtar.doc in $(LIBDIR)/xtar.doc"; \
+	cp xtar.doc $(LIBDIR); \
+	chmod a+r $(LIBDIR)/xtar.doc; \
+	echo "Installing xtar.man in $(MANDIR)/xtar.$(MANSFX)"; \
+	cp xtar.man $(MANDIR)/xtar.$(MANSFX); \
+	chmod a+r $(MANDIR)/xtar.$(MANSFX); \
+	echo "Installing XTar.ad in $(APPDIR)/XTar"; \
+	cp XTar.ad $(APPDIR)/XTar; \
+	chmod a+r $(APPDIR)/XTar;

@@ -1,0 +1,74 @@
+XTar V1.4
+---------
+XTar is a package for graphically viewing and manipulating files which have been
+archived using tar (Tape ARchive), and possibly compressed with gzip or the
+standard UNIX compress utility. XTar requires an ANSI C compiler and the Motif
+toolkit to build.
+
+This distribution contains the following files and directories:
+
+HISTORY		-	A line by line log of changes to XTar
+Imakefile	-	System independent file for creating Makefiles
+Makefile.noimake-	For users without imake
+README		-	This file
+XTar.ad		-	XTar app-defaults
+XTar.tmpl	-	Template file for imake
+Xbr/		-	X windows library of use(less)ful routines
+common/		-	Miscellaneous library of routines
+xtar.doc	-	Man page in text format (help file)
+xtar.man	-	Man page in nroff format
+*.[ch]		-	Source files
+
+Installing with imake
+---------------------
+If you have imake installed on your system, then you should not need to make
+any changes. Just edit 'XTar.ad' and set the resource 'helpDoc' to where you
+will install the help file. By default this is in $(LIBDIR)/xtar.doc. Then type,
+
+xmkmf		-	Create initial Makefile
+make Makefiles	-	Create Makefiles in common/ and Xbr/
+make		-	Builds xtar
+make install	-	Installs binary, help file and app-defaults
+make install.man-	Installs man page
+
+Installing without imake
+------------------------
+For this version I have provided Makefiles for those without imake. Firstly,
+you must edit 'Makefile.noimake' and set the installation parameters at the
+top of the file. Next, you must look for your systems architecture and
+uncomment the relevant lines [and comment out the lines for the other
+architectures]. It is more than likely that the incorrect default parameters
+have been set, as this Makefile is untested on some systems - so let me have
+the feedback on what they should be!
+
+Now edit XTar.ad and set the helpDoc resource to be $(LIBDIR)/xtar.doc.  Then
+type,
+
+make -f Makefile.noimake		-	Builds the system
+make -f Makefile.noimake install	-	Install binary and other files
+
+Notes
+-----
+o You configure which viewers are spawned by setting the 'mappings' resource.
+  This allows you to launch 'xv' for viewing images and 'ghostview' for
+  viewing PostScript documents for example. See the app-defaults file, XTar.ad,
+  for an example of how it works.
+
+o HTML documentation for XTar is available at:
+    http://www.csc.liv.ac.uk/users/rik/xtar/
+
+o Also check out WWWTar, a similar application for viewing tar files across
+  the web. For more information see:
+    http://www.csc.liv.ac.uk/users/rik/wwwtar/
+
+Send any bug reports, comments, suggestions, beer etc, to...
+
+=============================================================================
+ Richard Turnbull                     |       HP-UX Porting & Archive Centre 
+                                      |
+ E-Mail: rik@csc.liv.ac.uk            |                 [hpux.csc.liv.ac.uk]
+ FAX: (0151) 794 3715                 |               Dept. Computer Science
+ Office Phone: (0151) 794 3704        |              University of Liverpool 
+ Dept   Phone: (0151) 794 6923        |                    Liverpool L69 3BX 
+ http://www.csc.liv.ac.uk/users/rik/  |                              England
+=============================================================================

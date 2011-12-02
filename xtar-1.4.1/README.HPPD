@@ -1,0 +1,13 @@
+Package name:     xtar
+Version number:   1.4
+Original author:  Rik Turnbull <rik@csc.liv.ac.uk>
+Report bugs to:   rik@csc.liv.ac.uk
+Tested on:        HP 9000/735 running HP-UX 9.03
+C compiler used:  Version A.09.75
+Purpose:
+Motif/X windows tar file viewer. XTar allows you to view the contents of a tar
+archive - optionally compressed with gzip or the standard compress utility. It
+also allows you to extract and view individual files, unpack the whole archive,
+or unpack selected directories.
+Date archived:    Mon 17 Jul 1995
+Special notes:    None

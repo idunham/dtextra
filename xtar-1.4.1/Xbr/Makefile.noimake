@@ -1,0 +1,10 @@
+SRCS = XbrCB.c XbrCursor.c XbrDialog.c XbrFSB.c XbrGfx.c XbrLabel.c XbrList.c \
+       XbrMenu.c XbrRes.c
+OBJS = $(SRCS:.c=.o)
+
+libXbr.a: $(OBJS)
+	ar cr libXbr.a $(OBJS)
+	$(RANLIB) libXbr.a
+
+clean:
+	rm -f libXbr.a $(OBJS)

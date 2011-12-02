@@ -1,0 +1,68 @@
+/* 
+ * Copyright 1993, 1994 Liverpool University Computer Science Department
+ *
+ * Permission to use, copy, modify, and distribute this software and its
+ * documentation for any purpose and without fee is hereby granted, provided 
+ * that the above copyright notice appear in all copies and that both that 
+ * copyright notice and this permission notice appear in supporting 
+ * documentation, and that the name of L.U.C.S. not be used in advertising
+ * or publicity pertaining to distribution of the software without specific, 
+ * written prior permission. L.U.C.S. makes no representations about the 
+ * suitability of this software for any purpose.  It is provided "as is"
+ * without express or implied warranty.
+ *
+ */
+
+/* #define	UseGCC */
+
+#ifdef UseGCC
+CC = gcc
+CDEBUGFLAGS = -O
+#endif
+
+#ifdef HPArchitecture
+#ifndef UseGCC
+CCOPTIONS = -Ae
+#endif
+XMINC = -I/usr/include/Motif1.2
+XMLIB = -L/usr/lib/Motif1.2 -lXm -lPW
+#else
+XMLIB = -lXm
+#endif
+
+#ifdef SunArchitecture
+#ifndef UseGCC
+CC = acc
+#endif
+CCOPTIONS = -D_BSD_SIGNALS
+#endif
+
+#ifdef RsArchitecture
+#ifndef UseGCC
+CC = bsdcc
+#endif
+CCOPTIONS = -D_ALL_SOURCE -D_BSD_SIGNALS -DBSD
+#endif
+
+#ifdef i386SVR4Architecture
+#ifndef UseGCC
+CC = cc
+#endif
+XMINC = -I/usr/X/include
+XMLIB = -L/usr/lib -lXm -lXIM -lgen
+#endif
+
+#ifdef XNeXTServer
+#ifndef UseGCC
+CC = cc
+#endif
+CCOPTIONS = -Dmode_t=int -Dpid_t=int -D_USE_RE_EXEC
+#endif
+
+/* Xbr X windows library */
+XBRINC = -I$(TOP)/Xbr
+XBRLIB = -LXbr -lXbr
+
+/* Common library code */
+COMMONINC = -I$(TOP)/common
+COMMONLIB = -Lcommon -lcommon

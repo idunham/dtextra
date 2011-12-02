@@ -1,0 +1,91 @@
+.TH xtar 1
+.SH NAME
+xtar 1.4 \- view contents of a tar file
+.SH SYNOPSIS
+.B xtar
+.RI [ Xoptions ]
+.RI [ tarfile\c
+.RI [ .gz\c
+.RI | .Z ]]
+.SH DESCRIPTION
+XTar is a Motif program for viewing and manipulating tar archives
+(which may be compressed).
+The contents of the archive are displayed in the main window
+and various options are available from pulldown and popup menus.
+.PP
+The main window shows the name of the file currently displayed,
+its size and its size when unpacked.
+.PP
+The main XTar pulldown menu has the following options:
+.nr n \w'EXTRACT AS...\0\0\0\0'+1n-1/1n
+.IP OPEN \nn
+Open a new tar file.
+.IP "UNPACK ALL" \nn
+Unpack the entire archive.
+All files are extracted
+in the same directory as the tar archive itself.
+.IP "UNPACK ALL AS..." \nn
+Unpack the entire archive somewhere else.
+This
+allows you to select another location to extract
+the tar archive.
+You can interactively select a
+directory from the file selection box or type in the
+name of a new directory which will be created.
+.IP "SEARCH..." \nn
+Perform a regular expression search on the FILENAMES
+in the tar file.
+This can also be activated by
+pressing '/' in the main window.
+.IP NEXT \nn
+Search for the next occurence of the regular
+expression.
+This can also be activated by pressing
+'n' in the main window.
+.IP "CONVERT UID/GID" \nn
+Convert user IDs and group IDs to names on
+the current system.
+.IP QUIT \nn
+Exit XTar.
+.PP
+The Option pulldown menu allows you to perform actions on the currently
+selected file.
+A similar menu is available by pressing the right mouse button
+in the list window.
+Furthermore if you set the resource "showPB" to True then
+buttons are displayed at the bottom of the main window to perform these
+actions too.
+They are as follows:
+.IP VIEW \nn
+View a file.
+This uses the XTar resource "mappings" to
+display the selected file.
+If the file ending matches
+one in the list then the appropriate external viewer
+is called; otherwise it is assumed to be text and a
+window is opened.
+The text window also shows the
+currently selected file and its size.
+.IP EXTRACT \nn
+If you have selected a file, this extracts that file
+into the current directory.
+If you have selected a
+directory this unpacks it in the same directory as the
+the tar file.
+.IP "EXTRACT AS..." \nn
+Allows you to save the file or directory under another
+name.
+If you try and extract a directory into a
+directory which does not exist, then it is created
+first.
+.PP
+The Set Attributes pulldown menu allows you to set permissions, ownership,
+and, if you are root, the group id and time stamp, on extracted files.
+To enable these options simply toggle the corresponding button.
+.PP
+The Info pulldown menu allows you to access copyright information and the
+xtar man page.
+.SH AUTHOR
+Rik Turnbull,
+University of Liverpool
+<rik@csc.liv.ac.uk>

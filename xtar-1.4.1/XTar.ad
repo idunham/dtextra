@@ -1,0 +1,62 @@
+!!!! Help document !!!!
+XTar*helpDoc:			/usr/local/lib/X11/xtar/xtar.doc
+
+!!! Set this to true if you want push buttons !!!
+XTar*showPB:			False
+
+!!! Some window dimensions !!!
+XTar*TarWindow.width:		770
+XTar*TarWindow.height:		600
+XTar*FileForm.width:		770
+XTar*FileForm.height:		640
+XTar*HelpForm.width:		770
+XTar*HelpForm.height:		640
+XTar*AboutForm.width:		590
+XTar*AboutForm.height:		220
+  
+!!!! Fonts !!!!
+XTar*fontList:			-adobe-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+XTar*FileList.fontList:		-adobe-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
+XTar*XmText.fontList:		-adobe-courier-medium-r-normal-*-14-*-*-*-*-*-iso8859-1
+
+!!!! Titles & icon name !!!!
+XTar*title:			XTar V1.4
+XTar*iconName:			XTar V1.4
+
+!!!! Colours definitions !!!!
+XTar*background:		Grey75
+XTar*foreground:		Black
+XTar*XmRowColumn.background:	#9F009B00BF00
+XTar*XmCascadeButton.background:#9F009B00BF00
+
+!!!! ToggleButton options !!!!
+XTar*XmToggleButton*visibleWhenOff:True
+XTar*XmToggleButton*indicatorSize:12
+XTar*XmToggleButton*fillOnSelect:True
+XTar*XmToggleButton*selectColor:Red
+XTar*Set Attributes0*set:True
+XTar*Set Attributes1*set:True
+XTar*XTar7*set:False
+
+!!!! Translations !!!!
+XTar*FileList*Translations:     #override \n<Key>n:   next()\n\
+                                            <Key>/:   search()
+
+!!!! Mappings !!!!
+XTar*mappings:			.gif	xv %s\n\
+				.jpg	xv %s\n\
+				.tif	xv %s\n\
+				.tiff	xv %s\n\
+				.pbm	xv %s\n\
+				.ppm	xv %s\n\
+				.pnm	xv %s\n\
+				.pgm	xv %s\n\
+				.xbm	xv %s\n\
+				.bm	xv %s\n\
+				.xwd	xwud -n %s\n\
+				.htm	mosaic %s\n\
+				.html	mosaic %s\n\
+				.mpg	mpeg_play %s\n\
+				.mpeg	mpeg_play %s\n\
+				.ps	ghostview %s\n\
+				.dvi	xdvi %s

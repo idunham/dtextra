@@ -1,0 +1,10 @@
+SRCS = ascii.c env.c file.c fname.c magic.c mappings.c mkdirhier.c \
+       nums.c pipe.c stat.c str.c tmpfile.c
+OBJS = $(SRCS:.c=.o)
+
+libcommon.a: $(OBJS)
+	ar cr libcommon.a $(OBJS)
+	$(RANLIB) libcommon.a
+
+clean:
+	rm -f libcommon.a $(OBJS)
