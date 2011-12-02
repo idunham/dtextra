@@ -1,0 +1,15 @@
+This is DtScan, a Motif interface to SANE utilities.
+It's released under BSD License.
+
+To compile, just run ``make''. You must have OpenMotif,
+OSF/Motif or LessTif to compile DtScan.
+
+The file numbering function is implemented in a menu
+of the ``File'' text field...
+
+
+	-- mghis
+
+To run, you will need sane-utils and ideally imagemagick
+(or graphicksmagick + imagemagick-compat); netpbm may 
+replace imagemagick.

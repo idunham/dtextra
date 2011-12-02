@@ -1,0 +1,273 @@
+2005-04-01 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c : removed useless statement
+
+2005-03-17 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c interpreter.h
+    recognition of MOTD messages
+
+2005-03-17 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c
+    stripping of first character in nickname
+
+2005-03-17 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c preferences.h main.h
+    rationalized configure file path generation into a function and made filename configurable. After suggestion by Sandro Bonazzola <sandrobonazzola@users.sf.net>
+
+2005-03-08 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c : removed useless declarations
+
+2005-03-08 Riccardo Mottola <rmottola@users.sf.net>
+    * help.c interpreter.c interpreter.h main.c network.c network.h
+    added support for whois request and reply display
+
+2005-03-07 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c : implemented preferences file saving
+
+2005-03-06 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c: check for XmFONTLIST_DEFAULT_TAG
+    
+2005-03-06 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c : get user selection from list
+
+2005-03-05 Riccardo Mottola <rmottola@users.sf.net>
+    "initial work on preferences and user list"
+    - solved a bug that appeared with non-DEBUG in network.c
+
+2005-03-01 Riccardo Mottola <rmottola@users.sf.net>
+    * interpeter.c, main.c, main.c userlist.c userlist.h
+      nick changing support in userlist, minor fixes
+    * main.h debug disabled
+
+2005-03-01 Riccardo Mottola <rmottola@users.sf.net>
+    * userlist.h userlist.c: added
+    * automake files regenerated
+    * many additions to support the userlist
+    * copyright and license fixes
+
+2005-02-27 Riccardo Mottola <rmottola@users.sf.net>
+    * filesave.c : set title, removed ueseless debug prints
+
+2005-02-27 Riccardo Mottola <rmottola@users.sf.net>
+    * configure.ac : check for Sgm extension and regenerated files
+
+2005-02-27 Riccardo Mottola <rmottola@users.sf.net>
+    * help.c : updated copyright
+    * main.h : fixed str in macro
+
+2005-02-27 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c: added help dialog
+
+2005-02-26 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c, main.c: removed warings and useless variables
+
+2005-02-26 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c : config file reading
+    * main.c: removed stray variable
+    * help.c: added op/deop description
+
+2005-01-24 Riccardo Mottola <rmottola@users.sf.net>
+    * configure.ac : version bumped and files regenerated
+
+2005-01-23 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c : implemented op and deop commands
+
+2005-01-22 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c network.c : new event handling now with XtAppAddInput
+
+2005-01-18 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c main.h network.c:
+    unix user name extraction and use
+
+2005-01-18 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c, interperer.h : handle part notification
+
+2005-01-18 Riccardo Mottola <rmottola@users.sf.net>
+    * configure : removed extra X libraries in path and regenerated
+
+2005-01-18 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c : fixed QUIT message display
+
+2005-01-14 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c: fixed bugs that would appear in MipsPro
+
+2005-01-12 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c: unified disconnect cleanup code in one function
+
+2005-01-07 Riccardo Mottola <rmottola@users.sf.net>
+    * configure files: added libPW check and regenerated
+
+2005-01-07 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c, main.c : more grafecul handling of link closure
+
+2005-01-07 Riccardo Mottola <rmottola@users.sf.net>
+    * main.h : improved MAXHOSTNAMELEN stuff
+
+2005-01-04 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c: put command error in console
+
+2005-01-04 Riccardo Mottola <rmottola@users.sf.net>
+    * configure files: regeneration after version bump
+
+2005-01-04 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c, interpreter.h
+    added intepretation of user op and deop commands
+
+2005-01-04 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c : fixed segfault (missing token to doMode!)
+
+2005-01-03 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c main.h network.c signals.c signals.h
+    removed alarm signal and use select() fot socket and X event handling
+
+2004-12-13 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c : doNick() now checks for pointer address
+
+2004-12-12 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c interpreter.h : added recognition of more error messages
+
+2004-12-12 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c : added some comments
+
+2004-12-12 Riccardo Mottola <rmottola@users.sf.net>
+    * signals.c signals.h:
+    cleaned up code to use configure type and ignore alarm signal during handler execution
+    
+2004-12-12 Riccardo Mottola <rmottola@users.sf.net>
+    * help.c network.c preferences.c
+    some code cleanup, some debug cleanup.
+
+2004-12-09 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c, network.c: /mode command implemented
+    
+2004-12-08 Riccardo Mottola <rmottola@users.sf.net>
+    * help.c : fixed missing new line
+
+2004-12-05 Riccardo Mottola <rmottola@users.sf.net>
+    * main.h main.c interpreter.c help.c
+    Get the system information and create a real system info string.
+    
+2004-12-05 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c, main.h main.c
+    Get the host name and send it as info
+
+2004-11-29 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c : interpret "/ns" shortcut for nickserv
+    * help.c : added help entry.
+
+2004-11-14 Riccardo Mottola <rmottola@users.sf.net>
+    * configure.ac bumped version
+    * configure : regenerated
+
+2004-11-12 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c : fixed cosmetic positioning
+    * network.c : fixed warning
+    
+2004-11-11 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c main.c main.h network.c:
+    limit lines sent to server to 512 bytes (RFC 1459)
+    
+2004-11-09 Riccardo Mottola <rmottola@users.sf.net>
+    * filesave.c filesave.h : file save implemented
+
+2004-11-05 Riccardo Mottola <rmottola@users.sf.net>
+    * help.c help.h interpreter.c main.c main.h network.c network.h preferences.c
+    Completed help box, added better preferences at startup added port at connection, made connection at startup work.
+
+2004-10-30 Riccardo Mottola <rmottola@users.sf.net>
+    * network.c : added asserts and removed a potential buffer overrun of 1 byte
+
+2004-10-28 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c : read username and nickname from dialog
+
+2004-10-27 Riccardo Mottola <rmottola@users.sf.net>
+    * help.h
+    interpreter.c
+    main.c
+    network.c
+    network.h
+    signals.c
+    fixed warnings, missing includes, missing declarations
+
+2004-10-27 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.c, network.c : worked on the user/nick name setting
+
+2004-10-27 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c preferences.c preferences.h : realized a better dialog system
+    * help.c : used a mroe meaningful name
+
+2004-10-23 Riccardo Mottola <rmottola@users.sf.net>
+    * preferences.h preferences.c : added
+    * automake.am : updated, regenerated remaining files
+    * main.c : added initial preferences dialog
+
+2004-10-22 Riccardo Mottola <rmottola@users.sf.net>
+    * main.h, helpc: different check for XmFONTLIST_DEFAULT_TAG
+
+2004-10-19 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c : fixed bug in ctcp version send and receive
+
+2004-10-18 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c, interpreter.h, network.c, network.h:
+    	added support for requesting CTCP version
+    * interpreter.c interpreter.h : better notice support
+
+2004-10-17 Riccardo Mottola <rmottola@users.sf.net>
+    * main.h : guarded XmFONTLIST_DEFAULT_TAG
+    * help.c : corrected license
+    * configure.c : bumped version to 0.1, regenerated other files
+
+2004-10-14 Riccardo Mottola <rmottola@users.sf.net>
+    * configure.ac, main.h : added detection of different functions from Motif 1 and 2
+    * configure, configure.ac : regenerated
+
+2004-09-30 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c interpreter.h : added quit notification handling
+    * interpreter.c, main.c, network.c : code cleanup
+
+2004-09-29 Riccardo Mottola <rmottola@users.sf.net>
+    * config.sub : added
+    * config.guess : added
+    * main.h interpreter.c : added queries
+
+2004-09-28 Riccardo Mottola <rmottola@users.sf.net>
+    * help.c help.h : copyright / header / license added
+    * help.c : fixed multi-line about string.
+    * configure.ac : added genreation of NEBULA_ARCHOS
+    * main.h : set to use config.h defines and the platform version/arch
+    * main.c / help.c : fixed about box aesthetics
+
+2004-09-27 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c : added about dialog
+    * help.c help.h : added for about dialog box
+    * Makefile.in : new files added, other files regenreated.
+    * interpreter.c interpreter.h : added handling of "JOIN" notifications
+    
+
+2004-09-26 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c : better callback prototypes and made a hack for the help menu
+    
+2004-09-26 Riccardo Mottola <rmottola@users.sf.net>
+    * interpreter.c interpreter.h : added support for welcome and channel join replies
+    
+2004-09-25 Riccardo Mottola <rmottola@users.sf.net>
+    * main.c : Fixed initial widget focus (set to input line)
+    * Makefile : deleted.
+    * interpreter.c : added support for ACTIONs
+    * network.c network.h interpreter.c added support for /me
+    * main.h : bumped version
+
+2004-09-24 Riccardo Mottola <rmottola@users.sf.net>
+
+    * Added following files:
+    Changelog
+    AUTHORS
+    INSTALL
+    Makefile.am
+    Makefile.in
+    NEWS
+    aclocal.m4
+    config.h.in
+    configure
+    configure.ac
+    depcomp
+    install-sh
