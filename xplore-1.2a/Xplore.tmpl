@@ -1,0 +1,110 @@
+
+XCOMM  Destination directories. ##############################################
+
+XCOMM  Where xplore config and pixmap files go.
+XPLORELIBDIR = $(LIBDIR)/xplore
+
+XCOMM  Set these if you want to install xplore in a non-standard location.
+XCOMM BINDIR = /usr/local/bin
+XCOMM LIBDIR = /usr/local/lib
+XCOMM MANPATH = /usr/local/man
+
+XCOMM  Libraries. ############################################################
+
+XCOMM  Set XMINCDIR and XMLIBDIR as required by your system if the Motif
+XCOMM  library is not on the standard path. (The following should work
+XCOMM  for Solaris, on Linux systems usually no extra path is required.)
+XCOMM XMINCDIR = -I/usr/dt/include
+XCOMM XMLIBDIR = -L/usr/dt/lib
+
+XCOMM  How to link the Motif library:
+XMLIB = -lXm
+
+XCOMM  Set XPMINCDIR and XPMLIBDIR as required by your system if libXpm is not
+XCOMM  on the standard path. E.g. (Solaris, with software companion cd
+XCOMM  installed in /opt/sfw):
+XCOMM XPMINCDIR = -I/opt/sfw/include
+XCOMM XPMLIBDIR = -L/opt/sfw/lib -R/opt/sfw/lib
+
+XCOMM  How to link the XPM library
+XPMLIB = -lXpm
+
+XCOMM  Compilation options. ##################################################
+
+XCOMM  Uncomment the following line if you want to compile xplore with gcc,
+XCOMM  but gcc is not the default compiler on your system.
+XCOMM #define USE_GCC
+
+#ifdef USE_GCC
+CC = gcc
+CCOPTIONS = 
+CDEBUGFLAGS = -O2 -fomit-frame-pointer
+#endif
+
+XCOMM  Debugging options. ####################################################
+XCOMM  Uncomment this if you want to generate debug information:
+XCOMM CDEBUGFLAGS = -g
+
+XCOMM  System dependencies. ##################################################
+
+/* These definitions are needed for statfs() and the stuff in mnttable.c. */
+
+#ifdef AIXArchitecture
+  SYSDEP = -DAIX
+#endif
+
+#ifdef AlphaArchitecture
+  SYSDEP = -DOSF1
+#endif
+
+#ifdef HPArchitecture
+  SYSDEP = -DHPUX -D_HPUX_SOURCE
+#endif
+
+#ifdef i386Architecture
+  SYSDEP = -DFreeBSD
+#endif
+  
+#ifdef LinuxArchitecture
+  SYSDEP = -DLINUX
+#endif
+
+#ifdef SCOArchitecture
+  SYSDEP = -DSCO
+#endif
+
+#ifdef SGIArchitecture
+  SYSDEP = -DSGI
+#endif
+
+#if defined(SunArchitecture)
+#if  OSMajorVersion > 4
+  SYSDEP = -DSOLARIS
+#else
+  SYSDEP = -DSUNOS
+#endif
+#endif
+
+XCOMM If your system is not SVR4 and neither matches one of the above, you
+XCOMM might wish to uncomment one of the following and proceed with fingers
+XCOMM crossed.
+
+XCOMM SYSDEP		= -DSVR4 
+XCOMM SYSDEP		= -DAIX 
+XCOMM SYSDEP		= -DCONVEXOS 
+XCOMM SYSDEP		= -DDYNIX 
+XCOMM SYSDEP		= -DHPUX -D_HPUX_SOURCE
+XCOMM SYSDEP		= -DFreeBSD 
+XCOMM SYSDEP		= -DLINUX
+XCOMM SYSDEP		= -DOSF1 
+XCOMM SYSDEP		= -DSCO 
+XCOMM SYSDEP		= -DSGI
+XCOMM SYSDEP		= -DSOLARIS 
+XCOMM SYSDEP		= -DSUNOS 
+XCOMM SYSDEP		= -DTOS 
+XCOMM SYSDEP		= -DULTRIX 
+
+XCOMM  Uncomment the next line if your system has the statvfs() system call
+XCOMM  (default for SVR4, Solaris and SGI). Check this if interface.c won't
+XCOMM  compile, or when your linker cannot resolve _statfs.
+XCOMM STATVFS = -DUSE_STATVFS

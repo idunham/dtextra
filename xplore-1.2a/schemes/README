@@ -1,0 +1,13 @@
+
+Xplore Color Schemes
+------ ----- -------
+
+The files in this subdirectory contain different color resource sets, mostly
+pilfered from some of the KDE color schemes. A scheme for the GNOME fans is
+also included, as well as some other home-made stuff. ;-) 
+
+The *.scheme files can be used to set a color scheme with the "Color scheme"
+option in the "Options" menu. The Xplore.ad file is a generic scheme which can
+be used with KDE2. If you copy this file to the appropriate directory
+(<kde-prefix>/share/apps/kdisplay/app-defaults), then xplore will adapt to
+the color scheme selected within the KDE control panel.

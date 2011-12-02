@@ -1,0 +1,23 @@
+#!/bin/sh
+# locate a program using which(1) and make a symbolic link to it in the
+# specified directory
+# Usage: install progname dirname
+
+if [ -z "$1" ]; then
+  echo $0: no program name specified
+  exit 1
+fi
+
+if [ -z "$2" ]; then
+  echo $0: no directory specified
+  exit 1
+fi
+
+app="`which $1 2>/dev/null`"
+
+if [ -x "$app" ]; then
+  ln -s "$app" "$2"
+else
+  echo $0: "$1": command not found
+  exit 1
+fi

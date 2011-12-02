@@ -1,0 +1,317 @@
+1.2a: maintenance release [Aug 16 2002]
+
+	New features:
+
+	- add experimental support for text/uri-list targets (export only)
+
+	This enables you to drag files from xplore to KDE and GNOME
+	applications and desktop (but not vice versa). A recent KDE/GNOME
+	version with Motif DND support is required to make this work.
+	
+	Bug fixes:
+
+	- fixed some minor bugs related to the new Locate command
+
+	As a bonus, I also added some new application icons pilfered from
+	KDE and GNOME. Enjoy! :)
+	
+1.2: third major release [Aug 13 2002]
+
+	New features:
+
+	- new log popup menu features the "Locate" command which allows
+	you to quickly locate a file or directory listed in the log pane
+	(useful, e.g., with the "Find" command)
+
+	Cosmetic changes:
+
+	- the "Bindings" dialog has been renamed to "File type"
+
+	- the "Comment" field in file type definitions is now called
+	"Description" (for backward compatibility, the "Comment" keyword
+	in config files is still supported)
+
+	- the log pane now uses a fixed width font
+
+	- updated system.xplorerc and magic files
+
+	Bug fixes:
+
+	- prevent unwanted error output of `which' in the setup, install
+	and netscape-remote scripts
+
+	- device indicators are now updated correctly when unmounted
+	devices are mounted by another program
+
+	- MIME types are now determined correctly for files which have the
+	executable bit set (make sure you replace your .xplore/magic file
+	with the latest copy to make this work)
+	
+1.1e: maintenance release [Sep 11 2001]
+
+	- parse.c and lex.c are now included in the source package; this
+	fixes a problem with broken flex scanners on some systems
+
+	- reworked Modern and SolarisCDE color schemes
+
+	- updated the installation instructions
+
+	- fixed missing xplore library scripts in binary packages
+	
+1.1d: maintenance release [Sep 08 2001]
+
+	- reorganized bundled xg sources, added an Imakefile
+	
+	- bug fixes in the drag and drop code and the xplorerc file
+
+	- Solaris/CDE compatibility fixes (tested on Solaris 8/x86)
+
+	- attempt to merge Matt Behrens' OpenBSD patches (untested)
+	
+1.1c: maintenance release [Aug 30 2001]
+
+	(Summary of changes in the 1.1a, b and c releases.) Most notably,
+	the Color scheme option now updates the application immediately,
+	and is also recorded per session. The new Clear button in the
+	Color scheme dialog lets you revert to the default color settings.
+
+	Other changes:
+
+	- bug fixes in the startup procedure
+
+	- fixed lost output when application is exited during startup
+
+	- fixed some minor glitches in the Color scheme command
+
+	- some cosmetic changes in the system.xplorerc file
+
+	- added a nicer clip_file icon
+
+	- updated manpage and FAQ
+	
+1.1: second official major release [Aug 26 2001]
+
+	The most important new features are the "log" pane for capturing
+	output from child processes (so no need to mess around with
+	console windows any more), and full support for the X11R6 session
+	management protocol, which makes xplore a well-behaved client of
+	modern desktop environments like KDE and GNOME.
+
+	The file type configuration now uses standard MIME type names. To
+	enjoy this, you will have to update your personal config files.
+	This is recommended anyhow because the standard setup has been
+	slightly improved and a bug fix in the magic type code might break
+	older setups.
+
+	Other changes:
+	
+	- splash screen is now disabled by default
+
+	- generally improved user setup and startup procedure
+
+	- device config - skip devices with missing mount points
+
+	- wheel mouse support - requires Z axis mapping to buttons 4 & 5
+
+	- standard setup now checks the XPLORE_EDITOR and XPLORE_TERM
+	environment variables to determine your preferred editor and
+	terminal program
+	
+	- netscape-remote script now checks for the browser program,
+	looking for either netscape or mozilla; you can also override the
+	default choice with the NETSCAPE environment variable
+
+	- help menu now provides various items including the online HTML
+	manual (requires netscape)
+
+	- color resource file can now be selected with the "Color scheme"
+	command in the Options menu
+
+	- updated color schemes to correct strange colors with newer XFree
+	versions
+
+	- added some icons
+
+	- bug fixes
+	
+1.0d: more bug fixes and some (important) cosmetic changes [Jan 2001]
+
+	I expect this to become release 1.1 after some more thorough
+	testing. User-visible changes:
+
+	- xplore's startup directory must now be specified with the -p
+	option
+	
+	- file operations now allow you to browse for the target with the
+	file selection dialog
+	
+	- the file type dialog now allows you to insert a new type before
+	*any* type, including the predefined ones
+
+	- dragging a file to a second xplore window now causes the source
+	window to be updated as well
+
+	- improved session management - yep, it's finally possible to have
+	your window manager automagically save the state of several
+	different xplore windows!
+	
+	- improved system.xplorerc featuring a simpler find command, an
+	improved netscape interface, proper treatment of filenames
+	containing whitespace, and more
+
+	- more color schemes (including a generic resource file for KDE2),
+	and some cosmetic changes in the app-defaults file
+
+	- xplore's hard-coded default icons (file.xpm, folder.xpm, etc.) 
+	can now be overridden by replacing the corresponding installed
+	icon files (no need to recompile xplore any more)
+	
+	- the setup script no longer copies the xplorerc and magic files,
+	which makes it easier to upgrade the standard config
+
+	- all private configuration files are now kept in a separate user
+	configuration directory (~/.xplore by default); the name of the
+	private config dir can be set both with resources and from the
+	command line, which makes it possible to manage several different
+	user setups with ease
+
+	NOTE: if you want to reuse your pre-1.0d .magic, .xplorerc and
+	.xploredef files with the new version, rename them to magic,
+	xplorerc and defaults, respectively, and move them to the
+	~/.xplore directory.
+
+1.0c: yet another step on the road to 1.1 ...
+
+	- support for KDE, GNOME and some other modern apps in
+	system.xplorerc (uncomment the corresponding #define's at the
+	beginning of the file)
+	
+	- some more tweaking of resources and magic/xplorerc files, and
+	some new addon stuff in the etc subdir
+
+	- finally decided that the "banner" should actually be called a
+	"splash screen"; accordingly, I renamed the banner resource and
+	the -b option to splash/-nosplash
+
+	- new -help, -version and -C ("redirect output to console")
+	command line options
+
+	- improved automounter (delay mounting until a device is
+	explicitly opened in the file pane, unless it's already
+	premounted)
+
+	- disabled views are now destroyed instead of merely being
+	unmanaged, and thus do not require any updates until they are
+	shown again
+	
+	- lots of small bug fixes and optimizations
+	
+1.0b: another maintenance release
+
+	- fixed some compilation probs on recent Linux systems
+
+	- added xg library sources to make the package self-contained
+
+	- fixed some of the resources for use with Motif 2.1
+
+1.0a: maintenance release
+
+	Some more bug fixes and improvements. User-visible changes:
+	
+	- make current directory visible in the tree pane when it changes
+	(interface.[hc], callbacks.c)
+
+	- add margins to indicators in devices panel (Xplore.cpp)
+
+	- fixed some of the icons
+
+	- added an option to the Command menu which allows you to invoke a
+	secondary instance of xplore in the current directory
+	(system.xplorerc)
+
+	- added an "Add before" field to the Bindings dialog which lets
+	you specify the priority of user-defined types
+
+	- improved error handling in Bindings dialog (check whether the
+	edited type matches the file on which the dialog was invoked)
+
+	- updated manpage
+	
+1.0: first official release [Nov 1997]
+
+	*** Fixes:
+	
+	- small changes in the distributed standard setup (setup script,
+ 	system.xplorerc) -- supposed to make things easier for the average
+ 	user
+
+	- added Juan D. Martin's patches to magic.c (fixes some bugs on
+ 	systems with 64 bit long integers)
+
+	- fixed an annoying bug in the Save defaults commands
+	(callbacks.c) which occurred on systems where the home and tmp
+ 	directories are on different file systems
+
+	- most problems with keyboard traversal have been fixed; while
+ 	still not being perfect, it's quite useable now -- see the manpage
+ 	for details
+
+	- unmounted directories are now automatically remounted when they
+	are reopened
+
+	- the minimum size of the main window is now set automatically at
+	startup and whenever hiding or showing a pane, using the
+	paneMinimum settings of the panes
+	
+	- a lot of other tiny bug fixes (didn't keep a log, there were so
+	many ;-))
+
+	*** Enhancements:
+
+	- the menu structure has been overhauled (see the manpage for
+ 	details), and all menus can now be torn off
+
+	- the selection policies for the different panes can now be
+	configured in the application defaults file
+
+	- copy and delete operations can now be interrupted with Ctrl-C
+	
+	- added set uid/guid and sticky bits to Properties dialog
+
+	- new "Bindings" dialog to define new and edit existing file types
+ 	on the fly
+	
+	- new small icons view; note that the possible view type values
+ 	now are called "LargeIcons", "SmallIcons" and "Detail"
+
+	- brief file info in the status line if a single file is selected
+
+	- give feedback in status line when updating the view or when a
+ 	new directory is read
+	
+	- shell resource to determine the shell that xplore uses to invoke
+ 	commands
+
+	- added an autosave option to automatically save defaults when
+ 	exiting
+	
+	- default settings are now stored in xplore's own resource file
+	(~/.xploredef by default) which is read automatically at startup
+
+	- added a setup dialog which prompts the user for confirmation
+	before running the setup script
+
+	- added an incremental filename search facility
+	
+	- added a banner window which pops up when xplore starts (this can
+ 	be disabled by setting the new banner resource to False). In case
+ 	you're wondering, the banner has been created with "The GIMP". Great
+ 	program! ;-)
+
+	- added command line options for suppressing the banner window
+	(-b) and for selecting the panes to be shown at startup (-file,
+	-tree, -shelf)
+
+	- added some more application icons
+	
+0.99h: first public beta release [Aug 1997]

@@ -1,0 +1,24 @@
+! KDE SolarisCDE color scheme
+
+xplore*background: #acb2c5
+xplore*XmContainer.background: #9495a4
+xplore*XmContainer*XmIconGadget.background: #9495a4
+xplore*XmContainer.selectColor: #7389a4
+
+xplore*highlightColor: #b24d7a
+xplore*foreground: black
+
+xplore*XmList.background: #fff7e9
+xplore*XmText.background: #fff7e9
+xplore*XmTextField.background: #fff7e9
+
+xplore*file_icon.foreground: black
+xplore*file_link_icon.foreground: maroon
+xplore*file_link_bad_icon.foreground: dark slate grey
+xplore*dir_icon.foreground: black
+xplore*dir_up_icon.foreground: black
+xplore*dir_link_icon.foreground: maroon
+xplore*exec_icon.foreground: black
+xplore*exec_link_icon.foreground: maroon
+
+xplore*status_line*indicators.highlightColor: maroon

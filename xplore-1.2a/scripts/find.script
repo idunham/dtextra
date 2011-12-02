@@ -1,0 +1,31 @@
+#! /bin/sh
+
+# Usage: $XPLORELIBDIR/find directory pattern [regexp]
+
+# Find files in the given directory using find(1), optionally seaching for
+# contents using grep(1). Requires GNU find and xargs.
+
+if [ -z "$1" -o -z "$2" ]; then
+    echo "Usage: $0 directory pattern [regexp]"
+    exit 1
+fi
+
+if [ -x "`which gfind 2>/dev/null`" ]; then
+  find=gfind
+else
+  find=find
+fi
+
+if [ -x "`which gxargs 2>/dev/null`" ]; then
+  xargs=gxargs
+else
+  xargs=xargs
+fi
+
+if [ -z "$3" ]; then
+    echo "+++ find [$1]: searching \"$2\" +++"
+    $find "$1" -name "$2" -print
+else
+    echo "+++ find [$1]: searching \"$2\" for \"$3\" +++"
+    $find "$1" -name "$2" -xtype f -print0 | $xargs -0 grep -l "$3"
+fi

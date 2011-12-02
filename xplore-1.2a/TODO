@@ -1,0 +1,29 @@
+
+TODO
+====
+
+Some features which would be nice to have in future releases:
+
+- submenus in command and file popup menus
+
+- tabbed dialog for all the stuff in the options menu
+
+- tooltips on icon gadgets
+
+- truncate very long filenames in the file and shelf views
+
+- fix overflowing container views in large directories
+
+- multicolumn list layout for configuring file type action lists
+
+- dialogs for devices/shelf/command menu setup
+
+- background copying and deletion
+
+- builtin find operation
+
+- support for png icons (announced for OpenMotif 2.3)
+
+- support for virtual filesystems (ftp, tar, etc.)
+
+- support for xdnd interoperability

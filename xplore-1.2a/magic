@@ -1,0 +1,221 @@
+# Magic data for xplore 23 Aug 2001, revised 5 Aug 2002 AG
+
+# This file uses the standard UNIX magic(4) file format, with some extensions
+# for detecting special kinds of files like directories, executables and
+# symbolic links (thanks to Juan D. Martin for his work on this). Short and
+# long entries are always read in MSB order, to make magic files portable to
+# all architectures. See the xploretype(1) man page for details.
+
+# The original version of this file dates back to the good ol' xfm days... :)
+# I finally decided to reorganize the file and convert the magic type names to
+# the MIME standard because ... ahem ... because it's the standard. ;-) Quite
+# a few of the new and reworked entries have simply been pilfered from the KDE
+# magic file.
+
+# This file is incomplete. Many more entries can be found in system magic
+# files. If you have any interesting entries to add, or corrections to the
+# present entries, please send them to ag@muwiinfa.geschichte.uni-mainz.de.
+
+# Miscellaneous application-specific stuff. #################################
+
+0	string		#!
+>0	mode&0111	>0			application/x-script
+>0	mode&0111	0			text/x-script
+>0	lmode&0xF000	0xA000			link
+
+0	string		URL\:			application/x-url
+0	string		#XFM			application/x-xfm
+
+0	long		0x13579ace		application/x-gdbm
+0	string		GDBM			application/x-gdbm
+0	long		0x061561		application/x-dbm
+
+0	short		0xcafe
+>2	short		0xbabe			application/java
+
+0	string		FWS			application/x-shockwave-flash
+
+0	string		STARTFONT\ 2.1		application/x-font-bdf
+0	long		0x01666370		application/x-font-pcf
+
+0	string		diff\ 			text/x-diff
+0	string		***\ 			text/x-diff
+0	string		Only\ in\ 	 	text/x-diff
+0	string		Common\ subdirectories:\ 	text/x-diff
+
+# Archives, compressed files and such. ######################################
+
+0	short		0x1F9D			application/x-compress
+0	short		0x1F8B			application/x-gzip
+0	string		BZh			application/x-bzip2
+0	string		PK\003\004		application/x-zip
+0	short		0x60ea			application/x-arj
+0	string		Rar!			application/x-rar
+
+2	string		-lh0-			application/x-lharc
+2	string		-lh1-			application/x-lharc
+2	string		-lz4-			application/x-lharc
+2	string		-lz5-			application/x-lharc
+
+2	string		-lzs-			application/x-lha
+2	string		-lh\ -			application/x-lha
+2	string		-lhd-			application/x-lha
+2	string		-lh2-			application/x-lha
+2	string		-lh3-			application/x-lha
+2	string		-lh4-			application/x-lha
+2	string		-lh5-			application/x-lha
+
+257	string		ustar			application/x-tar
+
+0	short		070707			application/x-cpio
+0	short		0143561			application/x-cpio
+0	string		070707			application/x-cpio
+0	string		070701			application/x-cpio
+0	string		070702			application/x-cpio
+
+0	string		=<ar>			application/x-archive
+0	string		!<arch>			application/x-archive
+
+0	short		0xedab
+>2	short		0xeedb			application/x-rpm
+
+0	regexp&512	\
+(^|\n)begin[\ \t]+[0-7][0-7][0-7]		application/x-uu
+
+# Various kinds of documents. ###############################################
+
+0	string		<MakerFile		application/x-frame
+0	string		<MIFFile		application/x-frame
+0	string		<MakerDictionary	application/x-frame
+0	string		<MakerScreenFon		application/x-frame
+0	string		<MML			application/x-frame
+0	string		<Book			application/x-frame
+0	string		<Maker			application/x-frame
+
+0	string		<HEAD			text/html
+0	string		<head			text/html
+0	string		<TITLE			text/html
+0	string		<title			text/html
+0	string		<html			text/html
+0	string		<HTML			text/html
+0	string		<!--			text/html
+0	string		<h1			text/html
+0	string		<H1			text/html
+0	string		<!doctype\ html		text/html
+0	string		<!doctype\ HTML		text/html
+0	string		<!DOCTYPE\ html		text/html
+0	string		<!DOCTYPE\ HTML		text/html
+
+0	string		<?xml			text/xml
+0	string		<?XML			text/xml
+0	string		<?Xml			text/xml
+
+0	string		\367\002		application/x-dvi
+0	string		{\\rtf			text/rtf
+
+0	string		.\\"			application/x-troff
+0	string		'\\"			application/x-troff
+0	string		'.\\"			application/x-troff
+0	string		\\"			application/x-troff
+0	regexp&512	(^|\n)\\.SH\ NAME	application/x-troff-man
+
+0	string		%PDF-			application/pdf
+
+0	string		%!			application/postscript
+0	string		\004%!			application/postscript
+
+0	long		0xff575053c405		application/wordperfect
+1	string		WPC			application/wordperfect
+
+0	string		Relay-Version:		message/rfc822
+0	string		#!\ rnews		message/rfc822
+0	string		N#!\ rnews		message/rfc822
+0	string		Forward\ to		message/rfc822
+0	string		Pipe\ to		message/rfc822
+0	string		Return-Path:		message/rfc822
+0	string		Path:			message/news
+0	string		Xref:			message/news
+0	string		From:			message/rfc822
+0	string		Article			message/news
+
+0	string		\376\067\0\043			application/msword
+0	string		\320\317\021\340\241\261	application/msword
+0	string		\333\245-\0\0\0			application/msword
+2080	string		Microsoft\ Word\ 6.0\ Document	application/msword
+2112	string		Microsoft Word document data	application/msword
+2080	string	Microsoft\ Excel\ 5.0\ Worksheet	application/msexcel
+
+# Audio and other multimedia stuff. #########################################
+
+# Sun/NeXT
+0	string		.snd			audio/x-snd
+
+# AIFF
+8	string		AIFF			audio/x-aiff
+8	string		AIFC			audio/x-aiff
+8	string		8SVX			audio/x-aiff
+
+# MIDI
+0	string		MThd			audio/x-midi
+
+# Creative Labs
+0	string	CTMF				audio/unknown
+0	string	SBI				audio/unknown
+0	string	Creative\ Voice\ File		audio/unknown
+
+# MS
+0	string		RIFF
+>8	string		WAVE			audio/x-wav
+0	long		0x2e7261fd		application/x-realaudio
+
+# MPEG
+0	long		0xfffb			audio/x-mp3
+0	long		0x000001b3		video/mpeg
+0	long		0x000001ba		video/mpeg
+0	short&0xfff0	0xfff0			audio/mpeg
+
+# SGI and Apple formats
+0	string		MOVI			video/sgi
+4	string		moov			video/quicktime
+4	string		mdat			video/quicktime
+
+# Images. ###################################################################
+
+# PBMPLUS
+0	string		P1			image/x-portable-bitmap
+0	string		P2			image/x-portable-greymap
+0	string		P3			image/x-portable-pixmap
+0	string		P4			image/x-portable-bitmap
+0	string		P5			image/x-portable-greymap
+0	string		P6			image/x-portable-pixmap
+
+# some popular image formats
+0	short		0x4D4D			image/tiff
+0	short		0x4949			image/tiff
+0	string		GIF			image/gif
+0	short		0xffd8			image/jpeg
+
+# various bitmap formats
+0	long		0x59A66A95		image/x-cmu-raster
+0	string		BM			image/x-bmp
+0	string		/*\ XPM\ */		image/x-xpm
+0	regexp		\
+^#define[\ \t]+[^\ \t]+_width[\ \t]+[0-9]+	image/x-xbm
+0	string		\x89PNG			image/png
+
+# xfig
+0	string		#FIG			image/x-xfig
+
+# Specials. #################################################################
+
+0	mode&0xF000	0x4000			application/x-dir
+>0	lmode&0xF000	0xA000			link
+>0	builtin		emptydir		empty
+
+0	mode&0111	>0			application/x-exec
+>0	lmode&0xF000	0xA000			link
+
+# Default entries. ##########################################################
+
+0	builtin		ascii			text/plain
+0	builtin		data			application/octet-stream

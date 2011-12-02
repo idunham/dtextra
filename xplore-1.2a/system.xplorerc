@@ -1,0 +1,1209 @@
+/**************************************************************************/
+/* sample xplore configuration file                                       */
+/* Nov 3 1996 AG, revised 05-07-00, 12-29-00, 08-24-01, 08-27-01,         */
+/* 09-10-01, 09-17-01, 08-05-02 AG                                        */
+/**************************************************************************/
+
+/* This file is preprocessed at runtime using cpp. Thus comments should
+   follow C conventions and the usual preprocessor directives (e.g., macro
+   definitions, file inclusion, conditionals) may be used. Options to be
+   passed to cpp can be set using the .cppoptions resource and the -o
+   option. */
+
+/* NOTE: Most command actions in this file require a Bourne-compatible shell,
+   so you should make sure that the ?.shell resource in the app-defaults file
+   is set accordingly. Quite a few actions also assume GNU programs like GNU
+   tar, GNU find, etc.; you can get these at www.fsf.org. */
+
+/* CONFIG SECTION *********************************************************/
+
+/* Probably you will have to edit the following to reflect your system and
+   preferences. */
+
+/* SHELF SETUP ************************************************************/
+
+/* Each item corresponds to a subdirectory of your personal shelf directory; a
+   sample shelf directory is included in the distribution. */
+
+Shelf {
+	Item	"Clipboard"
+	Default	"Desk"
+	Item	"Programs"
+	Item	"Trash"
+}
+
+/* COMMAND MENU ***********************************************************/
+
+/* This menu can be accessed from the File menu. Each item defines a menu
+   entry with the corresponding command. We define the contents of the menu as
+   a macro here, since the actual action definitions can be found further down
+   in this file. */
+
+#define CommandActions	Item "Bookmark", BOOKMARK \
+			Item "Program shortcut...", MKAPP \
+			Item "URL shortcut...", MKURL \
+			Separator \
+			Item "Editor", EDITOR \
+			Item "Calculator", XCALC \
+			Item "Manual", XMAN \
+			Item "Terminal", TERM \
+			Item "Xplore", XPLORE \
+			Separator \
+			Item "Find...", FIND_CMD \
+			Item "Grep...", GREP_CMD \
+			Item "Diff", DIFF_CMD \
+			Item "Shell command...", SHELL_CMD \
+			Item "Make...", MAKE_CMD \
+			Separator \
+			Item "Tar...", TAR \
+			Item "Tar gzipped...", TARz \
+			Item "Tar bzipped...", TARz2 \
+			Item "Tar compressed...", TARZ \
+			Item "Zip...", ZIP \
+			Separator \
+			Item "Gzip", GZIP \
+			Item "Bzip2", BZIP2 \
+			Item "Compress", COMPRESS \
+			Item "Uuencode", UUENCODE
+
+/* GENERAL APPLICATION SETUP **********************************************/
+
+/* Your preferred editor, text file viewer and terminal program. This
+   overrides default settings below. The following #defines cause xplore to
+   use the XPLORE_EDITOR, XPLORE_VIEWER and XPLORE_TERM environment variables,
+   if set, and resort to the defaults (emacs, xless, xterm) instead. If you
+   comment out these lines, alternative applications depending on your desktop
+   environment preference (see below) will be used. */
+
+#define EDITPROG "${XPLORE_EDITOR:-emacs}"
+#define VIEWPROG "${XPLORE_VIEWER:-xless}"
+#define TERMPROG "${XPLORE_TERM:-xterm}"
+
+/* Your preferred browser. Xplore normally invokes the netscape-remote script
+   in the xplore library directory to display HTML pages using either netscape
+   or mozilla, whichever is available. If you prefer to use mozilla anyway,
+   you should set the NETSCAPE environment variable accordingly, or uncomment
+   the following #define. */
+
+/* #define NETSCAPE "NETSCAPE=mozilla \"$XPLORELIBDIR\"/netscape-remote" */
+
+/* Select applications from CDE, GNOME or KDE. You may also uncomment both
+   GNOME and KDE, in which case GNOME takes priority, but KDE apps are used
+   when no corresponding GNOME apps are available. */
+
+/* #define CDE */
+/* #define GNOME */
+/* #define KDE */
+
+/* Uncomment this to use GNU programs like gtar, gdiff instead of tar, diff,
+   etc. */
+
+/* #define GNU */
+
+/* DEVICE CONFIGURATION ***************************************************/
+
+/* This is very system-specific and must be edited to make automounting work.
+   NOTE: Devices with missing mount point will be silently ignored, so you can
+   simply list all potential mount points here, and xplore will pick those
+   which are actually present. Some sample setups are provided below, to get
+   you started. */
+
+/* On systems like Linux, users usually have access to removable media using
+   the standard mount/umount commands. We define the corresponding mount
+   actions as a macro here. */
+
+#define MountActions(device) \
+			Mount "mount " device " >/dev/null 2>&1" \
+			Umount "umount " device " >/dev/null 2>&1"
+
+/* Uncomment one of these to enable the corresponding section below. */
+
+/* #define LINUX */		/* generic Linux device config */
+/* #define SUSE */		/* SuSE-Linux 7.2 or later */
+/* #define SOLARIS */		/* Solaris systems with volcheck */
+
+#ifdef LINUX
+
+/* Here are some generic entries for Linux systems. The /floppy and /cdrom
+   entries will probably work for most Linux flavours, but you may have to
+   edit the mount points for your dos/win partitions. */
+
+Device "/floppy", "A:"		{ Icon "dev_floppy.xpm"
+				  MountActions("/floppy") }
+Device "/cdrom", "CDR"		{ Icon "dev_cdrom.xpm"
+				  MountActions("/cdrom")
+				  Options -Rescan }
+Device "/dos", "C:"		{ Icon "dev_harddrive.xpm"
+				  MountActions("/dos") }
+Device "/win", "C:"		{ Icon "dev_harddrive.xpm"
+				  MountActions("/win") }
+
+#endif
+
+#ifdef SUSE
+
+/* The following should work on SuSE Linux 7.2 or later. */
+
+Device "/media/floppy", "A:"	{ Icon "dev_floppy.xpm"
+				  MountActions("/media/floppy") }
+Device "/media/cdrom", "CDR"	{ Icon "dev_cdrom.xpm"
+				  MountActions("/media/cdrom")
+				  Options -Rescan }
+Device "/media/cdrecorder", "CDW"
+				{ Icon "dev_cdrom.xpm"
+				  MountActions("/media/cdrecorder")
+				  Options -Rescan }
+Device "/media/dvd", "DVD"	{ Icon "dev_cdrom.xpm"
+				  MountActions("/media/dvd")
+				  Options -Rescan }
+Device "/windows/C", "C:"	{ Icon "dev_harddrive.xpm"
+				  MountActions("/windows/C") }
+Device "/windows/D", "D:"	{ Icon "dev_harddrive.xpm"
+				  MountActions("/windows/D") }
+Device "/windows/E", "E:"	{ Icon "dev_harddrive.xpm"
+				  MountActions("/windows/E") }
+
+#endif
+
+#ifdef SOLARIS
+
+/* Newer Solaris systems have a volume management system which manages most
+   removable media transparently. We only have to take care of the floppy
+   drive which is not automounted by default. */
+
+Device "/floppy", "A:"		{ Icon "dev_floppy.xpm"
+				  Mount "volcheck >/dev/null 2>&1"
+				  Umount "eject floppy >/dev/null 2>&1" }
+
+/* Add a dummy entry for the cdrom drive which allows us to check the current
+   mount status of the drive. */
+
+Device "/cdrom", "CDR"		{ Icon "dev_cdrom.xpm"
+				  Options -Rescan }
+
+#endif
+
+/* END OF CONFIG SECTION **************************************************/
+
+/* NO NEED TO EDIT BELOW THIS LINE, although you might wish to take a look at
+   the action definitions below. */
+
+/* pseudo device entries for trash and clipboard directory which force display
+   of hidden files */
+
+Device "~/shelf/Trash"		{ Options +Hidden }
+Device "~/shelf/Clipboard"	{ Options +Hidden }
+
+/* Some common types of actions (defined as macros). */
+
+/* global commands */
+
+#define BOOKMARK	"ln -s \"`pwd`\" \"$CURSHELF\""
+#define MKAPP		"\"$XPLORELIBDIR\"/install '%Program:%' \"$CURSHELF\""
+#define MKURL		"echo 'URL: %URL:%' >\"$CURSHELF\"/'%Shortcut name:%'"
+
+#define SHELL_CMD	"%Command:% &"
+#define MAKE_CMD	"(make %Target:%; echo '*** make done ***') &"
+
+#define FIND_CMD	"($XPLORELIBDIR/find \"`pwd`\" '%Filename pattern:%' " \
+			"'%Regular expression:%'; echo '*** find done ***') &"
+#define GREP_CMD	"(grep -i -- '%Regular expression:%' \"$@\";" \
+			"echo '*** grep done ***') &"
+#ifdef GNU
+#define DIFF_CMD	"(gdiff -ru \"$@\"; echo '*** diff done ***') &"
+#else
+#define DIFF_CMD	"(diff -rc \"$@\"; echo '*** diff done ***') &"
+#endif
+
+#ifdef EDITPROG
+#define EDITOR		"exec " EDITPROG " &"
+#else
+#ifdef CDE
+#define EDITOR		"exec dtpad &"
+#else
+#ifdef GNOME
+#define EDITOR		"exec gedit &"
+#else
+#ifdef KDE
+#define EDITOR		"exec kedit &"
+#else
+#define EDITOR		"exec emacs &"
+#endif
+#endif
+#endif
+#endif
+
+#ifdef TERMPROG
+#define TERM		"exec " TERMPROG " &"
+#else
+#ifdef CDE
+#define TERM		"exec dtterm &"
+#else
+#ifdef GNOME
+#define TERM		"exec gnome-terminal &"
+#else
+#ifdef KDE
+#define TERM		"exec konsole &"
+#else
+#define TERM		"exec xterm &"
+#endif
+#endif
+#endif
+#endif
+
+#ifdef CDE
+#define XCALC		"exec dtcalc &"
+#define XMAN		"exec dthelpview -man &"
+#else
+#ifdef GNOME
+#define XCALC		"exec gcalc &"
+#define XMAN		"exec gnome-help-browser man:xplore &"
+#else
+#ifdef KDE
+#define XCALC		"exec kcalc &"
+#define XMAN		"exec khelpcenter man:xplore &"
+/* KDE1: #define XMAN	"exec kdehelp man:xplore &" */
+#else
+#define XCALC		"exec xcalc &"
+#define XMAN		"exec xman &"
+#endif
+#endif
+#endif
+
+#define XPLORE		"exec xplore -p . &"
+
+/* Note: Some of the "tar" actions (z and j options) require a recent version
+   of GNU tar. */
+
+#ifdef GNU
+
+#define TAR		"(gtar cvf %Tar file name:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+#define TARz		"(gtar cvfz %Name of gzipped tar file:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+#define TARz2		"(gtar cvfj %Name of bzipped tar file:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+#define TARZ		"(gtar cvfZ %Name of compressed tar file:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+
+#else
+
+#define TAR		"(tar cvf %Tar file name:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+#define TARz		"(tar cvfz %Name of gzipped tar file:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+#define TARz2		"(tar cvfj %Name of bzipped tar file:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+#define TARZ		"(tar cvfZ %Name of compressed tar file:% \"$@\"; " \
+			"echo '*** tar done ***') &"
+
+#endif
+
+#define GZIP		"exec gzip \"$@\" &"
+#define BZIP2		"exec bzip2 \"$@\" &"
+#define COMPRESS	"exec compress \"$@\" &"
+#define UUENCODE	"for x in \"$@\"; do uuencode \"$x\" \"$x\" >\"$x\".uu; done"
+#define ZIP		"(zip -r %Zip file name:% \"$@\"; " \
+			"echo '*** zip done ***') &"
+
+/* actions for different file types */
+
+/* APPLY allows to apply a command to a file, EXEC to execute a program with
+   parameters. DEBUG invokes a debugger on an executable. */
+
+#define APPLY		"exec %Command:% \"$1\" &"
+#define EXEC		"exec ./\"$1\" %Parameters:% &"
+
+#ifdef TERMPROG
+#define EXEC_TERM	"(" TERMPROG " -e $SHELL -c \"./\"`basename $1`\"; " \
+			"echo 'Return to continue...'; read\") &"
+#else
+#ifdef CDE
+#define EXEC_TERM	"(dtterm -e \"$SHELL -c \\\"./\"`basename $1`\"; " \
+			"echo 'Return to continue...'; read\\\"\") &"
+#else
+#ifdef GNOME
+#define EXEC_TERM	"(gnome-terminal -e \"$SHELL -c \\\"./\"`basename $1`\"; " \
+			"echo 'Return to continue...'; read\\\"\") &"
+#else
+#ifdef KDE
+#define EXEC_TERM	"(konsole -e $SHELL -c \"./\"`basename $1`\"; " \
+			"echo 'Return to continue...'; read\") &"
+#else
+#define EXEC_TERM	"(xterm -e $SHELL -c \"./\"`basename $1`\"; " \
+			"echo 'Return to continue...'; read\") &"
+#endif
+#endif
+#endif
+#endif
+
+#define DEBUG		"exec ddd \"$1\" &"
+
+/* eject removable media (Solaris only) */
+
+#ifdef SOLARIS
+#define EJECT(device)	"exec eject " device " >/dev/null 2>&1"
+#endif
+
+/* show a file view of the selected directory */
+
+#define XPLORE_DIR	"exec xplore -p \"$1\" &"
+
+/* run find(1) in the selected directory */
+
+#define FIND_DIR	"($XPLORELIBDIR/find \"$1\" '%Filename pattern:%' " \
+			"'%Regular expression:%'; echo '*** find done ***') &"
+
+/* delete the contents of the trash directory; run this in the foreground
+   so that xplore waits for the command to finish and updates the display
+   immediately */
+
+#define TRASH_EMPTY	"%-Do you really wish to empty the trash?%" \
+			"exec rm -rf \"$1\"/* \"$1\"/.[!.]*"
+
+/* some standard actions to edit/view/print a file */
+
+#ifdef EDITPROG
+#define EDIT		"exec " EDITPROG " \"$1\" &"
+#else
+#ifdef CDE
+#define EDIT		"exec dtpad \"$1\" &"
+#else
+#ifdef GNOME
+#define EDIT		"exec gedit \"$1\" &"
+#else
+#ifdef KDE
+#define EDIT		"exec kedit \"$1\" &"
+#else
+#define EDIT		"exec emacs \"$1\" &"
+#endif
+#endif
+#endif
+#endif
+
+#ifdef VIEWPROG
+#define VIEW		"exec " VIEWPROG " \"$1\" &"
+#else
+#ifdef GNOME
+#define VIEW		"exec gless \"$1\" &"
+#else
+#define VIEW		"exec xless \"$1\" &"
+#endif
+#endif
+
+#define PRINT		"exec lpr \"$1\" &"
+
+/* print a manual page using groff */
+
+#define MANPRINT	"groff -man \"$1\" | lpr &"
+
+/* actions to invoke a HTML viewer and editor */
+
+#ifndef NETSCAPE
+#define NETSCAPE "\"$XPLORELIBDIR\"/netscape-remote"
+#endif
+
+#define HTMLVIEW	NETSCAPE " \"$1\" &"
+#define HTMLEDIT	NETSCAPE " -edit \"$1\" &"
+
+/* actions on GNOME URL files */
+
+#define URLVIEW		NETSCAPE " " \
+			"`head -1 \"$1\" | sed -e 's/^URL:[ \t]*//'` &"
+#define URLEDIT		NETSCAPE " -edit " \
+			"`head -1 \"$1\" | sed -e 's/^URL:[ \t]*//'` &"
+
+/* actions for TeX and DVI files (note the double escapes; they are required
+   to pass the backslashes to TeX) */
+
+#define TEX		"exec tex \\\\nonstopmode\\\\input{\"$1\"} &"
+#define LATEX		"exec latex \\\\nonstopmode\\\\input{\"$1\"} &"
+#define BIBTEX		"exec bibtex `basename \"$1\" .tex` &"
+#ifdef KDE
+#define DVIVIEW		"exec kdvi \"$1\" &"
+#else
+#define DVIVIEW		"exec xdvi \"$1\" &"
+#endif
+#define DVIPRINT	"dvips -f \"$1\" | lpr &"
+
+/* other documents and images */
+
+#define FIGEDIT		"exec xfig \"$1\" &"
+#define IMAGEEDIT	"exec gimp \"$1\" &"
+
+#ifdef CDE
+#define IMAGEVIEW	"exec sdtimage \"$1\" &"
+#define PDFVIEW		"exec acroread \"$1\" &"
+#define PSVIEW		"exec sdtimage \"$1\" &"
+#else
+#ifdef GNOME
+#define IMAGEVIEW	"exec ee \"$1\" &"
+#define PDFVIEW		"exec ggv \"$1\" &"
+#define PSVIEW		"exec ggv \"$1\" &"
+#else
+#ifdef KDE
+#define IMAGEVIEW	"exec kview \"$1\" &"
+#define PDFVIEW		"exec kghostview \"$1\" &"
+#define PSVIEW		"exec kghostview \"$1\" &"
+#else
+#define IMAGEVIEW	"exec xv \"$1\" &"
+#define PDFVIEW		"exec acroread \"$1\" &"
+#define PSVIEW		"exec ghostview \"$1\" &"
+#endif
+#endif
+#endif
+
+/* action to play an audio file */
+
+#ifdef CDE
+#define PLAY		"exec sdtaudio -p \"$1\" &"
+#else
+#ifdef KDE
+#define PLAY		"exec noatun \"$1\" &"
+#else
+#define PLAY		"exec xmms \"$1\" &"
+#endif
+#endif
+
+/* action to play a midi file */
+
+#ifdef KDE
+#define PLAYMIDI	"exec kmidi \"$1\" &"
+#else
+#define PLAYMIDI	"(timidity \"$1\"; echo '*** timidity done ***') &"
+#endif
+
+/* actions on make and imake files; since these actions may take a while,
+   give some feedback when we're done */
+
+#define MAKE		"(make -f \"$1\"; echo '*** make done ***') &"
+#define MAKE_TARGET(target) \
+			"(make -f \"$1\" " target "; echo '*** make done ***') &"
+#define MAKE_PROMPT	"(make -f \"$1\" %Target:%; echo '*** make done ***') &"
+
+/* if "xmkmf -a" doesn't work on your system, try "xmkmf; make Makefiles;
+   make depend" instead */
+
+#define IMAKE		"(xmkmf; echo '*** imake done ***') &"
+#define IMAKE_ALL	"(xmkmf -a; echo '*** imake done ***') &"
+
+/* actions on diff files */
+
+#define PATCH		"exec patch -p0 <\"$1\""
+
+#ifdef TERMPROG
+#define PATCH_TERM	"(" TERMPROG " -e $SHELL -c \"patch -p0 <\"$1\"; " \
+			"echo 'Return to continue...'; read\") &"
+#else
+#ifdef CDE
+#define PATCH_TERM	"(dtterm -e \"$SHELL -c \\\"patch -p0 <\"$1\"; " \
+			"echo 'Return to continue...'; read\\\"\") &"
+#else
+#ifdef GNOME
+#define PATCH_TERM	"(gnome-terminal -e \"$SHELL -c \\\"patch -p0 <\"$1\"; " \
+			"echo 'Return to continue...'; read\\\"\") &"
+#else
+#ifdef KDE
+#define PATCH_TERM	"(konsole -e $SHELL -c \"patch -p0 <\"$1\"; " \
+			"echo 'Return to continue...'; read\") &"
+#else
+#define PATCH_TERM	"(xterm -e $SHELL -c \"patch -p0 <\"$1\"; " \
+			"echo 'Return to continue...'; read\") &"
+#endif
+#endif
+#endif
+#endif
+
+/* actions on tarred, compressed and uuencoded files */
+
+#ifdef GNOME
+#define ARCHPROG	"exec lnxzip \"$1\" &"
+#else
+#ifdef KDE
+#define ARCHPROG	"exec ark \"$1\" &"
+#else
+#define ARCHPROG	"exec xtar \"$1\" &"
+#endif
+#endif
+
+#ifdef GNU
+
+#define TART		"(gtar tvf \"$1\"; echo '*** tar done ***') &"
+#define TARTz		"(gtar tvfz \"$1\"; echo '*** tar done ***') &"
+#define TARTz2		"(gtar tvfj \"$1\"; echo '*** tar done ***') &"
+#define TARTZ		"(gtar tvfZ \"$1\"; echo '*** tar done ***') &"
+
+#define TARX		"(gtar xvf \"$1\"; echo '*** tar done ***') &"
+#define TARXto		"(gtar xvf \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARC		"(gtar cvf \"$@\"; echo '*** tar done ***') &"
+
+#define TARXz		"(gtar xvfz \"$1\"; echo '*** tar done ***') &"
+#define TARXzto		"(gtar xvfz \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARCz		"(gtar cvfz \"$@\"; echo '*** tar done ***') &"
+
+#define TARXz2		"(gtar xvfj \"$1\"; echo '*** tar done ***') &"
+#define TARXz2to	"(gtar xvfj \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARCz2		"(gtar cvfj \"$@\"; echo '*** tar done ***') &"
+
+#define TARXZ		"(gtar xvfZ \"$1\"; echo '*** tar done ***') &"
+#define TARXZto		"(gtar xvfZ \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARCZ		"(gtar cvfZ \"$@\"; echo '*** tar done ***') &"
+
+#else
+
+#define TART		"(tar tvf \"$1\"; echo '*** tar done ***') &"
+#define TARTz		"(tar tvfz \"$1\"; echo '*** tar done ***') &"
+#define TARTz2		"(tar tvfj \"$1\"; echo '*** tar done ***') &"
+#define TARTZ		"(tar tvfZ \"$1\"; echo '*** tar done ***') &"
+
+#define TARX		"(tar xvf \"$1\"; echo '*** tar done ***') &"
+#define TARXto		"(tar xvf \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARC		"(tar cvf \"$@\"; echo '*** tar done ***') &"
+
+#define TARXz		"(tar xvfz \"$1\"; echo '*** tar done ***') &"
+#define TARXzto		"(tar xvfz \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARCz		"(tar cvfz \"$@\"; echo '*** tar done ***') &"
+
+#define TARXz2		"(tar xvfj \"$1\"; echo '*** tar done ***') &"
+#define TARXz2to	"(tar xvfj \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARCz2		"(tar cvfj \"$@\"; echo '*** tar done ***') &"
+
+#define TARXZ		"(tar xvfZ \"$1\"; echo '*** tar done ***') &"
+#define TARXZto		"(tar xvfZ \"$1\" -C %Extract to:%; echo '*** tar done ***') &"
+#define TARCZ		"(tar cvfZ \"$@\"; echo '*** tar done ***') &"
+
+#endif
+
+#define GUNZIP		"exec gunzip \"$1\" &"
+#define BUNZIP2		"exec bunzip2 \"$1\" &"
+#define UNCOMPRESS	"exec uncompress \"$1\" &"
+#define UUDECODE	"exec uudecode \"$1\" &"
+
+#define ZIPR		"(zip -r \"$@\"; echo '*** zip done ***') &"
+#define ZIPVIEW		"(unzip -v \"$1\"; echo '*** unzip done ***') &"
+#define UNZIP		"(unzip -o \"$1\" ; echo '*** unzip done ***') &"
+
+/* actions on rpm's */
+
+#ifdef GNOME
+#define RPMPROG		"exec gnorpm -q -p \"$1\" &"
+#else
+#ifdef KDE
+#define RPMPROG		"exec kpackage \"$1\" &"
+#else
+#define RPMPROG		"exec xrpm \"$1\" &"
+#endif
+#endif
+
+/* actions to tar, zip etc. a directory */
+
+#ifdef GNU
+
+#define DIRTAR		"(gtar cvf \"$1\".tar \"$1\"; echo '*** tar done ***') &"
+#define DIRTARz		"(gtar cvfz \"$1\".tar.gz \"$1\"; echo '*** tar done ***') &"
+#define DIRTARz2	"(gtar cvfj \"$1\".tar.bz2 \"$1\"; echo '*** tar done ***') &"
+#define DIRTARZ		"(gtar cvfZ \"$1\".tar.Z \"$1\"; echo '*** tar done ***') &"
+
+#else
+
+#define DIRTAR		"(tar cvf \"$1\".tar \"$1\"; echo '*** tar done ***') &"
+#define DIRTARz		"(tar cvfz \"$1\".tar.gz \"$1\"; echo '*** tar done ***') &"
+#define DIRTARz2	"(tar cvfj \"$1\".tar.bz2 \"$1\"; echo '*** tar done ***') &"
+#define DIRTARZ		"(tar cvfZ \"$1\".tar.Z \"$1\"; echo '*** tar done ***') &"
+
+#endif
+
+#define DIRZIP		"(zip -r \"$1\".zip \"$1\"; echo '*** zip done ***') &"
+
+/***************************************************************************/
+
+/* Now the action lists; these macros are used to define the type-specific
+   popup menus, as well as push and drop actions. */
+
+#define AnyActions	Item "Open with...", APPLY
+
+#define StdActions	Push EDIT \
+			Item "Edit", EDIT \
+			Item "View", VIEW \
+			Item "Print", PRINT \
+			Separator \
+			AnyActions
+
+#define DefaultActions	StdActions
+
+#define DirTarActions	Item "Tar", DIRTAR \
+			Item "Tar gzipped", DIRTARz \
+			Item "Tar bzipped", DIRTARz2 \
+			Item "Tar compressed", DIRTARZ \
+			Item "Zip", DIRZIP
+
+#define DirActions	Item "Xplore", XPLORE_DIR \
+			Item "Find...", FIND_DIR \
+			Separator \
+			DirTarActions \
+			Separator \
+			AnyActions
+
+#define TrashActions	Item "Xplore", XPLORE_DIR \
+			Item "Find...", FIND_DIR \
+			Item "Empty trash", TRASH_EMPTY \
+			Separator \
+			DirTarActions \
+			Separator \
+			AnyActions
+
+#ifdef SOLARIS
+#define DevActions(dev)	Item "Xplore", XPLORE_DIR \
+			Item "Find...", FIND_DIR \
+			Item "Eject", EJECT(dev) \
+			Separator \
+			DirTarActions \
+			Separator \
+			AnyActions
+#else
+#define DevActions(dev)	DirActions
+#endif
+
+#define ExecActions	Item "Execute...", EXEC \
+			Item "Exec in term", EXEC_TERM \
+			Item "Debug", DEBUG \
+			Separator \
+			AnyActions
+
+#define ScriptActions	Item "Edit", EDIT \
+			Item "View", VIEW \
+			Item "Print", PRINT \
+			Separator \
+			Item "Execute...", EXEC \
+			Item "Exec in term", EXEC_TERM \
+			Separator \
+			AnyActions
+
+#define ViewActions(viewact) \
+			Push viewact \
+			Item "View", viewact \
+			Separator \
+			AnyActions
+
+#define ViewPrintActions(viewact,printact) \
+			Push viewact \
+			Item "View", viewact \
+			Item "Print", printact \
+			Separator \
+			AnyActions
+
+#define EditActions(editact) \
+			Push editact \
+			Item "Edit", editact \
+			Separator \
+			AnyActions
+
+#define EditViewActions(editact,viewact) \
+			Push editact \
+			Item "Edit", editact \
+			Item "View", viewact \
+			Separator \
+			AnyActions
+
+#define ViewEditActions(editact,viewact) \
+			Push viewact \
+			Item "View", viewact \
+			Item "Edit", editact \
+			Separator \
+			AnyActions
+
+#define EditViewPrintActions(editact,viewact,printact) \
+			Push editact \
+			Item "Edit", editact \
+			Item "View", viewact \
+			Item "Print", printact \
+			Separator \
+			AnyActions
+
+#define ImageActions	ViewEditActions(IMAGEEDIT, IMAGEVIEW)
+
+#define AudioActions	Push PLAY \
+			Item "Play", PLAY \
+			Separator \
+			AnyActions
+
+#define MidiActions	Push PLAYMIDI \
+			Item "Play", PLAYMIDI \
+			Separator \
+			AnyActions
+
+#define TeXActions	Push EDIT \
+			Item "Edit", EDIT \
+			Item "View", VIEW \
+			Item "Print", PRINT \
+			Separator \
+			Item "TeX", TEX \
+			Item "LaTeX", LATEX \
+			Item "BibTeX", BIBTEX \
+			Separator \
+			AnyActions
+
+#define MakeActions	Push MAKE \
+			Item "Edit", EDIT \
+			Item "View", VIEW \
+			Separator \
+			Item "Make ...", MAKE_PROMPT \
+			Item "Make Makefiles", MAKE_TARGET("Makefiles") \
+			Item "Make clean", MAKE_TARGET("clean") \
+			Item "Make depend", MAKE_TARGET("depend") \
+			Item "Make install", MAKE_TARGET("install") \
+			Item "Make install.man", MAKE_TARGET("install.man") \
+			Separator \
+			AnyActions
+
+#define ImakeActions	Push IMAKE \
+			Item "Edit", EDIT \
+			Item "View", VIEW \
+			Separator \
+			Item "Imake", IMAKE \
+			Item "Imake all", IMAKE_ALL \
+			Separator \
+			AnyActions
+
+/* better to run patch in an xterm, since it may request input from the
+   user */
+
+#define PatchActions	Push EDIT \
+			Item "Edit", EDIT \
+			Item "View", VIEW \
+			Separator \
+			Item "Patch", PATCH_TERM \
+			Separator \
+			AnyActions
+
+#define DebugActions	Push DEBUG \
+			Item "Debug", DEBUG \
+			Separator \
+			AnyActions
+
+#define ZipActions	Push ARCHPROG \
+			Drop ZIPR \
+			Item "Archiver", ARCHPROG \
+			Item "List", ZIPVIEW \
+			Item "Extract", UNZIP \
+			Separator \
+			AnyActions
+
+#define TarActions	Push ARCHPROG \
+			Drop TARC \
+			Item "Archiver", ARCHPROG \
+			Item "List", TART \
+			Item "Extract", TARX \
+			Item "Extract to ...", TARXto \
+			Separator \
+			AnyActions
+
+#define TarzActions	Push ARCHPROG \
+			Drop TARCz \
+			Item "Archiver", ARCHPROG \
+			Item "List", TARTz \
+			Item "Extract", TARXz \
+			Item "Extract to ...", TARXzto \
+			Separator \
+			AnyActions
+
+#define Tarz2Actions	Push ARCHPROG \
+			Drop TARCz2 \
+			Item "Archiver", ARCHPROG \
+			Item "List", TARTz2 \
+			Item "Extract", TARXz2 \
+			Item "Extract to ...", TARXz2to \
+			Separator \
+			AnyActions
+
+#define TarZActions	Push ARCHPROG \
+			Drop TARCZ \
+			Item "Archiver", ARCHPROG \
+			Item "List", TARTZ \
+			Item "Extract", TARXZ \
+			Item "Extract to ...", TARXZto \
+			Separator \
+			AnyActions
+
+#define GZActions	Push GUNZIP \
+			Item "Unzip", GUNZIP \
+			Separator \
+			AnyActions
+
+#define BZ2Actions	Push BUNZIP2 \
+			Item "Unzip2", BUNZIP2 \
+			Separator \
+			AnyActions
+
+#define ZActions	Push UNCOMPRESS \
+			Item "Uncompress", UNCOMPRESS \
+			Separator \
+			AnyActions
+
+#define UUActions	Push UUDECODE \
+			Item "Decode", UUDECODE \
+			Separator \
+			AnyActions
+
+#define RpmActions	Push RPMPROG \
+			Item "Install package", RPMPROG \
+			Separator \
+			AnyActions
+
+/***************************************************************************/
+
+/* Here the main part begins which defines the global command menu and the
+   bindings for the different file types. */
+
+/* command menu and default actions */
+
+Command				{ CommandActions }
+Default				{ DefaultActions }
+
+/* file types */
+
+Magic "<unreadable>"		{ Description "Unreadable file"
+				  LargeIcon "file_bad.xpm"
+				  SmallIcon "file_bad_small.xpm" }
+
+/* directories */
+
+Magic "<application/x-dir*>~"	{ LargeIcon "home.xpm"
+				  SmallIcon "home_small.xpm"
+				  DirActions }
+Magic "<application/x-dir*>~/shelf"
+				{ LargeIcon "bookshelf.xpm"
+				  SmallIcon "bookshelf_small.xpm"
+				  DirActions }
+Magic "<application/x-dir*>~/.xplore*"
+				{ LargeIcon "system.xpm" DirActions }
+Magic "<application/x-dir*>bin"	{ LargeIcon "system.xpm" DirActions }
+Magic "<application/x-dir*>[Mm]ail", "<application/x-dir*>nsmail"
+				{ LargeIcon "mailfolder.xpm" DirActions }
+
+/* shelf directories */
+
+Magic "<application/x-dir*empty>Clipboard"
+				{ LargeIcon "clip.xpm" DirActions }
+Magic "<application/x-dir*>Clipboard"
+				{ LargeIcon "clip_file.xpm" DirActions }
+Magic "<application/x-dir*>Desk"
+				{ LargeIcon "stuff.xpm" DirActions }
+Magic "<application/x-dir*>Programs"
+				{ LargeIcon "system.xpm" DirActions }
+Magic "<application/x-dir*empty>Trash"
+				{ LargeIcon "trash_empty.xpm" DirActions }
+Magic "<application/x-dir*>Trash"
+				{ LargeIcon "trash_full.xpm" TrashActions }
+
+/* some common devices links in the Desk shelf */
+
+Magic "<application/x-dir link*>A:"
+				{ LargeIcon "floppy.xpm" DevActions("floppy") }
+Magic "<application/x-dir link*>B:"
+				{ LargeIcon "floppy.xpm" DevActions("floppy1") }
+Magic "<application/x-dir link*>C:"
+				{ LargeIcon "harddrive.xpm" DirActions }
+Magic "<application/x-dir link*>D:"
+				{ LargeIcon "harddrive.xpm" DirActions }
+Magic "<application/x-dir link*>E:"
+				{ LargeIcon "harddrive.xpm" DirActions }
+Magic "<application/x-dir link*>CDR"
+				{ LargeIcon "cdrom.xpm" DevActions("cdrom") }
+Magic "<application/x-dir link*>CDW"
+				{ LargeIcon "cdrom.xpm" DevActions("cdrom1") }
+Magic "<application/x-dir link*>DVD"
+				{ LargeIcon "cdrom.xpm" DevActions("cdrom2") }
+Magic "<application/x-dir link*>Home"
+				{ LargeIcon "home.xpm" DirActions }
+
+/* other directories */
+
+Magic "<application/x-dir*>"	{ DirActions }
+
+/* a few sample application entries; you might wish to add your favourite
+   applications here */
+
+Magic "<application/x-exec*>editres"
+				{ LargeIcon "editres.xpm" ExecActions }
+Magic "<application/x-exec*>emacs"
+				{ LargeIcon "emacs.xpm" ExecActions }
+Magic "<application/x-exec*>xemacs"
+				{ LargeIcon "emacs.xpm" ExecActions }
+Magic "<application/x-exec*>ghostview"
+				{ LargeIcon "ghost.xpm" ExecActions }
+Magic "<application/x-exec*>kghostview"
+				{ LargeIcon "ghost.xpm" ExecActions }
+Magic "<application/x-exec*>ggv"
+				{ LargeIcon "ghost.xpm" ExecActions }
+Magic "<application/x-exec*>netscape"
+				{ LargeIcon "netscape.xpm" ExecActions }
+Magic "<application/x-exec*>mozilla"
+				{ LargeIcon "mozilla.xpm" ExecActions }
+Magic "<application/x-exec*>textedit"
+				{ LargeIcon "write.xpm" ExecActions }
+Magic "<application/x-exec*>kedit"
+				{ LargeIcon "write.xpm" ExecActions }
+Magic "<application/x-exec*>kwrite"
+				{ LargeIcon "write.xpm" ExecActions }
+Magic "<application/x-exec*>kate"
+				{ LargeIcon "write.xpm" ExecActions }
+Magic "<application/x-exec*>gedit"
+				{ LargeIcon "write.xpm" ExecActions }
+Magic "<application/x-exec*>xboard"
+				{ LargeIcon "chess.xpm" ExecActions }
+Magic "<application/x-exec*>xcalc"
+				{ LargeIcon "calc.xpm" ExecActions }
+Magic "<application/x-exec*>kcalc"
+				{ LargeIcon "calc.xpm" ExecActions }
+Magic "<application/x-exec*>gcalc"
+				{ LargeIcon "calc.xpm" ExecActions }
+Magic "<application/x-exec*>xfig"
+				{ LargeIcon "xfig.xpm" ExecActions }
+Magic "<application/x-exec*>xgrab"
+				{ LargeIcon "camera.xpm" ExecActions }
+Magic "<application/x-exec*>xless"
+				{ LargeIcon "xapp.xpm" ExecActions }
+Magic "<application/x-exec*>gless"
+				{ LargeIcon "xapp.xpm" ExecActions }
+Magic "<application/x-exec*>kless"
+				{ LargeIcon "xapp.xpm" ExecActions }
+Magic "<application/x-exec*>xmail"
+				{ LargeIcon "mail.xpm" ExecActions }
+Magic "<application/x-exec*>kmail"
+				{ LargeIcon "mail.xpm" ExecActions }
+Magic "<application/x-exec*>balsa"
+				{ LargeIcon "mail.xpm" ExecActions }
+Magic "<application/x-exec*>evolution"
+				{ LargeIcon "mail.xpm" ExecActions }
+Magic "<application/x-exec*>xmailtool"
+				{ LargeIcon "mail.xpm" ExecActions }
+Magic "<application/x-exec*>xpaint"
+				{ LargeIcon "paint.xpm" ExecActions }
+Magic "<application/x-exec*>gimp"
+				{ LargeIcon "paint.xpm" ExecActions }
+Magic "<application/x-exec*>xterm"
+				{ LargeIcon "term.xpm" ExecActions }
+Magic "<application/x-exec*>aterm"
+				{ LargeIcon "term.xpm" ExecActions }
+Magic "<application/x-exec*>kvt"
+				{ LargeIcon "term.xpm" ExecActions }
+Magic "<application/x-exec*>konsole"
+				{ LargeIcon "term.xpm" ExecActions }
+Magic "<application/x-exec*>gnome-terminal"
+				{ LargeIcon "term.xpm" ExecActions }
+Magic "<application/x-exec*>xv"	{ LargeIcon "xv.xpm" ExecActions }
+Magic "<application/x-exec*>kview"
+				{ LargeIcon "paint2.xpm" ExecActions }
+Magic "<application/x-exec*>ee"	{ LargeIcon "paint2.xpm" ExecActions }
+
+/* on some systems these are actually scripts */
+
+Magic "<application/x-script*>netscape"
+				{ LargeIcon "netscape.xpm" ExecActions }
+Magic "<application/x-script*>mozilla"
+				{ LargeIcon "mozilla.xpm" ExecActions }
+
+/* scripts and other executables */
+
+Magic "<text/x-script*>"	{ Description "Shell script"
+				  LargeIcon "script_file.xpm" StdActions }
+
+Magic "<application/x-script>"	{ Description "Shell script"
+				  LargeIcon "script.xpm" ScriptActions }
+Magic "<application/x-script link>"
+				{ Description "Shell script"
+				  LargeIcon "script_link.xpm" ScriptActions }
+
+Magic "<application/x-exec*>"	{ ExecActions }
+
+/* archives, compressed files and such */
+
+Type "<application/x-rpm>", "*.rpm"
+				{ Description "RPM package"
+				  LargeIcon "winzip.xpm" RpmActions }
+Type "<application/x-zip>", "*.zip"
+				{ Description "ZIP archive"
+				  LargeIcon "zip.xpm" ZipActions }
+Type "<application/x-tar>", "*.tar"
+				{ Description "Tar file"
+				  LargeIcon "tar.xpm" TarActions }
+Type "<application/x-gzip>*.tar.gz", "<application/x-gzip>*.tgz"
+				{ Description "GNU zip compressed tar file"
+				  LargeIcon "tar.xpm" TarzActions }
+Type "<application/x-bzip2>*.tar.bz", "<application/x-bzip2>*.tbz",
+"<application/x-bzip2>*.tar.bz2", "<application/x-bzip2>*.tbz2"
+				{ Description "bzip2 compressed tar file"
+				  LargeIcon "tar.xpm" Tarz2Actions }
+Type "<application/x-compress>*.tar.Z"
+				{ Description "Compressed tar file"
+				  LargeIcon "tar.xpm" TarZActions }
+
+Type "<application/x-gzip>", "*.gz"
+				{ Description "GNU zip compressed file"
+				  LargeIcon "compressed.xpm" GZActions }
+Type "<application/x-bzip2>", "*.bz", "*.bz2"
+				{ Description "bzip2 compressed file"
+				  LargeIcon "compressed.xpm" BZ2Actions }
+Type "<application/x-compress>", "*.Z"
+				{ Description "Compressed file"
+				  LargeIcon "compressed.xpm" ZActions }
+Type "<application/x-uu>", "*.uu"
+				{ Description "Uuencoded file"
+				  LargeIcon "uu.xpm" UUActions }
+
+/* image formats */
+
+Type "<image/x-xfig>", "*.fig"	{ Description "FIG drawing"
+				  LargeIcon "fig.xpm" EditActions(FIGEDIT) }
+
+Type "<image/gif>", "*.gif"	{ Description "GIF image"
+				  LargeIcon "gif.xpm" ImageActions }
+Type "<image/jpeg>", "*.jpg"	{ Description "JPEG image"
+				  LargeIcon "jpeg.xpm" ImageActions }
+Type "<image/tiff>", "*.tiff"	{ Description "TIFF image"
+				  LargeIcon "tiff.xpm" ImageActions }
+Type "<image/x-cmu-raster>", "*.ras"
+				{ Description "Raster image"
+				  LargeIcon "raster.xpm" ImageActions }
+Type "<image/x-portable-bitmap>", "*.pbm"
+				{ Description "Portable bitmap"
+				  LargeIcon "pbm.xpm" ImageActions }
+Type "<image/x-portable-greymap>", "*.pgm"
+				{ Description "Portable greymap"
+				  LargeIcon "pgm.xpm" ImageActions }
+Type "<image/x-portable-pixmap>", "*.ppm"
+				{ Description "Portable pixmap"
+				  LargeIcon "ppm.xpm" ImageActions }
+Type "<image/png>", "*.png"	{ Description "Portable network graphic"
+				  LargeIcon "draw.xpm" ImageActions }
+Type "<image/x-xbm>", "*.xbm"	{ Description "X bitmap"
+				  LargeIcon "xbm.xpm" ImageActions }
+Type "<image/x-xpm>", "*.xpm"	{ Description "X pixmap"
+				  LargeIcon "teddy.xpm" ImageActions }
+
+Type "<image/*>"		{ Description "Image"
+				  LargeIcon "draw.xpm" ImageActions }
+
+/* support for audio and midi files (still rather preliminary) */
+
+Type "<audio/x-snd>", "*.au"	{ Description "Sun/NeXT audio file"
+				  LargeIcon "sound.xpm"
+/* FIXME: most players cannot handle these */
+				  AudioActions }
+
+Type "<audio/x-wav>", "*.wav"	{ Description "Microsoft WAVE file"
+				  LargeIcon "sound.xpm"
+				  AudioActions }
+
+Type "<audio/x-mp3>", "*.mp3"	{ Description "MP3 audio file"
+				  LargeIcon "sound.xpm"
+				  AudioActions }
+
+Type "<audio/x-midi>", "*.mid", "*.midi"
+				{ Description "MIDI file"
+				  LargeIcon "sound.xpm"
+				  MidiActions }
+
+/* various kinds of documents */
+
+Type "<text/html>", "*.htm", "*.html"
+				{ Description "HTML document"
+				  LargeIcon "html.xpm"
+				  ViewEditActions(HTMLEDIT, HTMLVIEW) }
+
+Type "<application/postscript>", "*.ps"
+				{ Description "PostScript file"
+				  LargeIcon "ps.xpm"
+				  ViewPrintActions(PSVIEW, PRINT) }
+
+Type "<application/pdf>", "*.pdf"
+				{ Description "PDF file"
+				  LargeIcon "pdf.xpm"
+				  ViewActions(PDFVIEW) }
+
+Type "<application/x-dvi>", "*.dvi"
+				{ Description "DVI file"
+				  LargeIcon "dvi.xpm"
+				  ViewPrintActions(DVIVIEW, DVIPRINT) }
+
+Type "<application/x-troff-man>", "*.man"
+				{ Description "Manual page"
+				  LargeIcon "book.xpm"
+				  EditViewPrintActions(EDIT, VIEW,
+				    MANPRINT) }
+
+Magic "<application/x-url>"	{ Description "URL shortcut"
+				  LargeIcon "url.xpm"
+				  ViewEditActions(URLEDIT, URLVIEW) }
+
+/* common types of plain text files */
+
+Type "*README*", "*readme*", "read.me"
+				{ LargeIcon "readme.xpm" StdActions }
+
+Type "INSTALL", "NEWS", "ChangeLog", "*.doc", "*.txt"
+				{ LargeIcon "text.xpm" StdActions }
+
+/* TeX input files */
+
+Type "*.tex", "*.txi", "*.texi", "*.texinfo"
+				{ Description "TeX document"
+				  LargeIcon "tex.xpm" TeXActions }
+
+/* temporary files */
+
+Type "#*", "*~"			{ LargeIcon "tmpfile.xpm" StdActions }
+
+/* X-related stuff */
+
+Type "Xresources", ".Xresources", "Xdefaults", ".Xdefaults"
+				{ LargeIcon "res.xpm" StdActions }
+Type ".X*"			{ LargeIcon "x.xpm" StdActions }
+
+/* other config files */
+
+Type ".emacs", ".profile", "*rc"
+				{ LargeIcon "rc.xpm" StdActions }
+Type ".magic", "magic"		{ LargeIcon "magic.xpm" StdActions }
+
+/* core dumps */
+
+Type "core"			{ Description "Core dump"
+				  LargeIcon "core.xpm" DebugActions }
+
+/* Makefiles */
+
+Type "Imakefile"		{ LargeIcon "make.xpm" ImakeActions }
+Type "Makefile", "Makefile.*", "makefile", "makefile.*"
+				{ LargeIcon "make.xpm" MakeActions }
+
+/* Patches (diff files) */
+
+Type "<text/x-diff>", "*.patch", "*.diff"
+				{ Description "Diff file"
+				  LargeIcon "bug.xpm" PatchActions }
+
+/* objects and programs */
+
+Type "*.a"			{ Description "Static library"
+				  LargeIcon "dot_a.xpm" AnyActions }
+Type "*.c"			{ Description "C program"
+				  LargeIcon "dot_c.xpm" StdActions }
+Type "*.cc"			{ Description "C++ program"
+				  LargeIcon "dot_cc.xpm" StdActions }
+Type "*.h"			{ Description "C header file"
+				  LargeIcon "dot_h.xpm" StdActions }
+Type "*.o"			{ Description "Object file"
+				  LargeIcon "dot_o.xpm" AnyActions }
+Type "*.sa"			{ Description "Static library"
+				  LargeIcon "dot_sa.xpm" AnyActions }
+
+/* fallback entries */
+
+Magic "<text/plain>"		{ LargeIcon "file.xpm" StdActions }
+Magic "<application/octet-stream>"
+				{ Description "Binary file"
+				  LargeIcon "hex.xpm" StdActions }
+Magic "<empty>"			{ Description "Empty file"
+				  LargeIcon "empty.xpm" StdActions }

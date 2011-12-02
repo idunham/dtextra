@@ -1,0 +1,17 @@
+#! /bin/sh
+
+# sample xplore startup script
+
+# This script is run each time xplore is started. Xplore passes its own
+# command line on to this script so we can decide which actions to take.
+# Here we simply fire up a console window if necessary.
+
+for opt in "$@"; do
+  case "$opt" in
+  -C)
+    # see whether we need a console window (adapt this to your system)
+    ps aux|grep -q '\(aterm\|Eterm\|wterm\|xterm\|rxvt\|kvt\) -C' || \
+      (xterm -C -T Console -geometry 80x7-0-0 &)
+    ;;
+  esac
+done

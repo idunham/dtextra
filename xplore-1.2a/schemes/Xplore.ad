@@ -1,0 +1,31 @@
+! xplore's generic KDE app-defaults file
+
+Xplore*XmContainer.background: WINDOW_BACKGROUND
+Xplore*XmContainer.foreground: WINDOW_FOREGROUND
+Xplore*XmContainer*XmIconGadget.background: WINDOW_BACKGROUND
+Xplore*XmContainer*XmIconGadget.foreground: WINDOW_FOREGROUND
+!Xplore*XmContainer.selectColor: XmDEFAULT_SELECT_COLOR
+!Xplore*XmContainer.selectColor: SELECT_BACKGROUND
+
+Xplore*background: BACKGROUND
+Xplore*foreground: FOREGROUND
+Xplore*highlightColor: FOREGROUND
+
+Xplore*XmList.background: WINDOW_BACKGROUND
+Xplore*XmList.foreground: WINDOW_FOREGROUND
+Xplore*XmText.background: WINDOW_BACKGROUND
+Xplore*XmText.foreground: WINDOW_FOREGROUND
+Xplore*XmTextField.background: WINDOW_BACKGROUND
+Xplore*XmTextField.foreground: WINDOW_FOREGROUND
+
+Xplore*XmContainer*file_icon.foreground: WINDOW_FOREGROUND
+Xplore*XmContainer*file_link_icon.foreground: maroon
+Xplore*XmContainer*file_link_bad_icon.foreground: dark slate grey
+Xplore*XmContainer*dir_icon.foreground: WINDOW_FOREGROUND
+Xplore*XmContainer*dir_up_icon.foreground: WINDOW_FOREGROUND
+Xplore*XmContainer*dir_link_icon.foreground: maroon
+Xplore*XmContainer*exec_icon.foreground: WINDOW_FOREGROUND
+Xplore*XmContainer*exec_link_icon.foreground: maroon
+
+Xplore*status_line*indicators.highlightColor: maroon
+ 

@@ -1,0 +1,24 @@
+! KDE DigitalCDE color scheme
+
+xplore*background: #4A7983
+xplore*XmContainer.background: #314c4a
+xplore*XmContainer*XmIconGadget.background: #314c4a
+xplore*XmContainer.selectColor: #41505a
+
+xplore*highlightColor: white
+xplore*foreground: white
+
+xplore*XmList.background: #314c4a
+xplore*XmText.background: #314c4a
+xplore*XmTextField.background: #314c4a
+
+xplore*file_icon.foreground: white
+xplore*file_link_icon.foreground: maroon
+xplore*file_link_bad_icon.foreground: grey80
+xplore*dir_icon.foreground: white
+xplore*dir_up_icon.foreground: white
+xplore*dir_link_icon.foreground: maroon
+xplore*exec_icon.foreground: white
+xplore*exec_link_icon.foreground: maroon
+
+xplore*status_line*indicators.highlightColor: maroon

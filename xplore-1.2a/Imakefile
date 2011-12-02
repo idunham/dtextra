@@ -1,0 +1,78 @@
+
+#include "Xplore.tmpl"
+
+XGINCDIR = -I./xg/include
+XGLIBDIR = -L./xg
+XGLIB = -lxg
+
+#define Subdirs xg regexp scripts
+
+#ifndef PassCDebugFlags
+#define PassCDebugFlags
+#endif
+
+MakeSubdirs(xg regexp scripts)
+MakefileSubdirs(xg regexp scripts)
+CleanSubdirs(xg regexp scripts)
+DependSubdirs(xg regexp scripts)
+InstallSubdirs(scripts)
+
+Xplore.ad: Xplore.sed
+	sed -e 's?@XPLORELIBDIR@?$(XPLORELIBDIR)?g' <Xplore.sed >$@
+
+etc/Manual: xplore.man
+	rman -f HTML xplore.man | sed -e '1,3d' >$@
+
+InstallAppDefaults(Xplore)
+
+install:: all
+	MakeDir($(DESTDIR)$(XPLORELIBDIR))
+	$(INSTALL) -c $(INSTDATFLAGS) system.xplorerc \
+$(DESTDIR)$(XPLORELIBDIR)/system.xplorerc
+	$(INSTALL) -c $(INSTDATFLAGS) magic $(DESTDIR)$(XPLORELIBDIR)/magic
+	cp -R etc $(DESTDIR)$(XPLORELIBDIR)
+	cp -R icons $(DESTDIR)$(XPLORELIBDIR)
+	cp -R shelf $(DESTDIR)$(XPLORELIBDIR)
+	cp -R schemes $(DESTDIR)$(XPLORELIBDIR)
+
+PROGRAMS	= xplore xploretype
+
+DEFINES		= -DXPLORELIBDIR=\"$(XPLORELIBDIR)\" -DCPP="\"$(CPP)\"" \
+$(SYSDEP) $(STATVFS)
+
+EXTRA_INCLUDES	= -I./regexp -I./icons $(XGINCDIR) $(XMINCDIR) $(XPMINCDIR)
+
+SRCS1 = callbacks.c curdir.c devmount.c dialogs.c dirs.c error.c fileops.c \
+	ftype.c icons.c interface.c magic.c menus.c mnttable.c signals.c \
+	util.c xplore.c
+
+OBJS1 = callbacks.o curdir.o devmount.o dialogs.o dirs.o error.o fileops.o \
+	ftype.o icons.o interface.o magic.o menus.o mnttable.o parse.o \
+	signals.o util.o xplore.o
+
+DEPLIBS1	=  ./xg/libxg.a ./regexp/libregexp.a
+SYSLIBS1	=  $(XGLIBDIR) $(XMLIBDIR) $(XPMLIBDIR) -L./regexp -lregexp \
+	$(XGLIB) $(XMLIB) $(XPMLIB) $(XTOOLLIB) $(XMULIB) $(XLIB)
+
+all:: defaults.h setup etc/Manual
+depend:: defaults.h
+
+setup:
+	cp scripts/setup.script setup
+
+defaults.h: Xplore.ad
+	./ad2c Xplore.ad > defaults.h
+
+clean::
+	$(RM) defaults.h setup Xplore.ad
+
+parse.o: parse.c lex.c xplore.h parse.h
+
+ComplexProgramTarget_1(xplore,NullParameter,$(SYSLIBS1))
+
+SRCS2		= xploretype.c
+OBJS2		= xploretype.o magic.o util.o
+DEPLIBS2	= ./regexp/libregexp.a
+SYSLIBS2	=  -L./regexp -lregexp
+
+ComplexProgramTarget_2(xploretype,NullParameter,$(SYSLIBS2))

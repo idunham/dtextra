@@ -1,0 +1,132 @@
+NOTE: This is G. M. Messner's xg library, a Windows-like widget set for use
+with Motif. (See copyright notice in Imakefile.) I slightly massaged the
+original sources and added an Imakefile for easier compilation. The orginal
+sources can be found at http://www.messners.com/xgwidgets.  09-07-01 AG
+
+------------------------------------------------------------------------------
+
+The Xg Widget Set
+by: Gregory M. Messner
+
+
+In the many years that I have been developing GUIs for UNIX, I have always
+envied the controls that are commonly available for MS Windows applications.
+In attempt to rectify this situation I designed the "Xg Widget Set". This
+widget set is an extension of the Motif widget set and provides many of the
+controls found in MS Windows applications.
+
+This release of the "Xg Widget Set" is the first public release. It is
+available for non-commercial or educational use (see the LICENSE file). If
+sufficient interest is shown in the widget set I will make it available for
+commercial use at a minimal cost.
+
+At this time no documentation is available, I am in the process of writing the
+documentation (in HTML) and will make post it at
+<http://www2.4dcomm.com/gmessner> in the near future. The source code contains
+example code for each widget in the set, refer to these examples to get an
+idea on how to use the widgets.
+
+At present I am providing a single makefile, in the future I will provide
+makefiles for most UNIX platforms. The widget set has been built on about
+every UNIX platform that supports X11 and Motif with just a couple of minor
+tweaks to the makefile, so you shouldn't have a difficult time here.
+
+In addition to the widgets, I have provided some utility functions that I have
+found useful (see XgUtils).
+
+The widget set is self contained, as such it requires no additional libraries
+other than X, Xt, and Motif (1.1, 1.2.x or 2.0).
+
+
+Following is a list of all the widgets in the Xg Widget Set:
+
+     XgClockLabel
+     XgComboBox 
+     XgExtPushButton 
+     XgFastLabel 
+     XgNumEntry 
+     XgTabs 
+     XgTimeEntry 
+     XgToolBar 
+
+
+XgClockLabel
+------------
+A clock widget (digital) that uses standard strftime() format strings. This
+can by displayed rotated. Subclass of XgFastLabel.
+
+XgComboBox
+----------
+An implementation of a MS Windows combination box (text and drop down list).
+
+XgExtPushButton
+---------------
+Subclass of XmPushButton. Allows pixmaps (XPM format) and text to be displayed
+simultaneously.
+
+XgFastLabel
+-----------
+A basic label widget that is much faster than an XmLabel. Text can be rotated
+in any direction. Uses standard strings instead of XmString strings.
+
+XgNumEntry
+----------
+A numerical entry widget. A composite widget with a text entry and spin
+buttons. Allows for range limiting and input verification.
+
+XgTabs
+------
+A simple Tab widget that can be oriented on any side of it's parent. The text
+on the tabs is automatically rotated depending on orientation. This widget is
+usually contained in an XmForm widget that simply manages the XgTabs widget
+and another XmForm that would contain your dialog controls. A callback can be
+added to the XgTabs widget to notify on tab selection or you can supply a list
+of widgets that would automatically be managed/unmanaged dependent on which
+tab is selected. Any number of XgTabs widgets can be on an interface.
+
+XgTimeEntry
+-----------
+A date/time entry widget. A composite widget with specialized date and time
+entry fields and spin buttons. Allows for range limiting and input
+verification.
+
+XgToolBar
+---------
+A toolbar widget that allows any widget on an interface to be registered for
+drop onto the toolbar. That is, you register a widget and it can then be
+dragged on to the toolbar where it is then cloned. The toolbar can also be
+pre-configured with widgets (you can save the contained widgets in an X
+resource file, for later loading). Additionally, tool tips can be assigned to
+any widget dropped on to the toolbar.
+
+
+XgUtils
+-------
+A set of utility functions for Motif. Following is a list of the functions:
+
+void         XgCenterShellOverParent()
+char *       XgConvertXmStringToString()
+int          XgDrawRotatedText()
+Pixel        XgGetClosestColor()
+XColor *     XgGetColorTable()
+Widget       XgGetShellWidget()
+Widget       XgGetShellChildWidget()
+XRectangle * XgGrabArea()
+int          XgRemoveDecorationAndFunction()
+int          XgRotateXImage()
+Boolean      XgScrollToPosition()
+void         XgSetCloseCallback()
+void         XgSetListStrings()
+void         XgSetOlwmDecor()
+void         XgUpdateLabel()
+String       XgWidgetToName()
+
+
+
+Building the Xg Widget Set
+--------------------------
+To build the Xg Widget Set, simply type "make" in the directory that the
+xg-tar file was unarchived. This will build the libxg.a library in the ./src
+directory. To build the test programs type "make tests", the test programs
+will be created in the testsrc directory.
+

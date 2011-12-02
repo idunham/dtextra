@@ -1,0 +1,26 @@
+! a dark color scheme which fits nicely with the "null" blackbox and gkrellm
+! themes
+
+xplore*background: #393c39
+xplore*XmContainer.background: #202020
+xplore*XmContainer*XmIconGadget.background: #202020
+!xplore*XmContainer.selectColor: XmDEFAULT_SELECT_COLOR
+xplore*XmContainer.selectColor: grey40
+
+xplore*highlightColor: white
+xplore*foreground: white
+
+xplore*XmList.background: #627583
+xplore*XmText.background: #627583
+xplore*XmTextField.background: #627583
+
+xplore*file_icon.foreground: white
+xplore*file_link_icon.foreground: maroon
+xplore*file_link_bad_icon.foreground: grey60
+xplore*dir_icon.foreground: white
+xplore*dir_up_icon.foreground: white
+xplore*dir_link_icon.foreground: maroon
+xplore*exec_icon.foreground: white
+xplore*exec_link_icon.foreground: maroon
+
+xplore*status_line*indicators.highlightColor: maroon

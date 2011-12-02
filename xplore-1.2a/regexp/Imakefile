@@ -1,0 +1,10 @@
+#include "../Xplore.tmpl"
+
+SRCS = regexp.c regsub.c regerror.c
+OBJS = regexp.o regsub.o regerror.o
+
+EXTRA_INCLUDES = -I.
+
+NormalLibraryObjectRule()
+NormalLibraryTarget(regexp,$(OBJS))
+DependTarget()

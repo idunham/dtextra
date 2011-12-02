@@ -1,0 +1,56 @@
+#! /bin/sh
+
+# Usage: netscape-remote [-edit] filename-or-url
+
+# Open or edit a file or URL in an existing netscape/mozilla window (start a
+# new instance if necessary).
+
+# Use netscape if we have it; otherwise try mozilla. You can override this
+# choice by setting the NETSCAPE environment variable.
+
+if [ -z "$NETSCAPE" ]; then
+  if [ -x "`which netscape 2>/dev/null`" ]; then
+    NETSCAPE=netscape
+  elif [ -x "`which mozilla 2>/dev/null`" ]; then
+    NETSCAPE=mozilla
+  else
+    echo "$0: could not find a suitable browser" >&2
+    exit 1
+  fi
+fi
+
+case $1 in
+-edit)
+    arg=$1
+    cmd=editPage
+    shift
+    ;;
+-*)
+    echo "$0: unrecognized option $1"
+    exit 1
+    ;;
+*)
+    arg=
+    cmd=openUrl
+    ;;
+esac
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 [-edit] filename-or-url"
+    exit 1
+fi
+
+url=$1
+
+case $url in
+*:*)
+    ;;
+/*)
+    url=file:$url
+    ;;
+*)
+    url=file:`pwd`/$url
+    ;;
+esac
+
+$NETSCAPE -remote "$cmd($url)" >/dev/null 2>&1 || $NETSCAPE $arg "$url" &

@@ -1,0 +1,25 @@
+! KDE2 default color scheme
+
+xplore*background: #dedede
+xplore*XmContainer.background: white
+xplore*XmContainer*XmIconGadget.background: white
+!xplore*XmContainer.selectColor: XmDEFAULT_SELECT_COLOR
+!xplore*XmContainer.selectColor: #52719c
+
+xplore*highlightColor: black
+xplore*foreground: black
+
+xplore*XmList.background: white
+xplore*XmText.background: white
+xplore*XmTextField.background: white
+
+xplore*file_icon.foreground: black
+xplore*file_link_icon.foreground: maroon
+xplore*file_link_bad_icon.foreground: dark slate grey
+xplore*dir_icon.foreground: black
+xplore*dir_up_icon.foreground: black
+xplore*dir_link_icon.foreground: maroon
+xplore*exec_icon.foreground: black
+xplore*exec_link_icon.foreground: maroon
+
+xplore*status_line*indicators.highlightColor: maroon

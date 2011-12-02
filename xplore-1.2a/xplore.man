@@ -1,0 +1,1374 @@
+.TH XPLORE 1 "6 Aug 2002" "X Version 11"
+.SH NAME
+xplore \- yet another Motif file manager
+
+.SH SYNOPSIS
+.B xplore
+[\fIoptions\fP ...]
+.sp
+.SH DESCRIPTION
+\fIXplore\fP is a powerful and highly configurable Motif file manager with an
+Explorer-like user interface. Besides the usual tree and file views,
+\fIxplore\fP also has a "shelf", a kind of clipboard inspired by the NeXT file
+manager, and a "log" pane for capturing output from launched programs. The
+builtin automounter allows you to access special devices in a transparent
+manner. Files can be moved and copied using simple mouse operations, and you
+can execute type-specific shell commands when a file is opened, used as the
+target of a drag and drop operation, or manipulated using popup menus. File
+types can be defined in terms of arbitrary filename and MIME type patterns.
+Full keyboard navigation is also supported, including an incremental filename
+search facility. Last not least, \fIxplore\fP speaks all standard X11 session
+management protocols and thus integrates nicely with most popular desktop
+environments.
+.SH "OPTIONS"
+Besides the standard toolkit options (see \fIX\fP(1)), the following command
+line switches are recognized:
+.TP
+.B \-C
+Redirect output streams to /dev/console.
+.TP
+.BI \-c " config-dir"
+Specify the name of the configuration directory (\fB~/.xplore\fP by default),
+in which \fIxplore\fP looks for the user's private configuration and resource
+files (see \fICUSTOMIZATION\fP).
+.TP
+.BI \-clone " session-id"
+Clone the given session (see \fISESSION MANAGEMENT\fP).
+.TP
+.B \-help
+Print a short help message and exit.
+.TP
+.B \-nosm
+Disable X11R6 session management features (see \fISESSION MANAGEMENT\fP).
+.TP
+.BI \-o " cpp-options"
+Specify the options to pass to the C preprocessor when parsing the
+\fBxplorerc\fP configuration file (see \fICUSTOMIZATION\fP).
+.TP
+.BI \-p " directory"
+Specify the name of the directory to be displayed on startup (default is
+usually the current directory, i.e., the directory in which \fIxplore\fP is
+started).
+.TP
+.BI \-s " shelf"
+Specify the name of the shelf to be selected initially (see \fIUSING THE
+SHELF\fP).
+.TP
+.BI \-session " session-id"
+Start or continue the given session, and restore the previously recorded
+application state (see \fISESSION MANAGEMENT\fP).
+.TP
+.B -tree -file -shelf -log
+Specify the panes to be shown at startup (see \fIUSAGE\fP below).
+.TP
+.B \-version
+Print version information and exit.
+.SH "STARTUP"
+You can invoke \fIxplore\fP by just typing the command \fBxplore\fP in an
+xterm, or directly from your window manager or desktop environment, provided
+that you created a corresponding desktop icon or menu entry. When starting up
+for the first time, \fIxplore\fP asks you whether you want to run the local
+\fIsetup\fP script which installs some configuration files and a preconfigured
+shelf directory in your home directory. Depending on your local setup, the
+script may also perform other site-specific initialization. You can bail out
+at this time if you do not want to do this, but you need to go ahead if you
+want to use \fIxplore\fP. Next \fIxplore\fP runs the \fIstartup\fP script
+which is there to perform some other initializations each time \fIxplore\fP is
+invoked. After the first-time setup you will find your personal copies of the
+configuration files and the startup script in the \fB~/.xplore\fP directory so
+that you can modify them according to your needs (see \fICUSTOMIZATION\fP
+below).
+.SH "USAGE"
+Most of this should be fairly obvious. It is assumed that you are familiar
+with the basic principles of using Motif applications (if not please refer to
+the \fIOSF/Motif User's Guide\fP).
+.PP
+The main window of \fIxplore\fP is divided into up to four "panes:" the
+\fIshelf\fP, which is used as a kind of clipboard; the \fItree pane\fP which
+shows the directory tree; the \fIfile pane\fP which shows the contents of the
+current directory (the name of which is displayed in the title bar of the
+\fIxplore\fP window); and the \fIlog pane\fP which captures the output from
+programs launched from \fIxplore\fP.
+.PP
+At the bottom of the main window you find a \fIstatus line\fP which displays
+useful information about the current directory and automounted devices. The
+status line is also used temporarily to give feedback for some operations. In
+particular, when a copy or delete operation is in progress, the name of the
+current file is shown in the status line, and it is possible to abort the
+operation at any time by typing Ctrl+C.
+.PP
+Files in the file pane are selected using the left mouse button (using any of
+the selection techniques described in the Motif User's Guide), or the
+\fBSelect\fP, \fBSelect all\fP and \fBInvert all\fP options of the \fBFile\fP
+menu. The \fBFilter\fP command allows you to restrict the set of files shown
+in the file pane to files matching a given pattern. The \fBSelect\fP and
+\fBFilter\fP commands accept a space-delimited list of filename patterns. The
+usual wildcards, i.e., *, ? and character classes, are recognized. As one
+expects, the remaining operations in the \fBFile\fP menu (\fBMove\fP,
+\fBCopy\fP, \fBLink\fP, \fBDelete\fP, etc.) apply to the list of selected
+files in the file pane.
+.PP
+Selected files can be dragged from the file pane with the middle mouse button
+to the background of the file pane, as well as a directory in the file or tree
+pane, to perform move, copy (press Ctrl while dragging) or link (press Shift +
+Ctrl) actions. In an analogous manner you can also drag a directory from the
+tree pane. Valid drop sites are indicated by showing the name of the
+corresponding item in the status line. Dropping selected files on another
+(non-directory) file executes the \fIdrop action\fP of that file, as
+configured in the \fBxplorerc\fP file (see \fICUSTOMIZATION\fP below). If the
+file has no associated drop action, but is an executable, it is invoked on the
+selected files through the shell. Of course, files can also be transferred
+between different \fIxplore\fP windows.
+.PP
+Pressing the right mouse button on a file in the file pane pops up a menu with
+operations for that file (including type-specific commands as configured in
+the \fBxplorerc\fP file). A double click with the left mouse button on a
+directory icon in the file pane shows that directory in the file pane. Double
+clicking on another file invokes the \fIpush action\fP of the file. In any
+case, double clicking on a file is equivalent to the \fBOpen\fP command in the
+\fBFile\fP menu. If a file has no associated push action, but is an
+executable, it is invoked through the shell.
+.PP
+In the tree pane, a single click with the left mouse button is used to select
+the current directory to be shown in the file pane. To expand/collapse a
+subdirectory shown in the tree pane, click on the outline (arrowhead) symbol
+in front of the corresponding directory icon.
+.PP
+\fIXplore\fP automatically updates the display of the panes in regular
+intervals whenever directory contents change. To force such an update
+immediately, use the \fBUpdate\fP option of the \fBOptions\fP menu. Automatic
+updates can also be inhibited using the \fBAutomatic updates\fP option of the
+\fBOptions\fP menu.
+.SH "USING THE SHELF"
+The shelf provides a kind of work area where the user can place (links to)
+directories, applications and other files. It is also useful as a clipboard
+for moving and copying files. \fIXplore\fP allows you to set up multiple
+shelves for different purposes. The shelf is associated with a fixed directory
+(usually \fB~/shelf\fP) which is created automatically at startup if it does
+not yet exist. Inside the shelf directory there are different subdirectories
+which correspond to the different shelves configured in the \fBxplorerc\fP
+file. You can switch between shelves using a strip of tabs, which is usually
+located right above the shelf pane.
+.PP
+The shelf functions pretty much like the file pane. A restricted set of file
+commands is available in the \fBShelf\fP menu. The file popup menu can be used
+on shelf items as usual. Furthermore, files can be double-clicked, selected
+and dragged from the shelf, and the shelf can also be used as a drop site for
+items dragged from the tree or file pane. The shelf differs from the file pane
+in that directories, executables and symbolic links are treated
+specially. When double-clicking on a directory in the shelf, the contents of
+that directory are shown in the file pane. Executables in the shelf are
+normally executed in the current directory shown in the file
+pane. Furthermore, when a push, drop or menu action is invoked on a symbolic
+link, the action applies to the directory or file pointed to rather than the
+link itself.
+.PP
+These features turn the shelf into a useful repository for shortcuts to
+frequently used files, directories and applications. For instance, you can
+link the directories and documents you are currently working with to the shelf
+and then open these items by simply double-clicking on the corresponding icon
+in the shelf. Or you can add links to frequently used commands and then run
+these command in the current directory with a single double-click.
+.SH "USING THE LOG"
+As already mentioned, the log pane is used to capture output from programs
+started by \fIxplore\fP. It is usually not visible at program startup, but
+will pop up as soon as there is something interesting to show. You may also
+invoke \fIxplore\fP with the \fB-C\fP option if you prefer to watch
+\fIxplore\fP's output streams in your console window, e.g., \fIxterm
+-C\fP. But note that this only works if you have access to the /dev/console
+device, which is not available to ordinary users on some systems.
+.PP
+The contents of the log are not editable, but you can select text in the log
+pane with the left mouse button and paste it to other applications, like a
+text editor. Double clicks select words, triple clicks lines and quadruple
+clicks the entire contents of the log pane.
+.PP
+The log pane also has a popup menu accessible with the right mouse button. The
+menu offers a single option, \fBLocate\fP, which allows you to quickly locate
+a file or directory listed in the log. This is useful, in particular, with the
+\fBFind\fP command, see \fISTANDARD SETUP\fP below. The \fBLocate\fP command
+operates on the text in the current line or, if the menu was invoked over the
+selection, the currently selected text. It is checked that the selected text
+is a valid filename; if so, the directory containing the file is shown in the
+file pane with the file selected. (If the selected text ends in a slash
+\fB/\fP, it is assumed that it denotes a directory which will be opened in the
+file pane.)
+.SH "KEYBOARD TRAVERSAL AND SHORTCUTS"
+Many menu commands can also be activated using keyboard shortcuts. The
+shortcut for a command is shown in the corresponding menu, with the notations
+Shift+\fIX\fP, Ctrl+\fIX\fP and Alt+\fIX\fP meaning that you should press key
+\fIX\fP along with the Shift, Ctrl or Alt modifier, respectively. The
+shortcuts can be configured in \fIxplore\fP's application defaults file.
+.PP
+If keyboard traversal is enabled (i.e., the \fBkeyboardFocusPolicy\fP is
+\fBXmEXPLICIT\fP, which is the default), then you can also traverse the tab
+strip and the panes with the keyboard. In this case the current focus item is
+indicated with a borderline. You can use Tab and Shift+Tab to cycle through
+the different panes and the tab strip, and the cursor keys to travel through a
+pane or the tab strip. In the tab strip and the tree pane, a selection can be
+made with the Space key. This is equivalent to selecting the corresponding
+item with the mouse. Directories in the tree pane can be expanded and
+collapsed using Ctrl + cursor right/left. In the shelf and the file pane,
+selection of a single item is made implicitly by traversing the pane with the
+cursor keys, and the push action of the current item can be invoked with the
+Return key. To select more than one item, you can switch to "add mode"
+(indicated by a dashed borderline around the focus item) using Shift+F8 and
+then select/deselect individual items with the Space key. Pressing Shift+F8
+again reverts to the normal selection mode. In detail view (see the VIEW
+SUBMENU below), contiguous groups of items can be selected in the file pane
+using Shift together with the cursor keys, and in add mode it is also possible
+to specify a contiguous range by selecting the first element, traversing to
+the last element using the cursor keys and then pressing Shift+Space.
+.PP
+If keyboard traversal is enabled, \fIxplore\fP also provides an \fIincremental
+filename search\fP facility, which can be used to quickly locate a file in the
+shelf or the file pane. With the input focus either in the shelf or the file
+pane, simply start typing the prefix of a filename, and \fIxplore\fP will give
+focus to the first matching icon gadget (or ring the bell if the given prefix
+cannot be found). To give a visual feedback of incremental search mode, the
+filename prefix accepted so far is shown in the status line. The incremental
+search ends as soon as you type some keyboard command like Space or Return
+(which selects/opens the current item), or perform an analogous mouse
+action. You can also explicitly terminate the search by hitting the Esc key.
+.SH "DEVICES"
+\fIXplore\fP includes an automounting facility which allows you to access
+special "devices" in a transparent manner. For this purpose, mount and
+unmount commands for the corresponding mount points can be configured in the
+\fBxplorerc\fP file (see \fICUSTOMIZATION\fP). Whenever such a mount point is
+accessed (e.g., by opening a directory contained in it, or by executing a copy
+or move operation), \fIxplore\fP automatically carries out the corresponding
+mount action for the device. When the device is no longer needed (e.g., after
+having carried out the requested operation, after closing the last directory
+on the device, or when exiting \fIxplore\fP), it is unmounted automatically.
+.PP
+Mount and unmount commands are always executed in the directory in which
+\fIxplore\fP was started. Thus you should make sure that this directory exists
+through the entire \fIxplore\fP session (otherwise \fIxplore\fP will complain
+that it cannot chdir to the startup directory and will be unable to execute
+those commands). The best idea is to start xplore from your home directory
+which presumably will exist for a long time.
+.PP
+Automounted devices are usually represented by corresponding icon gadgets in a
+tiny panel on the right end of the status line, which provides a convenient
+means to quickly check the status of these devices. The \fBxplorerc\fP file
+specifies which devices will be represented, and which icons and labels are
+used to indicate the devices. Unmounted devices are indicated by a stippled
+label. Furthermore, "premounted" devices (i.e., devices which have already
+been mounted by another program or the system, see below) are shown using a
+special foreground color.
+.PP
+Note that \fIxplore\fP cannot automatically detect that the user changes
+removable media like floppies and cdroms. Therefore, before removing such
+media, you have to make sure that the corresponding device is unmounted. For
+this purpose, \fIxplore\fP provides the \fBUnmount\fP (Ctrl+G) and \fBUnmount
+all\fP (Shift+Ctrl+G) commands in the \fBOptions\fP menu which can be used to
+explicitly unmount the file system currently shown in the file pane, or all
+devices which have been automounted by \fIxplore\fP, respectively. After
+changing media, you can remount the device by simply reopening the
+corresponding mount point (e.g., by reselecting the directory in the tree
+pane). You can also use the \fBReread\fP (Ctrl+R) command of the \fBOptions\fP
+menu to remount all devices and reread the contents of the panes. The
+\fBUnmount all\fP command is also useful to quickly unmount all mounted file
+systems before exiting X.
+.PP
+\fIXplore\fP keeps track of the system's mount table, and will only mount
+those devices which have not already been mounted by other programs in general
+or other \fIxplore\fP windows in particular. Furthermore, each instance of
+\fIxplore\fP will only try to unmount those file systems which it has actually
+mounted successfully. If a mount or unmount operation fails, you are given the
+option to retry, ignore or cancel the failed operation. If you ignore the
+failed operation, \fIxplore\fP will pretend that the operation has
+succeeded. You can then try to carry out the failed operation manually. In
+particular, if you ignore a failed unmount operation, the corresponding file
+system becomes "premounted" which means that you will have to unmount it
+manually. You can also entirely turn off the checking of mount/unmount
+operations, using the \fBCheck mounts\fP option of the \fBOptions\fP
+menu. (Disabling this option should be a last resort, since without mount
+checking \fIxplore\fP may get confused about the state of the file systems it
+manages.)
+.SH "CUSTOMIZATION"
+After the first-time setup, your \fB~/.xplore\fP directory contains some files
+which you can edit according to your needs. These are your personal
+\fBstartup\fP script and the \fBxplorerc\fP and \fBmagic\fP configuration
+files. Initially these files are simply copies of the system-wide
+configuration files which are located in the xplore library directory (usually
+\fB/usr/X11/lib/X11/xplore\fP). If you delete any of these files, the
+corresponding system-wide defaults will be used instead.
+.PP
+As already mentioned, the startup script is run each time an instance of
+\fIxplore\fP is started. Options given on the \fIxplore\fP command line are
+passed on to the script so that the script can decide which actions to
+perform. The distributed startup script just makes sure that you have a
+console window when \fIxplore\fP has been invoked with the \fB-C\fP
+option. You can edit your personal copy of the startup script if you need to
+perform other kind of initializations.
+.PP
+File types, automounted devices, shelves and the contents of the command menu
+are configured in the \fBxplorerc\fP (or the system-wide
+\fBsystem.xplorerc\fP) file. The syntax of this file is described in Section
+\fICONFIGURATION FILE\fP below. You'll probably want to edit this file to
+reflect your local setup and preferences. In particular, take a look at the
+device descriptions at the beginning of the file. And if you have CDE, GNOME
+or KDE installed, you might wish to uncomment the corresponding #define at the
+beginning of the \fBxplorerc\fP file, which replaces vanilla X11 programs with
+applications from the corresponding desktop environment.
+.PP
+To determine file types, \fIxplore\fP uses both filename patterns and MIME
+types derived from magic byte sequences at the beginning of a file. The latter
+are specified in the \fBmagic\fP file. This file has the same general format
+as the UNIX \fImagic\fP(4) file used by the \fIfile\fP(1) command, with some
+xplore-specific extensions for handling special kinds of files like symbolic
+links and directories (see the \fIxploretype\fP(1) manual page for details).
+.PP
+If you do not like editing configuration files, you can configure file types
+using the \fBFile type\fP dialog in the \fBFile\fP and \fBShelf\fP menus (see
+\fICHANGING FILE TYPES AT RUNTIME\fP for details). This is also quite useful
+for quickly changing or adding a file type "on the fly".
+.PP
+In general, \fIxplore\fP looks for your personal \fBstartup\fP, \fBxplorerc\fP
+and \fBmagic\fP files in the directory specified with the \fB-c\fP option;
+\fB~/.xplore\fP is only the default. By specifying different directories with
+the \fB-c\fP option, you can manage different private setups with ease.
+.PP
+A lot of other options can be set by means of standard X11 resources.
+System-wide defaults for these are in \fIxplore\fP's application defaults file
+(usually \fB/usr/X11/lib/X11/app-defaults/Xplore\fP). The system-wide defaults
+can be overridden with a \fBdefaults\fP file in your personal configuration
+directory. Frequently-used options can also be changed using the \fBView\fP
+and \fBPreferences\fP submenus of the \fBOptions\fP menu. Use the \fBSave
+defaults\fP command to save all global options, including the size of the main
+window, the layout of the panes and the color scheme selected with the
+\fBColor scheme\fP command, to your \fBdefaults\fP file. (The defaults can
+also be saved automatically when \fIxplore\fP exits, if you enable the
+\fBAutosave defaults\fP option in the \fBPreferences\fP menu. But this can
+cause undesirable effects if you work with several different \fIxplore\fP
+windows simultaneously, and hence is disabled by default.)
+.PP
+The \fBdefaults\fP file is an ordinary resource file which is read by
+\fIxplore\fP automatically when it starts up, and is merged with the resource
+settings in the application defaults file (as well as other global resource
+settings, such as, e.g., settings in your \fB.Xresources\fP or \fB.Xdefaults\fP
+file). You can also edit this file using any text editor. The settings
+modified by \fIxplore\fP reside in a special section which is overwritten each
+time the \fBSave defaults\fP command is used. The remaining contents of the
+file are left unaltered, so that you can add other resource settings
+yourself. Just make sure that you do not edit the lines marking the beginning
+and end of \fIxplore\fP's special sections in the file.
+.SH "SESSION MANAGEMENT"
+\fIXplore\fP also provides its own session management functionality which is
+controlled with the \fB-session\fP command line option, the \fBSave session\fP
+and \fBClear session\fP commands in the \fBOptions\fP menu, and the
+\fBAutosave session\fP option in the \fBPreferences\fP submenu. This does not
+rely on any particular session management protocol, and hence should work on
+any type of X11 system, as long as your environment is set up to read and
+record the WM_COMMAND property, and restart applications accordingly.
+.PP
+If your environment does support X11R5 or R6 session management, and the
+\fBAutosave session\fP option is enabled (which it usually is by default),
+then no special actions are needed to save your current \fIxplore\fP
+sessions. \fIXplore\fP responds to the appropriate requests from the session
+or window manager by saving its current state in such a manner that the
+session is restored the next time the application is restarted. This should
+work out of the box if you are running clients like \fIxsm\fP(1) or
+\fIxtoolplaces\fP(1), or any desktop environment which supports X11R5 or R6
+session management, like OpenLook, CDE, KDE and GNOME. Other desktop flavours
+might need some tweaking.
+.PP
+If your environment only has X11R4 session management (i.e., it just uses the
+WM_COMMAND property to restart applications), you will have to save the state
+of your application manually with the \fBSave session\fP command.
+.PP
+This is probably all you ever need to know about \fIxplore\fP's session
+management, but if you want to learn about all the gory details, then read
+ahead.
+.PP
+In \fIxplore\fP's session management, each session has its own unique
+\fIsession id\fP, and the state of the application is stored in an associated
+\fIsession file\fP. Session files are ordinary resource files named
+\fIhostname\fP\fB-\fP\fIsession-id\fP, which are kept in the user's
+configuration directory. An existing session can be restarted by specifying
+the corresponding session id with the \fB-session\fP command line option.
+Usually, this will be taken care of by your desktop environment, which records
+the command lines of running applications when saving the desktop state or
+when logging out, and restarts these applications when you log in again. You
+can also "clone" a given session by specifying the session id with the
+\fB-clone\fP option; the new instance will then get its own session id, but
+will use the initial settings from the cloned session.
+.PP
+A session file exists until an \fIxplore\fP instance continuing the session is
+exited, at which point the session is terminated and the corresponding session
+file is deleted. You can also delete the current session without exiting
+\fIxplore\fP, with the \fBClear session\fP command. (Note, however, that to
+make sure that your session will not be auto-saved at a later time, you will
+also have to disable the \fBAutosave session\fP option.)
+.PP
+The \fBSave session\fP command saves the current state of the application in
+the current session file. It uses whatever session id was specified with the
+\fB-session\fP option on the command line, or generates a new session id if no
+\fB-session\fP option was given. In the latter case, the actual session id
+chosen by \fIxplore\fP is recorded in the command line which will be used by
+your environment to restart the application. In any case, the restart command
+is also updated to reflect the current window geometry (\fB-geometry\fP
+toolkit option) and, if a directory and/or shelf was specified with
+\fB-p\fP/\fB-s\fP, then those options are also modified according to the
+current state. (This is necessary because command line options always take
+precedence over resource values in the defaults files.)
+.PP
+If the \fBAutosave session\fP option is enabled then \fIxplore\fP also
+automagically saves the current session whenever it receives an appropriate
+message from the session or window manager. This works with both the X11R5
+WM_SAVE_YOURSELF and the X11R6 protocol. The support for X11R6 session
+management features is triggered by the presence of the \fBSESSION_MANAGER\fP
+variable in the environment in which \fBxplore\fP is started. You can also
+forcibly disable X11R6 session management with the \fB-nosm\fP command line
+option or the \fBnosm\fP resource, in which case \fIxplore\fP falls back to
+the X11R5 protocol. This might be useful to work around X11R6 session managers
+which do not work correctly with \fIxplore\fP.
+.PP
+If your system does not provide session management, you can make your own with
+the \fIxtoolplaces\fP(1) program. This programs saves the state of running
+applications in the \fB~/.xtoolplaces\fP file, which can then be executed from
+your X session (\fB~/.xsession\fP) or init script (\fB~/.xinitrc\fP). If you
+don't have \fIxtoolplaces\fP either, you can still start several different
+\fIxplore\fP sessions from your session or init script, by specifying the
+session ids yourself, like so:
+.sp
+.nf
+xplore -session 1 &
+xplore -session 2 &
+...
+.fi
+.sp
+You will then have to save each of your sessions manually with the \fBSave
+session\fP command. Obviously, if you do this you should be careful not to use
+the same session id twice.
+.SH "MENU COMMANDS"
+The following pulldown menus can be accessed through the menu bar in the main
+window. Note that all these menus have tear-off controls (the dashed lines at
+the beginning of the menus) which allow you to keep the menus as separate
+windows on the screen, where they remain posted until they are closed
+explicitly. This is particularly useful if a submenu, such as the
+\fBCommand\fP or \fBView\fP menu, is accessed frequently.
+.PP
+FILE MENU
+.PP
+File manipulation operations. These commands apply to the file pane.
+.TP 4
+.B Open
+.br
+Open the selected file (i.e., execute its push action).
+.TP 4
+.B Command
+.br
+Pops up a menu of global commands as configured in the \fBxplorerc\fP
+file. (Clicking on the tear-off control at the top of the menu gives you a
+kind of toolbar which is convenient if the command menu is accessed
+frequently.)
+.TP 4
+.B Rename...
+.br
+Rename the selected file. (In fact this is nothing but a specialized form of
+the \fBMove\fP command \- see below \- in which the current name of the file
+is displayed as a default for the new name.)
+.TP 4
+.B Move...
+.TP 4
+.B Copy...
+.TP 4
+.B Link...
+.br
+Move, copy or link the selected files to the specified target. If multiple
+files are selected then the target must be a directory. The target may denote
+an absolute path or a relative path w.r.t. the current directory; \fB~\fP
+denotes the user's home directory. Existing files of the same name are
+overwritten or renamed, depending on the current status of the \fBBackups\fP
+option (see OPTIONS MENU below). If the \fBConfirm overwrite\fP option is
+enabled, the user is prompted for confirmation before an existing file is
+overwritten or renamed.
+.TP 4
+.B Delete
+.br
+Remove the selected files. The user is prompted for confirmation if the
+\fBConfirm delete\fP option is set. Confirmation for the deletion of
+individual directories and files can be requested using the \fBConfirm delete
+dir\fP and \fBConfirm delete file\fP options. Please note that this operation
+is destructive, i.e., there is no provision for recovering the deleted files
+later. As a safer alternative, you can use the trashcan shelf included in the
+standard setup (see \fISTANDARD SETUP\fP below).
+.TP 4
+.B Properties...
+.br
+Pops up the \fBProperties\fP dialog which allows you to view and change
+attributes of the selected files (owner, group, permissions and such). Note
+that changes to properties simultaneously apply to \fIall\fP selected
+files. This allows you to change owner, permissions etc. for a whole
+collection of files with one command. Also note that the permission toggles
+cycle through \fIthree\fP states: set, unset and indeterminate. The
+indeterminate state is used to indicate permissions which should be left
+unchanged; it is also used initially for permissions which take on different
+values for different files in the selection.
+.TP 4
+.B File type...
+.br
+Pops up the \fBFile type\fP dialog which allows you to add new and edit
+existing file types "on the fly". It is also useful for viewing the action
+bindings of a file. The dialog allows you to edit the patterns, comment, icons
+and the action list (push, drop and menu actions) of the file type associated
+with the selected file. The \fBAdd\fP button adds a new type with the given
+specifications, the \fBReplace\fP button changes the specifications of the
+current type, and the \fBDelete\fP button can be used to remove the current
+type. (The \fBReplace\fP and \fBDelete\fP operations are only available for
+the "user-defined" types, i.e., the types defined with this
+dialog. "Predefined" types, i.e., types defined in the \fBxplorerc\fP file,
+can only be replaced or deleted by editing the \fBxplorerc\fP file
+accordingly. You can still add a new type overriding the predefined type,
+however.) Please refer to Section \fICHANGING FILE TYPES AT RUNTIME\fP below
+for a closer description of this option.
+.TP 4
+.B Select...
+.br
+Select a set of files in the file pane by specifying a filename pattern. The
+usual wildcards (*, ?, character classes) are recognized, and multiple
+patterns can be specified by delimiting the different patterns with
+whitespace. The \fBReplace\fP button is used to define a new selection. With
+the \fBAdd\fP and \fBRemove\fP buttons, you can add files to or remove them
+from the current selection, respectively.
+.TP 4
+.B Select all
+.br
+Select all files in the file pane (except the parent directory).
+.TP 4
+.B Invert all
+.br
+Invert the set of selected files in the file pane.
+.TP 4
+.B Filter...
+.br
+Specify a pattern of files to be shown in the file pane. The format of the
+filename pattern is the same as that of the \fBSelect\fP command. This
+operation allows you to restrict the set of files shown in the file pane; the
+current filter pattern is shown in the status line. Use the \fBClear\fP button
+in the \fBFilter\fP dialog to remove the current filter pattern.
+.TP 4
+.B Quit
+.br
+Terminate \fIxplore\fP.
+.PP
+DIRECTORY MENU
+.PP
+Directory operations.
+.TP 4
+.B Make directory...
+.br
+Create a new directory.
+.TP 4
+.B Change directory...
+.br
+Change the current directory shown in the file pane. The new path may be
+specified using an absolute path or a relative path w.r.t. the current
+directory; \fB~\fP denotes the user's home directory.
+.TP 4
+.B Parent
+.br
+Go up one level to the parent of the current directory.
+.TP 4
+.B Home
+.br
+Go to the user's home directory.
+.PP
+SHELF MENU
+.PP
+This menu provides some commands which are analogous to those of the
+\fBFile\fP menu, but apply to the currently selected shelf.
+.PP
+OPTIONS MENU
+.PP
+Options and commands to control the display of the panes and the behaviour of
+various commands. This menu contains two submenus, the \fBView\fP and the
+\fBPreferences\fP menu (described below), as well as the following commands:
+.TP 4
+.B Update
+.br
+Force an immediate update of the panes.
+.TP 4
+.B Reread
+.br
+Force the contents of the panes to be reread. This command also remounts and
+rereads the contents of directories which have previously been unmounted with
+the \fBUnmount\fP and \fBUnmount all\fP commands (see below).
+.TP 4
+.B Unmount
+.br
+Unmount the file system currently shown in the file pane and update the panes
+accordingly. Note that this only works for those "automounted" file systems
+which are managed by \fIxplore\fP (see Section \fIDEVICES\fP).
+.TP 4
+.B Unmount all
+.br
+Unmount \fIall\fP automounted file systems and update the panes accordingly.
+.TP 4
+.B Clear log
+.br
+Clear the log pane.
+.TP 4
+.B Color scheme...
+.br
+Set colors from a resource file. Some nice color schemes are included in the
+distribution and can be found in the \fBschemes\fP subdirectory of the xplore
+library directory.
+.TP 4
+.B Save defaults
+.br
+Save the current settings in the \fBView\fP and \fBPreferences\fP menus (see
+below), as well as the size of the main window and the layout of the panes in
+the user's \fBdefaults\fP file.
+.TP 4
+.B Save session
+.TP 4
+.B Clear session
+.br
+Save or clear the current session (see \fISESSION MANAGEMENT\fP).
+.TP 4
+.B Reload configuration file
+.br
+Reloads both the \fBxplorerc\fP and the \fBmagic\fP file and updates the panes
+accordingly.
+.PP
+VIEW SUBMENU
+.PP
+Submenu of the \fBOptions\fP menu containing options to control the display of
+the panes. The following options are global, i.e., they affect the display of
+all directories:
+.TP 4
+.B Large icons
+.TP 4
+.B Small icons
+.TP 4
+.B Detail
+.br
+Switch between icons and detail view in the file pane. In large and small
+icons view, the files are represented using large or small icons,
+respectively, while in detail view a list is shown which consists of small
+icons and file attributes similar to \fIls -l\fP.
+.TP 4
+.B Shelf pane
+.TP 4
+.B Tree pane
+.TP 4
+.B File pane
+.TP 4
+.B Log pane
+.br
+Select the panes to be shown in the main window.
+.PP
+The remaining options only apply to the current directory (but are inherited
+by subdirectories when these are opened initially):
+.TP 4
+.B Sort by name
+.br
+Sort files in the current directory by name, with lexicographically smaller
+files first.
+.TP 4
+.B Sort by size
+.br
+Sort files by size, with larger files first.
+.TP 4
+.B Sort by date
+.br
+Sort files by date, with newer files first.
+.TP 4
+.B Reverse order
+.br
+Sort files in reverse order.
+.TP 4
+.B Directories first
+.br
+Specify whether directories should be listed first.
+.TP 4
+.B Show hidden files
+.br
+Specify whether hidden files (i.e., the "dot" files) should be displayed.
+.TP 4
+.B Show files
+.TP 4
+.B Show directories
+.br
+Specify whether files and/or directories should be displayed.
+.TP 4
+.B Show parent dir
+.br
+Specify whether to show the parent directory.
+.TP 4
+.B Rescan files
+.br
+If enabled then rescan directory contents in order to determine if a directory
+has been changed. Some devices (like, e.g., msdos filesystems under Linux)
+require that this option is set, otherwise directory contents may not be
+updated properly.
+.TP 4
+.B Magic headers
+.br
+Use magic headers to determine file types. This option must be set for
+detecting the MIME type of a file. However, disabling this option on slow
+devices may considerably increase performance.
+.PP
+PREFERENCES SUBMENU
+.PP
+Submenu of the \fBOptions\fP menu containing global options which control the
+behaviour of various commands.
+.TP 4
+.B Absolute paths
+.br
+Determine whether paths in arguments to drop actions or in symbolic links
+should be absolute or relative w.r.t. the directory in which the command is
+invoked.
+.TP 4
+.B Push in current dir
+.br
+If enabled then push actions on (links to) executables in the shelf are
+executed in the current directory instead of the shelf directory (or the
+directory of the executable).
+.TP 4
+.B Drop in target dir
+.br
+If enabled then drop actions are executed in the directory containing the
+target file. Otherwise they are executed in the directory containing the
+dropped files.
+.TP 4
+.B Echo commands
+.br
+Echo commands in push, drop and mount actions which are invoked through the
+shell. This allows you to trace the shell commands executed by \fIxplore\fP
+which is particularly useful when debugging new configuration entries.
+.TP 4
+.B Check mounts
+.br
+This option controls whether \fIxplore\fP should report an error when a mount
+or unmount action fails (indicated by a nonzero return code of the
+action).
+.TP 4
+.B Backups
+.br
+If this option is enabled then \fIxplore\fP creates numbered backups of files
+and directories which are to be replaced during a \fBMove\fP, \fBCopy\fP or
+\fBLink\fP operation, in a manner similar to GNU \fImv\fP with options \fB-b
+-V numbered\fP.
+.TP 4
+.B Show splash screen
+.br
+Enable/disable the display of the splash screen at startup. Note that this
+option will take effect only after you save the defaults.
+.TP 4
+.B Autopopup log
+.br
+If enabled then the log pane automatically pops up when there is new output to
+show.
+.TP 4
+.B Autosave defaults
+.br
+If enabled then \fIxplore\fP automatically save defaults in the \fBdefaults\fP
+file when exiting.
+.TP 4
+.B Autosave session
+.br
+If enabled then \fIxplore\fP automatically saves the current session in
+response to a corresponding request from the session or window manager (see
+\fISESSION MANAGEMENT\fP).
+.TP 4
+.B Confirm drop
+.TP 4
+.B Confirm move
+.TP 4
+.B Confirm copy
+.TP 4
+.B Confirm link
+.TP 4
+.B Confirm delete
+.br
+Request confirmation for the corresponding operations.
+.TP 4
+.B Confirm delete dir
+.TP 4
+.B Confirm delete file
+.br
+Request extra confirmation when a directory or ordinary file is to be
+deleted. The \fBCancel\fP button is used to abort the operation, while the
+\fBAll\fP button allows to proceed without further confirmation.
+.TP 4
+.B Confirm overwrite
+.br
+Request extra confirmation when a file is to be overwritten or renamed
+(depending on the status of the \fBBackups\fP option) in the course of a
+\fBMove\fP, \fBCopy\fP or \fBLink\fP operation.
+.TP 4
+.B Confirm quit
+.br
+Request confirmation for the \fBQuit\fP command in the \fBFile\fP menu.
+.TP 4
+.B Automatic updates
+.br
+Enables or disables automatic updates of the panes.
+.PP
+HELP MENU
+.PP
+Most of the online documentation is in HTML format. In order to display these
+files you must have a suitable browser installed.
+.PP
+.TP 4
+.B Xplore manual
+.br
+Display the xplore manual.
+.TP 4
+.B Xplore FAQ
+.br
+Display frequently asked questions with answers.
+.TP 4
+.B Xplore WWW page
+.br
+Display the xplore website
+(http://www.musikwissenschaft.uni-mainz.de/~ag/xplore).
+.TP 4
+.B About xplore
+.br
+Display version and copyright information.
+.SH "FILE POPUP MENU"
+As already mentioned, this menu pops up when pressing the right mouse button
+on a file in the file or shelf pane. It provides operations on a single
+file. The supported options from the \fBFile\fP menu are \fBOpen\fP,
+\fBRename\fP thru \fBDelete\fP, \fBProperties\fP and \fBFile type\fP. The
+remaining options in the menu are file type-specific commands which are
+configured in the \fBxplorerc\fP file.
+.SH "LOG POPUP MENU"
+This menu pops up when pressing the right mouse button in the log pane. It
+provides a single option, \fBLocate\fP, to locate a file or directory listed
+in the log; see \fIUSING THE LOG\fP for details.
+.SH "CONFIGURATION FILE"
+The \fBxplorerc\fP configuration file consists of a sequence of sections in
+the format described below. Whitespace outside of strings is ignored except if
+it serves to delimit different keywords. Strings follow C-like syntax,
+including the common escape conventions and the possibility to specify a
+whitespace-delimited sequence of strings which is interpreted as the
+concatenation of the given strings. The usual C preprocessor directives are
+recognized as well, and comments may be specified using C syntax.
+.IP "\fBDevice\fP \fIstring\fP [ , \fIstring\fP ] { \fIdevice-fields\fP }" 8
+Defines a device that is to be mounted on the directory given by the first
+\fIstring\fP argument. If specified, the second string denotes a label for the
+device which is used for representing the device in the status line (see
+\fIDEVICES\fP). Only devices whose mount points exist at the time \fIxplore\fP
+is started will be added to the devices table, and among those only the
+devices for which a label is specified will be shown in the status line. The
+commands to be executed for mounting and unmounting the file system as well as
+other options are specified in the \fIdevice-fields\fP list.
+.IP "\fBShelf\fP { \fIshelf-fields\fP }" 8
+Specifies the different shelves which can be accessed using the tabs above the
+shelf pane. Each item specifies the name of a shelf and (optionally) the
+corresponding subdirectory of the shelf directory.
+.IP "\fBType\fP \fIpattern-list\fP { \fItype-fields\fP }" 8
+Specifies a file type. The MIME type of the file (as specified in the
+\fBmagic\fP file) and the filename itself are matched against the given
+comma-separated list of pattern strings. The icons and actions defined for the
+type are given in the \fItype-fields\fP list.
+.sp
+Each pattern consists of an optional MIME type pattern (enclosed in < >) and a
+filename pattern. The usual wildcards, i.e., *, ? and character classes, are
+recognized. Note that MIME types can only be recognized if the current
+directory has magic headers enabled. Otherwise only patterns containing a
+nonempty filename pattern are considered, and the MIME type pattern is
+ignored. The filename pattern can also start with a path specification,
+meaning that the file only matches if it is contained in the specified
+directory. No wildcards are recognized in the path specification, but the
+tilde ~ may be used as an abbreviation for the user's home directory.
+.IP "\fBMagic\fP \fIpattern-list\fP { \fItype-fields\fP }" 8
+Same as the \fBType\fP section, but patterns containing a MIME type
+specification are only matched when the current directory has magic headers
+enabled. Note that to ensure consistent behaviour between the magic and the
+non-magic mode of operation, \fIxplore\fP enforces that special files
+(directories, device files, etc.) can only be matched by a \fBMagic\fP pattern
+with nonempty MIME type part.
+.IP "\fBDefault\fP { \fItype-fields\fP }" 8
+Specifies the icons and actions for all files which do not match any of the
+\fBType\fP and \fBMagic\fP sections.
+.IP "\fBCommand\fP { \fIcommand-fields\fP }" 8
+Specifies the contents of the \fBCommand\fP submenu.
+.PP
+The sections are considered in the order in which they are specified. In
+particular, more specific file type patterns should come before more general
+ones.
+.PP
+The following fields are recognized in a device specification:
+.IP "\fBIcon\fP \fIstring\fP" 8
+Specifies the name of a file in XPM format which denotes the icon used to
+denote the device in the status line.
+.IP "\fBMount\fP \fIstring\fP" 8
+.IP "\fBUnmount\fP \fIstring\fP" 8
+Specifies the command used to mount and unmount the device. As a special case,
+if both these commands are empty or omitted, the entry denotes a "pseudo
+device" which is ignored by the \fBUnmount all\fP command. Such pseudo
+devices are used for the sole purpose of overriding general option settings
+for some special directories.
+.IP "\fBOptions\fP [+|-]\fIoption\fP [ , [+|-]\fIoption\fP ... ]" 8
+Specifies the default view options used for the device. The following
+\fIoption\fP keywords are recognized, with the equivalent options in the
+\fBView\fP submenu given in parentheses (cf. \fIMENU COMMANDS\fP above):
+\fBSortByName\fP (Sort by name), \fBSortBySize\fP (Sort by size),
+\fBSortByDate\fP (Sort by date), \fBReverse\fP (Reverse order),
+\fBDirsFirst\fP (Directories first), \fBHidden\fP (Show hidden files),
+\fBFiles\fP (Show files), \fBDirs\fP (Show directories), \fBUpdir\fP (Show
+parent dir), \fBRescan\fP (Rescan files), \fBMagic\fP (Magic headers).
+.sp
+Option keywords prefixed with \fB+\fP or \fB-\fP denote options to be added to
+or removed from the current option set, respectively; if more than one entry
+for a given option is present, the last entry for that option in the list
+takes precedence. It is possible to specify only prefixed options; in this
+case the settings are taken relative to the current option settings (which are
+usually inherited from the parent directory). For instance, an option list of
+the form \fBOptions +Hidden\fP enforces that hidden files are displayed while
+retaining all other option settings from the parent directory.
+.PP
+In the \fBShelf\fP section, the following fields are recognized:
+.IP "\fBItem\fP \fIstring\fP [ , \fIstring\fP ]" 8
+Specifies a shelf and its associated directory. The first string denotes the
+label displayed on the corresponding tab, and the second string the
+subdirectory of the shelf directory which is to be associated with this
+shelf. If the second string is omitted, the directory name and label are
+assumed to be identical.
+.IP "\fBDefault\fP \fIstring\fP [ , \fIstring\fP ]" 8
+Like the \fBItem\fP field, but denotes the shelf to be selected initially
+(this setting can be overridden with the \fB-s\fP option or by setting the
+\fBcurshelf\fP resource accordingly).
+.PP
+In a \fBType\fP or \fBMagic\fP section, as well as in the \fBDefault\fP
+section, the following fields are recognized:
+.IP "\fBDescription\fP \fIstring\fP" 8
+Specifies a description to be displayed in the properties dialog for files of
+this type. (For backward compatibility, this field can also be denoted with
+the \fBComment\fP keyword instead of \fBDescription\fP.)
+.IP "\fBLargeIcon\fP \fIstring\fP" 8
+Specifies the name of a file in XPM format which denotes the large icon used
+to display the file.
+.IP "\fBSmallIcon\fP \fIstring\fP" 8
+Specifies the name of a file in XPM format which denotes the small icon used
+to display the file.
+.IP "\fBPush\fP \fIstring\fP [ , \fIstring\fP ]" 8
+Specifies the push action associated with the file. The second string argument
+is optional; if it is present, it denotes the directory in which the command
+is to be invoked.
+.IP "\fBDrop\fP \fIstring\fP [ , \fIstring\fP ]" 8
+Specifies the drop action associated with the file. The second string argument
+is optional; if it is present, it denotes the directory in which the command
+is to be invoked.
+.IP "\fBItem\fP \fIstring\fP, \fIstring\fP [ , \fIstring\fP ]" 8
+Specifies a type-specific item in the popup menu for files belonging to the
+type. The first string argument denotes the label to display in the popup
+menu. The second string argument specifies the action to execute. The third
+string argument is optional; if it is present, it denotes the directory in
+which the command is to be invoked.
+.IP "\fBSeparator\fP" 8
+Adds a separator to the popup menu for the file type.
+.PP
+The \fBCommand\fP section is like a file type section, but only \fBItem\fP and
+\fBSeparator\fP fields are allowed. Each item specifies an entry of the
+\fBCommand\fP submenu of the \fBFile\fP menu.
+.PP
+A sample configuration making use of the features described above (including
+the extensive use of C preprocessor directives) can be found in the
+distributed \fBsystem.xplorerc\fP file. You will probably like to edit this
+file to reflect your system configuration and preferences.
+.SH "ACTIONS"
+Commands invoked through push and drop actions, mount actions, the
+\fBCommand\fP submenu and the file popup menu are executed using the shell (as
+given by the \fBshell\fP resource or the \fBSHELL\fP environment
+variable). \fIXplore\fP waits for the command to finish and then updates the
+display, unless the command is executed in the background (using the shell's
+\fB&\fP operator). The command is echoed when the \fBEcho commands\fP option
+of the \fBOptions\fP menu is enabled. Commands are generally invoked with an
+empty stdin file while output goes to the log pane (unless \fIxplore\fP was
+invoked with the \fB-C\fP option in which case output goes to /dev/console).
+.PP
+Mount actions are invoked in the directory in which \fIxplore\fP was started.
+Commands from the \fBCommand\fP submenu and the file popup menu are executed
+in the current directory, with positional parameters $1, $2, ... set to the
+currently selected files. $* may be used to denote the list of all selected
+files.
+.PP
+Push actions on executables in the shelf are invoked in the current directory
+(instead of the shelf directory) when the \fBPush in current dir\fP option is
+enabled, which is the default. In the case of a drop action, the command is
+executed in the directory containing the target file, if the \fBDrop in target
+dir\fP option is enabled, and in the directory containing the dropped files
+otherwise. The latter is the default setting. For the default drop action on
+an executable, the positional parameters are simply set to the list of dropped
+files. Otherwise, the first positional parameter is set to the target of the
+drop action (i.e., the name of the file onto which the selection was dropped),
+and the remaining parameters are set to the list of dropped files.
+.PP
+The directory in which a command is invoked can be overridden with an
+appropriate setting in the corresponding action in the \fBxplorerc\fP
+file. The selected files are specified using absolute pathnames if the
+\fBAbsolute paths\fP option is enabled, and using pathnames relative to the
+directory in which the command is executed otherwise. This is true for
+\fBLink\fP commands as well; thus a link action will produce links to absolute
+or relative pathnames, depending on the status of the \fBAbsolute paths\fP
+option.
+.PP
+For all types of actions the environment variables \fBCURDIR\fP and
+\fBCURSHELF\fP are set to the pathnames of the current directory and the
+current shelf, respectively. This is useful, e.g., if you set up actions which
+have to access these directories explicitly.
+.PP
+\fIXplore\fP lets you prompt the user for additional parameters when a command
+is invoked. In such a case a dialog form appears with one field for each
+parameter, into which the user can enter the required arguments. Currently, no
+checking is done on the supplied parameters; in fact, the user can simply
+leave all fields empty. Parameters are specified in action strings using the
+format %\fIparameter-name\fP% where \fIparameter-name\fP is an arbitrary text
+not containing the % character. The given text will be displayed in the dialog
+form, and the parameter will be replaced with the corresponding value entered
+by the user. (A literal % character can be escaped with two backslashes.)
+.PP
+A default value for a parameter can be specified using the notation
+%\fIparameter-name\fP--\fIdefault-value\fP%. The given value will be used as
+the initial contents of the corresponding input field. Furthermore, there are
+two special constructs for denoting non-input fields. The notation %--%
+inserts a separator in the parameter dialog, and the construct %-\fIlabel\fP%
+adds a label with the given text on a line by itself. These constructs are
+simply replaced by empty strings during parameter substitution.
+.PP
+Note that passing arguments in push and drop actions the "quick and dirty"
+way, e.g.,
+.sp
+.nf
+Push "exec emacs $1 &"
+.fi
+.sp
+will split arguments containing whitespace. Therefore the recommended way is
+to quote the positional parameters as follows:
+.sp
+.nf
+Push "exec emacs \\"$1\\" &"
+.fi
+.sp
+To quote each individual parameter in the \fB$*\fP variable, you should use
+the \fB$@\fP variable instead (Bourne-compatible shells only):
+.sp
+.nf
+Drop "(tar cvfz \\"$@\\"; echo '*** tar done ***') &"
+.fi
+.sp
+A similar effect can be achieved by using the \fB$*\fP variable with the
+\fB:q\fP modifier of the C shell, see \fIcsh\fP(1).
+.PP
+\fIXplore\fP should work with most popular kinds of shells, as long as the
+shell understands the \fB-c\fP option for passing a command with parameter
+substitution. You can determine the shell which should be used by \fIxplore\fP
+with the \fBshell\fP resource or the \fBSHELL\fP environment variable. (Note,
+however, that the distributed \fBsystem.xplorerc\fP file assumes a
+Bourne-compatible shell.)
+.SH "CHANGING FILE TYPES AT RUNTIME"
+The \fBFile type\fP dialog allows you to add new and edit existing file types
+at runtime. This provides a convenient alternative to editing and reloading
+the \fBxplorerc\fP file, but is also less versatile, as the dialog does not
+support C preprocessor directives. \fIXplore\fP distinguishes between
+"predefined" types (i.e., types specified in the \fBxplorerc\fP file), and
+the "user-defined" types created with the \fBFile type\fP dialog. The
+user-defined types are stored in the \fBtypes\fP resource in the
+\fBdefaults\fP file. This is done automatically each time the user adds,
+changes or deletes a type, and the setup is restored automatically whenever
+\fIxplore\fP is restarted.
+.PP
+When the \fBFile type\fP dialog is invoked, it displays the current type of the
+file. (Be aware that this type can depend on whether magic headers are enabled
+in the current directory or not.) You can edit the type definition and store
+it as a new type with the \fBAdd\fP button, replace the existing type with the
+new definition (\fBReplace\fP button), or delete the present type
+(\fBDelete\fP button). The \fBReplace\fP and \fBDelete\fP operations are only
+available for user-defined types. Furthermore, the \fBDelete\fP operation is
+disabled as soon as the type has been edited. Please note that, although the
+\fBFile type\fP dialog does not allow you to change or delete the predefined
+types (you will have to edit the configuration file to accomplish this), you
+can still add new types overriding these entries.
+.PP
+Most fields of the \fBFile type\fP dialog are in a close correspondence to the
+fields of a \fBType\fP or \fBMagic\fP section in the configuration file, as
+described in Section \fICONFIGURATION FILE\fP above, using a somewhat
+simplified input format. The patterns are specified as a space-delimited
+sequence of individual patterns, therefore literal blanks in patterns must be
+escaped using the backslash. (This is not necessary if blanks occur in the
+MIME type part of a pattern where they are enclosed in < >.) The backslash
+itself has to be escaped in this field as well. The \fBMagic\fP toggle below
+the patterns lets you specify whether the defined type requires magic headers
+to be enabled. Switching this button on and off corresponds to the \fBMagic\fP
+and \fBType\fP keywords introducing a type definition in the configuration
+file. The \fBAction list\fP field is a multi-line input field whose value is a
+sequence of \fBPush\fP, \fBDrop\fP, \fBItem\fP and \fBSeparator\fP fields in
+the same format as in the configuration file. The \fBDescription\fP, \fBLarge
+icon\fP and \fBSmall icon\fP fields are simple, literal string fields, which
+are in one-to-one correspondence with the \fBDescription\fP, \fBLargeIcon\fP
+and \fBSmallIcon\fP fields in the configuration file.
+.PP
+The \fBExclusive\fP toggle on the \fBOptions\fP line below the patterns is
+used to change the contents of the \fBPattern list\fP field, by switching
+between the pattern list as specified by the file type, and the single pattern
+describing the file itself on which the dialog was invoked. More precisely,
+the exclusive pattern consists of the MIME type and the absolute pathname of
+the file, and thus only matches this specific file and nothing else. Hence
+this toggle comes in handy if you want to define a new type for just the file
+on which the \fBFile type\fP dialog was invoked.  This option is enabled
+automatically when the current type of a file is the default type (as
+specified in the \fBDefault\fP section of the configuration file), or if the
+file has no type at all. (This can happen, e.g., if no default type is defined
+in the configuration file, or if magic headers are disabled in the current
+directory and the current file is special, i.e., a directory or an
+executable. In the latter case you must turn on magic headers before the
+user-defined type can take effect.)
+.PP
+The \fBPriority\fP field is used to determine the position, and thereby the
+priority, of the type in the current list of all predefined and user-defined
+types. It can be used both to set the priority of a new type to be added with
+the \fBAdd\fP command, and to change the priority of an existing user-defined
+type with the \fBReplace\fP command. Most of the time you can safely ignore
+this field, but if the patterns of different types overlap you should make
+sure that a more specific type has higher priority than a more general one, so
+that the former is not shadowed by the latter. By default, the \fBPriority\fP
+field is set to the current type of the file, which means that the new type
+will take precedence over all existing types matching the same file. This is
+appropriate in most cases. You can change the priority of the type being
+edited or defined by choosing an item from the drop down list associated with
+the \fBPriority\fP field, which lists all currently defined types in the order
+of decreasing precedence. Choose the first (i.e., uppermost) type in this list
+over which the new type should take precedence. The item "(Default)" at the
+end of the list indicates that the new type will have the lowest possible
+priority, just above the default type.
+.PP
+A note about error handling: When a type definition is submitted with the
+\fBAdd\fP or \fBReplace\fP button, it is checked that at least one pattern has
+been specified and that the action list is syntactically correct. If this is
+not the case, \fIxplore\fP will complain and redisplay the \fBFile type\fP
+dialog, with the cursor set to the offending line. Moreover, if the edited
+type does not match the file on which the dialog was invoked (which could be
+due to a typo in the pattern list), then \fIxplore\fP issues a warning message
+and asks the user to confirm that he really wants to add the type. If the
+answer is negative, then the dialog is redisplayed to allow the user to
+correct the definition.
+.SH "STANDARD SETUP"
+As already indicated, the distribution includes a sample configuration which
+you can customize according to your needs. The distributed
+\fBsystem.xplorerc\fP file contains some sample device descriptions, a shelf
+setup, a lot of useful file type definitions, and a command menu with common
+operations. The distribution also includes a preconfigured shelf directory
+which contains a \fBDesk\fP shelf which provides some links to devices, a
+\fBPrograms\fP shelf with links to applications, a clipboard and a
+trashcan. Both the clipboard and the trashcan are simply links to other
+shelves which can also be accessed with the \fBClipboard\fP and \fBTrash\fP
+tabs. Thus no special built-in operations are needed to implement these
+facilities. The options of the command menu, as it is defined in the
+distributed \fBsystem.xplorerc\fP file, are described below.
+.TP 4
+.B Bookmark
+.br
+Put a symbolic link to the current directory into the current shelf.
+.TP 4
+.B Program shortcut...
+.br
+Locate an application (given by the name of the program) using \fIwhich\fP(1)
+and put a symbolic link to it into the current shelf. This option provides a
+convenient method to quickly install a shortcut for an application on the
+shelf.
+.TP 4
+.B URL shortcut...
+.br
+Create an URL shortcut in the current shelf. You are prompted for the URL and
+the name of the shortcut file. The standard setup allows you to open these
+shortcuts in your web browser (\fInetscape\fP by default) with a
+double-click. (The shortcut files are plain ASCII files in the same format
+that is also understood by some of the GNOME tools.)
+.TP 4
+.B Editor
+.br
+Invoke the editor (\fIemacs\fP(1) by default) in the current directory.
+.TP 4
+.B Calculator
+.br
+Invoke the calculator (\fIxcalc\fP(1)).
+.TP 4
+.B Manual
+.br
+Read manual pages (\fIxman\fP(1) by default).
+.TP 4
+.B Terminal
+.br
+Start an \fIxterm\fP(1) in the current directory.
+.TP 4
+.B Xplore
+.br
+Invoke another instance of \fIxplore\fP in the current directory.
+.TP 4
+.B Find...
+.br
+Invoke the \fIfind\fP(1) program in the current directory. You are prompted to
+specify the filename pattern denoting the files to search for, and an optional
+regular expression to perform content-based searches. (If the latter is
+specified, the command only searches for regular files.) The results are shown
+in the log pane. You can use the \fBLocate\fP command in the log popup menu to
+show a listed file in the file pane, see \fIUSING THE LOG\fP.
+.TP 4
+.B Grep...
+.br
+Run \fIgrep\fP(1) on the selected files, for the given regular expression.
+.TP 4
+.B Diff
+.br
+Run \fIdiff\fP(1) on two selected files.
+.TP 4
+.B Shell command...
+.br
+Invoke a shell command in the current directory, with the positional
+parameters set to the currently selected files.
+.TP 4
+.B Make...
+.br
+Invoke \fImake\fP(1) on the specified target in the current directory.
+.TP 4
+.B Tar...
+.TP 4
+.B Tar gzipped...
+.TP 4
+.B Tar bzipped...
+.TP 4
+.B Tar compressed...
+.br
+Create a new \fItar\fP(1) file (with compression using \fIgzip\fP(1),
+\fIbzip2\fP(1) or \fIcompress\fP(1)) from the selected files.
+.TP 4
+.B Zip...
+.br
+Create a \fIzip\fP(1) archive from the selected files.
+.TP 4
+.B Gzip
+.TP 4
+.B Bzip2
+.TP 4
+.B Compress
+.br
+Compress the selected files using \fIgzip\fP(1), \fIbzip2\fP(1) or
+\fIcompress\fP(1).
+.TP 4
+.B Uuencode
+.br
+Encode the selected files using \fIuuencode\fP(1).
+.SH "ICONS"
+A collection of file and application icons is included in the distribution; it
+is installed in the xplore library directory. The icon files are located using
+the search path given by the \fBiconpath\fP resource in the \fBXplore\fP
+application defaults file. Note that \fIxplore\fP currently only supports
+icons in Arnaud Le Hors' XPM format. However, most other image formats can
+easily be converted to XPM using the ImageMagick tools; see \fIconvert\fP(1).
+.SH "INTERFACE TO OTHER APPLICATIONS"
+As a Motif application, \fIxplore\fP provides ICCCM-compliant drag and drop,
+which makes it possible to interface with other applications. The currently
+supported targets are \fBFILES\fP (\fIxplore\fP-specific), \fBFILE_NAME\fP
+(standard ICCCM target used to transfer a single file name) and
+\fBtext/uri-list\fP (standard file list target for XDND-compatible
+applications). The latter is an export-only target which is provided for
+compatibility with KDE and GNOME; it enables you to drag files from
+\fIxplore\fP to KDE and GNOME applications and desktop (but not vice
+versa). The \fBFILES\fP target uses an \fIxplore\fP-specific format which
+encodes the selection of a set of files in an \fIxplore\fP window. The encoded
+string has the following syntax:
+.sp
+.nf
+\fIdirname filename1 filename2\fP ...
+.fi
+.sp
+As indicated, the directory and file names are separated by blanks (blanks and
+other special characters inside the directory or file names are escaped with a
+backslash).
+.PP
+As I become aware of other targets which should be supported I will add them
+as well; if you have any ideas, please let me know.
+.SH "ENVIRONMENT"
+\fIXplore\fP depends on the proper setting of the \fBHOME\fP environment
+variable which denotes the user's home directory. Furthermore, if the
+\fBshell\fP resource is not set then the \fBSHELL\fP environment variable
+indicates the shell to be used for executing commands. When a command is
+invoked through the shell, the environment variables \fBCURDIR\fP and
+\fBCURSHELF\fP are set to the pathnames of the current directory and the
+current shelf, respectively.
+.PP
+In addition, the \fBXPLORELIBDIR\fP environment variable can be used to denote
+an alternative path to the xplore library directory, which is convenient for
+the purpose of testing alternative setups or for relocating the library
+directory without having to recompile the program. If this variable is not set
+in \fIxplore\fP's environment, \fIxplore\fP sets it to the built-in library
+path. Thus actions in the configuration file can rely on the proper setting of
+this variable, which is useful, e.g., if actions access scripts in the library
+directory. Similarly, the \fBXPLORECONFIGDIR\fP environment variable is set to
+the user's config directory, as specified by the \fB-c\fP command line option
+or the \fBconfigdir\fP resource.
+.PP
+Other environment variables may be used by your local setup. For instance, the
+standard \fBxplorerc\fP file lets you specify your preferred editor, text
+viewer and terminal program with the \fBXPLORE_EDITOR\fP, \fBXPLORE_VIEWER\fP
+and \fBXPLORE_TERM\fP variables.
+.SH "FILES"
+Following is a typical list of files and directories used by \fIxplore\fP
+according to the standard setup. Please note that the path to the X library
+directory may be different on your system, and that the actual name of the
+personal shelf and configuration directories can be changed with the
+appropriate command line options and resources.
+.TP
+.B /usr/X11/lib/X11/xplore/system.xplorerc
+System-wide configuration file.
+.TP
+.B /usr/X11/lib/X11/xplore/magic
+System-wide magic file.
+.TP
+.B /usr/X11/lib/X11/xplore/shelf
+Template shelf directory.
+.TP
+.B /usr/X11/lib/X11/xplore/icons
+Standard location for icons in XPM format used by \fIxplore\fP.
+.TP
+.B ~/shelf
+Personal shelf directory.
+.TP
+.B ~/.xplore
+Personal configuration directory. Contains the user's \fBdefaults\fP,
+\fBstartup\fP, \fBxplorerc\fP, \fBmagic\fP and session files.
+.SH "BUGS"
+Probably quite a few. Here are the ones that I know about:
+.PP
+It is not possible to drag the root directory from the tree pane. This is
+actually a feature. :)
+.PP
+Devices, shelf and the command menu should be configurable using dialogs as
+well.
+.PP
+Motif bugs. This varies from system to system, and encompasses things like
+slow or garbled container views when the views get very large, occasional
+rejection of valid drop sites (SUN Motif), and segfaults on editres requests
+(OpenMotif 2.1). If you suffer from one of those, please check your software
+vendor for available patches.
+.PP
+The automounter has only been tested on Linux, but hopefully works on most
+other UNIX flavours as well. If all else fails, you can always disable this
+feature (by commenting out the \fBDevice\fP sections in the \fBxplorerc\fP
+file) and try running a more comprehensive utility like AMD or autofs instead.
+.PP
+Since parameter passing conventions depend on the shell, \fIxplore\fP performs
+an automatic test at startup which tries to determine whether your shell
+passes its name as the zeroth argument to a command invoked using the \fB-c\fP
+option. (Bourne and C shell differ in this respect.) This test may fail, e.g.,
+if your shell's initialization files write to standard output. If this
+happens, you should set the \fBbourneShells\fP resource in the application
+defaults file to a list of Bourne-compatible shells on your system.
+.SH "SEE ALSO"
+moxfm(1), xfm(1), xploretype(1), magic(4),
+http://www.musikwissenschaft.uni-mainz.de/~ag/xplore
+.SH "AUTHOR"
+Albert Graef, with portions of code from \fIxfm\fP (written by Simon Marlow
+and Albert Graef, with contributions from numerous other people), \fImoxfm\fP
+(written by Oliver Mai, based on \fIxfm\fP), and \fIxfsm\fP (the X file system
+monitor, written by Robert Gasch). The magic type detection and shell auto
+detection features have been written for \fIxfm\fP by Juan D. Martin and
+Robert Vogelgesang, respectively.

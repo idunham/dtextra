@@ -1,0 +1,2 @@
+#!/bin/sh
+XPLORELIBDIR=. ./xplore -xrm "xplore.iconpath: ./icons" $*

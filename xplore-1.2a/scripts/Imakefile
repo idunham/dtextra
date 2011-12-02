@@ -1,0 +1,17 @@
+
+#include "../Xplore.tmpl"
+
+all:: setup.script startup.script install.script netscape-remote.script
+
+clean::
+	$(RM) setup.script
+
+setup.script: setup.sed
+	sed -e 's?@XPLORELIBDIR@?$(XPLORELIBDIR)?g' <setup.sed >$@
+	chmod 0777 $@
+
+InstallScript(setup,$(XPLORELIBDIR))
+InstallScript(startup,$(XPLORELIBDIR))
+InstallScript(install,$(XPLORELIBDIR))
+InstallScript(find,$(XPLORELIBDIR))
+InstallScript(netscape-remote,$(XPLORELIBDIR))

@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+                                        
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+                                        
+  <meta name="GENERATOR" content="Mozilla/4.77 [en] (X11; U; Linux 2.4.4-4GB i686) [Netscape]">
+  <title>Xplore FAQ</title>
+</head>
+  <body text="#000000" bgcolor="#ffffff" link="#0000ef" vlink="#51188e" alink="#ff0000">
+                    
+<h1> Xplore FAQ</h1>
+          (Last updated 08-16-02. See <a href="http://www.musikwissenschaft.uni-mainz.de/%7Eag/xplore/">
+         http://www.musikwissenschaft.uni-mainz.de/~ag/xplore/</a>   for
+the   latest  version.)          
+<h2> Contents</h2>
+                    
+<ol>
+                <li> <a href="#1">General</a>    </li>
+                                      
+  <ol>
+                    <li> <a href="#1-1">What is xplore?</a>      </li>
+                     <li> <a href="#1-2">Why Motif?</a>      </li>
+                     <li> <a href="#1-3">Why yet another file manager?</a>
+           </li>
+                     <li> <a href="#1-4">Can I use xplore with GNOME or KDE?</a>
+             </li>
+                     <li> <a href="#1-5">Why use xplore when there's Nautilus 
+  and  Konqueror?</a>      </li>
+                     <li> <a href="#1-6">Where are the desktop icons?</a>
+          </li>
+                                     
+  </ol>
+                 <li> <a href="#2">Getting Started</a>    </li>
+                                      
+  <ol>
+                    <li> <a href="#2-1">How do I start and exit xplore?</a>
+        </li>
+                     <li> <a href="#2-2">What are all the different views 
+for?</a>            </li>
+                     <li> <a href="#2-3">How can I copy/move/delete files 
+and   directories?</a>        </li>
+                     <li> <a href="#2-4">How can I open/view/edit a file?</a>
+          </li>
+                     <li> <a href="#2-5">How do I display/change file permissions?</a>
+             </li>
+                     <li> <a href="#2-6">How do I change the current directory?</a>
+             </li>
+                     <li> <a href="#2-7">How do I update the directory view 
+ after   changes?</a>      </li>
+                                        <li> <a href="#2-8">How do I display
+ the hidden files in  a  directory?</a>      </li>
+      <li> <a href="#2-9">How do I find files?</a></li>
+      <li><a href="#2-10">I don't like the default view style,  how  can
+I  change  it?</a>      </li>
+                     <li> <a href="#2-11">How do I change the colors?</a>
+          </li>
+                     <li> <a href="#2-12">How do I get xplore to remember 
+my  current  setup  (view settings, colors, etc.)?</a>      </li>
+                                     
+  </ol>
+                 <li> <a href="#3">Advanced Topics</a>    </li>
+                                      
+  <ol>
+                    <li> <a href="#3-1">How can I mount my floppy/cdrom drive?</a>
+             </li>
+                     <li> <a href="#3-2">How do I run a program or shell
+command?</a>             </li>
+                     <li> <a href="#3-3">How can I change the command menu
+ and   the shelf?</a>      </li>
+                     <li> <a href="#3-4">How can I change the icons and actions 
+   associated  with a file?</a>      </li>
+                     <li> <a href="#3-5">How do I define new MIME types?</a>
+         </li>
+                     <li> <a href="#3-6">Where can I get more help?</a> 
+        </li>
+                                     
+  </ol>
+                   
+</ol>
+                    
+<h2> <a name="1"></a>  1 General</h2>
+                    
+<h4> <a name="1-1"></a>  1.1 What is xplore?</h4>
+          <b><font face="Helvetica, Arial, sans-serif">Xplore</font></b>
+is  the   world's  most user-friendly, powerful and configurable file manager 
+ based   on the Motif toolkit. But you already knew that anyway. ;-)     
+    
+<h4> <a name="1-2"></a>  1.2 Why Motif?</h4>
+         Because it was (and, to a considerable extent, still is) the industry
+   standard.  At the time I started writing xplore, the established portable
+   X11 toolkits   were Athena, OpenLook and Motif. Both Gtk and Qt still
+were    under heavy construction, so Motif was the only reasonable choice.
+Since   Motif 1.x did not have the container widget, I decided to go with
+Motif 2.x.  This decision probably hindered xplore's wide-spread use in the
+past, but  fortunately you can now get Motif 2.x for free on open source
+operating systems,  and it is also more widely available on commercial UNIXes.
+Moreover, LessTif  is on the verge of reaching full Motif 2.1 compliance;
+when this happens,  portability should not be a major issue anymore. After
+hundreds of hours of Motif coding (and bug-chasing ;-), I am the first one
+to admit that Motif  is not perfect, but IMHO it's still a viable alternative.
+And there are still  many CDE-based  systems out there which do not have
+KDE or GNOME.          
+<h4> <a name="1-3"></a>  1.3 Why yet another file manager?</h4>
+          Well, actually I wrote it just for the fun of it. :) I wanted to
+ have   a file manager which has both a nice GUI and extensive configuration
+ options    for the poweruser. And I wanted it to handle most of the more
+advanced tasks   you normally need the shell for. So xplore offers its own
+unique combination   of features which distinguishes it from the plethora
+of other UNIX file managers  out there. Some highlights:          
+<ul>
+                <li> Customizable <i>four-pane layout</i>, which, besides 
+the   usual  tree  and file views, also includes the "shelf," a kind of clipboard 
+  inspired  by  the NeXT file manager, and a "log" pane for capturing output 
+  from child  processes.</li>
+                 <li> Files can be moved, copied, executed etc. with simple 
+ mouse   operations.  The builtin <i>automounter</i> lets you access special 
+ devices   like floppies  and CDROM drives in a transparent manner.</li>
+                 <li> Xplore is a single-window application, but of course
+ multiple   xplore  instances can be used in concert. In particular, files
+ can be moved   between  different xplore windows using <i>drag and drop</i>
+  .</li>
+                 <li> Full <i>keyboard navigation</i> support, including
+an  incremental   filename search facility.</li>
+                 <li> Comprehensive <i>session management</i> features, including 
+   support  for the X11R5 and R6 session management protocols. This makes 
+xplore   a well-behaved  client of most modern desktop environments.</li>
+                 <li> Extensive <i>configuration options</i>. In particular,
+  file  types are fully configurable, and there is a dialog which allows
+you   to quickly  add new and change existing file types at runtime.</li>
+                   
+</ul>
+          Xplore's file type configuration is definitely one of the outstanding 
+   features  of the program. Xplore does not only interpret MIME types and 
+ filename  extensions,  but allows you to define a file type using a set of
+ arbitrary  MIME type and  filename patterns. Actions can be arbitrary shell
+ commands.  Xplore also lets  you invoke different actions on a file depending
+ on whether  the file was opened with a double-click or is the target of
+a  drag-and-drop  operation, and gives you full control about the directory
+in which the operation  is to be executed. Type-specific popup menus are
+also supported. Last not  least, xplore uses a real configuration language
+featuring C preprocessor  commands, which allows you to set up rather complex
+configurations with moderate  effort.          
+<h4> <a name="1-4"></a>  1.4 Can I use xplore with GNOME or KDE?</h4>
+          Sure. I regularly use both GNOME and KDE and xplore integrates
+nicely    into  these environments. GNOME and KDE session management works
+with xplore    just  fine, and you can also drag files from xplore to GNOME
+and KDE applications and desktop icons (but not vice versa). There even is
+a generic color scheme for KDE. If you copy the <tt>Xplore.ad</tt> file 
+in the <tt>/usr/X11/lib/X11/xplore/schemes</tt> directory to <tt>share/apps/kdisplay/app-defaults</tt>
+          in your KDE directory, then xplore will adapt to
+ the   color scheme selected  within the KDE control center.          
+<h4> <a name="1-5"></a>  1.5 Why use xplore when there's Nautilus and Konqueror?</h4>
+         Nautilus and Konqueror are great as browser programs, but IMHO xplore
+   is  superior for plain file management and program launching, because
+of   the shell integration and extensive configuration options it provides.
+With   xplore you can perform many of the more advanced tasks which you would
+normally    use the shell for. You can extract and create compressed files
+and archives,    run Makefiles and shell scripts, apply patches, process
+TeX documents, print   manpages, etc. etc., all with some simple mouse operations.
+If some operation   is not provided in the standard setup, or does not perform
+the actions you   would like, you can easily configure it yourself. And you
+don't have to program   any "plugins" for this purpose; most things can be
+done with a single shell   command or maybe a tiny shell script. So if you
+find that you frequently  have to resort to the shell when performing everyday 
+routine tasks which you would rather do from your file manager instead, then 
+xplore is probably the right tool for you.         
+<h4> </h4>
+ 
+<h4><a name="1-6"></a> 1.6 Where are the desktop icons?</h4>
+           That's probably the most frequently asked question. I think it 
+should    be  up to your desktop environment to provide those. My idea was 
+to have   everything  in a single compact window, so xplore has its own integrated 
+ "desktop", the shelf, and does not mess around with your X root window. Some
+ people might actually prefer that. :)          
+<h2> <a name="2"></a>  2 Getting Started</h2>
+                    
+<h4> <a name="2-1"></a>  2.1 How do I start and exit xplore?</h4>
+          Just like any other X application. I.e., you can type the command 
+ <tt>      xplore</tt> in an xterm, or invoke it from your desktop/window 
+manager    (provided that you have a corresponding desktop icon or menu option). 
+To   exit xplore, either close the xplore window, or select the Quit command 
+ from  the File menu.          
+<p>When you start xplore for the first time, it will prompt you to run the 
+    local setup script, which installs your personal "shelf" directory and 
+ some   configuration files in your home directory. The configuration files 
+ can be  found in your <tt>.xplore</tt> directory; of course, you can edit 
+ these to your heart's  content. </p>
+                 
+<h4> <a name="2-2"></a>  2.2 What are all the different views for?</h4>
+          If you know other Explorer-like file managers then you're already 
+ familiar    with most of the views. There is a <i>directory tree view</i>
+    on the left,    and the <i>file view</i> showing the current directory
+ on the right. Below    that is the <i>status line</i>, and a kind of "tray" 
+ showing which special    devices are currently mounted. At the top of the 
+ window there is the usual    <i>menu bar</i>. See the figure below:     
+    
+<center>          
+<p><img src="Screen.gif" alt="(screenshot)" height="623" width="701">
+          </p>
+                 
+<p><b>Fig. 1</b> Xplore main window.</p>
+         </center>
+                    
+<p>The tiny file view at the top of the window (below the strip of tabs)
+is the <i>shelf view</i>, which is associated with your personal shelf directory. 
+    The shelf is normally used as a repository for (symbolic links to) directories, 
+    documents and programs, to keep together the things you are frequently 
+ working   with. You can also use it as a kind of clipboard for moving and 
+ copying files.  The tab strip above the shelf lets you select different shelf
+ subdirectories,   used for different purposes (including a trashcan). </p>
+                 
+<p>The scrolled text view at the bottom, right above the status line, is
+the <i>log view</i>. It is normally not visible at startup, but pops up when 
+    there is some output from programs started with xplore. </p>
+                 
+<p>Note that xplore's main window is a "paned" window. Thus you can change
+     the relative sizes of the views by grabbing one of the "sashes" and
+dragging      it into the desired direction. </p>
+                 
+<h4> <a name="2-3"></a>  2.3 How can I copy/move/delete files and directories?</h4>
+          "Drag and drop" with the middle mouse button works as usual (see
+ the   <a href="http://docs.hp.com./hpux/onlinedocs/B1171-90146/B1171-90146.html">
+         OSF Motif User Guide</a>  ). Press the middle mouse button on the
+ file   you want to move, and drag it to the target directory (which can
+be  in another   xplore window). During the drag, the current target is shown
+ in the status   line, and you can abort the operation with the Esc key.
+(Xplore  usually asks  you for confirmation before it actually carries out
+the move;  you can switch  this off in the Options  menu.) You can also move
+more than  one file, if you first select the files  you want to move. To
+copy files,  or create symlinks,  you do a drag with the  Ctrl key (resp.
+Shift+Ctrl) depressed.          
+<p>Selection is done using any of the usual techniques described in the OSF 
+    Motif User Guide. Once you selected a file or group of files, you can 
+also    operate on them with the operations in the File menu (or the Shelf 
+menu,   if you want to operate on the current selection in the shelf). This 
+menu  also has an option for deleting files (and directories). To create a
+new directory, use the corresponding operation in the Directory menu.</p>
+         
+<p><b>IMPORTANT: </b>Xplore's builtin delete operations always deletes files 
+  <i>permanently</i>, i.e., there is no provision for recovering the deleted 
+ files later. As a safer alternative, you can drag files to the "Trash" icon 
+ in the Desk shelf, which causes the files to be moved to the Trash shelf 
+from where you can still recover them. The context menu of the Trash icon 
+offers an  option to empty the trash when you really want to get rid of the 
+files there.<br>
+      </p>
+                 
+<h4> <a name="2-4"></a>  2.4 How can I open/view/edit a file?</h4>
+          Simple: double click on the file (with the left mouse button),
+or  use   the  Open command. Actually, this will carry out a (configurable) 
+file  type-specific    action on the file. By default, text files will be 
+opened  in your favourite    text editor. (You can usually set the editor 
+you want  to use with the <tt>  XPLORE_EDITOR</tt>   environment variable.) 
+Furthermore,  you can also pop  up a context-sensitive   menu on a file in 
+the file or shelf view with the  right mouse button. This   menu gives you 
+access to the common file operations  (Copy, Move, Delete,  ...) as well as
+type-specific operations for editing,  viewing, etc.          
+<h4> <a name="2-5"></a>  2.5 How do I display/change file permissions?</h4>
+          With the Properties command. You can also invoke this command on
+ a  selected    group of files. (But it will not recurse into subdirectories.)
+           
+<h4> <a name="2-6"></a>  2.6 How do I change the current directory?</h4>
+          As usual, with a single-click on a directory in the tree pane,
+or  a  double-click   on a directory in the file or shelf pane. The Directory 
+ menu  also has commands   for changing to the parent or the home directory, 
+ and  the Change directory   command allows you to type in the directory pathname,
+  or browse the filesystem   to select the new directory with the standard
+ file selection dialog.          
+<h4> <a name="2-7"></a>  2.7 How do I update the directory view after changes?</h4>
+          This will usually happen automatically in regular time intervals. 
+ You   can  also force an update immediately, with the Update command in the
+ Options   menu, and force all views to be refreshed with the Reread command.
+          
+<h4> <a name="2-8"></a>  2.8 How do I display the hidden files in a directory?</h4>
+          With the Show hidden files command (Options menu, View submenu).
+ Keyboard  shortcut: Ctrl-H.  
+<h4><a name="2-9"></a>  2.9 How do I find files?</h4>
+   
+<p>Xplore does not have a specialized find dialog (yet), but the standard 
+ setup provides an interface to the UNIX find command. Run the Find command
+ (Alt-F) from the Command menu  and enter the filename pattern and, optionally,
+ the regular expression to search for. The results will be listed in the
+log  pane. To show any of the listed files in the file pane, press the right
+mouse  button on the corresponding line in the log pane to bring up the log
+popup  menu and select the Locate command.<br>
+  </p>
+            
+<h4> <a name="2-10"></a>  2.10 I don't like the default view style, how can 
+   I change it?</h4>
+          You can customize most of the interface according to your taste;
+ see   the   View submenu in the Options menu for the most frequently used
+ options.   More  exotic settings can be changed by editing resource files.
+          
+<h4> <a name="2-11"></a>  2.11 How do I change the colors?</h4>
+          You can do this with the Color scheme command in the Options menu.
+  This   command allows you to pick a standard X11 resource file with color
+  (and possibly  other) resource settings, and updates the application accordingly.
+  Some nice  color schemes (*.scheme files) can be found in the xplore library
+  directory  (use the Browse button to select one of those). To revert to
+the  default settings just push the Clear button in the Color scheme dialog.
+         
+<h4> <a name="2-12"></a>  2.12 How do I get xplore to remember my current 
+   setup (view settings, colors,  etc.)?</h4>
+          The Save defaults command in the Option menu will save all "global" 
+  options   (including the size of the main window, the current layout of 
+the  panes,  and the current color scheme) to the defaults file in your <tt>
+  ~/.xplore</tt>     directory.   Note that the saved defaults will be used 
+by <i>all</i> new  xplore instances   you invoke.          
+<p>Xplore can also save and restore settings of individual xplore instances
+     on a per session basis. For this to work, your environment must support
+   session management features. For instance, desktop environments like KDE
+  or GNOME let you save your current session when logging out. The state
+of   all running applications (including your xplore windows) is then recorded
+  and the session is restored automatically next time you log in again.</p>
+   
+<h4></h4>
+   
+<h2><a name="3"></a>  3 Advanced Topics</h2>
+          (I'm sorry, but this section is currently rather sketchy. See the 
+ xplore    <a href="Manual">manual</a>
+      for more information.)          
+<h4> <a name="3-1"></a>  3.1 How can I mount my floppy/cdrom drive?</h4>
+          Xplore has a builtin automounter, which will automagically mount
+ special     devices if the corresponding mount point is accessed within
+xplore.  For   this to work, you must correctly configure these devices.
+Look at the  beginning     of the <tt>xplorerc</tt> file in your <tt>~/.xplore</tt>
+ directory  and  edit the device configuration section to reflect your local
+configuration.   For convenience, you can then create some links to your
+devices' mount points   in the Desktop shelf. To add custom icons to these
+links, see question 3.4   below.<br>
+   <br>
+   <b>IMPORTANT: </b>Xplore keeps automounted file systems open as long as
+ they are in use. Before you change removable media like floppies or cdroms,
+ you <b>must</b> unmount the devices using the corresponding commands in
+the  Option menu, otherwise the file system on writeable media might become
+corrupted.  A quick way to do this is to unmount all automounted devices
+with the Unmount  all command (Shift-Ctrl-G), change media, then remount
+devices and reread  the contents of all views with the Reread (Ctrl-R) command.<br>
+             
+<h4> <a name="3-2"></a>  3.2 How do I run a program or shell command?</h4>
+          You can run an executable program or shell script by simply double-clicking
+     it, and carry out various type-specific commands on a file with the
+context      (right mouse button) menu, or when a collection of files is
+dropped on   another  file. You can also invoke some preconfigured shell
+commands with   the Command  submenu in the File menu; in particular, this
+menu also includes   an option  to execute an arbitrary shell command, with
+the positional parameters   set  to the currently selected files. If you
+have to type a whole sequence   of commands, you can invoke an xterm in the
+current directory with the Terminal    command (you can set an alternate
+terminal program to use with the <tt>   XPLORE_TERM</tt>    environment variable).
+         
+<p>All these types of actions are executed by invoking the shell, with standard 
+    output and error redirected so that you can read the output produced by
+  child  processes in the log view. You can learn about the commands executed 
+  for each action if you enable the Echo commands option in the Preferences 
+  menu, which causes the executed commands to be printed in the log pane. 
+</p>
+                 
+<h4> <a name="3-3"></a>  3.3 How can I change the command menu and the shelf?</h4>
+          By editing the corresponding entries at the beginning of your <tt>
+   ~/.xplore/xplorerc</tt>      file.          
+<h4> <a name="3-4"></a>  3.4 How can I change the icons and actions associated 
+   with a file?</h4>
+          Either by editing the <tt>~/.xplore/xplorerc</tt> file, or with 
+the  File type dialog   in the File, Shelf and context menus. The configuration 
+  options are described   in detail in the xplore <a href="Manual">
+       manual page</a>  .          
+<h4> <a name="3-5"></a>  3.5 How do I define new MIME types?</h4>
+          By editing the <tt>~/.xplore/magic</tt> file. Again, see the xplore 
+  <a href="Manual">    manual page</a>
+       for details.          
+<h4> <a name="3-6"></a>  3.6 Where can I get more help?</h4>
+          Read the <a href="Manual">
+     manual  page</a>  ! :)          
+<p>Suggestions, critizism, humour, any question which should be covered here, 
+    something missing in the manual? Please email me at <a href="mailto:ag@muwiinfa.geschichte.uni-mainz.de">
+         ag@muwiinfa.geschichte.uni-mainz.de</a>  ! </p>
+                 
+</body>
+</html>

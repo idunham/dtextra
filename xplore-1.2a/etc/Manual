@@ -1,0 +1,1512 @@
+<HTML>
+<HEAD>
+<TITLE>XPLORE(1) manual page</TITLE>
+</HEAD>
+<BODY BGCOLOR="#efefef" TEXT="black" LINK="blue" VLINK="#551A8B" ALINK="red">
+<A HREF="#toc">Table of Contents</A><P>
+
+<H2><A NAME="sect0" HREF="#toc0">Name</A></H2>
+xplore - yet another Motif file manager <P>
+ 
+<H2><A NAME="sect1" HREF="#toc1">Synopsis</A></H2>
+<B>xplore</B> [<I>options</I> ...] <P>
+
+<H2><A NAME="sect2" HREF="#toc2">Description</A></H2>
+<I>Xplore</I>
+is a powerful and highly configurable Motif file manager with an Explorer-like
+user interface. Besides the usual tree and file views, <I>xplore</I> also has a
+"shelf", a kind of clipboard inspired by the NeXT file manager, and a "log"
+pane for capturing output from launched programs. The builtin automounter
+allows you to access special devices in a transparent manner. Files can
+be moved and copied using simple mouse operations, and you can execute
+type-specific shell commands when a file is opened, used as the target of
+a drag and drop operation, or manipulated using popup menus. File types
+can be defined in terms of arbitrary filename and MIME type patterns. Full
+keyboard navigation is also supported, including an incremental filename
+search facility. Last not least, <I>xplore</I> speaks all standard X11 session
+management protocols and thus integrates nicely with most popular desktop
+environments. 
+<H2><A NAME="sect3" HREF="#toc3">Options</A></H2>
+Besides the standard toolkit options (see <I><A HREF="X.1.html">X</I>(1)</A>
+), the
+following command line switches are recognized: 
+<DL>
+
+<DT><B>-C</B> </DT>
+<DD>Redirect output streams
+to /dev/console. </DD>
+
+<DT><B>-c</B><I> config-dir</I> </DT>
+<DD>Specify the name of the configuration directory
+(<B>~/.xplore</B> by default), in which <I>xplore</I> looks for the user's private configuration
+and resource files (see <I>CUSTOMIZATION</I>). </DD>
+
+<DT><B>-clone</B><I> session-id</I> </DT>
+<DD>Clone the given
+session (see <I>SESSION MANAGEMENT</I>). </DD>
+
+<DT><B>-help</B> </DT>
+<DD>Print a short help message and exit.
+</DD>
+
+<DT><B>-nosm</B> </DT>
+<DD>Disable X11R6 session management features (see <I>SESSION MANAGEMENT</I>).
+</DD>
+
+<DT><B>-o</B><I> cpp-options</I> </DT>
+<DD>Specify the options to pass to the C preprocessor when parsing
+the <B>xplorerc</B> configuration file (see <I>CUSTOMIZATION</I>). </DD>
+
+<DT><B>-p</B><I> directory</I> </DT>
+<DD>Specify
+the name of the directory to be displayed on startup (default is usually
+the current directory, i.e., the directory in which <I>xplore</I> is started). </DD>
+
+<DT><B>-s</B><I>
+shelf</I> </DT>
+<DD>Specify the name of the shelf to be selected initially (see <I>USING
+THE SHELF</I>). </DD>
+
+<DT><B>-session</B><I> session-id</I> </DT>
+<DD>Start or continue the given session, and restore
+the previously recorded application state (see <I>SESSION MANAGEMENT</I>). </DD>
+
+<DT><B>-tree
+-file -shelf -log</B> </DT>
+<DD>Specify the panes to be shown at startup (see <I>USAGE</I> below).
+</DD>
+
+<DT><B>-version</B> </DT>
+<DD>Print version information and exit. </DD>
+</DL>
+
+<H2><A NAME="sect4" HREF="#toc4">Startup</A></H2>
+You can invoke <I>xplore</I>
+by just typing the command <B>xplore</B> in an xterm, or directly from your window
+manager or desktop environment, provided that you created a corresponding
+desktop icon or menu entry. When starting up for the first time, <I>xplore</I>
+asks you whether you want to run the local <I>setup</I> script which installs
+some configuration files and a preconfigured shelf directory in your home
+directory. Depending on your local setup, the script may also perform other
+site-specific initialization. You can bail out at this time if you do not
+want to do this, but you need to go ahead if you want to use <I>xplore</I>. Next
+<I>xplore</I> runs the <I>startup</I> script which is there to perform some other initializations
+each time <I>xplore</I> is invoked. After the first-time setup you will find your
+personal copies of the configuration files and the startup script in the
+<B>~/.xplore</B> directory so that you can modify them according to your needs
+(see <I>CUSTOMIZATION</I> below). 
+<H2><A NAME="sect5" HREF="#toc5">Usage</A></H2>
+Most of this should be fairly obvious. It
+is assumed that you are familiar with the basic principles of using Motif
+applications (if not please refer to the <I>OSF/Motif User's Guide</I>). <P>
+The main
+window of <I>xplore</I> is divided into up to four "panes:" the <I>shelf</I>, which is
+used as a kind of clipboard; the <I>tree pane</I> which shows the directory tree;
+the <I>file pane</I> which shows the contents of the current directory (the name
+of which is displayed in the title bar of the <I>xplore</I> window); and the <I>log
+pane</I> which captures the output from programs launched from <I>xplore</I>. <P>
+At the
+bottom of the main window you find a <I>status line</I> which displays useful
+information about the current directory and automounted devices. The status
+line is also used temporarily to give feedback for some operations. In particular,
+when a copy or delete operation is in progress, the name of the current
+file is shown in the status line, and it is possible to abort the operation
+at any time by typing Ctrl+C. <P>
+Files in the file pane are selected using
+the left mouse button (using any of the selection techniques described
+in the Motif User's Guide), or the <B>Select</B>, <B>Select all</B> and <B>Invert all</B> options
+of the <B>File</B> menu. The <B>Filter</B> command allows you to restrict the set of files
+shown in the file pane to files matching a given pattern. The <B>Select</B> and
+<B>Filter</B> commands accept a space-delimited list of filename patterns. The usual
+wildcards, i.e., *, ? and character classes, are recognized. As one expects,
+the remaining operations in the <B>File</B> menu (<B>Move</B>, <B>Copy</B>, <B>Link</B>, <B>Delete</B>, etc.)
+apply to the list of selected files in the file pane. <P>
+Selected files can
+be dragged from the file pane with the middle mouse button to the background
+of the file pane, as well as a directory in the file or tree pane, to perform
+move, copy (press Ctrl while dragging) or link (press Shift + Ctrl) actions.
+In an analogous manner you can also drag a directory from the tree pane.
+Valid drop sites are indicated by showing the name of the corresponding
+item in the status line. Dropping selected files on another (non-directory)
+file executes the <I>drop action</I> of that file, as configured in the <B>xplorerc</B>
+file (see <I>CUSTOMIZATION</I> below). If the file has no associated drop action,
+but is an executable, it is invoked on the selected files through the shell.
+Of course, files can also be transferred between different <I>xplore</I> windows.
+<P>
+Pressing the right mouse button on a file in the file pane pops up a menu
+with operations for that file (including type-specific commands as configured
+in the <B>xplorerc</B> file). A double click with the left mouse button on a directory
+icon in the file pane shows that directory in the file pane. Double clicking
+on another file invokes the <I>push action</I> of the file. In any case, double
+clicking on a file is equivalent to the <B>Open</B> command in the <B>File</B> menu. If
+a file has no associated push action, but is an executable, it is invoked
+through the shell. <P>
+In the tree pane, a single click with the left mouse
+button is used to select the current directory to be shown in the file
+pane. To expand/collapse a subdirectory shown in the tree pane, click on
+the outline (arrowhead) symbol in front of the corresponding directory
+icon. <P>
+<I>Xplore</I> automatically updates the display of the panes in regular intervals
+whenever directory contents change. To force such an update immediately,
+use the <B>Update</B> option of the <B>Options</B> menu. Automatic updates can also be
+inhibited using the <B>Automatic updates</B> option of the <B>Options</B> menu. 
+<H2><A NAME="sect6" HREF="#toc6">Using
+the Shelf</A></H2>
+The shelf provides a kind of work area where the user can place
+(links to) directories, applications and other files. It is also useful
+as a clipboard for moving and copying files. <I>Xplore</I> allows you to set up
+multiple shelves for different purposes. The shelf is associated with a
+fixed directory (usually <B>~/shelf</B>) which is created automatically at startup
+if it does not yet exist. Inside the shelf directory there are different
+subdirectories which correspond to the different shelves configured in
+the <B>xplorerc</B> file. You can switch between shelves using a strip of tabs,
+which is usually located right above the shelf pane. <P>
+The shelf functions
+pretty much like the file pane. A restricted set of file commands is available
+in the <B>Shelf</B> menu. The file popup menu can be used on shelf items as usual.
+Furthermore, files can be double-clicked, selected and dragged from the
+shelf, and the shelf can also be used as a drop site for items dragged
+from the tree or file pane. The shelf differs from the file pane in that
+directories, executables and symbolic links are treated specially. When
+double-clicking on a directory in the shelf, the contents of that directory
+are shown in the file pane. Executables in the shelf are normally executed
+in the current directory shown in the file pane. Furthermore, when a push,
+drop or menu action is invoked on a symbolic link, the action applies to
+the directory or file pointed to rather than the link itself. <P>
+These features
+turn the shelf into a useful repository for shortcuts to frequently used
+files, directories and applications. For instance, you can link the directories
+and documents you are currently working with to the shelf and then open
+these items by simply double-clicking on the corresponding icon in the shelf.
+Or you can add links to frequently used commands and then run these command
+in the current directory with a single double-click. 
+<H2><A NAME="sect7" HREF="#toc7">Using the Log</A></H2>
+As already
+mentioned, the log pane is used to capture output from programs started
+by <I>xplore</I>. It is usually not visible at program startup, but will pop up
+as soon as there is something interesting to show. You may also invoke <I>xplore</I>
+with the <B>-C</B> option if you prefer to watch <I>xplore</I>'s output streams in your
+console window, e.g., <I>xterm -C</I>. But note that this only works if you have access
+to the /dev/console device, which is not available to ordinary users on
+some systems. <P>
+The contents of the log are not editable, but you can select
+text in the log pane with the left mouse button and paste it to other applications,
+like a text editor. Double clicks select words, triple clicks lines and
+quadruple clicks the entire contents of the log pane. <P>
+The log pane also
+has a popup menu accessible with the right mouse button. The menu offers
+a single option, <B>Locate</B>, which allows you to quickly locate a file or directory
+listed in the log. This is useful, in particular, with the <B>Find</B> command,
+see <I>STANDARD SETUP</I> below. The <B>Locate</B> command operates on the text in the
+current line or, if the menu was invoked over the selection, the currently
+selected text. It is checked that the selected text is a valid filename;
+if so, the directory containing the file is shown in the file pane with
+the file selected. (If the selected text ends in a slash <B>/</B>, it is assumed
+that it denotes a directory which will be opened in the file pane.) 
+<H2><A NAME="sect8" HREF="#toc8">Keyboard
+Traversal and Shortcuts</A></H2>
+Many menu commands can also be activated using keyboard
+shortcuts. The shortcut for a command is shown in the corresponding menu,
+with the notations Shift+<I>X</I>, Ctrl+<I>X</I> and Alt+<I>X</I> meaning that you should press
+key <I>X</I> along with the Shift, Ctrl or Alt modifier, respectively. The shortcuts
+can be configured in <I>xplore</I>'s application defaults file. <P>
+If keyboard traversal
+is enabled (i.e., the <B>keyboardFocusPolicy</B> is <B>XmEXPLICIT</B>, which is the default),
+then you can also traverse the tab strip and the panes with the keyboard.
+In this case the current focus item is indicated with a borderline. You
+can use Tab and Shift+Tab to cycle through the different panes and the
+tab strip, and the cursor keys to travel through a pane or the tab strip.
+In the tab strip and the tree pane, a selection can be made with the Space
+key. This is equivalent to selecting the corresponding item with the mouse.
+Directories in the tree pane can be expanded and collapsed using Ctrl +
+cursor right/left. In the shelf and the file pane, selection of a single
+item is made implicitly by traversing the pane with the cursor keys, and
+the push action of the current item can be invoked with the Return key.
+To select more than one item, you can switch to "add mode" (indicated by
+a dashed borderline around the focus item) using Shift+F8 and then select/deselect
+individual items with the Space key. Pressing Shift+F8 again reverts to
+the normal selection mode. In detail view (see the VIEW SUBMENU below),
+contiguous groups of items can be selected in the file pane using Shift
+together with the cursor keys, and in add mode it is also possible to specify
+a contiguous range by selecting the first element, traversing to the last
+element using the cursor keys and then pressing Shift+Space. <P>
+If keyboard
+traversal is enabled, <I>xplore</I> also provides an <I>incremental filename search</I>
+facility, which can be used to quickly locate a file in the shelf or the
+file pane. With the input focus either in the shelf or the file pane, simply
+start typing the prefix of a filename, and <I>xplore</I> will give focus to the
+first matching icon gadget (or ring the bell if the given prefix cannot
+be found). To give a visual feedback of incremental search mode, the filename
+prefix accepted so far is shown in the status line. The incremental search
+ends as soon as you type some keyboard command like Space or Return (which
+selects/opens the current item), or perform an analogous mouse action. You
+can also explicitly terminate the search by hitting the Esc key. 
+<H2><A NAME="sect9" HREF="#toc9">Devices</A></H2>
+<I>Xplore</I>
+includes an automounting facility which allows you to access special "devices"
+in a transparent manner. For this purpose, mount and unmount commands for
+the corresponding mount points can be configured in the <B>xplorerc</B> file (see
+<I>CUSTOMIZATION</I>). Whenever such a mount point is accessed (e.g., by opening
+a directory contained in it, or by executing a copy or move operation),
+<I>xplore</I> automatically carries out the corresponding mount action for the
+device. When the device is no longer needed (e.g., after having carried out
+the requested operation, after closing the last directory on the device,
+or when exiting <I>xplore</I>), it is unmounted automatically. <P>
+Mount and unmount
+commands are always executed in the directory in which <I>xplore</I> was started.
+Thus you should make sure that this directory exists through the entire
+<I>xplore</I> session (otherwise <I>xplore</I> will complain that it cannot chdir to
+the startup directory and will be unable to execute those commands). The
+best idea is to start xplore from your home directory which presumably
+will exist for a long time. <P>
+Automounted devices are usually represented
+by corresponding icon gadgets in a tiny panel on the right end of the status
+line, which provides a convenient means to quickly check the status of
+these devices. The <B>xplorerc</B> file specifies which devices will be represented,
+and which icons and labels are used to indicate the devices. Unmounted devices
+are indicated by a stippled label. Furthermore, "premounted" devices (i.e.,
+devices which have already been mounted by another program or the system,
+see below) are shown using a special foreground color. <P>
+Note that <I>xplore</I>
+cannot automatically detect that the user changes removable media like
+floppies and cdroms. Therefore, before removing such media, you have to
+make sure that the corresponding device is unmounted. For this purpose,
+<I>xplore</I> provides the <B>Unmount</B> (Ctrl+G) and <B>Unmount all</B> (Shift+Ctrl+G) commands
+in the <B>Options</B> menu which can be used to explicitly unmount the file system
+currently shown in the file pane, or all devices which have been automounted
+by <I>xplore</I>, respectively. After changing media, you can remount the device
+by simply reopening the corresponding mount point (e.g., by reselecting the
+directory in the tree pane). You can also use the <B>Reread</B> (Ctrl+R) command
+of the <B>Options</B> menu to remount all devices and reread the contents of the
+panes. The <B>Unmount all</B> command is also useful to quickly unmount all mounted
+file systems before exiting X. <P>
+<I>Xplore</I> keeps track of the system's mount table,
+and will only mount those devices which have not already been mounted by
+other programs in general or other <I>xplore</I> windows in particular. Furthermore,
+each instance of <I>xplore</I> will only try to unmount those file systems which
+it has actually mounted successfully. If a mount or unmount operation fails,
+you are given the option to retry, ignore or cancel the failed operation.
+If you ignore the failed operation, <I>xplore</I> will pretend that the operation
+has succeeded. You can then try to carry out the failed operation manually.
+In particular, if you ignore a failed unmount operation, the corresponding
+file system becomes "premounted" which means that you will have to unmount
+it manually. You can also entirely turn off the checking of mount/unmount
+operations, using the <B>Check mounts</B> option of the <B>Options</B> menu. (Disabling
+this option should be a last resort, since without mount checking <I>xplore</I>
+may get confused about the state of the file systems it manages.) 
+<H2><A NAME="sect10" HREF="#toc10">Customization</A></H2>
+After
+the first-time setup, your <B>~/.xplore</B> directory contains some files which
+you can edit according to your needs. These are your personal <B>startup</B> script
+and the <B>xplorerc</B> and <B>magic</B> configuration files. Initially these files are
+simply copies of the system-wide configuration files which are located in
+the xplore library directory (usually <B>/usr/X11/lib/X11/xplore</B>). If you delete
+any of these files, the corresponding system-wide defaults will be used
+instead. <P>
+As already mentioned, the startup script is run each time an instance
+of <I>xplore</I> is started. Options given on the <I>xplore</I> command line are passed
+on to the script so that the script can decide which actions to perform.
+The distributed startup script just makes sure that you have a console
+window when <I>xplore</I> has been invoked with the <B>-C</B> option. You can edit your
+personal copy of the startup script if you need to perform other kind of
+initializations. <P>
+File types, automounted devices, shelves and the contents
+of the command menu are configured in the <B>xplorerc</B> (or the system-wide <B>system.xplorerc</B>)
+file. The syntax of this file is described in Section <I>CONFIGURATION FILE</I>
+below. You'll probably want to edit this file to reflect your local setup
+and preferences. In particular, take a look at the device descriptions at
+the beginning of the file. And if you have CDE, GNOME or KDE installed,
+you might wish to uncomment the corresponding #define at the beginning
+of the <B>xplorerc</B> file, which replaces vanilla X11 programs with applications
+from the corresponding desktop environment. <P>
+To determine file types, <I>xplore</I>
+uses both filename patterns and MIME types derived from magic byte sequences
+at the beginning of a file. The latter are specified in the <B>magic</B> file. This
+file has the same general format as the UNIX <I><A HREF="magic.4.html">magic</I>(4)</A>
+ file used by the
+<I><A HREF="file.1.html">file</I>(1)</A>
+ command, with some xplore-specific extensions for handling special
+kinds of files like symbolic links and directories (see the <I><A HREF="xploretype.1.html">xploretype</I>(1)</A>
+
+manual page for details). <P>
+If you do not like editing configuration files,
+you can configure file types using the <B>File type</B> dialog in the <B>File</B> and
+<B>Shelf</B> menus (see <I>CHANGING FILE TYPES AT RUNTIME</I> for details). This is also
+quite useful for quickly changing or adding a file type "on the fly". <P>
+In
+general, <I>xplore</I> looks for your personal <B>startup</B>, <B>xplorerc</B> and <B>magic</B> files
+in the directory specified with the <B>-c</B> option; <B>~/.xplore</B> is only the default.
+By specifying different directories with the <B>-c</B> option, you can manage different
+private setups with ease. <P>
+A lot of other options can be set by means of
+standard X11 resources. System-wide defaults for these are in <I>xplore</I>'s application
+defaults file (usually <B>/usr/X11/lib/X11/app-defaults/Xplore</B>). The system-wide
+defaults can be overridden with a <B>defaults</B> file in your personal configuration
+directory. Frequently-used options can also be changed using the <B>View</B> and
+<B>Preferences</B> submenus of the <B>Options</B> menu. Use the <B>Save defaults</B> command
+to save all global options, including the size of the main window, the
+layout of the panes and the color scheme selected with the <B>Color scheme</B>
+command, to your <B>defaults</B> file. (The defaults can also be saved automatically
+when <I>xplore</I> exits, if you enable the <B>Autosave defaults</B> option in the <B>Preferences</B>
+menu. But this can cause undesirable effects if you work with several different
+<I>xplore</I> windows simultaneously, and hence is disabled by default.) <P>
+The <B>defaults</B>
+file is an ordinary resource file which is read by <I>xplore</I> automatically
+when it starts up, and is merged with the resource settings in the application
+defaults file (as well as other global resource settings, such as, e.g.,
+settings in your <B>.Xresources</B> or <B>.Xdefaults</B> file). You can also edit this file
+using any text editor. The settings modified by <I>xplore</I> reside in a special
+section which is overwritten each time the <B>Save defaults</B> command is used.
+The remaining contents of the file are left unaltered, so that you can
+add other resource settings yourself. Just make sure that you do not edit
+the lines marking the beginning and end of <I>xplore</I>'s special sections in
+the file. 
+<H2><A NAME="sect11" HREF="#toc11">Session Management</A></H2>
+<I>Xplore</I> also provides its own session management
+functionality which is controlled with the <B>-session</B> command line option,
+the <B>Save session</B> and <B>Clear session</B> commands in the <B>Options</B> menu, and the
+<B>Autosave session</B> option in the <B>Preferences</B> submenu. This does not rely on
+any particular session management protocol, and hence should work on any
+type of X11 system, as long as your environment is set up to read and record
+the WM_COMMAND property, and restart applications accordingly. <P>
+If your environment
+does support X11R5 or R6 session management, and the <B>Autosave session</B> option
+is enabled (which it usually is by default), then no special actions are
+needed to save your current <I>xplore</I> sessions. <I>Xplore</I> responds to the appropriate
+requests from the session or window manager by saving its current state
+in such a manner that the session is restored the next time the application
+is restarted. This should work out of the box if you are running clients
+like <I><A HREF="xsm.1.html">xsm</I>(1)</A>
+ or <I><A HREF="xtoolplaces.1.html">xtoolplaces</I>(1)</A>
+, or any desktop environment which supports
+X11R5 or R6 session management, like OpenLook, CDE, KDE and GNOME. Other
+desktop flavours might need some tweaking. <P>
+If your environment only has
+X11R4 session management (i.e., it just uses the WM_COMMAND property to restart
+applications), you will have to save the state of your application manually
+with the <B>Save session</B> command. <P>
+This is probably all you ever need to know
+about <I>xplore</I>'s session management, but if you want to learn about all the
+gory details, then read ahead. <P>
+In <I>xplore</I>'s session management, each session
+has its own unique <I>session id</I>, and the state of the application is stored
+in an associated <I>session file</I>. Session files are ordinary resource files
+named <I>hostname</I><B>-</B><I>session-id</I>, which are kept in the user's configuration directory.
+An existing session can be restarted by specifying the corresponding session
+id with the <B>-session</B> command line option. Usually, this will be taken care
+of by your desktop environment, which records the command lines of running
+applications when saving the desktop state or when logging out, and restarts
+these applications when you log in again. You can also "clone" a given session
+by specifying the session id with the <B>-clone</B> option; the new instance will
+then get its own session id, but will use the initial settings from the
+cloned session. <P>
+A session file exists until an <I>xplore</I> instance continuing
+the session is exited, at which point the session is terminated and the
+corresponding session file is deleted. You can also delete the current session
+without exiting <I>xplore</I>, with the <B>Clear session</B> command. (Note, however,
+that to make sure that your session will not be auto-saved at a later time,
+you will also have to disable the <B>Autosave session</B> option.) <P>
+The <B>Save session</B>
+command saves the current state of the application in the current session
+file. It uses whatever session id was specified with the <B>-session</B> option
+on the command line, or generates a new session id if no <B>-session</B> option
+was given. In the latter case, the actual session id chosen by <I>xplore</I> is
+recorded in the command line which will be used by your environment to
+restart the application. In any case, the restart command is also updated
+to reflect the current window geometry (<B>-geometry</B> toolkit option) and, if
+a directory and/or shelf was specified with <B>-p</B>/<B>-s</B>, then those options are
+also modified according to the current state. (This is necessary because
+command line options always take precedence over resource values in the
+defaults files.) <P>
+If the <B>Autosave session</B> option is enabled then <I>xplore</I> also
+automagically saves the current session whenever it receives an appropriate
+message from the session or window manager. This works with both the X11R5
+WM_SAVE_YOURSELF and the X11R6 protocol. The support for X11R6 session management
+features is triggered by the presence of the <B>SESSION_MANAGER</B> variable in
+the environment in which <B>xplore</B> is started. You can also forcibly disable
+X11R6 session management with the <B>-nosm</B> command line option or the <B>nosm</B>
+resource, in which case <I>xplore</I> falls back to the X11R5 protocol. This might
+be useful to work around X11R6 session managers which do not work correctly
+with <I>xplore</I>. <P>
+If your system does not provide session management, you can
+make your own with the <I><A HREF="xtoolplaces.1.html">xtoolplaces</I>(1)</A>
+ program. This programs saves the state
+of running applications in the <B>~/.xtoolplaces</B> file, which can then be executed
+from your X session (<B>~/.xsession</B>) or init script (<B>~/.xinitrc</B>). If you don't
+have <I>xtoolplaces</I> either, you can still start several different <I>xplore</I> sessions
+from your session or init script, by specifying the session ids yourself,
+like so: <P>
+<BR>
+<PRE>xplore -session 1 &amp;
+xplore -session 2 &amp;
+
+</PRE><P>
+You will then have to save each of your sessions manually with the <B>Save
+session</B> command. Obviously, if you do this you should be careful not to
+use the same session id twice. 
+<H2><A NAME="sect12" HREF="#toc12">Menu Commands</A></H2>
+The following pulldown menus
+can be accessed through the menu bar in the main window. Note that all these
+menus have tear-off controls (the dashed lines at the beginning of the menus)
+which allow you to keep the menus as separate windows on the screen, where
+they remain posted until they are closed explicitly. This is particularly
+useful if a submenu, such as the <B>Command</B> or <B>View</B> menu, is accessed frequently.
+<P>
+FILE MENU <P>
+File manipulation operations. These commands apply to the file
+pane. 
+<DL>
+
+<DT><B>Open</B> </DT>
+<DD><BR>
+Open the selected file (i.e., execute its push action). </DD>
+
+<DT><B>Command</B> </DT>
+<DD><BR>
+Pops up a menu of global commands as configured in the <B>xplorerc</B> file. (Clicking
+on the tear-off control at the top of the menu gives you a kind of toolbar
+which is convenient if the command menu is accessed frequently.) </DD>
+
+<DT><B>Rename...</B>
+</DT>
+<DD><BR>
+Rename the selected file. (In fact this is nothing but a specialized form
+of the <B>Move</B> command - see below - in which the current name of the file is
+displayed as a default for the new name.) </DD>
+
+<DT><B>Move...</B> </DT>
+<DD></DD>
+
+<DT><B>Copy...</B> </DT>
+<DD></DD>
+
+<DT><B>Link...</B> </DT>
+<DD><BR>
+Move, copy or link the selected files to the specified target. If multiple
+files are selected then the target must be a directory. The target may denote
+an absolute path or a relative path w.r.t. the current directory; <B>~</B> denotes
+the user's home directory. Existing files of the same name are overwritten
+or renamed, depending on the current status of the <B>Backups</B> option (see
+OPTIONS MENU below). If the <B>Confirm overwrite</B> option is enabled, the user
+is prompted for confirmation before an existing file is overwritten or
+renamed. </DD>
+
+<DT><B>Delete</B> </DT>
+<DD><BR>
+Remove the selected files. The user is prompted for confirmation if the
+<B>Confirm delete</B> option is set. Confirmation for the deletion of individual
+directories and files can be requested using the <B>Confirm delete dir</B> and
+<B>Confirm delete file</B> options. Please note that this operation is destructive,
+i.e., there is no provision for recovering the deleted files later. As a safer
+alternative, you can use the trashcan shelf included in the standard setup
+(see <I>STANDARD SETUP</I> below). </DD>
+
+<DT><B>Properties...</B> </DT>
+<DD><BR>
+Pops up the <B>Properties</B> dialog which allows you to view and change attributes
+of the selected files (owner, group, permissions and such). Note that changes
+to properties simultaneously apply to <I>all</I> selected files. This allows you
+to change owner, permissions etc. for a whole collection of files with one
+command. Also note that the permission toggles cycle through <I>three</I> states:
+set, unset and indeterminate. The indeterminate state is used to indicate
+permissions which should be left unchanged; it is also used initially for
+permissions which take on different values for different files in the selection.
+</DD>
+
+<DT><B>File type...</B> </DT>
+<DD><BR>
+Pops up the <B>File type</B> dialog which allows you to add new and edit existing
+file types "on the fly". It is also useful for viewing the action bindings
+of a file. The dialog allows you to edit the patterns, comment, icons and
+the action list (push, drop and menu actions) of the file type associated
+with the selected file. The <B>Add</B> button adds a new type with the given specifications,
+the <B>Replace</B> button changes the specifications of the current type, and
+the <B>Delete</B> button can be used to remove the current type. (The <B>Replace</B> and
+<B>Delete</B> operations are only available for the "user-defined" types, i.e., the
+types defined with this dialog. "Predefined" types, i.e., types defined in
+the <B>xplorerc</B> file, can only be replaced or deleted by editing the <B>xplorerc</B>
+file accordingly. You can still add a new type overriding the predefined
+type, however.) Please refer to Section <I>CHANGING FILE TYPES AT RUNTIME</I> below
+for a closer description of this option. </DD>
+
+<DT><B>Select...</B> </DT>
+<DD><BR>
+Select a set of files in the file pane by specifying a filename pattern.
+The usual wildcards (*, ?, character classes) are recognized, and multiple
+patterns can be specified by delimiting the different patterns with whitespace.
+The <B>Replace</B> button is used to define a new selection. With the <B>Add</B> and <B>Remove</B>
+buttons, you can add files to or remove them from the current selection,
+respectively. </DD>
+
+<DT><B>Select all</B> </DT>
+<DD><BR>
+Select all files in the file pane (except the parent directory). </DD>
+
+<DT><B>Invert
+all</B> </DT>
+<DD><BR>
+Invert the set of selected files in the file pane. </DD>
+
+<DT><B>Filter...</B> </DT>
+<DD><BR>
+Specify a pattern of files to be shown in the file pane. The format of the
+filename pattern is the same as that of the <B>Select</B> command. This operation
+allows you to restrict the set of files shown in the file pane; the current
+filter pattern is shown in the status line. Use the <B>Clear</B> button in the
+<B>Filter</B> dialog to remove the current filter pattern. </DD>
+
+<DT><B>Quit</B> </DT>
+<DD><BR>
+Terminate <I>xplore</I>. </DD>
+</DL>
+<P>
+DIRECTORY MENU <P>
+Directory operations. 
+<DL>
+
+<DT><B>Make directory...</B> </DT>
+<DD><BR>
+Create a new directory. </DD>
+
+<DT><B>Change directory...</B> </DT>
+<DD><BR>
+Change the current directory shown in the file pane. The new path may be
+specified using an absolute path or a relative path w.r.t. the current directory;
+<B>~</B> denotes the user's home directory. </DD>
+
+<DT><B>Parent</B> </DT>
+<DD><BR>
+Go up one level to the parent of the current directory. </DD>
+
+<DT><B>Home</B> </DT>
+<DD><BR>
+Go to the user's home directory. </DD>
+</DL>
+<P>
+SHELF MENU <P>
+This menu provides some commands
+which are analogous to those of the <B>File</B> menu, but apply to the currently
+selected shelf. <P>
+OPTIONS MENU <P>
+Options and commands to control the display
+of the panes and the behaviour of various commands. This menu contains two
+submenus, the <B>View</B> and the <B>Preferences</B> menu (described below), as well
+as the following commands: 
+<DL>
+
+<DT><B>Update</B> </DT>
+<DD><BR>
+Force an immediate update of the panes. </DD>
+
+<DT><B>Reread</B> </DT>
+<DD><BR>
+Force the contents of the panes to be reread. This command also remounts
+and rereads the contents of directories which have previously been unmounted
+with the <B>Unmount</B> and <B>Unmount all</B> commands (see below). </DD>
+
+<DT><B>Unmount</B> </DT>
+<DD><BR>
+Unmount the file system currently shown in the file pane and update the
+panes accordingly. Note that this only works for those "automounted" file
+systems which are managed by <I>xplore</I> (see Section <I>DEVICES</I>). </DD>
+
+<DT><B>Unmount all</B> </DT>
+<DD><BR>
+Unmount <I>all</I> automounted file systems and update the panes accordingly. </DD>
+
+<DT><B>Clear
+log</B> </DT>
+<DD><BR>
+Clear the log pane. </DD>
+
+<DT><B>Color scheme...</B> </DT>
+<DD><BR>
+Set colors from a resource file. Some nice color schemes are included in
+the distribution and can be found in the <B>schemes</B> subdirectory of the xplore
+library directory. </DD>
+
+<DT><B>Save defaults</B> </DT>
+<DD><BR>
+Save the current settings in the <B>View</B> and <B>Preferences</B> menus (see below),
+as well as the size of the main window and the layout of the panes in the
+user's <B>defaults</B> file. </DD>
+
+<DT><B>Save session</B> </DT>
+<DD></DD>
+
+<DT><B>Clear session</B> </DT>
+<DD><BR>
+Save or clear the current session (see <I>SESSION MANAGEMENT</I>). </DD>
+
+<DT><B>Reload configuration
+file</B> </DT>
+<DD><BR>
+Reloads both the <B>xplorerc</B> and the <B>magic</B> file and updates the panes accordingly.
+</DD>
+</DL>
+<P>
+VIEW SUBMENU <P>
+Submenu of the <B>Options</B> menu containing options to control
+the display of the panes. The following options are global, i.e., they affect
+the display of all directories: 
+<DL>
+
+<DT><B>Large icons</B> </DT>
+<DD></DD>
+
+<DT><B>Small icons</B> </DT>
+<DD></DD>
+
+<DT><B>Detail</B> </DT>
+<DD><BR>
+Switch between icons and detail view in the file pane. In large and small
+icons view, the files are represented using large or small icons, respectively,
+while in detail view a list is shown which consists of small icons and
+file attributes similar to <I>ls -l</I>. </DD>
+
+<DT><B>Shelf pane</B> </DT>
+<DD></DD>
+
+<DT><B>Tree pane</B> </DT>
+<DD></DD>
+
+<DT><B>File pane</B> </DT>
+<DD></DD>
+
+<DT><B>Log pane</B>
+</DT>
+<DD><BR>
+Select the panes to be shown in the main window. </DD>
+</DL>
+<P>
+The remaining options only
+apply to the current directory (but are inherited by subdirectories when
+these are opened initially): 
+<DL>
+
+<DT><B>Sort by name</B> </DT>
+<DD><BR>
+Sort files in the current directory by name, with lexicographically smaller
+files first. </DD>
+
+<DT><B>Sort by size</B> </DT>
+<DD><BR>
+Sort files by size, with larger files first. </DD>
+
+<DT><B>Sort by date</B> </DT>
+<DD><BR>
+Sort files by date, with newer files first. </DD>
+
+<DT><B>Reverse order</B> </DT>
+<DD><BR>
+Sort files in reverse order. </DD>
+
+<DT><B>Directories first</B> </DT>
+<DD><BR>
+Specify whether directories should be listed first. </DD>
+
+<DT><B>Show hidden files</B> </DT>
+<DD><BR>
+Specify whether hidden files (i.e., the "dot" files) should be displayed.
+</DD>
+
+<DT><B>Show files</B> </DT>
+<DD></DD>
+
+<DT><B>Show directories</B> </DT>
+<DD><BR>
+Specify whether files and/or directories should be displayed. </DD>
+
+<DT><B>Show parent
+dir</B> </DT>
+<DD><BR>
+Specify whether to show the parent directory. </DD>
+
+<DT><B>Rescan files</B> </DT>
+<DD><BR>
+If enabled then rescan directory contents in order to determine if a directory
+has been changed. Some devices (like, e.g., msdos filesystems under Linux)
+require that this option is set, otherwise directory contents may not be
+updated properly. </DD>
+
+<DT><B>Magic headers</B> </DT>
+<DD><BR>
+Use magic headers to determine file types. This option must be set for detecting
+the MIME type of a file. However, disabling this option on slow devices
+may considerably increase performance. </DD>
+</DL>
+<P>
+PREFERENCES SUBMENU <P>
+Submenu of the
+<B>Options</B> menu containing global options which control the behaviour of various
+commands. 
+<DL>
+
+<DT><B>Absolute paths</B> </DT>
+<DD><BR>
+Determine whether paths in arguments to drop actions or in symbolic links
+should be absolute or relative w.r.t. the directory in which the command is
+invoked. </DD>
+
+<DT><B>Push in current dir</B> </DT>
+<DD><BR>
+If enabled then push actions on (links to) executables in the shelf are
+executed in the current directory instead of the shelf directory (or the
+directory of the executable). </DD>
+
+<DT><B>Drop in target dir</B> </DT>
+<DD><BR>
+If enabled then drop actions are executed in the directory containing the
+target file. Otherwise they are executed in the directory containing the
+dropped files. </DD>
+
+<DT><B>Echo commands</B> </DT>
+<DD><BR>
+Echo commands in push, drop and mount actions which are invoked through
+the shell. This allows you to trace the shell commands executed by <I>xplore</I>
+which is particularly useful when debugging new configuration entries. </DD>
+
+<DT><B>Check
+mounts</B> </DT>
+<DD><BR>
+This option controls whether <I>xplore</I> should report an error when a mount
+or unmount action fails (indicated by a nonzero return code of the action).
+</DD>
+
+<DT><B>Backups</B> </DT>
+<DD><BR>
+If this option is enabled then <I>xplore</I> creates numbered backups of files
+and directories which are to be replaced during a <B>Move</B>, <B>Copy</B> or <B>Link</B> operation,
+in a manner similar to GNU <I>mv</I> with options <B>-b -V numbered</B>. </DD>
+
+<DT><B>Show splash screen</B>
+</DT>
+<DD><BR>
+Enable/disable the display of the splash screen at startup. Note that this
+option will take effect only after you save the defaults. </DD>
+
+<DT><B>Autopopup log</B>
+</DT>
+<DD><BR>
+If enabled then the log pane automatically pops up when there is new output
+to show. </DD>
+
+<DT><B>Autosave defaults</B> </DT>
+<DD><BR>
+If enabled then <I>xplore</I> automatically save defaults in the <B>defaults</B> file
+when exiting. </DD>
+
+<DT><B>Autosave session</B> </DT>
+<DD><BR>
+If enabled then <I>xplore</I> automatically saves the current session in response
+to a corresponding request from the session or window manager (see <I>SESSION
+MANAGEMENT</I>). </DD>
+
+<DT><B>Confirm drop</B> </DT>
+<DD></DD>
+
+<DT><B>Confirm move</B> </DT>
+<DD></DD>
+
+<DT><B>Confirm copy</B> </DT>
+<DD></DD>
+
+<DT><B>Confirm link</B> </DT>
+<DD></DD>
+
+<DT><B>Confirm
+delete</B> </DT>
+<DD><BR>
+Request confirmation for the corresponding operations. </DD>
+
+<DT><B>Confirm delete dir</B>
+</DT>
+<DD></DD>
+
+<DT><B>Confirm delete file</B> </DT>
+<DD><BR>
+Request extra confirmation when a directory or ordinary file is to be deleted.
+The <B>Cancel</B> button is used to abort the operation, while the <B>All</B> button
+allows to proceed without further confirmation. </DD>
+
+<DT><B>Confirm overwrite</B> </DT>
+<DD><BR>
+Request extra confirmation when a file is to be overwritten or renamed
+(depending on the status of the <B>Backups</B> option) in the course of a <B>Move</B>,
+<B>Copy</B> or <B>Link</B> operation. </DD>
+
+<DT><B>Confirm quit</B> </DT>
+<DD><BR>
+Request confirmation for the <B>Quit</B> command in the <B>File</B> menu. </DD>
+
+<DT><B>Automatic updates</B>
+</DT>
+<DD><BR>
+Enables or disables automatic updates of the panes. </DD>
+</DL>
+<P>
+HELP MENU <P>
+Most of the
+online documentation is in HTML format. In order to display these files
+you must have a suitable browser installed. <P>
+
+<DL>
+
+<DT><B>Xplore manual</B> </DT>
+<DD><BR>
+Display the xplore manual. </DD>
+
+<DT><B>Xplore FAQ</B> </DT>
+<DD><BR>
+Display frequently asked questions with answers. </DD>
+
+<DT><B>Xplore WWW page</B> </DT>
+<DD><BR>
+Display the xplore website (http://www.musikwissenschaft.uni-mainz.de/~ag/xplore).
+</DD>
+
+<DT><B>About xplore</B> </DT>
+<DD><BR>
+Display version and copyright information. </DD>
+</DL>
+
+<H2><A NAME="sect13" HREF="#toc13">File Popup Menu</A></H2>
+As already mentioned,
+this menu pops up when pressing the right mouse button on a file in the
+file or shelf pane. It provides operations on a single file. The supported
+options from the <B>File</B> menu are <B>Open</B>, <B>Rename</B> thru <B>Delete</B>, <B>Properties</B> and
+<B>File type</B>. The remaining options in the menu are file type-specific commands
+which are configured in the <B>xplorerc</B> file. 
+<H2><A NAME="sect14" HREF="#toc14">Log Popup Menu</A></H2>
+This menu pops
+up when pressing the right mouse button in the log pane. It provides a single
+option, <B>Locate</B>, to locate a file or directory listed in the log; see <I>USING
+THE LOG</I> for details. 
+<H2><A NAME="sect15" HREF="#toc15">Configuration File</A></H2>
+The <B>xplorerc</B> configuration file consists
+of a sequence of sections in the format described below. Whitespace outside
+of strings is ignored except if it serves to delimit different keywords.
+Strings follow C-like syntax, including the common escape conventions and
+the possibility to specify a whitespace-delimited sequence of strings which
+is interpreted as the concatenation of the given strings. The usual C preprocessor
+directives are recognized as well, and comments may be specified using
+C syntax. 
+<DL>
+
+<DT><B>Device</B> <I>string</I> [ , <I>string</I> ] { <I>device-fields</I> }</DT>
+<DD>Defines a device that
+is to be mounted on the directory given by the first <I>string</I> argument. If
+specified, the second string denotes a label for the device which is used
+for representing the device in the status line (see <I>DEVICES</I>). Only devices
+whose mount points exist at the time <I>xplore</I> is started will be added to
+the devices table, and among those only the devices for which a label is
+specified will be shown in the status line. The commands to be executed
+for mounting and unmounting the file system as well as other options are
+specified in the <I>device-fields</I> list. </DD>
+
+<DT><B>Shelf</B> { <I>shelf-fields</I> }</DT>
+<DD>Specifies the different
+shelves which can be accessed using the tabs above the shelf pane. Each
+item specifies the name of a shelf and (optionally) the corresponding subdirectory
+of the shelf directory. </DD>
+
+<DT><B>Type</B> <I>pattern-list</I> { <I>type-fields</I> }</DT>
+<DD>Specifies a file
+type. The MIME type of the file (as specified in the <B>magic</B> file) and the
+filename itself are matched against the given comma-separated list of pattern
+strings. The icons and actions defined for the type are given in the <I>type-fields</I>
+list. <P>
+Each pattern consists of an optional MIME type pattern (enclosed in
+&lt; &gt;) and a filename pattern. The usual wildcards, i.e., *, ? and character classes,
+are recognized. Note that MIME types can only be recognized if the current
+directory has magic headers enabled. Otherwise only patterns containing
+a nonempty filename pattern are considered, and the MIME type pattern is
+ignored. The filename pattern can also start with a path specification,
+meaning that the file only matches if it is contained in the specified
+directory. No wildcards are recognized in the path specification, but the
+tilde ~ may be used as an abbreviation for the user's home directory. </DD>
+
+<DT><B>Magic</B>
+<I>pattern-list</I> { <I>type-fields</I> }</DT>
+<DD>Same as the <B>Type</B> section, but patterns containing
+a MIME type specification are only matched when the current directory has
+magic headers enabled. Note that to ensure consistent behaviour between
+the magic and the non-magic mode of operation, <I>xplore</I> enforces that special
+files (directories, device files, etc.) can only be matched by a <B>Magic</B> pattern
+with nonempty MIME type part. </DD>
+
+<DT><B>Default</B> { <I>type-fields</I> }</DT>
+<DD>Specifies the icons
+and actions for all files which do not match any of the <B>Type</B> and <B>Magic</B>
+sections. </DD>
+
+<DT><B>Command</B> { <I>command-fields</I> }</DT>
+<DD>Specifies the contents of the <B>Command</B>
+submenu. </DD>
+</DL>
+<P>
+The sections are considered in the order in which they are specified.
+In particular, more specific file type patterns should come before more
+general ones. <P>
+The following fields are recognized in a device specification:
+
+<DL>
+
+<DT><B>Icon</B> <I>string</I></DT>
+<DD>Specifies the name of a file in XPM format which denotes the
+icon used to denote the device in the status line. </DD>
+
+<DT><B>Mount</B> <I>string</I></DT>
+<DD></DD>
+
+<DT><B>Unmount</B> <I>string</I></DT>
+<DD>Specifies
+the command used to mount and unmount the device. As a special case, if
+both these commands are empty or omitted, the entry denotes a "pseudo device"
+which is ignored by the <B>Unmount all</B> command. Such pseudo devices are used
+for the sole purpose of overriding general option settings for some special
+directories. </DD>
+
+<DT><B>Options</B> [+|-]<I>option</I> [ , [+|-]<I>option</I> ... ]</DT>
+<DD>Specifies the default view
+options used for the device. The following <I>option</I> keywords are recognized,
+with the equivalent options in the <B>View</B> submenu given in parentheses (cf.
+<I>MENU COMMANDS</I> above): <B>SortByName</B> (Sort by name), <B>SortBySize</B> (Sort by size),
+<B>SortByDate</B> (Sort by date), <B>Reverse</B> (Reverse order), <B>DirsFirst</B> (Directories
+first), <B>Hidden</B> (Show hidden files), <B>Files</B> (Show files), <B>Dirs</B> (Show directories),
+<B>Updir</B> (Show parent dir), <B>Rescan</B> (Rescan files), <B>Magic</B> (Magic headers). <P>
+Option
+keywords prefixed with <B>+</B> or <B>-</B> denote options to be added to or removed from
+the current option set, respectively; if more than one entry for a given
+option is present, the last entry for that option in the list takes precedence.
+It is possible to specify only prefixed options; in this case the settings
+are taken relative to the current option settings (which are usually inherited
+from the parent directory). For instance, an option list of the form <B>Options
++Hidden</B> enforces that hidden files are displayed while retaining all other
+option settings from the parent directory. </DD>
+</DL>
+<P>
+In the <B>Shelf</B> section, the following
+fields are recognized: 
+<DL>
+
+<DT><B>Item</B> <I>string</I> [ , <I>string</I> ]</DT>
+<DD>Specifies a shelf and its
+associated directory. The first string denotes the label displayed on the
+corresponding tab, and the second string the subdirectory of the shelf
+directory which is to be associated with this shelf. If the second string
+is omitted, the directory name and label are assumed to be identical. </DD>
+
+<DT><B>Default</B>
+<I>string</I> [ , <I>string</I> ]</DT>
+<DD>Like the <B>Item</B> field, but denotes the shelf to be selected
+initially (this setting can be overridden with the <B>-s</B> option or by setting
+the <B>curshelf</B> resource accordingly). </DD>
+</DL>
+<P>
+In a <B>Type</B> or <B>Magic</B> section, as well
+as in the <B>Default</B> section, the following fields are recognized: 
+<DL>
+
+<DT><B>Description</B>
+<I>string</I></DT>
+<DD>Specifies a description to be displayed in the properties dialog
+for files of this type. (For backward compatibility, this field can also
+be denoted with the <B>Comment</B> keyword instead of <B>Description</B>.) </DD>
+
+<DT><B>LargeIcon</B> <I>string</I></DT>
+<DD>Specifies
+the name of a file in XPM format which denotes the large icon used to display
+the file. </DD>
+
+<DT><B>SmallIcon</B> <I>string</I></DT>
+<DD>Specifies the name of a file in XPM format which
+denotes the small icon used to display the file. </DD>
+
+<DT><B>Push</B> <I>string</I> [ , <I>string</I>
+]</DT>
+<DD>Specifies the push action associated with the file. The second string argument
+is optional; if it is present, it denotes the directory in which the command
+is to be invoked. </DD>
+
+<DT><B>Drop</B> <I>string</I> [ , <I>string</I> ]</DT>
+<DD>Specifies the drop action associated
+with the file. The second string argument is optional; if it is present,
+it denotes the directory in which the command is to be invoked. </DD>
+
+<DT><B>Item</B> <I>string</I>,
+<I>string</I> [ , <I>string</I> ]</DT>
+<DD>Specifies a type-specific item in the popup menu for
+files belonging to the type. The first string argument denotes the label
+to display in the popup menu. The second string argument specifies the action
+to execute. The third string argument is optional; if it is present, it
+denotes the directory in which the command is to be invoked. </DD>
+
+<DT><B>Separator</B></DT>
+<DD>Adds
+a separator to the popup menu for the file type. </DD>
+</DL>
+<P>
+The <B>Command</B> section is
+like a file type section, but only <B>Item</B> and <B>Separator</B> fields are allowed.
+Each item specifies an entry of the <B>Command</B> submenu of the <B>File</B> menu. <P>
+A
+sample configuration making use of the features described above (including
+the extensive use of C preprocessor directives) can be found in the distributed
+<B>system.xplorerc</B> file. You will probably like to edit this file to reflect
+your system configuration and preferences. 
+<H2><A NAME="sect16" HREF="#toc16">Actions</A></H2>
+Commands invoked through
+push and drop actions, mount actions, the <B>Command</B> submenu and the file
+popup menu are executed using the shell (as given by the <B>shell</B> resource
+or the <B>SHELL</B> environment variable). <I>Xplore</I> waits for the command to finish
+and then updates the display, unless the command is executed in the background
+(using the shell's <B>&amp;</B> operator). The command is echoed when the <B>Echo commands</B>
+option of the <B>Options</B> menu is enabled. Commands are generally invoked with
+an empty stdin file while output goes to the log pane (unless <I>xplore</I> was
+invoked with the <B>-C</B> option in which case output goes to /dev/console). <P>
+Mount
+actions are invoked in the directory in which <I>xplore</I> was started. Commands
+from the <B>Command</B> submenu and the file popup menu are executed in the current
+directory, with positional parameters $1, $2, ... set to the currently selected
+files. $* may be used to denote the list of all selected files. <P>
+Push actions
+on executables in the shelf are invoked in the current directory (instead
+of the shelf directory) when the <B>Push in current dir</B> option is enabled,
+which is the default. In the case of a drop action, the command is executed
+in the directory containing the target file, if the <B>Drop in target dir</B>
+option is enabled, and in the directory containing the dropped files otherwise.
+The latter is the default setting. For the default drop action on an executable,
+the positional parameters are simply set to the list of dropped files. Otherwise,
+the first positional parameter is set to the target of the drop action
+(i.e., the name of the file onto which the selection was dropped), and the
+remaining parameters are set to the list of dropped files. <P>
+The directory
+in which a command is invoked can be overridden with an appropriate setting
+in the corresponding action in the <B>xplorerc</B> file. The selected files are
+specified using absolute pathnames if the <B>Absolute paths</B> option is enabled,
+and using pathnames relative to the directory in which the command is executed
+otherwise. This is true for <B>Link</B> commands as well; thus a link action will
+produce links to absolute or relative pathnames, depending on the status
+of the <B>Absolute paths</B> option. <P>
+For all types of actions the environment variables
+<B>CURDIR</B> and <B>CURSHELF</B> are set to the pathnames of the current directory and
+the current shelf, respectively. This is useful, e.g., if you set up actions
+which have to access these directories explicitly. <P>
+<I>Xplore</I> lets you prompt
+the user for additional parameters when a command is invoked. In such a
+case a dialog form appears with one field for each parameter, into which
+the user can enter the required arguments. Currently, no checking is done
+on the supplied parameters; in fact, the user can simply leave all fields
+empty. Parameters are specified in action strings using the format %<I>parameter-name</I>%
+where <I>parameter-name</I> is an arbitrary text not containing the % character.
+The given text will be displayed in the dialog form, and the parameter
+will be replaced with the corresponding value entered by the user. (A literal
+% character can be escaped with two backslashes.) <P>
+A default value for a
+parameter can be specified using the notation %<I>parameter-name</I>--<I>default-value</I>%.
+The given value will be used as the initial contents of the corresponding
+input field. Furthermore, there are two special constructs for denoting
+non-input fields. The notation %--% inserts a separator in the parameter dialog,
+and the construct %-<I>label</I>% adds a label with the given text on a line by
+itself. These constructs are simply replaced by empty strings during parameter
+substitution. <P>
+Note that passing arguments in push and drop actions the "quick
+and dirty" way, e.g., <P>
+<BR>
+<PRE>Push "exec emacs $1 &amp;"
+</PRE><P>
+will split arguments containing whitespace. Therefore the recommended way
+is to quote the positional parameters as follows: <P>
+<BR>
+<PRE>Push "exec emacs \"$1\" &amp;"
+</PRE><P>
+To quote each individual parameter in the <B>$*</B> variable, you should use the
+<B>$@</B> variable instead (Bourne-compatible shells only): <P>
+<BR>
+<PRE>Drop "(tar cvfz \"$@\"; echo '*** tar done ***') &amp;"
+</PRE><P>
+A similar effect can be achieved by using the <B>$*</B> variable with the <B>:q</B> modifier
+of the C shell, see <I><A HREF="csh.1.html">csh</I>(1)</A>
+. <P>
+<I>Xplore</I> should work with most popular kinds of
+shells, as long as the shell understands the <B>-c</B> option for passing a command
+with parameter substitution. You can determine the shell which should be
+used by <I>xplore</I> with the <B>shell</B> resource or the <B>SHELL</B> environment variable.
+(Note, however, that the distributed <B>system.xplorerc</B> file assumes a Bourne-compatible
+shell.) 
+<H2><A NAME="sect17" HREF="#toc17">Changing File Types At Runtime</A></H2>
+The <B>File type</B> dialog allows you to
+add new and edit existing file types at runtime. This provides a convenient
+alternative to editing and reloading the <B>xplorerc</B> file, but is also less
+versatile, as the dialog does not support C preprocessor directives. <I>Xplore</I>
+distinguishes between "predefined" types (i.e., types specified in the <B>xplorerc</B>
+file), and the "user-defined" types created with the <B>File type</B> dialog. The
+user-defined types are stored in the <B>types</B> resource in the <B>defaults</B> file.
+This is done automatically each time the user adds, changes or deletes
+a type, and the setup is restored automatically whenever <I>xplore</I> is restarted.
+<P>
+When the <B>File type</B> dialog is invoked, it displays the current type of the
+file. (Be aware that this type can depend on whether magic headers are enabled
+in the current directory or not.) You can edit the type definition and store
+it as a new type with the <B>Add</B> button, replace the existing type with the
+new definition (<B>Replace</B> button), or delete the present type (<B>Delete</B> button).
+The <B>Replace</B> and <B>Delete</B> operations are only available for user-defined types.
+Furthermore, the <B>Delete</B> operation is disabled as soon as the type has been
+edited. Please note that, although the <B>File type</B> dialog does not allow you
+to change or delete the predefined types (you will have to edit the configuration
+file to accomplish this), you can still add new types overriding these
+entries. <P>
+Most fields of the <B>File type</B> dialog are in a close correspondence
+to the fields of a <B>Type</B> or <B>Magic</B> section in the configuration file, as
+described in Section <I>CONFIGURATION FILE</I> above, using a somewhat simplified
+input format. The patterns are specified as a space-delimited sequence of
+individual patterns, therefore literal blanks in patterns must be escaped
+using the backslash. (This is not necessary if blanks occur in the MIME
+type part of a pattern where they are enclosed in &lt; &gt;.) The backslash itself
+has to be escaped in this field as well. The <B>Magic</B> toggle below the patterns
+lets you specify whether the defined type requires magic headers to be
+enabled. Switching this button on and off corresponds to the <B>Magic</B> and <B>Type</B>
+keywords introducing a type definition in the configuration file. The <B>Action
+list</B> field is a multi-line input field whose value is a sequence of <B>Push</B>,
+<B>Drop</B>, <B>Item</B> and <B>Separator</B> fields in the same format as in the configuration
+file. The <B>Description</B>, <B>Large icon</B> and <B>Small icon</B> fields are simple, literal
+string fields, which are in one-to-one correspondence with the <B>Description</B>,
+<B>LargeIcon</B> and <B>SmallIcon</B> fields in the configuration file. <P>
+The <B>Exclusive</B>
+toggle on the <B>Options</B> line below the patterns is used to change the contents
+of the <B>Pattern list</B> field, by switching between the pattern list as specified
+by the file type, and the single pattern describing the file itself on
+which the dialog was invoked. More precisely, the exclusive pattern consists
+of the MIME type and the absolute pathname of the file, and thus only matches
+this specific file and nothing else. Hence this toggle comes in handy if
+you want to define a new type for just the file on which the <B>File type</B>
+dialog was invoked.  This option is enabled automatically when the current
+type of a file is the default type (as specified in the <B>Default</B> section
+of the configuration file), or if the file has no type at all. (This can
+happen, e.g., if no default type is defined in the configuration file, or
+if magic headers are disabled in the current directory and the current
+file is special, i.e., a directory or an executable. In the latter case you
+must turn on magic headers before the user-defined type can take effect.)
+<P>
+The <B>Priority</B> field is used to determine the position, and thereby the priority,
+of the type in the current list of all predefined and user-defined types.
+It can be used both to set the priority of a new type to be added with
+the <B>Add</B> command, and to change the priority of an existing user-defined
+type with the <B>Replace</B> command. Most of the time you can safely ignore this
+field, but if the patterns of different types overlap you should make sure
+that a more specific type has higher priority than a more general one,
+so that the former is not shadowed by the latter. By default, the <B>Priority</B>
+field is set to the current type of the file, which means that the new
+type will take precedence over all existing types matching the same file.
+This is appropriate in most cases. You can change the priority of the type
+being edited or defined by choosing an item from the drop down list associated
+with the <B>Priority</B> field, which lists all currently defined types in the
+order of decreasing precedence. Choose the first (i.e., uppermost) type in
+this list over which the new type should take precedence. The item "(Default)"
+at the end of the list indicates that the new type will have the lowest
+possible priority, just above the default type. <P>
+A note about error handling:
+When a type definition is submitted with the <B>Add</B> or <B>Replace</B> button, it
+is checked that at least one pattern has been specified and that the action
+list is syntactically correct. If this is not the case, <I>xplore</I> will complain
+and redisplay the <B>File type</B> dialog, with the cursor set to the offending
+line. Moreover, if the edited type does not match the file on which the
+dialog was invoked (which could be due to a typo in the pattern list),
+then <I>xplore</I> issues a warning message and asks the user to confirm that
+he really wants to add the type. If the answer is negative, then the dialog
+is redisplayed to allow the user to correct the definition. 
+<H2><A NAME="sect18" HREF="#toc18">Standard Setup</A></H2>
+As
+already indicated, the distribution includes a sample configuration which
+you can customize according to your needs. The distributed <B>system.xplorerc</B>
+file contains some sample device descriptions, a shelf setup, a lot of
+useful file type definitions, and a command menu with common operations.
+The distribution also includes a preconfigured shelf directory which contains
+a <B>Desk</B> shelf which provides some links to devices, a <B>Programs</B> shelf with
+links to applications, a clipboard and a trashcan. Both the clipboard and
+the trashcan are simply links to other shelves which can also be accessed
+with the <B>Clipboard</B> and <B>Trash</B> tabs. Thus no special built-in operations are
+needed to implement these facilities. The options of the command menu, as
+it is defined in the distributed <B>system.xplorerc</B> file, are described below.
+
+<DL>
+
+<DT><B>Bookmark</B> </DT>
+<DD><BR>
+Put a symbolic link to the current directory into the current shelf. </DD>
+
+<DT><B>Program
+shortcut...</B> </DT>
+<DD><BR>
+Locate an application (given by the name of the program) using <I><A HREF="which.1.html">which</I>(1)</A>
+
+and put a symbolic link to it into the current shelf. This option provides
+a convenient method to quickly install a shortcut for an application on
+the shelf. </DD>
+
+<DT><B>URL shortcut...</B> </DT>
+<DD><BR>
+Create an URL shortcut in the current shelf. You are prompted for the URL
+and the name of the shortcut file. The standard setup allows you to open
+these shortcuts in your web browser (<I>netscape</I> by default) with a double-click.
+(The shortcut files are plain ASCII files in the same format that is also
+understood by some of the GNOME tools.) </DD>
+
+<DT><B>Editor</B> </DT>
+<DD><BR>
+Invoke the editor (<I><A HREF="emacs.1.html">emacs</I>(1)</A>
+ by default) in the current directory. </DD>
+
+<DT><B>Calculator</B>
+</DT>
+<DD><BR>
+Invoke the calculator (<I><A HREF="xcalc.1.html">xcalc</I>(1)</A>
+). </DD>
+
+<DT><B>Manual</B> </DT>
+<DD><BR>
+Read manual pages (<I><A HREF="xman.1.html">xman</I>(1)</A>
+ by default). </DD>
+
+<DT><B>Terminal</B> </DT>
+<DD><BR>
+Start an <I><A HREF="xterm.1.html">xterm</I>(1)</A>
+ in the current directory. </DD>
+
+<DT><B>Xplore</B> </DT>
+<DD><BR>
+Invoke another instance of <I>xplore</I> in the current directory. </DD>
+
+<DT><B>Find...</B> </DT>
+<DD><BR>
+Invoke the <I><A HREF="find.1.html">find</I>(1)</A>
+ program in the current directory. You are prompted to
+specify the filename pattern denoting the files to search for, and an optional
+regular expression to perform content-based searches. (If the latter is specified,
+the command only searches for regular files.) The results are shown in the
+log pane. You can use the <B>Locate</B> command in the log popup menu to show a
+listed file in the file pane, see <I>USING THE LOG</I>. </DD>
+
+<DT><B>Grep...</B> </DT>
+<DD><BR>
+Run <I><A HREF="grep.1.html">grep</I>(1)</A>
+ on the selected files, for the given regular expression. </DD>
+
+<DT><B>Diff</B>
+</DT>
+<DD><BR>
+Run <I><A HREF="diff.1.html">diff</I>(1)</A>
+ on two selected files. </DD>
+
+<DT><B>Shell command...</B> </DT>
+<DD><BR>
+Invoke a shell command in the current directory, with the positional parameters
+set to the currently selected files. </DD>
+
+<DT><B>Make...</B> </DT>
+<DD><BR>
+Invoke <I><A HREF="make.1.html">make</I>(1)</A>
+ on the specified target in the current directory. </DD>
+
+<DT><B>Tar...</B> </DT>
+<DD></DD>
+
+<DT><B>Tar
+gzipped...</B> </DT>
+<DD></DD>
+
+<DT><B>Tar bzipped...</B> </DT>
+<DD></DD>
+
+<DT><B>Tar compressed...</B> </DT>
+<DD><BR>
+Create a new <I><A HREF="tar.1.html">tar</I>(1)</A>
+ file (with compression using <I><A HREF="gzip.1.html">gzip</I>(1)</A>
+, <I><A HREF="bzip2.1.html">bzip2</I>(1)</A>
+ or <I><A HREF="compress.1.html">compress</I>(1)</A>
+)
+from the selected files. </DD>
+
+<DT><B>Zip...</B> </DT>
+<DD><BR>
+Create a <I><A HREF="zip.1.html">zip</I>(1)</A>
+ archive from the selected files. </DD>
+
+<DT><B>Gzip</B> </DT>
+<DD></DD>
+
+<DT><B>Bzip2</B> </DT>
+<DD></DD>
+
+<DT><B>Compress</B> </DT>
+<DD><BR>
+Compress the selected files using <I><A HREF="gzip.1.html">gzip</I>(1)</A>
+, <I><A HREF="bzip2.1.html">bzip2</I>(1)</A>
+ or <I><A HREF="compress.1.html">compress</I>(1)</A>
+. </DD>
+
+<DT><B>Uuencode</B>
+</DT>
+<DD><BR>
+Encode the selected files using <I><A HREF="uuencode.1.html">uuencode</I>(1)</A>
+. </DD>
+</DL>
+
+<H2><A NAME="sect19" HREF="#toc19">Icons</A></H2>
+A collection of file and
+application icons is included in the distribution; it is installed in the
+xplore library directory. The icon files are located using the search path
+given by the <B>iconpath</B> resource in the <B>Xplore</B> application defaults file.
+Note that <I>xplore</I> currently only supports icons in Arnaud Le Hors' XPM format.
+However, most other image formats can easily be converted to XPM using
+the ImageMagick tools; see <I><A HREF="convert.1.html">convert</I>(1)</A>
+. 
+<H2><A NAME="sect20" HREF="#toc20">Interface to Other Applications</A></H2>
+As
+a Motif application, <I>xplore</I> provides ICCCM-compliant drag and drop, which
+makes it possible to interface with other applications. The currently supported
+targets are <B>FILES</B> (<I>xplore</I>-specific), <B>FILE_NAME</B> (standard ICCCM target used
+to transfer a single file name) and <B>text/uri-list</B> (standard file list target
+for XDND-compatible applications). The latter is an export-only target which
+is provided for compatibility with KDE and GNOME; it enables you to drag
+files from <I>xplore</I> to KDE and GNOME applications and desktop (but not vice
+versa). The <B>FILES</B> target uses an <I>xplore</I>-specific format which encodes the
+selection of a set of files in an <I>xplore</I> window. The encoded string has
+the following syntax: <P>
+<BR>
+<PRE><I>dirname filename1 filename2</I> ...
+</PRE><P>
+As indicated, the directory and file names are separated by blanks (blanks
+and other special characters inside the directory or file names are escaped
+with a backslash). <P>
+As I become aware of other targets which should be supported
+I will add them as well; if you have any ideas, please let me know. 
+<H2><A NAME="sect21" HREF="#toc21">Environment</A></H2>
+<I>Xplore</I>
+depends on the proper setting of the <B>HOME</B> environment variable which denotes
+the user's home directory. Furthermore, if the <B>shell</B> resource is not set
+then the <B>SHELL</B> environment variable indicates the shell to be used for
+executing commands. When a command is invoked through the shell, the environment
+variables <B>CURDIR</B> and <B>CURSHELF</B> are set to the pathnames of the current directory
+and the current shelf, respectively. <P>
+In addition, the <B>XPLORELIBDIR</B> environment
+variable can be used to denote an alternative path to the xplore library
+directory, which is convenient for the purpose of testing alternative setups
+or for relocating the library directory without having to recompile the
+program. If this variable is not set in <I>xplore</I>'s environment, <I>xplore</I> sets
+it to the built-in library path. Thus actions in the configuration file can
+rely on the proper setting of this variable, which is useful, e.g., if actions
+access scripts in the library directory. Similarly, the <B>XPLORECONFIGDIR</B>
+environment variable is set to the user's config directory, as specified
+by the <B>-c</B> command line option or the <B>configdir</B> resource. <P>
+Other environment
+variables may be used by your local setup. For instance, the standard <B>xplorerc</B>
+file lets you specify your preferred editor, text viewer and terminal program
+with the <B>XPLORE_EDITOR</B>, <B>XPLORE_VIEWER</B> and <B>XPLORE_TERM</B> variables. 
+<H2><A NAME="sect22" HREF="#toc22">Files</A></H2>
+Following
+is a typical list of files and directories used by <I>xplore</I> according to
+the standard setup. Please note that the path to the X library directory
+may be different on your system, and that the actual name of the personal
+shelf and configuration directories can be changed with the appropriate
+command line options and resources. 
+<DL>
+
+<DT><B>/usr/X11/lib/X11/xplore/system.xplorerc</B>
+</DT>
+<DD>System-wide configuration file. </DD>
+
+<DT><B>/usr/X11/lib/X11/xplore/magic</B> </DT>
+<DD>System-wide
+magic file. </DD>
+
+<DT><B>/usr/X11/lib/X11/xplore/shelf</B> </DT>
+<DD>Template shelf directory. </DD>
+
+<DT><B>/usr/X11/lib/X11/xplore/icons</B>
+</DT>
+<DD>Standard location for icons in XPM format used by <I>xplore</I>. </DD>
+
+<DT><B>~/shelf</B> </DT>
+<DD>Personal
+shelf directory. </DD>
+
+<DT><B>~/.xplore</B> </DT>
+<DD>Personal configuration directory. Contains the
+user's <B>defaults</B>, <B>startup</B>, <B>xplorerc</B>, <B>magic</B> and session files. </DD>
+</DL>
+
+<H2><A NAME="sect23" HREF="#toc23">Bugs</A></H2>
+Probably
+quite a few. Here are the ones that I know about: <P>
+It is not possible to
+drag the root directory from the tree pane. This is actually a feature. :)
+<P>
+Devices, shelf and the command menu should be configurable using dialogs
+as well. <P>
+Motif bugs. This varies from system to system, and encompasses things
+like slow or garbled container views when the views get very large, occasional
+rejection of valid drop sites (SUN Motif), and segfaults on editres requests
+(OpenMotif 2.1). If you suffer from one of those, please check your software
+vendor for available patches. <P>
+The automounter has only been tested on Linux,
+but hopefully works on most other UNIX flavours as well. If all else fails,
+you can always disable this feature (by commenting out the <B>Device</B> sections
+in the <B>xplorerc</B> file) and try running a more comprehensive utility like
+AMD or autofs instead. <P>
+Since parameter passing conventions depend on the
+shell, <I>xplore</I> performs an automatic test at startup which tries to determine
+whether your shell passes its name as the zeroth argument to a command
+invoked using the <B>-c</B> option. (Bourne and C shell differ in this respect.)
+This test may fail, e.g., if your shell's initialization files write to standard
+output. If this happens, you should set the <B>bourneShells</B> resource in the
+application defaults file to a list of Bourne-compatible shells on your
+system. 
+<H2><A NAME="sect24" HREF="#toc24">See Also</A></H2>
+<A HREF="moxfm.1.html">moxfm(1)</A>
+, <A HREF="xfm.1.html">xfm(1)</A>
+, <A HREF="xploretype.1.html">xploretype(1)</A>
+, <A HREF="magic.4.html">magic(4)</A>
+, <A HREF="http://www.musikwissenschaft.uni-mainz.de/~ag/xplore">http://www.musikwissenschaft.uni-mainz.de/~ag/xplore</A>
+
+
+<H2><A NAME="sect25" HREF="#toc25">Author</A></H2>
+Albert Graef, with portions of code from <I>xfm</I> (written by Simon Marlow
+and Albert Graef, with contributions from numerous other people), <I>moxfm</I>
+(written by Oliver Mai, based on <I>xfm</I>), and <I>xfsm</I> (the X file system monitor,
+written by Robert Gasch). The magic type detection and shell auto detection
+features have been written for <I>xfm</I> by Juan D. Martin and Robert Vogelgesang,
+respectively. <P>
+
+<HR><P>
+<A NAME="toc"><B>Table of Contents</B></A><P>
+<UL>
+<LI><A NAME="toc0" HREF="#sect0">Name</A></LI>
+<LI><A NAME="toc1" HREF="#sect1">Synopsis</A></LI>
+<LI><A NAME="toc2" HREF="#sect2">Description</A></LI>
+<LI><A NAME="toc3" HREF="#sect3">Options</A></LI>
+<LI><A NAME="toc4" HREF="#sect4">Startup</A></LI>
+<LI><A NAME="toc5" HREF="#sect5">Usage</A></LI>
+<LI><A NAME="toc6" HREF="#sect6">Using the Shelf</A></LI>
+<LI><A NAME="toc7" HREF="#sect7">Using the Log</A></LI>
+<LI><A NAME="toc8" HREF="#sect8">Keyboard Traversal and Shortcuts</A></LI>
+<LI><A NAME="toc9" HREF="#sect9">Devices</A></LI>
+<LI><A NAME="toc10" HREF="#sect10">Customization</A></LI>
+<LI><A NAME="toc11" HREF="#sect11">Session Management</A></LI>
+<LI><A NAME="toc12" HREF="#sect12">Menu Commands</A></LI>
+<LI><A NAME="toc13" HREF="#sect13">File Popup Menu</A></LI>
+<LI><A NAME="toc14" HREF="#sect14">Log Popup Menu</A></LI>
+<LI><A NAME="toc15" HREF="#sect15">Configuration File</A></LI>
+<LI><A NAME="toc16" HREF="#sect16">Actions</A></LI>
+<LI><A NAME="toc17" HREF="#sect17">Changing File Types At Runtime</A></LI>
+<LI><A NAME="toc18" HREF="#sect18">Standard Setup</A></LI>
+<LI><A NAME="toc19" HREF="#sect19">Icons</A></LI>
+<LI><A NAME="toc20" HREF="#sect20">Interface to Other Applications</A></LI>
+<LI><A NAME="toc21" HREF="#sect21">Environment</A></LI>
+<LI><A NAME="toc22" HREF="#sect22">Files</A></LI>
+<LI><A NAME="toc23" HREF="#sect23">Bugs</A></LI>
+<LI><A NAME="toc24" HREF="#sect24">See Also</A></LI>
+<LI><A NAME="toc25" HREF="#sect25">Author</A></LI>
+</UL>
+</BODY></HTML>

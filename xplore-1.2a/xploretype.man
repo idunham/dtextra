@@ -1,0 +1,101 @@
+.TH XPLORETYPE 1 "Apr 20 1997" "X Version 11"
+.SH NAME
+xploretype \- xplore file type tester
+.sp
+.SH SYNOPSIS
+.B xploretype
+[-m \fImagic_file\fP] [-f] \fIfilename\fP ...
+.SH DESCRIPTION
+The \fIxploretype\fP program reads a magic configuration file and tests each
+file in its command line to tell its type according to the magic file.
+.PP
+The format of the magic file is the same as that of the standard UNIX
+\fBmagic\fP(4) file with the following additions and differences:
+.TP 4
+\fBmode\fP type field.
+Similar to \fBlong\fP type, but \fIoffset\fP is ignored.  The test is
+performed against the \fBst_mode\fP field of the \fIstat\fP structure
+obtained using \fBstat\fP(2) system call. This allows testing for 
+directories, fifos ... as well as for file permissions.
+.TP 4
+\fBlmode\fP type field.
+Similar to \fBmode\fP type, but using \fIlstat\fP(2) instead of
+\fBstat\fP(2). This allows testing for symbolic links.
+.TP 4
+\fBbuiltin\fP type field.
+The test succeeds if the built-in type of the file is the same as the
+value field. The built-in type of the file is the type returned when
+all the tests fail. Currently these are the built-in types:
+.nf
+.sp
+\fI"unreadable"\fP The file could not be read.
+.sp
+\fI"emptydir"\fP File is an empty directory.
+.sp
+\fI"directory"\fP File is a nonempty directory.
+.sp
+\fI"special"\fP Not a regular file.
+.sp
+\fI"empty"\fP File size is zero.
+.sp
+\fI"ascii"\fP The file looks like ascii.
+.sp
+\fI"data"\fP None of the above.
+.sp
+.fi
+.TP 4
+\fBregexp\fP type field.
+The \fIvalue\fP field must be a proper regular expression. The bytes
+starting at \fIoffset\fP are matched against it. If the match succeeds,
+then a \fBregsub\fP(3) is performed on \fImessage\fP yielding the final
+message. If the type field is of the form \fBregexp&nnn\fP where \fBnnn\fP
+is a positive number, then that number controls the amount of data scanned
+for the matching, otherwise a compile defined value (currently 256) is used.
+.TP 4
+\fBlong\fP and \fBshort\fP byte order.
+\fIxploretype\fP always reads \fBlong\fPs and \fBshort\fPs using MSB-first
+order. This makes configuration files portable to all architectures, but
+some entries in original \fBmagic\fP(4) files might be wrong.
+.TP 4
+Continuation lines.
+If a line ends with a \fIbackslash\fP character (\fI\\\fP), it is continued
+with the following line. The maximum length of a line is 1024 characters
+(counting also characters in continuation lines).
+.PP
+.SH OPTIONS
+.TP 4
+.B \-f \fIfile\fP
+Consider the following argument as a file, even if it begins with `-'.
+.TP 4
+.B \-m \fIfile\fP
+Specifies the magic file to be used for testing file types. By default,
+\fBxploretype\fP uses the system-wide \fBmagic\fP file in the \fBxplore\fP
+library directory. The \fB-m\fP option can be used to test against alternative
+magic files. Multiple magic files may be specified; they are considered in the
+order in which they are found on the command line. Each file on the command
+line is tested against the magic file of the most recent \fB-m\fP
+option. Files specified before the first \fB-m\fP option are tested against
+the default magic file.
+.SH BUGS
+Bad configuration lines cause undefined behavior. In general they are
+silently ignored, but that is not guaranteed.
+.PP
+There are no warning or error messages except for the regular expression
+syntax.
+.PP
+There should be a syntax checking mode.
+.PP
+All of the above apply to \fIxplore\fP too.
+.SH SEE ALSO
+.BR xplore (1x),
+.BR file (1),
+.BR magic (4),
+.BR stat (2),
+.BR lstat (2),
+.SH COPYRIGHT
+Copyright (c) 1995 CNM-US
+.br
+Copyright (c) 1995 Juan D. Martin
+.SH AUTHOR
+Juan D. Martin (juando@cnm.us.es); slightly modified for use with \fBxplore\fP
+by Albert Graef (ag@muwiinfa.geschichte.uni-mainz.de)

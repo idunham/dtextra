@@ -1,0 +1,136 @@
+
+INSTALLATION
+============
+
+
+(1) IF YOU INSTALL FROM THE SOURCES:
+
+Xplore requires the Xpm library (version 3.4 or later) and Motif 2.x to
+compile. The present release has been tested on SuSE Linux 8 and Solaris 8,
+but should compile - with minor tweaking - on most POSIXish systems with
+recent X11 and Motif 2.x libraries and working imake. (Please send me your
+patches needed to compile xplore on other platforms so that I can include them
+in the next release.)
+
+Take a look at `Xplore.tmpl' and edit it as needed. You can specify
+alternative destination paths if you do not have write permissions for the
+standard X11 directories, by editing the `Destination directories' section at
+the beginning of the `Xplore.tmpl' file accordingly. You can also specify
+include and library paths for the Motif and Xpm libraries, and there is a
+USE_GCC option to build the program with the GNU C compiler.
+
+For less common types of UNIX systems, the hairiest part probably is the
+`System dependencies' section, which is needed to select the proper interface
+for accessing the file system statistics and the mount table. If this doesn't
+work for your system, please let me know so that we can try to fix it.
+
+Now run `xmkmf -a' and `make', and hope for the best :). TIPS: If `xmkmf -a'
+doesn't work, try `xmkmf; make Makefiles; make depend' instead. If imake
+doesn't work at all for you, you can try to use the provided Makefiles, but
+you'll probably have to edit them manually to fit your local setup. If your C
+compiler gives trouble, try using gcc (available from www.fsf.org) instead.
+
+If all goes well, you should now have an xplore binary and you can try out
+xplore by running the `xplore-test' shell script in the source directory. To
+actually install the programs along with app-defaults and configuration files,
+icons and manpages, run `make install' and `make install.man'. (You may have
+to become root to gain the necessary permissions if you install in the
+standard places.)
+
+
+(2) IF YOU INSTALL FROM A BINARY DISTRIBUTION:
+
+Binary distributions for different systems in a variety of formats are
+available from the xplore homepage. See
+
+	http://www.musikwissenschaft.uni-mainz.de/~ag/xplore.
+
+(At the time of this writing, only Linux and Solaris x86 binaries are
+available, as these currently are the only system with Motif 2.x I have access
+to. If you can contribute binaries for other systems, please let me know.)
+
+All binary packages are generally distributed in two different formats:
+
+- Compressed tarballs, which are ready to be untarred in /. E.g., if you have
+  GNU tar, you can untar a gzipped packages as follows (assuming that / is the
+  current directory):
+
+	tar xfvz <pkg-name>.tar.gz
+
+  If your tar program does not support the z option, you must first unzip
+  the package and then run tar on the uncompressed tar file:
+
+	gunzip <pkg-name>.tar.gz; tar xfv <pkg-name>.tar
+
+  Tarballs with the .tar.bz2 extension have been compressed with bzip2. These
+  are usually smaller, so they are preferred if you have bunzip2. Installation
+  then goes as follows:
+
+	bunzip2 <pkg-name>.tar.bz2; tar xfv <pkg-name>.tar
+
+- Installable packages (RPM format for Linux, PKG format for Solaris). RPMS
+  can be installed with the RedHat package manager:
+
+	rpm -i <pkg-name>.rpm
+
+  (Use the -U option instead of -i if you are upgrading an existing
+  installation.)
+
+  Solaris PKG files are compressed, hence you must uncompress them before
+  running the pkgadd command:
+
+	gunzip <pkg-name>.pkg.gz; pkgadd -d <pkg-name>.pkg
+
+
+(3) COMPLETING THE INSTALLATION:
+
+After having performed either step (1) or (2), xplore should be ready to be
+used with the standard setup as described in the xplore(1) manual page. The
+xplore library directory (usually `/usr/X11/lib/X11/xplore', but this may vary
+from system to system) contains the system-wide configuration files
+(`system.xplorerc' and `magic') and the `setup' and `startup' scripts.
+
+The setup script and the system.xplorerc file probably have to be edited to
+reflect your local system setup. In particular, take a look at the device
+descriptions at the beginning of the system.xplorerc file and the user
+installation procedure in the setup script. If you have CDE, GNOME or KDE
+installed, you might wish to uncomment the corresponding #define at the
+beginning of the system.xplorerc file, which replaces vanilla X11 programs
+with apps from the corresponding desktop environment. If you have KDE, you
+should also copy the generic KDE color scheme file /usr/X11/lib/X11/xplore/
+schemes/Xplore.ad to the <kde-prefix>/share/apps/kdisplay/app-defaults
+directory. This make xplore adapt to the color scheme selected within the KDE
+control panel.
+
+For reading the online documentation you need to have a suitable browser
+installed. Currently either netscape or mozilla is required. If you do not
+have these, or xplore cannot find them, you will have to change the
+netscape-remote script in the xplore library directory accordingly. You can
+also set the name of the browser program with the NETSCAPE environment
+variable.
+
+ICONS:
+
+The distribution includes a fairly extensive collection of icons in XPM format
+which I derived from material in the Cica archive and Juan D. Martin's
+fileicon collection included in the xfm distribution. Some application icons
+pilfered from KDE and GNOME are included as well. The icons are installed in
+the `icons' subdirectory of the xplore library directory. Of course you can
+also use your own icons by editing the `system.xplorerc' file accordingly. To
+change xplore's icon search path, edit the `iconpath' resource in the Xplore
+application defaults file. A few default icon names are hard-coded into
+xplore; to change these, you will have to replace the corresponding icon files
+(see the `names' variable at the beginning of icons.c in the sources). Note
+that xplore currently only supports icons in XPM format. However, most other
+image formats can easily be converted to XPM using the ImageMagick tools.
+
+
+Happy xploring!
+
+Aug 2002
+
+Albert Graef (ag@muwiinfa.geschichte.uni-mainz.de)
+Department of Musicinformatics
+Johannes Gutenberg-University Mainz
+Germany
+
