@@ -1,0 +1,880 @@
+$Id: xps.pod.in,v 1.2 2003/03/04 01:54:04 rockyb Exp $
+
+=head1 NAME
+
+@PACKAGE@ - Process tree display and manipulation for the X Window System.
+
+=head1 SYNOPSIS
+
+B<@PACKAGE@> [ C<-help> | C<-version> ]
+
+B<@PACKAGE@> [C<-interval> I<time-in-seconds> ]
+       [C<-metoo>]
+       [C<-kernel>]
+       [C<-allprocs>]
+       [C<-iconic>]
+       [C<-beep>]
+       [C<-zoomed>]
+       [C<-kill>]
+       [C<-debugging>  I<integer-debug-value>]
+       [C<-zfont> I<X-fontname>]
+       [C<-zfn> I<X-fontname>]
+       [C<-zgeometry> I<X-geometry>]
+       [C<-swap>  I<X-color>]
+       [C<-waiting> I<X-color>]
+       [C<-active> I<X- color>]
+       [C<-selected> I<X-color>]
+       [C<-running> I<X-color>]
+       [C<-zombie> I<X-color>]
+       [C<-idle> I<X-color>]
+       [C<-stopped> I<X-color>]
+       [C<-pscmdline> I<ps-command>]
+       [C<-pscmdinfo> I<ps-command>]
+       [I<X-options...>]
+
+=head1 DESCRIPTION
+
+B<@PACKAGE@> is sort of an X-windows front end to C<ps(1)>, C<kill(1)>, and
+C<nice> (and maybe C<uptime(1)> too); perhaps an X-windows version of a
+continually running C<pstree(1)> with the intent of dynamically
+showing in color what process are running or stopped, being spawned or
+zombies. The "sort of" part in the first sentence of this section is
+that for efficiency, C<ps> is not in fact called in generating the
+tree display. And for that matter, neither are the command line
+versions of C<kill(1)>, or C<nice(1)>.
+
+The main part of the display show processes as a tree or forest, the
+roots of the tree are on the left-hand side and the leaf processes
+(with no children) are on the right-hand side.  Which processes shown
+is determined various settings. Once can select viewing all processes,
+or processes owned by specific users, and possibly kernel processes as
+well.
+
+Process status (running, sleeping, stopped, etc.) of shown processes
+is indicated by a color.
+
+Within each level, processes are grouped so that those with the same
+parent process id are grouped together. Within this, processes are
+arranged by userid with lower number uid's appearing towards the top.
+
+This means root processes always appear at the extreme top,
+assuming the processes' parent was also a root process.  Finally, among
+processes that have a common parent (or no parent) and belong to the
+same userid, those with lower process numbers appear towards the
+top. In general, the order of children is the order in which they
+were spawned, with the older processes appearing towards towards the
+top.
+
+In contrast to C<pstree> and many tree-widget based programs, the
+overall tree display uses diagonal lines, and some effort is made to
+effectively use the full 2-dimensional area of the screen by balancing
+levels and centering the children of a node between their parent.  But
+since a goal of the program is to visually give a picture of
+what's going on, when possible processes are kept close to their
+parents so one needn't scroll around too much and so that doesn't
+there isn't a lot of redrawing as processes are created or destroyed.
+
+One can click on a process to get more information (via C<ps>) about
+that process, send a signal to the process, or set its priority
+(assuming you have the permission to do so).
+
+The majority of processes in a system, one hopes, are sleeping
+processes.  The color to be selected for uid's of sleeping process can
+be specified in the L<X RESOURCES> section. If however a color is not
+specified, one is chosen at random. Generally, all processes belonging
+to a given user will be a unique color. For certain terminal programs like
+C<xterm> or C<telnet>, the name if the user is displayed rather than
+the program name.
+
+When the program starts there are basically two windows. A "normal"
+window and a "zoomed" window. Each has a certain state that can 
+be set independently.
+
+=head2 Options
+
+As the Perl motto goes "There's more than one way to do it," and
+that's true here as well.  All of the following options can be set via
+L<X RESOURCES>, and many values can be toggled in the course of the
+execution of the program through L<MENUS, DIALOGS, AND BUTTONS>.
+
+But setting "help" or the "version" as a resource does not make much
+sense as these are typically not done in the normal course of things,
+so a couple things are unique to this section.
+
+Options can be abbreviated to the extent that they are unique. 
+So C<-help> can be abbreviated as short as C<-h>.
+
+=over 
+
+=item -help
+
+Print a usage message on standard error and exit with a return code
+of 100.
+
+=item -version
+
+Print on standard output the version release and various configuration
+parameters that have been set for this program and then exit with a
+return code of 2.
+
+=item -interval I<secs>
+
+Set the interval in seconds that B<@PACKAGE@> should wait between status
+updates.  Obviously this must be an integer greater than 0; it
+also has to be less than 64 a number which is compiled into the program.
+This value can also set more statically in X using the
+C<interval> resource, and can be changed via the L<Refresh Rate Dialog>.
+
+=item -metoo
+
+Normally we lie about the state of B<@PACKAGE@> and pretend it is 
+sleeping when in fact it's generally running at the time it
+is gathering statistics. I<This option is not fully functional.>
+
+=item -kernel
+
+Show kernel processes. This may or may not be implemented or even make
+sense depending on your architecture.  This value can also set more
+statically in X using the C<kernel> resource.
+
+=item -allprocs
+
+Show all processes rather than just those that belong to a single
+userid.  This value can also set more statically in X using the
+C<allprocs> resource, and can be changed at runtime through
+the C<Kernel> radio buttons.
+
+=item -beep
+
+Beep when the the number of processes change.  This value can also set
+more statically in X using the C<beep> resource, and can be
+changed at runtime through a C<Beep> toggle button.
+
+=item -kill
+
+Sets the C<QuickKill> button initially on. This value can also set
+more statically in X using the C<quickkill> resource.
+
+=item -zoomed
+
+Display using a (presumably larger) window rather than the normal
+one. This value can also set more statically in X using the C<zoom>
+resource, and can be changed at runtime through the C<Zoom> toggle
+button.
+
+=item -stopped I<color>
+
+Set the color for stopped processes. This value can also set more
+statically in X using the C<stopped> resource.
+
+=item -idle I<color>
+
+Set the color for idle processes. This value can also set more
+statically in X using the C<idle> resource.
+
+=item -running color
+
+Set the color for running processes. This value can also set more
+statically in X using the C<running> resource.
+
+=item -zombie color
+
+Set the color for zombie processes. This value can also set more
+statically in X using the C<zombie> resource.
+
+=item -selected color
+
+Set the color for the selected process. This value can also set more
+statically in X using the C<selected> resource.
+
+=item -pscmdline I<ps command>
+
+C<ps> command which can be run to give information about a process.
+This value can also set more statically in X using the C<pscmdline>
+resource. See that section for more information.
+
+=item -pscmdinfo I<ps command>
+
+C<ps> command which can be run to give information about a process.
+This value can also set more statically in X using the C<pscmdinfo>
+resource. See that section for more information.
+
+=item I<X-options>
+
+In addition the standard set of X-Window options are allowed.  For
+example things like the window geometry (C<-geometry>), the window
+name (C<-name>), the foreground and background colors (C<-fg>,
+C<-bg>), the font used (C<-fn>), whether the window starts out
+iconified (C<-iconic>) and so on.
+
+=back
+
+=head1 MENUS, DIALOGS, AND BUTTONS
+
+The main window is divided into three sections:
+
+=over 
+
+=item a menu bar 
+
+The menu bar contains a menu selection and various toggle buttons.
+
+=item a process tree display area in the middle
+
+This is the meat of the program.
+
+=item some overall status information.
+
+This contains load average information, how many and a count of the 
+number of processes shown. And on another line the version number
+and refresh rate.
+
+=back
+
+Each of the pop up menus has its own context-specific help.
+
+=head2 Toggle Buttons
+
+Options C<-allprocs>, C<-kernel>, C<-beep>, and C<-zoomed> mentioned
+above in L<Options>, set the initial state for various display
+parameters.  In addition, there are buttons which allow toggling
+between the two states. When a button is depressed (or looks
+depressed), the feature described below is "on."
+
+=over 
+
+=item Beep
+
+The program can arrange to beep when the number of processes grows or
+diminishes. The utility of such a feature, I'm not certain of.
+Perhaps the night watchman uses to find out when someone's telnet'd
+into one his server, or logged out. The keyboard-translation
+equivalent of this is C<togglebeep()>. 
+
+The tune to play can be set by resources C<beepup> and C<beepdown>.
+
+=item QuickKill
+
+The program can be arrange to point-and-kill processes. This 
+button is like the safety latch on the trigger. Also, the
+default behavior is to allow only the right mouse button in 
+this endeavor. (I am left-handed.)
+
+Depending on the shifting activity of processes, you might have to be
+quick though to get the right one!
+
+The default behavior is to be nice to the process and send it a
+C<TERM> signal. However serial killers and die-hard sysadmins can
+arrange for the default signal to be C<KILL> (-9) or another signal
+using the L<Set Quick Kill Signal Dialog>. 
+
+Having QuickKill button depressed will also cause the default signal
+in the process popup window to be set to that value.
+
+=item Kernel/All/User
+
+The program can show all processes, all processes including kernel 
+processes or those associated with a particular userid or pattern. 
+Buttons may vary depending on the capabilities of your system.
+The keyboard-translation functions which roughly correspond are
+C<toggleprocs()> and C<togglekernel()>. 
+
+Only push button in this group can be selected at any given time.
+
+=item Zoom
+
+The program maintains two windows, a "zoomed" or maximized window and
+a normal one. The geometry, text font, and scrollable canvas window
+can all be set independently for the zoomed and normal windows.  The
+keyboard-translation equivalent of this is C<zoom()>. 
+
+=back
+
+There is probably room for much much much more improvement here. I'm
+not a guiologist. Some of the "features" are inherited that I didn't
+have the heart to remove, although I rarely use them: the beep and
+zoom "features" in particular. And the GUI that has been added is
+pretty bare bones. For example perhaps a "combo box" (combination text
+entry and slider) for setting the refresh interval might be more to
+folks liking. The debugging options could be a bunch of
+push buttons in a menu rather than entering as a number.
+
+=head2 Process Dialog Box
+
+When a process name is selected on the process-tree canvas, a dialog
+box for that process pops up if it is not already open. If it is already
+open and a different process is selected underneath, the process 
+information changes. In order to show the which process is selected
+on process-tree canvas, the process name changes color to the color
+specified by the C<selected> resource.
+
+The Process Dialog Box lists information about the process. Also it
+can be used to set the priority of the process or process group and
+can be used to send a signal to the process or process group.
+
+The top part of the dialog box gives information gathered from C<ps>
+command. Since a command invocation may be rather long, this is listed
+on a separate line.
+
+Below that to the left side is scrollable list of signals which can be
+sent to the process. This list is automatically generated when the
+program was compiled via the program C<makesig.pl>. The list of
+signals is in sorted order, but the most common signals are listed at
+the top according to my preference. If the C<Quick Kill> toggle button
+had been depressed, the signal selected in the L<Set Quick Kill Signal Dialog>
+is selected. Otherwise "NO ACTION" will be selected and you
+will have to select a signal if you want to send a signal to a
+process.
+
+To the right of the scrollable list of signals is a slider which can
+be used to set the process priority. The initial value is the value at
+the time for that process at the time the process was selected.
+
+There is a notion in Unix called a I<process group> which is 
+a group of processes that are usually related in some way; perhaps
+they were spawned from a common parent. Instead of sending a kill
+signal to a specific process, the signal can be sent to the set process
+of processes in the process group. Likewise instead of setting the
+priority for a single process it can be set for the process group.
+The process group toggle button in the process dialog 
+is used to indicate that a signal or priority should be applied to the
+process group rather than the process that is selected.
+
+Note that in order for a kill signal or a change in priority to
+take effect, you may need sufficient permission to do so. This is no
+different than say if you were to run C<kill(1)> or C<nice(1)> from a
+shell.
+
+If there is a problem performing the action requested (and the program
+catches you), the old value is kept.
+
+=head2 Set Quick Kill Signal Dialog
+
+In the top line is a C<Quick Kill> toggle button for those of you who
+like to massacre processes.
+
+In order for point-and-kill to work, one has to arrange in advance
+what signal will be sent; that is what this menu is for. 
+
+In contrast to the signal menu found in the L<Process Dialog Box>,
+there is no C<NO ACTION> signal. Also, this menu remembers the 
+signal last used and has this selected in the menu list.
+
+=head2 Refresh Rate Dialog
+
+The Set Refresh Rate Menu is used to set how frequently this program
+should retrieve process information. The units displayed are in seconds.
+
+Changing the refresh rate does not have an immediate effect, but
+takes effect the next time the polling occurs.
+
+No matter what the refresh rate interval is set to, the display is updated
+only when it is visible--this program can consume lots of CPU time.
+
+=head2 Set ps command Dialog Box
+
+In the top part of the process popup window, process information is
+shown by running a "ps"-like program. What command to invoke is
+determined initially by the value associated with the C<-pscmdline>
+option or the pscmdline X resource if it is not set as a command
+option, or if neither of these are set then by a platform-specific
+C<ps> command string set when this @PACKAGE@ was configured and compiled.
+
+Well, this is not the whole truth. Having written all of the above,
+you can dynamically change this here as the program is running!
+Should you want different information or in a different format, here
+is where you can customize.
+
+The "ps"-like command string should have C<%d> or C<%ld> as a
+placeholder for the process id or "pid".  Chances are that the command
+string will want to refer to the process id somewhere.  The process id
+of the selected process will be substituted for the first occurrence of
+C<%d> or C<%ld> (if any) found. After substitution, the command string
+is executed and the output, which might be several lines, will be put
+in the scrolled window.
+
+Example (for Linux):
+
+ /bin/ps w %d
+
+If you have C<lsof> installed, another interesting possibility
+is:
+
+ lsof -p %d
+
+
+=head2 Set Watch User Dialog Box
+
+When the C<All> radio button is depressed, the program generally shows
+all processes.  It is possible that on some systems the program has
+not been compiled in a way to show processes other than the ones you
+own.  On some systems there is a C<Kernel> button as well and this
+shows all processes as well as additional kernel processes.
+
+When the C<User> radio button is depressed, the program shows only
+some portion of all the processes, initially the processes associated
+with the userid that invokes the program. However you can change that
+with the "Set Watch User" dialog box. 
+
+On systems that have a regular-expression library and where the
+program has been compiled to support patterns, there will be a
+"pattern" toggle button which allows one to select a pattern for a
+user name. See your system documentation for the regular-expression
+syntax. Selection by pattern match may slow the program down a bit, so
+it should be used with caution for complex patterns and systems with a
+very large number of processes.
+
+When pattern-match selection is not indicated, the user name only
+changes if the newly-entered one is a name known on the system.  If
+pattern-match selection the pattern changes if it is syntactically
+correct. In case, if there is an error in entry the old value is kept
+and method of matching (pattern-match or not) is kept.
+
+It is possible to set the watch user for the zoomed and normal windows
+separately. However if you want to change the view in both windows,
+check the "Set both windows" box.
+
+=head2 Set User Color Dialog Box
+
+The Set User Color Menu can be used to change the color associated
+a given user in the process tree display. You enter a user name (not a uid)
+and an X color name like "blue" or "#DA7".
+
+Each user in the process tree is assigned a color, often a different
+color. If a color assignment is not specified explicitly, the program will
+generate a color based on a hash of the uid. Sometimes this is a
+pleasing color; sometimes it is ghastly. This menu lets you assign the
+color for a user interactively.
+
+However internally, there is a table for a fixed number of associations
+between users and colors. The default is 10 but this can be changed
+when the program is built. If a color for the user had previously been
+set it that color will be overwritten. If the user not in the internal
+table yet, the program looks for a free spot and inserts the user in
+the table. If however the table is full, a reserved spare slot is
+used. After the table is full, each time a new user color is assigned
+the last "spare" slot is overwritten with the new user and color.
+
+If you are going to be using the program over and over again on a
+system where the user's don't change that frequently, or at least the
+important ones that you want to track, you may want to consider
+setting the user color via the L<X RESOURCES> C<uid1> and
+C<usercolor1>. The default resource file sets the color for root which
+has uid 0 to be black.
+
+=head2 Debugging Menu
+
+If you should be so unfortunate as to want to debug this program, you
+can set this integer value and output should appear on stdout.  So if
+you set debugging you should have some way to see stdout of this
+program. For example running this command from a window menu is
+probably a lose.
+
+The debug value is interpreted as a bitstring the individual bits
+determine what's displayed. The bit values are:
+   1  for callbacks and events handling
+   2  for display debug messages 
+   4  for menu-oriented messages
+   8  for the virtual position in the tree-level 
+  16  for tree sorting debugging messages 
+
+Anybody wanna turn this menu into a nice check-box menu? 
+
+=head1 X RESOURCES
+
+See also F<Xps.ad> for a complete example of a full X resources file
+for this program.  There are numerous comments in that file too that
+mimic what is in here. (I hope the two are consistent and complete!)
+
+=over 
+
+=item interval
+
+Resource associated with the C<-interval> option, an integer value
+greater than 0. 
+
+Example:
+
+  *interval: 2
+
+This value can be changed while running via a pop-up menu.
+See L<Refresh Rate Dialog>.
+
+=item kernel
+
+Resource associated with the C<-kernel> option. This option may
+be machine specific. A Boolean value. When set true kernel
+processes are shown, if your platform has and supports this.
+
+Example:
+
+  *kernel: False
+
+=item allprocs
+
+Resource associated with the C<-allprocs> option, a Boolean value.
+This value can be changed while running via a toggle button, 
+and selects whether to show all processes or some subset of them.
+
+Example:
+
+  *allprocs: False
+
+=item beep
+
+Resource associated with the C<-beep> option and C<Beep> toggle
+button, a Boolean value. See C<Beep> for more information.
+
+Example:
+
+  *beep:  False
+
+=item beepup
+
+The "tune" to place when the number of processes increases This
+parameter should be a string.  The format is pitch (Hz), duration
+(msec), ...
+
+Example:
+
+  *beepup: "55 50 110 50 220 50 440 100"
+
+The above plays three A-pitches each an octave higher than the last,
+ending in A440; each pitch is held for .05 seconds.
+
+=item beepdown
+
+Resource associated with the C<-allprocs> option.
+
+The "tune" to place when the number of processes increases This
+parameter should be a string.  The format is pitch (Hz), duration
+(msec), ...
+
+Example:
+
+  *beepdown: "440 50 220 50 110 50 55 100"
+
+The above plays three A-pitches each an octave lower than the last, 
+starting at A44; each pitch is held for .05 seconds.
+
+=item quickkill
+
+Resource associated with the C<-kill> option and C<QuickKill> toggle
+button, a Boolean value. See C<QuickKill> for more information.
+This value can be changed while running via the C<QuickKill> toggle button.
+
+Example:
+
+  *quickkill:  False
+
+=item selected
+
+Resource associated with the C<-selected> option, an X color name or 
+color value. The process name that is under consideration in
+the L<Process Dialog Box> will have this color.
+
+Example:
+
+  *selected: cyan
+
+=item running
+
+Resource associated with the C<-running> option, an X color name or
+color value. Processes which are currently running will have this
+color in the Process Tree Window. You probably won't see I<too> many
+of these, unless your computer is CPU bound.
+
+Example:
+
+  *running:  green
+
+=item idle
+
+Resource associated with the C<-idle> option, an X color name or value.
+
+Example:
+
+  *idle: orange
+
+=item stopped
+
+Resource associated with the C<-stopped> option, an X color name or value.
+Processes whose process state is "stopped" (e.g. being debugged or
+suspended), will have this color.
+
+Example:
+
+  *stopped: red
+
+=item zombie
+
+Resource associated with the C<-zombie> option, an X color name or value.
+Zombie processes will have this color.
+
+Example:
+
+  *zombie: yellow
+
+=item uid1 .. uid9, usercolor1 .. usercolor9
+
+Sometimes you may want to select a particular color for a particular
+userid.  The program allow you to do this for 10 uids. (The source can
+be changed for more.)  You assign a color for a specific userid by
+adding two lines in your resource file: one for the uid, and another
+for the color that that uid should have.
+
+Example:
+
+  *uid1:       0
+  *usercolor1: black
+
+This ensures that root processes, (those with a 0 uid), 
+are displayed in black.
+
+This value can be changed at run time via the a popup menu. See
+L<Set User Color Dialog Box>. Note however that a user is specified via 
+a I<uid>, not a user name.
+
+=item pscmdinfo
+
+Resource associated with the C<-pscmdinfo> option, a string.  When
+the program was configured for your platform, a platform-specific
+C<ps> command is chosen to give lots of information about a
+process. This command has C<%d> or C<%ld> as a placeholder for the
+process id.  It is replaced by the process id of the selected process.
+Should you want different information or in a different format, you
+can customize here. 
+
+Example (for Solaris):
+
+  *pscmdinfo:  "/bin/ps -f -o user,pid,ppid,tty,nice,pcpu -p %ld"
+
+=item pscmdline
+
+Resource associated with the C<-pscmdline> option, an string.  When
+the program was configured for your platform, a platform-specific
+C<ps> command is chosen to show the command invocation for the
+selected process. This command has C<%d> or C<%ld> as a placeholder
+for the process id.  It is replaced by the process id of the selected
+process.  Should you want different information or in a different
+format, you can also customize here.
+
+Example (for BSDI):
+
+  *pscmdline:  "/bin/ps -w -w -o command -p %ld"
+
+or if you prefer not to have the leading header line listed:
+
+  *pscmdline:  "/bin/ps -w -w -o command -p %ld | sed -n '2,$p'"
+
+This value can also be changed at run time via the a popup menu. See
+L<Set ps command Dialog Box>.
+
+=back
+
+=head2 Default Key/Mouse Bindings
+
+Below are the default key and mouse bindings. They can be
+overridden via L<X RESOURCES>. See also F<Xps> installed
+in your F<app-defaults> directory or F<Xps.ad> that comes 
+with the distribution.
+
+   Key         Menu
+   ------------------------------
+   c           Set user color menu
+   d           Debugging menu
+   h           Help menu
+   i           Refresh Interval menu
+   k           Set kill signal
+   u           User to watch menu
+   v           Show version and configuration information
+   w           Show No Warranty
+
+The below commands work everywhere except in 
+text input menus:
+
+   Key(s)       function
+   --------------------------------
+   a, A         :  toggleprocs()
+   b, B         :  togglebeep()
+   -            :  changespeed(-1)
+   f            :  changespeed(-1)
+   F            :  changespeed(-5)
+   Ctrl-k       :  togglekernel()
+   K            :  togglekill()
+   +            :  changespeed(1)
+   s            :  changespeed(1)
+   S            :  changespeed(5)
+   r            :  redisplay()
+   Ctrl-X       :  quit()
+   z            :  zoom()
+
+The below commands work I<only> in the process-tree
+display or canvas area.
+
+   space, return, mouse:  showprocess()
+   right mouse         :  showprocess(K)
+
+See L<X Keyboard Translations> below for more information on functions
+such as C<toggleprocs>, C<showprocess>.
+
+=head2 X Keyboard Translations
+
+Listed below are the functions or actions that can be performed by binding
+mouse or keyboard events to them.
+
+=over 
+
+=item changespeed(num)   
+
+Decrease display refresh interval by num "ticks".  This can be
+positive or negative. A "tick" is defined when compiling the program.
+The value is of a tick can be shown by running this command with the
+C<-version> option.
+
+The fastest and slowest value is set in configuring the program.  The
+minimum and maximum values can be shown by running this command with
+the C<-version> option.  
+
+=item showprocess()
+
+This pops up the process dialog menu over the selected process.  One
+can also give a single parameter that starts with the letter 'K'. This
+will kill the process over the cursor, provided C<QuickKill> is
+set. Otherwise, the same as C<showprocess()>.
+
+=item quit()
+
+Terminates this fine program.
+
+=item togglebeep()
+
+This is the same as hitting the C<Beep> toggle button.
+
+One can also give a single parameter with a value of 0, 1, or 2;
+0 means set the state off, 1 means set the state on, and 2 toggle
+the state. So C<togglebeep()> is the same as C<togglebeep(2)>.
+
+=item toggleprocs()
+
+This is the same as hitting the C<All> radio button.
+
+=item togglekernel()
+
+This is the same as hitting the C<Kernel> radio button assuming 
+the C<All> radio button had been depressed. If not, this has no
+effect until the next C<toggleprocs> is run. 
+
+One can also give a single parameter with a value of 0, 1, or 2;
+0 means set the state off, 1 means set the state on, and 2 toggle
+the state. So C<togglekernel()> is the same as C<togglekernel(2)>.
+
+=item redisplay()
+
+This causes a redisplay of all information.
+
+=item zoom()
+
+This is the same as hitting the C<Zoom> toggle button
+
+=back 
+
+=head1 LOW-LEVEL DETAILS
+
+The program lies about the state of B<@PACKAGE@> itself since it
+is always running at the time it checks.
+
+The program can consume a bit of resources both in itself and in the X
+server. Of course, the fewer processes that need to be tracked and the
+slower the refresh interval, the less run time consumed. 
+
+However some effort is made to not gather or redraw the display
+when not shown. The program tries to track whether it is iconified or
+if the process tree display window is fully obscured. If so, the
+program will not try to obtain data or refresh its display.  But
+unless I've coded the program properly, it's possible for the program
+to think it is not visible when in fact it is.
+
+As a further measure to reduce overhead, the program takes a sum of
+all of the process ID's, the sum of the process states and number of
+nodes and will not update its process-tree display if these sums
+haven't changed. But it is possible that the sum can be the same even
+though things have changed.
+
+There is a debug menu; if debug values are set, debugging output will
+appear in standard output. Debugging values are a series of bits. 
+Look in F<common.h> of the source code for the values of the bits.
+
+=head1 SEE ALSO
+
+C<gnopstree(1)> L<http://gnopstree.sourceforge.net>
+C<ps(1)>, C<pstree(1)>, C<kill(1)>, C<nice(1)>, C<uptime(1)>.
+
+Another interesting package similar to this one is George MacDonald's
+(gmd@orbit2orbit.com) program, C<treeps>. That can be obtained at
+L<http://www.treeps.org>.
+
+=head1 BUGS
+
+At times, lines from a prodigious parent with a short label name (like
+C<nfsd>) will cross over a sibling with a longer name (like
+C<rpc.mountd>). I think the program still core dumps occasionally.
+
+Some process tables are fixed in size, somewhere at around 1,000
+processes. Perhaps some will consider this a bug, but the display
+algorithm is not linear. As things grow the redisplay will slow down
+the program will consume quite a bit of CPU time. The whole paradigm
+of this program may not be suitable for displaying thousands of
+processes.
+
+Just about everything could be improved: configuration management,
+tree layout, GUI design, toolkit used (via gtk+), algorithms, more 
+platforms supported. See the file F<TODO> distributed with 
+the source.
+
+The way process selection is done may be hokey in that the names of the
+processes aren't really widgets at all but strings drawn on a canvas
+so when you click on a process, in fact the program is doing its own
+range searching to figure out what node is meant at the mouse
+position.  That is, there is no callback for the "widget" just the
+overall canvas! That is why for example we can't, say, put a box
+around the selected process but change very limited things like the
+color (or the font) of the string.
+
+=head1 AUTHORS
+
+The current version is maintained (or not) by rocky@panix.com.
+However, this code reflects the work of a number of people.
+
+Derek Lieber wrote the first version of the code for the now defunct
+IBM RT/PC. Although just about everything has been rewritten and
+extended, many of the key ideas come from this:
+showing a process tree from left to right, changing the color of the
+process to show process activity, allowing a process to be selected on
+the canvas and then renice'd or kill'ed.
+
+Subsequently Steve James added the first Motif code, although nothing
+in the way of command menus, dialog boxes, push buttons, or scroll
+windows or signal menus.  Mark Kennedy extended the code to allow
+users to customize the pop up list via an X resources file, and allow
+a user-specified set of signals that could be sent to processes. (This
+code is has been completely replaced although the signal-list data
+structure still exists.)  John Prager added the code to list different
+userids in different colors, sort by user within tree levels and beep
+when the processes change.  Also he put more information in the popup
+status and replaced some of the terminal shells (like C<aixterm>) with
+user names.
+
+Rocky Bernstein added code to restrict the process tree to a single
+selectable user process, added even more info in the popup about a
+process (via C<ps>), all the other dialogs, sorting by userid and
+process ID, the Motif scroll window canvas, toggle buttons, and this
+initial manual page. He also ported to Solaris and Linux, wrote the
+current tree-layout algorithm, and did major restructuring and
+rewriting to separate the code into machine-dependent components in
+separate directories. He revised to use C<autoconf> and generate
+machine-dependent signal lists.
+
+Kazuki Sakamoto (sakamoto@cec.co.jp, sakamoto@netbsd.org)
+ported to NetBSD. See also the file F<THANKS> for a more complete
+list of contributors.

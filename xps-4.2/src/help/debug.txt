@@ -1,0 +1,15 @@
+If you should be so unfortunate as to want to debug this program, you
+can set this integer value and output should appear on stdout.  So if
+you set debugging you should have some way to see stdout of this
+program. For example running this command from a window menu is
+probably a lose.
+
+The debug value is interpreted as a bitstring, the individual bits
+determine what's displayed. The bit values are:
+   1  for callbacks and events handling
+   2  for display debug messages 
+   4  for menu-oriented messages
+   8  for the virtual position in the tree-level 
+  16  for tree sorting debugging messages 
+
+Anybody wanna turn this menu into a nice checkbox menu? 

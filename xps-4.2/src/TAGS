@@ -1,0 +1,291 @@
+
+xstuff.c,753
+static Widget dialog_user_widget;58,1677
+static Widget dialog_color_widget;59,1754
+static Widget dialog_pscmd_widget;60,1833
+static Widget dialog_debug_widget;61,1912
+ApplInfo base;65,2053
+Widget   toplevel;67,2069
+Widget   frame;68,2088
+main(71,2109
+ForceRedisplay(98,2935
+set_label 113,3445
+XtWidgetToName(132,4189
+set_refresh_rate(141,4457
+popup_refresh_rate_dialog(158,4970
+set_debug_callback(198,6254
+popup_debug_dialog(215,6738
+set_pscmd_callback(262,8072
+popup_pscmd_dialog(269,8244
+static Boolean user_is_pattern;316,9623
+set_user_callback(320,9675
+toggle_pattern(388,11396
+popup_set_user_dialog(396,11556
+popdown_usercolor_callback(461,13439
+popup_set_user_color(500,14583
+ShowProcess(563,16542
+CreateWindows(615,17742
+
+xpsplay.c,33
+getnum(34,1259
+xpsplay(56,1660
+
+os.h,361
+#define OS_H6,98
+#define NPROCSTATES 7,111
+#define NCPUSTATES 8,133
+#define SRUN 9,154
+#define SWAIT 10,185
+#define SIDL 11,203
+#define SZOMB 12,221
+#define SSTOP 13,296
+#define SSWAP 14,349
+#define	SACTIVE 17,408
+#define	SSLEEP 18,430
+#define PSCMD 21,513
+#define PS_CMDLINE 24,610
+typedef prpsinfo_t ProcInfo;30,772
+typedef int signal_t;33,874
+
+MenuSupport.h,652
+#define MENUSUPPORT_H22,889
+typedef enum _menu_type 30,1027
+typedef enum _menu_type { END,30,1027
+                          POPUP,31,1058
+                          MENUBAR,32,1093
+                          OPTION,33,1128
+                          PULLDOWN,34,1162
+                          RADIOPULLDOWN,35,1198
+                          HELPPANE,36,1239
+                          BUTTON,37,1275
+                          LABEL,38,1309
+                          TOGGLE,39,1342
+                          SEPARATOR 40,1376
+                          SEPARATOR } MenuType;40,1376
+typedef struct _menu_desc 47,1533
+} MenuDescription;53,1846
+
+xpstypes.h,419
+#define XPSTYPES_H25,901
+#define DBG_CALLBACK 34,1022
+#define DBG_DISPLAY 35,1089
+#define DBG_MENU 36,1113
+#define DBG_VIRTUAL 37,1137
+#define DBG_TREESORT 38,1161
+#define DBG_DRAW 39,1185
+  } ShellInfo;80,3092
+typedef unsigned int user_color_index;83,3181
+  } ApplInfo;117,5087
+typedef unsigned int nodeIndex;121,5125
+#define UNKNOWN_USER 122,5157
+#define active 124,5191
+#define MAXHOSTNAMELEN 127,5266
+
+askquestion.c,159
+AskQuestion 40,1337
+static void YesCallback 98,2825
+ShowDialog 109,3040
+ShowScrolledDialog 166,4514
+void AskQuestionCallback 253,7047
+void main 262,7252
+
+xps.h,123
+#define MAXLABEL 5,83
+typedef struct node23,949
+ } TREENODE;45,2027
+#define ROOT_PID 51,2214
+#define INIT_PID 52,2262
+
+xstuff.h,24
+#define XSTUFF_H20,871
+
+getpixelbyname.c,31
+Boolean GetPixelByName 24,998
+
+common.c,1642
+char nodename[nodename59,1598
+char config_info[config_info62,1687
+uid_t real_uid;66,1734
+#define MIN_XSPACE 71,1888
+#define MAX_XSPACE 72,1910
+#define MIN_YSPACE 73,1980
+#define MIN_SHRINK 75,2003
+#define ACTIVE_PROCS 83,2306
+#define ROOT_LEVEL 84,2379
+#define untraversed(85,2402
+typedef unsigned long int treelevel;87,2441
+static long         maxDepth;92,2586
+static treelevel    TreeDepth;93,2618
+static unsigned int MaxLabel[MaxLabel96,2731
+static unsigned int Breadth[Breadth99,2813
+static unsigned int Virtual_Breadth[Virtual_Breadth100,2858
+static int Level[Level106,3076
+TREENODE   *LevelHead[LevelHead109,3161
+static Boolean IsDegree1[IsDegree1121,3573
+void printTree(124,3623
+traverse(148,4437
+#define toIndex(196,5750
+swap(200,5831
+sort(232,6451
+arrange(373,11111
+static unsigned int num_processes 563,17098
+static unsigned int refresh_rate 564,17137
+static Boolean      beep 565,17176
+static Boolean      Zoomed 566,17219
+updateMessage(570,17311
+draw(611,18420
+find_pid_under_mouse(655,19839
+#define HASH_TABLE_SIZE 710,21379
+} userHashRec;715,21452
+userHashRec hashtable[hashtable717,21468
+hash_uid 721,21553
+insert_uid(727,21623
+new_color_hash(738,21813
+find_uid_color_index(757,22232
+static uid_t last_uid 773,22626
+static Pixel last_color 774,22693
+GetUID_Color 778,22774
+IDtouser(806,23387
+usertoID(821,23651
+unsigned int NumProcs;832,23900
+ProcInfo *Proc;Proc833,23923
+TREENODE         Node[Node836,24058
+TREENODE        *EndNode;EndNode837,24096
+display(842,24273
+usage(952,27408
+show_version(986,28954
+common_init(994,29079
+#define append_config(1041,29945
+
+user_config.h,485
+#define USER_CONFIG_H22,860
+#define XPS_MAX_PROCS 31,1164
+#define BOGUS_UID 34,1263
+#define BOGUS_PID 40,1492
+#define NUM_USER_COLORS 51,1915
+#define XPS_MAX_REFRESH_RATE 58,2202
+#define XPS_MIN_REFRESH_RATE 65,2470
+#define XPS_DEFAULT_REFRESH_RATE 70,2627
+#define XPS_TICK 77,2898
+#define XPS_RECOLOR_LOGIN_PROCESSES 83,3080
+#define XPS_DEFAULT_QUICK_KILL_SIGNAL 90,3294
+#define DO_XEDITRESCHECKMESSAGES 94,3411
+#define RUN_SUID_ROOT 98,3512
+#define HAVE_REGEX 102,3595
+
+os.c,342
+#define NR_TASKS 34,1105
+#define PROCFS 57,1500
+pid_t MyPid;59,1524
+#define NUMLABS 62,1609
+static char label_array[label_array63,1627
+#define min(73,1806
+proc_owner(90,2488
+read_one_proc_stat(103,2692
+GetProcInfo(182,4854
+GetStatus(225,5849
+GetProcName(262,6719
+#define PROC_SUPER_MAGIC 306,7832
+machine_specific_init(311,8001
+
+MenuSupport.c,140
+Widget CreateMenu 51,1790
+static void CreateMenuChildren 127,3769
+static void AttachPopup 284,8796
+static void PostMenuHandler 290,8962
+
+loadavg.c,90
+#define LOADINFO 25,1018
+#define LINESIZE 26,1051
+xps_getloadavg 29,1078
+main(47,1481
+
+common.h,120
+#define COMMON_H4,128
+#define MIN(61,1712
+#define MAX(64,1760
+} cmd_opt;75,2159
+static cmd_opt cmd_options;77,2171
+
+callback.c,741
+Boolean set_both_windows;34,1170
+is_valid_interval(37,1206
+parse_toggle_arg(56,1744
+Redisplay(98,2790
+RedisplayCallback(104,2888
+Redraw(113,3214
+Timeout(124,3621
+ChangeSpeed(136,4038
+QuitCommon(177,5184
+Quit(185,5289
+QuitCallback(191,5379
+ToggleProcsCommon(200,5681
+ToggleProcsCallback(232,6306
+ToggleProcs(245,6571
+ToggleKernel(261,7059
+Popup(280,7773
+ZoomCommon(290,8215
+Zoom(302,8548
+ZoomCallback(308,8637
+ToggleCommon(314,8738
+ToggleBeepCallback(337,9164
+ToggleKillCallback(343,9319
+ToggleBeep(349,9480
+ToggleKill(357,9702
+ToggleBoth(365,9932
+help_callback(372,10100
+popdown_refresh_rate_dialog(379,10268
+visibility_eventhandler(388,10422
+map_eventhandler(415,11154
+eventhandler(454,12168
+Resize(465,12611
+
+process.c,831
+const int sigmap_elts 47,1381
+int priority=59,1646
+Boolean do_process_group 60,1662
+static int   last_global_signal_pos 62,1697
+static int   dialog_signal_pos;63,1769
+              process_form,66,1823
+              process_dialog,67,1879
+              ps_info,68,1937
+              priority_slider,69,2006
+              process_group_button;70,2076
+Boolean do_priority 72,2173
+static  Widget priority_button;73,2202
+static Widget signal_list;76,2300
+do_kill(83,2513
+do_process_action_callback(116,3475
+do_process_cancel_callback(167,4741
+toggle_button_callback(175,4893
+SignalListCallback 183,5073
+set_priority_callback(196,5607
+#define MAXLINE 205,5861
+#define MAXSTATUS 206,5881
+Handle_Process(220,6477
+create_process_menu(338,9841
+set_kill_signal_callback(517,15897
+popup_default_kill_dialog(528,16150
+
+dialog.c,73
+GetTopShell(32,1081
+destroy_widget_callback(42,1234
+NewDialog(56,1748
+
+getpixelbyname.h,0
+
+askquestion.h,0
+
+xpsplay.h,0
+
+Xps.ad.h,0
+
+config.h.in,0
+
+dialog.h,0
+
+process.h,0
+
+callback.h,0
+
+loadavg.h,0

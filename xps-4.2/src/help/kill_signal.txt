@@ -1,0 +1,12 @@
+In the top line is a Kill toggle button for those of you who like to
+massacre processes.
+
+But in order for point-and-kill to work, one has to arrange in advance
+what signal will be sent; that is what this menu is for.
+
+In contrast to the signal menu found in the L<Process Dialog Box>,
+there is no C<NO ACTION> signal. Also, this menu remembers the 
+signal last used and has this selected in the menu list.
+
+
+

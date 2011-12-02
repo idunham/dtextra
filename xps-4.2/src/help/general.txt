@@ -1,0 +1,13 @@
+The window that appears when the program first comes up 
+is divided into three sections:
+ - The top line containing a menu bar and various toggle buttons,
+ - a graphical process tree display area in the middle,
+ - status information on the bottom.
+
+There is a separate help describing toggle buttons; pop up menus
+have their own context-specific help when they pop up.
+
+Status information at the bottom contains the load average for the
+last minute, 5 and 15 minutes respectively.  After this is a count of
+the processes shown.  On another line is the version number and
+refresh rate.

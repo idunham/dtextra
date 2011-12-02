@@ -1,0 +1,101 @@
+$Id: NEWS,v 1.8 2003/04/08 10:57:20 rockyb Exp $
+What is new in xps 4.1
+   Minor build fix bugs 
+     in RPM spec file, more idomatic automake 
+       thanks to Oron Peled <oron@actcom.co.il>
+     building outside source tree
+       thanks to Peter Breitenlohner <peb@mppmu.mpg.de>
+     will work with on more non-GNU makes (e.g BSD's)
+
+What is new in xps 4.0
+   Change to use automake and more of its conventions:
+     add src and intl directory
+     "make dist" and "make distcheck" work
+   Use libgtop if that's available. 
+   Add RPM spec file.
+
+What is new in xps 3.22
+   Minor packaging changes. 
+   Move to sourceforge.net, RIP ftp.netwinder.org:
+    CVS access!
+
+What is new in xps 3.21:
+-  Add trivial diffs to support OpenBSD.
+   Thanks to Angelos D. Keromytis <angelos@keromytis.org>
+-  Fixed bug in using wrong library order in Lesstif
+   Thanks to Bruce Momjian <root@candle.pha.pa.us>
+
+What is new in xps 3.20:
+
+-  Now blessed by autoscan and autoheader.
+-  Use autoheader.
+-  Updated config.guess and config.sub
+-  Fixed bug in configure script for reporting lack of Motif/Lesstif.
+   Thanks to Bruce Momjian <root@candle.pha.pa.us>
+
+What is new in xps 3.19:
+
+- Corrects a Linux bug related to processes dying before
+  you can get status from them.
+
+What is new in xps 3.16:
+
+- A bug where the size of the window increases over time when nothing
+  is happening was fixed. 
+- Window size is also more accurate.  
+- Various documentation changes and interenal organization changes
+  were made.
+
+What is new in xps 3.14:
+
+- Work on ps command pop up window and code cleanup. 
+- Allow ps-like command to return many lines of output. 
+- Allow this to be set on the fly. 
+- If "Quick Kill" selected, then that signal is selected in ps popup window. 
+
+What is new in xps 3.12:
+
+- allow multi-line ps commands to be specified on the fly. 
+-  Some BSD/NetBSD bugfixes. 
+-  Experimental code to have running processes stay lit a little longer. 
+- "set"-like commands grouped now into a pull-down menu. 
+
+What is new in xps 3.10:
+
+- Fixed shotcut keys interfering with color menu input areas.
+- BSDI and perhaps NetBSD were using kvm_close() too often.
+- Better detection of X libraries needed (e.g. ICE, SM).
+- more persistent colors for BSDI. 
+
+What is new in xps 3.08:
+
+- Added a quick point and kill feature.
+- changes to allow field/focus moving around by keys.
+- The initial focus is done more correctly.
+- Some bug fixes in setting command-line options.
+- Improved documentation. 
+
+What is new in xps 3.06:
+
+- POSIX regular expresssions can be used to select processes to watch.
+- button to show kernel processes added in main display.
+- some bug fixes, mostly small.
+- reliability enhancements. 
+- The never ending quest for comprehensive and correct documentation. 
+
+What is new in xps 3.03:
+
+- NetBSD port from Kazuki Sakamoto
+- More help verbiage and menus.
+- help in separate directory to facilitate internationalization. 
+
+
+What is new in xps 3.02:
+
+- First widespread release. 
+- Updated documentation.
+- GNU-style configuration
+- bug fixes
+- code reorganization, 
+- pop-up menus
+- online help. 

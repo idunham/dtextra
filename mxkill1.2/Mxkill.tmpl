@@ -1,0 +1,67 @@
+#ifndef XCOMM
+#define XCOMM #
+#endif
+
+XCOMM Mxkill $Revision: 1.1 $
+XCOMM This file conatains necessary redefinitions for generating Makefile
+XCOMM You SHOULD NOT edit Imakefile, you should EDIT THIS file instead
+
+XCOMM if you do not have gcc, comment out the #define USE_GCC line
+XCOMM gcc 2.6.3 on SunOS 4.1.4 needs -D__USE_FIXED_PROTOTYPES__ flag for
+XCOMM some function prototypes
+XCOMM 
+XCOMM Note: use XCOMM to comment out
+
+#ifdef SYSV
+HaveStringH=-DHAVE_STRING_H
+#else
+HaveStringH=
+#endif
+
+XCOMM #define USE_GCC
+
+#ifdef USE_GCC
+CC= gcc
+CDEBUGFLAGS= -g -Wall -DREGEX_MALLOC -D__USE_FIXED_PROTOTYPES__ $(HaveStringH)
+#else
+CC= cc 
+CDEBUGFLAGS= -g -DREGEX_MALLOC $(HaveStringH)
+#endif
+
+
+XCOMM binary will be installed when typed "make install"
+XCOMM man page will be installed when type "make install.man"
+
+STATIC_LDFLAGS =
+SHARED_LDFLAGS =
+EXTRA_LOAD_FLAGS =
+
+XCOMM for Interactive UNIX on i386 use the falg -DISC_UNIX with CDEBUGFLAG
+
+INCLUDES = -I. -I./bitmaps $(MCLIENTINCLUDES)
+SYS_LIBRARIES= 
+
+XCOMM for Interactive UNIX on i386, Use LOCAL_LIBRARIIES below
+
+XCOMM LOCAL_LIBRARIES = $(USRLIBDIR)/libXm.a $(USRLIBDIR)/libXt.a \
+XCOMM	$(USRLIBDIR)/libX11.a 
+
+XCOMM for Interactive UNIX on i386 uncommnet the EXTRA_LIBRARIES
+XCOMM EXTRA_LIBRARIES = -lnsl_s -lc_s -linet /lib/libcposix.a -lPW
+
+XCOMM If your imake has Motif support, the LOCAL_LIBRARIES declaration
+XCOMM should work. If it fails, substitute the LOCAL_LIBRARIES= with one of
+XCOMM these:
+XCOMM LOCAL_LIBRARIES= $(XMLIB) $(XTOOLLIB) $(XLIB)
+XCOMM or
+XCOMM  LOCAL_LIBRARIES= -lXm -lXt -lX11
+XCOMM
+
+LOCAL_LIBRARIES= XmClientLibs
+
+#ifdef HPArchitecture
+CCOPTIONS= -Aa -D_HPUX_SOURCE -Dhpux
+#endif
+
+XCOMM man page suffix
+MANSUFFIX=1

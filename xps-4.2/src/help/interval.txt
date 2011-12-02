@@ -1,0 +1,10 @@
+The Set Refresh Rate Menu is used to set how frequently this program
+should retrieve process information. The units displayed are in
+seconds.
+
+Changing the refresh rate does not have an immediate effect, but takes
+effect the next time the polling occurs.
+
+No matter what the refresh rate interval is set to, the display is
+updated only when it is visible--this program can consume lots of CPU
+time.

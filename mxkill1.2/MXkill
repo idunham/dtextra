@@ -1,0 +1,64 @@
+!!!!
+! Appdefaults file for mxkill
+! by Muahammad A Muquit
+! muquit@semcor.com
+! September 04, over the labor day holiday (a hot afternoon)
+!!!!
+
+MXkill*psCommand: /bin/ps
+MXkill*psdefOption: eaf|sort +0 -1
+MXkill*psAllOption: eaf
+MXkill*psAllbyUserOption: eaf|sort +0 -1
+MXkill*psAllbyPidOption: eaf|sort -n +1 -2
+!
+MXkill*background: gray
+MXkill*foreground: Black
+MXkill*highlightColor: Red
+MXkill*highlightThickness: 1
+MXkill*menuBar*fontList: *helvetica-bold-r-*-140*
+MXkill*XmText*background: #d3b5b5
+!MXkill*XmText*background: Thistle
+MXkill*XmText*foreground: black
+MXkill*XmPushButton.fontList: *helvetica-bold-r-*-140*
+MXkill*XmPushButtonGadget.fontList: *helvetica-bold-r-*-140*
+MXkill*XmPushButton*alignment: ALIGNMENT_CENTER
+MXkill*XmPushButtonGadget*alignment: ALIGNMENT_CENTER
+MXkill*XmLabel.fontList: *helvetica-bold-r-*-140*
+MXkill*XmLabelGadget.fontList: *helvetica-bold-r-*-140*
+!
+MXkill*xpslist.width: 575
+MXkill*xpslist.height: 600
+!MXkill*xpslist*fontList: lucidasans-12
+MXkill*xpslist*fontList: -*-fixed-medium-r-*-*-14-*
+MXkill*xpslist*background: white
+MXkill*xpslist*foreground: black
+!
+MXkill*xpstext*columns: 50
+!
+MXkill*xpsheadtext*highlightThickness: 0
+MXkill*xpsheadtext*cursorPositionVisible: False
+MXkill*xpsheadtext*editable: False
+MXkill*xpsheadtext*background: black
+MXkill*xpsheadtext*foreground: yellow
+MXkill*xpsheadtext*fontList: -*-fixed-medium-r-*-*-14-*
+!
+MXkill*xwclab.labelString: Regular Expression:
+MXkill*xwctext*background: #d3b5b5
+!MXkill*xwctext*background: Thistle
+MXkill*xwctext*foreground: black
+MXkill*xwctext*columns: 50
+MXkill*xwcframe*shadowType: shadow_out
+!
+MXkill*aboutd.messageAlignment: alignment_center
+MXkill*aboutd*fontList: lucidasans-12,lucidasans-bold-12=BOLD,lucidasans-bold-18=BIG,lucidasans-10=SMALL,lucidasans-italic-12=ITALIC
+MXkill*aboutd.messageString:\
+<BIG>mxkill Release 1.1<>\n\
+<SMALL>[Labor Day Weekend, 1995]<>\n\
+\n\
+X/Motif interface to ps\n\
+By\n\
+<ITALIC>Muhammad A. Muquit<>\n\
+\n\
+http://www.semcor.com/~muquit/\n\
+<BOLD>Email: <SMALL>muquit@semcor.com
+

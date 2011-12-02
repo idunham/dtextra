@@ -1,0 +1,28 @@
+Listed below are the functions or actions that can be performed by binding
+mouse or keyboard events to them.
+
+Action             Description
+----------------------------------------------------------------------------
+changespeed(num)   Decrease display refresh interval by num "ticks".
+                   This can be positive or negative. A "tick" 
+                   is defined when compiling the program as are 
+                   the fastest and slowest value that can be set.
+                   These values are displayed in info from the 
+                   C<-version> option.
+quit()             Leave this fine program.
+redisplay()        Redraw screen.
+showprocess()      Pop up the process menu for the process over the
+                   cursor.
+showprocess(K)     Kill the process over the cursor, provided
+                   L<Quick Kill> is set. Otherwise, the same as showprocess().
+togglebeep()       **toggle L<Beep> button/action
+toggleprocs()      toggle "All" button/action
+togglekernel()     **toggle showing kernel procs (if applicable)
+redisplay()        redisplay of all information.
+zoom()             toggle zoom/unzoom windows and toggle button.
+
+**togglebeep and togglekernel can also take single parameter with a
+values of 0, 1, or 2; 0 means set the state off, 1 means set the state
+on, and 2 toggle the state. So togglebeep() is the same as
+togglebeep(2).
+

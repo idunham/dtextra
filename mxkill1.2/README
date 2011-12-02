@@ -1,0 +1,76 @@
+The README file mxkill 1.1
+
+mxkill is a user friendly X/Motif graphical user interface to ps command. 
+The various options to ps command, even pipe can be used to filter the ps
+output. The ps output is displayed in a scrolled list window. The vertical or
+horizontal scrollbar will be active if the output goes beyond the viewing
+area. One or more processes can be selected interactively by mouse or standard
+Unix regular expression syntax can be used to select processes as well.
+
+The various types of signal can be chosen from the menu in order to send to
+the process/es. By default, the signal is 9 (sure kill). 
+
+This program is based on X Athena based xzap program by
+gerry.tomlinson@ncl.ac.uk. 
+  
+Compile:
+look at MXkill.ad resource file first. change ps and other commands for
+your system. then do:
+
+ad2c<MXkill.ad>Mxkill.ad.h
+
+xmkmf
+make
+
+install MXkill.ad file to /usr/lib/X11/app-defaults as MXkill if you like.
+
+NOTE:
+only thing you have to remember when you choose the ps comamnd and its 
+option is that Process id of the process must be under the header field PID.
+Here are some valid ps options in Linux:
+    /bin/ps ea
+
+PID TTY STAT  TIME COMMAND
+
+240   1 S    0:00 /bin/login -- root 
+241   2 S    0:00 /sbin/mingetty tty2 
+242   3 S    0:00 /sbin/mingetty tty3 
+243   4 S    0:00 /sbin/mingetty tty4 
+244   5 S    0:00 /sbin/mingetty tty5 
+245   6 S    0:00 /sbin/mingetty tty6 
+
+    /bin/ps auxww
+
+USER       PID %CPU %MEM  SIZE   RSS TTY STAT START   TIME COMMAND
+muquit     324  0.0  1.1  1272   732  p0 S   22:52   0:00 bash 
+muquit     325  0.0  1.1  1280   748  p1 S   22:52   0:00 -bash 
+muquit     326  0.0  1.1  1292   752  p2 S   22:52   0:00 -bash 
+muquit     327  0.0  1.0  1252   692  p3 S   22:52   0:00 -bash 
+muquit     328  0.0  1.0  1252   684  p4 S   22:52   0:00 bash 
+muquit    3254  0.1 16.4 15708 10384  p2 S   10:37   0:13 netscape 
+
+play with the following resources in the MXkill.ad file:
+
+MXkill*psCommand: /bin/ps
+MXkill*psdefOption: ea|sort +0 -1
+MXkill*psAllOption: eax
+MXkill*psAllbyUserOption: eaxu|sort +0 -1
+MXkill*psAllbyPidOption: eaxu|sort -n +1 -2
+
+
+If you use this program, please let me know.
+
+Enjoy.
+
+-------------**---------------
+--
+Muhammad A Muquit
+written over the Labor Day holiday, 1995
+
+
+--
+Muhammad A Muquit
+http://www.fccc.edu/users/muquit/
+Aug-30-1997 (Labor Day holiday, 1997)
+
+

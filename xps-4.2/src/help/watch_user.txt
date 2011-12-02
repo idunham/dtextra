@@ -1,0 +1,28 @@
+When the C<All> radio button is depressed, the program generally shows
+all processes.  It is possible that on some systems the program has
+not been compiled in a way to show processes other than the ones you
+own.  On some systems there is a C<Kernel> button as well and this
+shows all proceses as well as additional kernel processes.
+
+When the C<User> radio button is depressed, the program shows only
+some portion of all the processes, initially the processes associated
+with the userid that invokes the program. However you can change that
+with the "Set Watch User" dialog box. 
+
+On systems that have a regular-expression library and where the
+program has been compiled to support patterns, there will be a
+"pattern" toggle button which allows one to select a pattern for a
+user name. See your system documentation for the your
+regular-expression syntax. Selection by pattern match may slow the
+program down a bit, so it should be used with caution for complex
+patterns and systems with a very large number of processes.
+
+When pattern-match selection is not indicated, the user name only
+changes if the newly-entered one is a name known on the system.  When
+pattern-match selection is indicated, the pattern changes if it is
+syntactically correct. In case, if there is an error in entry the old
+value is kept and method of matching (pattern-match or not) is kept.
+
+It is possible to set the watch user for the zoomed and normal windows
+separately. However if you want to change the view in both windows,
+check the "Set both windows" box.

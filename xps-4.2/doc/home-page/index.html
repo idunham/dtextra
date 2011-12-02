@@ -1,0 +1,156 @@
+<html>
+<!--Shamelessly modified from the file of the same in the xscreensaver
+    distribution. --->
+<TITLE>xps</TITLE>
+
+<body BGCOLOR="#FFFFFF" TEXT="#000000"> 
+<!---<BODY TEXT=#DDFFDD BGCOLOR=#000000
+           LINK="#00EEEE" VLINK="#EEEE00" ALINK="#FF0000"-->
+
+<P ALIGN=CENTER>
+<H1 ALIGN=CENTER>xps<FONT SIZE=3><BR>
+Process tree display and manipulation for the X Window System.<BR>
+by <A HREF="mailto:rocky@panix.com">Rocky Bernstein</A>
+</FONT></H1>
+<HR WIDTH="20%">
+
+<p>
+The <B>xps</B> program displays and continuously updates in an X
+Window the Unix processes as a tree or forest. The roots of the tree
+are on the left-hand side and the leaf processes (with no children)
+are on the right-hand side.  The status of each process (<font
+color=green>running</font>, sleeping, <font color=red>stopped</font>,
+etc.) can be indicated by a color.  Different users can appear as
+different colors too.
+
+<p>
+Within each level, processes are grouped so that those with the same
+parent process id are grouped together. Within this, processes are
+arranged by userid with lower number uid's appearing towards the
+top. In general, the order of children is the order in which they were
+spawned, with the older processes appearing towards towards the top.
+
+<p>
+In contrast to <B>pstree</B> and many tree-widget based programs, the
+overall tree display uses diagonal lines; some effort is made to
+effectively use the full 2-dimensional area of the screen by balancing
+levels and centering the children of a node between their parent. A
+goal of the program is to visually give a picture of what's going
+on. So when possible processes are kept close to their parents so one
+needn't scroll around too much and so that there isn't a lot of
+redrawing as processes are created or destroyed.
+
+<p>
+One can click on a process to get more information (via <B>ps</B>) about
+that process, send a signal to the process, or set its priority,
+assuming you have the permission to do so.
+
+Since programs of this ilk can consume a bit of CPU on their own, 
+some effort has been made to turn off the update process when the
+program is iconified or or not visible.
+
+<p>
+See also <b><a href="http://gnopstree.sourceforge.net">gnopstree</a></b>
+for a newer port of this program to GNOME/GTK+.
+
+<P>
+<CENTER>
+<TABLE WIDTH="80%" BORDER=0 CELLPADDING=10 CELLSPACING=0>
+
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="./screenshot.jpg">
+    Screen Shot</A></B></FONT></TH>
+  <TD><P>
+   See an image of the the program in action.
+  </TD>
+ </TR>
+
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="http://motif-pstree.sourceforge.net/xps.html">
+    Documentation</A></B></FONT></TH>
+  <TD><P>
+   The manual page.
+  </TD>
+ </TR>
+
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="http://prdownloads.sourceforge.net/motif-pstree">
+    Download</A></B></FONT></TH>
+  <TD>
+   <P>Get the latest version (4.1) here.
+
+   <P>I am told that xps is part of the OpenBSD port found <A
+   HREF="http://www.openbsd.org">here</a>.
+
+   <P>For AIX binaries you might try <A
+   HREF="http://aixpdslib.seas.ucla.edu/packages/xps.html">here</a>.
+
+  </TD>
+ </TR>
+
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="./xps-full.ps">
+    LISA 2000 Conference paper</A></B></FONT></TH>
+  <TD><P>
+    A bit about the display design behind the program. Gives things to think
+    about and figures showing some of the problems.
+  </TD>
+ </TR>
+
+
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="http://cvs.sourceforge.net/cgi-bin/viewcvs.cgi/motif-pstree/motif-pstree">
+    CVS</A></B></FONT></TH>
+  <TD><P>
+    Browse the CVS Tree
+  </TD
+ </TR>
+
+ <tr>
+  <th ALIGN=RIGHT VALIGN=TOP>
+   <font SIZE="+1"><b>
+   <a HREF="http://sourceforge.net/projects/motif-pstree">
+    Sourceforge</a></b></font></th>
+  <td><p>
+   The <code>sourceforge.net</code> project page.
+  </td>
+
+ </tr>
+
+<!----------------------------
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="changelog.html">
+    What's New</A></B></FONT></TH>
+  <TD><P>
+   See what has changed since the last release.
+  </TD>
+ </TR>
+------------------------------>
+ <TR>
+  <TH ALIGN=RIGHT VALIGN=TOP>
+   <FONT SIZE="+1"><B><A HREF="bugs.html">
+    Reporting Bugs</A></B></FONT></TH>
+  <TD><P>
+   If you encounter a bug, let me know.  This document
+   explains the kind of information that will be most helpful to me.
+   The more information you give me, the easier it will be for me
+   to fix the bug.
+  </TD>
+ </TR>
+
+</TABLE>
+</CENTER>
+
+<P><HR><P>
+
+<A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=37260" width="88" height="31" border="0" alt="SourceForge Logo"></A>
+
+<p>
+<i>$Id: index.html,v 1.5 2003/04/08 20:44:01 rockyb Exp $</i>
+</html>

@@ -1,0 +1,56 @@
+All machine-dependent files are located in directories with roughly
+the that uname -s gives, e.g. AIX, SunOS, Linux.  Alas, exception(s)
+occur when this name itself has a / in it, such as BSDI.
+
+For a new OS/architecture you need to port the files in this
+directory. The hardest one will be xps.c in which you need to do some
+of the kinds of things that ps is doing. (I suppose it's possible to
+call ps all the time but that'd probably be very very slow.)
+
+More on xps.c. The basic information you need is a short process names
+as you see in the display window, the parent process, and it's status
+(running, sleeping, zombie, etc.). Some newer OS's have a /proc
+filesystem that lists processes and gives status about that.  On
+BSD-ish type boxes you get this information from kernel memory.
+
+The other files in this directory os.h and loadavg.c, are relatively
+easy once xps.c is done.
+
+os.h has to define a type called ProcInfo which is a machine-dependent
+structure for holding the process info that xps.c uses. This type
+comes from system-dependent headers, such as <procinfo.h> or
+<sys/procfs.h> or <kvm.h>.
+
+os.h defines the gives the two ps commands that are used when the
+process window popped up for a selected window. Use %d as a
+placeholder for the process number.
+
+loadavg.c can be skipped initially by putting in a stub
+for it:
+
+  int 
+  xps_getloadavg (double *one, double *five, double *fifteen) {
+  }
+
+xps_getloadavg sets the 1-, 5-, and 15-minute load averages that are
+seen on the bottom of the display. This is the same as what
+the uptime command reports.
+
+To be thorough and complete -- and in the distribution that's what we
+strive for even if it is not achieved -- there should be a stand alone
+or test version of this program that can be built by setting the C
+preprocessor variable STANDALONE.
+
+If you have a pretty standard system that has perl running and kill -l
+lists signal names sigmap.h will be created automatically by the
+makesig.pl program. You should initially move that in your
+Platform-specific directory. It's possible just to create sigmap.h by
+hand or copy from another platform or do without it altogether by
+"#undef"ing HAVE_KILL.
+
+The program postconf.pl has to be modified to add your platform.  All
+this program does symbolically link files in the architecture-specific
+directory into the parent directory.
+
+And finally send back the port if you'd like to include it in the 
+main distribution.

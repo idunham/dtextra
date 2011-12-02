@@ -1,0 +1,29 @@
+In the top part of the process popup window, process information is
+shown by running a "ps"-like program. What command to invoke is
+determined initially by the value associated with the C<-pscmdline>
+option or the pscmdline X resource if it is not set as a command
+option, or if neither of these are set then by a platform-specific
+C<ps> command string set when this xps was configured and compiled.
+
+Well, this is not the whole truth. Having written all of the above,
+you can dynamically change this here as the program is running!
+Should you want different information or in a different format, here
+is where you can customize.
+
+The "ps"-like command string should have C<%d> or C<%ld> as a
+placeholder for the process id or "pid".  Chances are that the command
+string will want to refer to the process id somewhere.  The process id
+of the selected process will be substituted for the first occurrence of
+C<%d> or C<%ld> (if any) found. After substitution, the command string
+is executed and the output, which might be several lines, will be put
+in the scrolled window.
+
+Example (for Linux):
+
+ /bin/ps w %d
+
+If you have C<lsof> installed, another interesting possibility
+is:
+
+ lsof -p %d
+

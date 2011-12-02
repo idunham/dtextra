@@ -1,0 +1,151 @@
+Just about everything could be improved.
+
+-- BUGS -- 
+Linux 0.87 button all/user state not reflected properly when clicking
+when already depressed -- should sty depressed.
+option --metoo needs fixing and documentation.
+
+process_tree_trans in xstuff.c is not overwritable. And another
+ad2c for this? 
+
+Display geometry creaps wider up until a certain point. Is probably
+a bit wider at times than it should be.
+
+---FEATURES ----
+
+Watch by gid/regexp pattern?
+Allow specifying a user name instead of uid in resources?
+
+Run command on selected process? 
+
+---PROCESS TREE DISPLAY ----
+
+Display is done by drawing on a canvas. This is primitive.  Process
+names are not say Widget labels, just X strings drawn on a canvas.
+Figuring out the process under the mouse and showing a process is
+selected is a bit low-level and not tool-like.  Currently, a
+horizontal and a vertical linear searches is done to find the pid
+under the mouse. Binary search might be faster. 
+
+Alternatively, if a full-fledged widget for the nodes of a tree were
+used, then X (or an X-toolkit) would worry about when a widget is
+selected; presumably it uses an algorithm at least as good as binary
+search. And making the selected node look, well, *selected* would then
+be done by the toolkit is more regular (and probably looks nicer).
+
+Some gtk code from Mike Welles (mike@onshore) that does basically
+pstree is in the Linux directory. You'll find comments in the Makefile
+for building this.  I've tried hacking this unsuccessfully on AIX and
+that's in the AIX directory.
+
+It would be nice to benchmark the various toolkit approaches for
+efficiency.
+
+The tree layout algorithm is a bit hacked too. Here are 
+some more tree layout ideas: add an additional
+scan to try to average nodes which jump say from virtual rank n to a
+virtual level greater than n+2. We might want to have the rank be the
+average of the two ranks. 
+
+Some sort of hysteresis mechanism?
+
+Folks have suggested using a tree widget such as seen in file menus of
+Netscape or Microsoft.
+
+So, one might experiment to compare speed and compare intuitiveness of
+using a canned tree widget versus a hacked layout customized for this
+application. Personally, I prefer the tree layout of this ilk. However
+the code is not toolkit idiomatic.
+
+---TWO WINDOWS (ZOOM) ---
+
+The "zoom" mechanism allows basically quick switching of two views. Do
+we enough separate on each? Do we need allow mechanisms for ganging
+the two as we do when we set the user to watch?
+
+The two view/window thing also adds X hokiness. There is an unrealized
+main window. The process popup doesn't appear near where the process
+is displayed on the canvas. (Perhaps this desired?)
+
+--- SORTING ---
+
+Sorting is done via bubble sort. I think this okay, because the
+processes are often are pretty much sorted by process id and this is
+roughly how we want them to be arranged. And the bubble sort we use
+will stop early when the items are fully sorted.  Also, the amount of
+bubble sorting is relatively small, since it is on children of a node
+in the tree. The sorting to arrange things into levels by parent is
+O(n*p*c*2) for n nodes, p non-leaf nodes, and c is the maximum number
+of children a parent has. This is a rough analysis and looks bad, but
+in practice is probably pretty good. I suppose radix sort could/should
+be done on the levels. Then we'd have O(n+p*c*2).
+
+Still someone might want to do timings with various algorithms.  The
+program is not linear. Faster tree-layout and arranging algorithms
+would be helpful in handling larger trees.
+
+--- GUI ---
+
+There is probably room for much much much more improvement here. I'm
+not a guiologist. If you have suggestions, let me know.
+
+Some of the "features" are inherited that I didn't have the heart to
+remove, although I rarely use them: the beep and zoom "features" in
+particular.
+
+The user interface is pretty barebones.  For example perhaps a "combo
+box" (combination text entry and slider) for setting the refresh
+interval might be more to folks liking. A combo box might also
+be used for setting the user name.
+
+The debugging options could be a bunch of push buttons in a menu
+rather than entering as a number.
+
+Buttons for things which change state to have effect on both 
+zoomed and normal windows.
+
+Ways to go from process window to set user window or from
+set user window to set user color? 
+
+Positioning of popups, especially process popup.  Resizing
+process_menu_popup resizes ps scroll window which it shouldn't.
+Resizing the signal list would be okay.
+
+--- CODE ORGANIZATION ----
+
+The whole file organization could be made more modular. Tree stuff
+should be split out of common. The bubble sort routine therein should
+probably be a subroutine.
+
+Lots of global variables are put in this Applinfo structure.  I would
+like to have more of the global variables static to a single C-file;
+is probably a reflection of the unmodularness of things. Another
+indication is that common.c, xps.c, xstuff.c all include each other's
+headers.
+
+--- HELP ---
+
+Better automated way to put into doc. 
+Nice help would have scroll bars and different fonts.
+Internationalize. 
+
+-- CONFIGURATION/MAKEFILE
+
+Substitute parameters like XPS_MIN_REFRESH, or key bindings into
+help/keymouse.h, xps.pod and so on.
+
+--- MISC ---
+Profile to find hot spots and to get a feel for what can/can't be done.
+
+Many tables are static. The process table in particular. This however
+may be a good thing since the run time is not linear.
+
+Information for the tree gathers info about all processes first even
+though only some may be selected. Since tables are static, this is bit
+more limited than need be.
+
+Might add DEBUG preprocessor symbol to comment out *all* of the debugging
+code.
+
+
+$Id: TODO,v 1.1 2000/04/26 12:22:38 rocky Exp $

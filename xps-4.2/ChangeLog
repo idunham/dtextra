@@ -1,0 +1,1254 @@
+2003-04-23 20:21  rockyb
+
+	* acconfig.h, configure.ac, src/Makefile.am, src/askquestion.c,
+	src/callback.c, src/common.c, src/common.h, src/process.c,
+	src/user_config.h, src/xstuff.c, src/Linux/os.c, src/NetBSD/os.c:
+	Cater to this year's auto-obfiscate conventions more. Moved
+	acconfig.h things to user_config.h to keep auto from deciding it's
+	time to change the name or method again.
+	
+	to put local
+
+2003-04-23 20:17  rockyb
+
+	* INSTALL.xps: Revise AIX location and local user-config file name.
+
+2003-04-23 19:11  rockyb
+
+	* src/help/Makefile.am: Include built-sources into distribution
+
+2003-04-09 18:54  rockyb
+
+	* xps.spec.in: Use DESTDIR, now that the XAPPLOADDIR hack isn't
+	needed. Oron Peled <oron@actcom.co.il>
+
+2003-04-09 08:38  rockyb
+
+	* src/Makefile.am: Xps.ad becomes(srcdir)/Xps.ad to make building
+	outside of source work.
+
+2003-04-08 16:44  rockyb
+
+	* doc/home-page/index.html: [no log message]
+
+2003-04-08 16:32  rockyb
+
+	* ChangeLog: [no log message]
+
+2003-04-08 07:03  rockyb
+
+	* src/Makefile.am: need to check if Xps is around before removing.
+
+2003-04-08 06:57  rockyb
+
+	* NEWS: [no log message]
+
+2003-04-08 06:51  rockyb
+
+	* ChangeLog, configure.ac, src/Makefile.am, src/common.c,
+	src/version.h.in, src/xstuff.c: Remove version.h/version.h.in and
+	use setting from configure.ac.	src/Makefile.am remove uses of $<
+	which some BSD makes don't understand.
+
+2003-04-07 12:57  rockyb
+
+	* THANKS, configure.ac, src/Makefile.am, src/common.c,
+	src/postconf.pl: patches to allow building outside the source tree.
+	 Thanks to Peter Breitenlohner <peb@mppmu.mpg.de>
+	
+	common.c: update copyright year.
+
+2003-03-23 09:22  rockyb
+
+	* xps.spec.in: Add build prerequisite
+
+2003-03-21 20:06  rockyb
+
+	* Makefile.am, THANKS, xps.spec.in, src/Makefile.am: Fixes to RPM
+	spec and src/Makefile.am more idio(auto)matic.	Thanks to Oron
+	Peled.
+
+2003-03-20 22:26  rockyb
+
+	* ChangeLog: [no log message]
+
+2003-03-20 22:03  rockyb
+
+	* src/Makefile.am: Remove Xps on distclean. make distcheck caught
+	this.
+
+2003-03-20 22:01  rockyb
+
+	* src/help/: button.h, debug.h, general.h, interval.h, keyfns.h,
+	keymouse.h, kill_signal.h, process_tree.h, process_window.h,
+	pscmdline.h, user_color.h, warranty.h, watch_user.h: These are all
+	derived from *.txt
+
+2003-03-18 20:29  rockyb
+
+	* THANKS, configure.ac, macros/autogen.sh, src/Makefile.am: Crap to
+	get this working for BSDI.
+
+2003-03-18 16:35  rockyb
+
+	* README: [no log message]
+
+2003-03-18 15:30  rockyb
+
+	* README, THANKS, src/Makefile.am: Makefile.am: include OpenBSD on
+	its own.  README, THANKS: bigger and better.
+
+2003-03-13 00:10  rockyb
+
+	* src/postconf.pl: Make OpenBSD be an alias for NetBSD
+
+2003-03-12 16:04  rockyb
+
+	* configure.ac: Remove AC_FUNC_MALLOC since we don't implement
+	rpl_malloc anywhere.
+
+2003-03-04 12:20  rockyb
+
+	* doc/Makefile.am: Use better automake idiom to clean files.
+
+2003-03-03 20:54  rockyb
+
+	* Makefile.am, configure.ac: We use index.html now, rather than
+	index.html.in
+
+2003-03-03 20:54  rockyb
+
+	* doc/xps.pod.in: Just link formatting changes.
+
+2003-03-03 20:50  rockyb
+
+	* src/postconf.pl: Add BSDI 4.3 to list of "tested"
+
+2003-03-02 20:27  rockyb
+
+	* doc/home-page/index.html: As Bullwinkle says, ``This time, for
+	sure!''
+
+2003-03-02 11:50  rockyb
+
+	* doc/home-page/index.html: Link change for documentation.
+
+2003-03-02 10:46  rockyb
+
+	* doc/home-page/index.html: Add sourceforge project link
+
+2003-03-02 10:36  rockyb
+
+	* doc/home-page/: index.html, index.html.in: Regress to hard-coded
+	package name.
+
+2003-03-02 09:09  rockyb
+
+	* NEWS: Revisionist history. Think that's about all that's
+	happened...
+
+2003-03-02 00:03  rockyb
+
+	* Makefile.am, configure.ac, src/postconf.pl: Change to get "make
+	distcheck working" postconf.pl: a little dirty, but we'll use for
+	now.
+
+2003-03-02 00:01  rockyb
+
+	* doc/Makefile.am: Change for "make clean" to work
+
+2003-03-02 00:01  rockyb
+
+	* src/Makefile.am: Forgot to put Xps.ad in distribution
+
+2003-03-02 00:00  rockyb
+
+	* src/help/Makefile.am: Add targets for a "make clean"
+
+2003-03-01 22:36  rockyb
+
+	* ChangeLog, autogen.sh, configure.ac, configure.in,
+	macros/autogen.sh: configure.in -> configure.ac. It's the latest
+	auto* fad.
+
+2002-12-03 20:09  rockyb
+
+	* configure.in: Don't allow . as a valid prefix.
+
+2002-12-02 15:27  rockyb
+
+	* Makefile.am, configure.in: Minor tweaks for distribution.
+
+2002-12-02 14:42  rockyb
+
+	* intl/Makefile.in: Remove stuff from I guess GNOME/GTK/glib
+
+2002-12-02 14:37  rockyb
+
+	* src/FreeBSD/Makefile.am: Add missing os.c
+
+2002-12-02 14:34  rockyb
+
+	* doc/Makefile.am: Hack for FreeBSD
+
+2002-12-02 14:11  rockyb
+
+	* ad2c, src/Makefile.am, src/ad2c: ad2c was in wrong place. This
+	automake migration is a bit of a pain.
+
+2002-12-02 13:55  rockyb
+
+	* configure.in: Add libgtop's Makefile
+
+2002-12-02 13:38  rockyb
+
+	* src/: Makefile.am, AIX/Makefile.am, FreeBSD/Makefile.am,
+	NetBSD/Makefile.am, SunOS/Makefile.am, libgtop/Makefile.am: am's:
+	add "tags" target. src/Makefile.am: add libgtop to subdirs.
+
+2002-12-02 11:53  rockyb
+
+	* acconfig.h, src/acconfig.h: acconfig.h seems to be the right
+	place for this.
+
+2002-12-02 10:53  rockyb
+
+	* src/help/: Makefile, Makefile.in: Derived from Makefile.am
+
+2002-12-02 10:51  rockyb
+
+	* configure.in: Remove pscmdline.h
+
+2002-12-02 10:45  rockyb
+
+	* src/: BSDI/.cvsignore, BSDI/Makefile.am, BSDI/install-hints.txt,
+	BSDI/loadavg.c, BSDI/loadavg.h, BSDI/os.c, BSDI/os.h,
+	BSDI/sigmap.h, NetBSD/.cvsignore, NetBSD/Makefile.am,
+	NetBSD/install-hints.txt, NetBSD/loadavg.c, NetBSD/loadavg.h,
+	NetBSD/os.c, NetBSD/os.h, NetBSD/sigmap.h: CVS maint.
+
+2002-12-02 10:34  rockyb
+
+	* src/Linux/: .cvsignore, Makefile.am, install-hints.txt,
+	loadavg.c, loadavg.h, os.c, os.h, sigmap.h: Moved from parent
+	directory.
+
+2002-12-02 10:25  rockyb
+
+	* src/: AIX/Makefile, AIX/Makefile.in, SunOS/.cvsignore,
+	SunOS/Makefile.am, SunOS/loadavg.c, SunOS/loadavg.h, SunOS/os.c,
+	SunOS/os.h, SunOS/sigmap.h, help/pod2c.pl: CVS maintainance.
+
+2002-12-02 10:23  rockyb
+
+	* cc-xtest-cmd: Now in src
+
+2002-12-02 10:07  rockyb
+
+	* src/.cvsignore: More useful.
+
+2002-12-02 09:59  rockyb
+
+	* src/help/: .cvsignore, Makefile, Makefile.am, Makefile.in,
+	button.h, button.txt, debug.h, debug.txt, general.h, general.txt,
+	interval.h, interval.txt, keyfns.h, keyfns.txt, keymouse.h,
+	keymouse.txt, kill_signal.h, kill_signal.txt, process_tree.h,
+	process_tree.txt, process_window.h, process_window.txt,
+	pscmdline.h, pscmdline.txt, user_color.h, user_color.txt,
+	warranty.h, warranty.txt, watch_user.h, watch_user.txt: Moved into
+	src from above.
+
+2002-12-02 09:56  rockyb
+
+	* src/AIX/.cvsignore: Useful.
+
+2002-12-02 09:55  rockyb
+
+	* src/AIX/: Makefile, Makefile.am, Makefile.in, install-hints.txt,
+	loadavg.c, loadavg.h, os.c, os.h, sigmap.h: Moved into src from
+	parent.
+
+2002-12-01 22:24  rockyb
+
+	* configure.in, src/Makefile.am, src/config.h.in: Makefile.am's add
+	needed files to distribution to make "make dist" work. 
+	configure.in: added descriptions in AC_DEFINE to get rid of
+	autoheader warnings.  src/config.h.in: is now generated
+	automatically via autoheader.
+
+2002-12-01 21:01  rockyb
+
+	* .cvsignore, Makefile.am, aclocal.m4, src/xps: More CVS work. More
+	automake work.
+
+2002-12-01 18:58  rockyb
+
+	* src/FreeBSD/Makefile.am: Moving to automake.
+
+2002-12-01 18:57  rockyb
+
+	* src/FreeBSD/.cvsignore: Useful.
+
+2002-12-01 18:56  rockyb
+
+	* src/: FreeBSD/os.c, FreeBSD/xps.c, libgtop/.cvsignore: More work
+	to get things stable.
+
+2002-12-01 18:52  rockyb
+
+	* configure.in, src/Makefile.am, src/postconf.pl, src/xps,
+	src/libgtop/Makefile.am, src/libgtop/loadavg.c,
+	src/libgtop/loadavg.h, src/libgtop/os.c, src/libgtop/os.h: xps.c ->
+	os.c
+	
+	Things to get "make dist" to work. Add libgtop from gnopstree.
+
+2002-12-01 18:29  rockyb
+
+	* intl/Makefile.in, intl/po2tbl.sed, src/Makefile.am: Change to get
+	"make dist" work. Automake conversion pains.
+
+2002-12-01 18:14  rockyb
+
+	* Makefile.in, doc/.cvsignore, .cvsignore: Move to automake.
+
+2002-12-01 18:11  rockyb
+
+	* doc/: .cvsignore, Makefile.am, Makefile.in: Move to automake.
+
+2002-12-01 18:10  rockyb
+
+	* Makefile.in, configure.in, doc/Makefile.in, src/Makefile.am,
+	src/xps: Change use of CTAGS to variable.
+
+2002-12-01 17:38  rockyb
+
+	* intl/: .cvsignore, gettext.h, gettextP.h, hash-string.h,
+	libgettext.h, loadinfo.h: International support - perhaps not
+	needed.
+
+2002-12-01 17:37  rockyb
+
+	* intl/: ChangeLog, Makefile.in, VERSION, bindtextdom.c,
+	cat-compat.c, dcgettext.c, dgettext.c, explodename.c, finddomain.c,
+	gettext.c, intl-compat.c, l10nflist.c, loadmsgcat.c, localealias.c,
+	textdomain.c, xopen-msg.sed: Not sure if this is really needed
+	eventually. International support.
+
+2002-12-01 17:35  rockyb
+
+	* src/FreeBSD/: install-hints.txt, loadavg.c, loadavg.h, os.h,
+	sigmap.h, xps.c: Moved for atuomake.
+
+2002-12-01 17:30  rockyb
+
+	* macros/.cvsignore, src/.cvsignore: [no log message]
+
+2002-12-01 17:29  rockyb
+
+	* ChangeLog, autogen.sh, macros/Makefile.am, macros/autogen.sh:
+	More migration to automake.
+
+2002-12-01 17:25  rockyb
+
+	* postconf.pl, test, test-makefile, xtest-cmd.c: Mostly crud.
+	postconf.pl has been moved to src.
+
+2002-12-01 17:22  rockyb
+
+	* doc/.cvsignore: More good stuff added.
+
+2002-12-01 17:20  rockyb
+
+	* doc/home-page/: bugs.html, index.html.in, screenshot.jpg,
+	screenshot1.jpg: Moved from root directory.
+
+2002-12-01 17:18  rockyb
+
+	* doc/: .cvsignore, home-page/.cvsignore: The usual.
+
+2002-12-01 17:16  rockyb
+
+	* doc/: Makefile.in, xps.pod.in: Moved from docs.
+
+2002-12-01 17:13  rockyb
+
+	* .cvsignore, AUTHORS, MANIFEST, Makefile.am, config.h.in,
+	version.h.in, src/.cvsignore: More changes for automake conversion.
+
+2002-12-01 17:06  rockyb
+
+	* configure.in: Changes for automake.
+
+2002-12-01 17:05  rockyb
+
+	* .cvsignore, Makefile.in, MenuSupport.c, MenuSupport.h, Xps.ad,
+	acconfig.h, aclocal.m4, askquestion.c, askquestion.h, callback.c,
+	callback.h, common.c, common.h, dialog.c, dialog.h,
+	getpixelbyname.c, getpixelbyname.h, process.c, process.h, xps.h,
+	xpsplay.c, xpsplay.h, xpstypes.h, xstuff.c, xstuff.h: Most moved to
+	src. Modifications for automake.
+
+2002-12-01 17:00  rockyb
+
+	* src/: .cvsignore, Makefile.am, MenuSupport.c, MenuSupport.h,
+	Xps.ad, acconfig.h, askquestion.c, askquestion.h, callback.c,
+	callback.h, common.c, common.h, config.h.in, dialog.c, dialog.h,
+	getpixelbyname.c, getpixelbyname.h, postconf.pl, process.c,
+	process.h, version.h.in, xps, xps.h, xpsplay.c, xpsplay.h,
+	xpstypes.h, xstuff.c, xstuff.h: Sources from parent directory. Now
+	using automake.
+
+2002-11-30 15:28  rockyb
+
+	* configure.in: Fixes for freebsd.
+
+2002-11-30 15:10  rockyb
+
+	* MANIFEST: Add FreeBSD.
+
+2002-11-30 14:42  rockyb
+
+	* MANIFEST: Yet another file.
+
+2002-11-30 14:34  rockyb
+
+	* postconf.pl: Add FreeBSD to list.
+
+2002-11-30 11:52  rockyb
+
+	* MANIFEST: Yet another missing.
+
+2002-11-30 11:48  rockyb
+
+	* MANIFEST: Add missing file.
+
+2002-11-30 11:40  rockyb
+
+	* configure.in: Change for newer autconf. Put in version a little
+	bit more automatically now.
+
+2002-11-29 22:10  rockyb
+
+	* .cvsignore, Makefile.in, configure.in, xps.spec.in: Add some rpm
+	support.
+
+2002-09-20 07:46  rockyb
+
+	* INSTALL.xps: Note that you need development Motif installed. Note
+	place you may be able to get pre-built binaries.
+
+2002-09-20 07:19  rockyb
+
+	* INSTALL: Note INSTALL.xps.
+
+2002-09-20 07:18  rockyb
+
+	* ANNOUNCE: Add Id line. Download link is sorted by date
+	descending.
+
+2002-02-04 22:41  rockyb
+
+	* postconf.pl: Add kernel 2.4
+
+2001-12-30 22:52  rockyb
+
+	* ANNOUNCE: Typo in anon FTP.
+
+2001-12-30 22:47  rockyb
+
+	* .cvsignore, Makefile.in: version.h is a derived file.
+
+2001-12-30 22:43  rockyb
+
+	* MANIFEST, Makefile.in, NEWS, aclocal.m4, configure.in, missing,
+	version.h, version.h.in: Minor packaging changes.
+
+2001-10-14 04:08  rockyb
+
+	* COPYING, INSTALL: Add missing
+
+2001-10-14 03:54  rockyb
+
+	* Makefile.in: Add missing files.
+
+2001-10-14 03:25  rockyb
+
+	* .cvsignore, config.guess, config.h.in, config.sub: Add missing
+	files that weren't in initial CVS move.  index.html: Change for
+	sourceforge move.
+
+2001-10-14 03:23  rockyb
+
+	* Makefile.in: Newer version of autoconf doesn't seem to create
+	cached automatically by default. So remove dependency on
+	config.cache.
+
+2001-10-14 03:20  rockyb
+
+	* configure.in: It appears that for a newer version of autoconf
+	AC_OUTPUT_COMMANDS needs to be run be before AC_OUTPUT to symlink
+	xps.c. Dunno why.
+
+2001-10-13 21:53  rockyb
+
+	* ANNOUNCE: Make sourceforge specific.
+
+2001-05-05 16:19  rocky
+
+	* Makefile.in: Make sure we have configure when we make everything
+	or make a distribution.
+
+2001-05-05 08:52  rocky
+
+	* NEWS: [no log message]
+
+2001-05-05 08:46  rocky
+
+	* MANIFEST: Add NetBSD/install-hints.txt
+
+2001-05-05 05:45  rocky
+
+	* NEWS: [no log message]
+
+2001-05-05 04:04  rocky
+
+	* README: Update Matrix
+
+2001-05-05 03:58  rocky
+
+	* THANKS: Add Angelos D. Keromytis to hall of fame.
+
+2001-05-05 03:45  rocky
+
+	* configure.in: Change link order of X libraries needed for Lesstif
+	0.92.26 Bruce Momjian <root@candle.pha.pa.us>
+
+2001-05-03 03:18  rocky
+
+	* configure.in: Add option to allow specification of where Motif
+	libraries live.
+
+2001-04-28 23:05  rocky
+
+	* MANIFEST, NEWS, postconf.pl, version.h: Change to allow port for
+	OpenBSD from	Angelos D. Keromytis <angelos@keromytis.org>
+
+2001-03-25 07:25  rocky
+
+	* common.c: Update year.
+
+2001-03-25 07:14  rocky
+
+	* NEWS: More better.
+
+2001-03-25 07:10  rocky
+
+	* MANIFEST: Add new acconfig.h
+
+2001-03-25 07:09  rocky
+
+	* acconfig.h: [no log message]
+
+2001-03-25 07:07  rocky
+
+	* acconfig.h: Add @BOTTOM@ so we can get our #endif in there.
+
+2001-03-25 06:51  rocky
+
+	* NEWS: First NEWS! Collected from freshmeat announcments.
+
+2001-03-25 06:42  rocky
+
+	* MANIFEST: More or less sort and add NEWS.
+
+2001-03-25 06:30  rocky
+
+	* version.h: Now blessed by autoscan and autoheader.  Bug in
+	configure script for reporting lack of Motif fixed.
+
+2001-03-25 06:26  rocky
+
+	* configure.in: Is now blessed by autoscan and autoheader.
+
+2001-03-25 06:24  rocky
+
+	* acconfig.h: Used to be config.h.in. Convert so it can be used by
+	autoheader.
+
+2001-03-25 06:23  rocky
+
+	* config.sub: Source maintained by GNU -- get from there
+
+2001-03-24 08:37  rocky
+
+	* MANIFEST: Remove directories so CVS doesn't get in there.
+
+2001-03-24 08:37  rocky
+
+	* postconf.pl: Add more releases to those tested.
+
+2001-03-24 08:01  rocky
+
+	* configure.in: Bug in AC_CHECK_X_HEADER which didn't report an
+	error when it was supposed to.
+
+2001-03-17 07:55  rocky
+
+	* MANIFEST, Makefile.in, configure.in, version.h: MANIFEST,
+	Makefile.in: remove gtktree configure.in: probably the revert back
+	to single linux/tasks.h check
+
+2001-03-16 22:00  rocky
+
+	* configure.in: Check for linux/tasks.h
+
+2001-03-16 22:00  rocky
+
+	* common.c: Add <signal.h> if needed.
+
+2001-03-16 21:58  rocky
+
+	* version.h: Bump it.
+
+2001-01-25 22:48  rocky
+
+	* version.h: Fix for Redhat 7 and other which don't have 
+	/usr/include/Linux/tasks.h
+
+2001-01-25 22:47  rocky
+
+	* acconfig.h, cc-xtest-cmd, common.c, config.sub, configure.in,
+	xtest-cmd.c: Fix the possiblity of a missing linux/tasks.h in
+	Redhad 7
+
+2001-01-17 21:28  rocky
+
+	* Makefile.in: PROGRAM -> PACKAGE (following automake)
+
+2000-11-25 21:50  rocky
+
+	* Makefile.in: Change tar target to use the new MANIFEST file.
+
+2000-11-25 21:49  rocky
+
+	* xps.h: Add depth.
+
+2000-11-25 21:44  rocky
+
+	* ANNOUNCE: Advertise display algorithm.
+
+2000-11-25 21:40  rocky
+
+	* xpstypes.h: Add DBG_DRAW debugging
+
+2000-11-25 21:40  rocky
+
+	* version.h: New version.
+
+2000-11-25 21:39  rocky
+
+	* common.c: Fix bug where size of canvas doesn't include interlevel
+	space.	Add parameter to keep canvas by shrinking only little bit.
+
+2000-11-25 21:38  rocky
+
+	* MANIFEST: List of stuff making package.
+
+2000-06-15 21:12  rocky
+
+	* common.c: Missing \
+
+2000-04-26 08:26  rocky
+
+	* Xps.ad, ad2c, makesig.pl, process.c, xps.h, xpsplay.c, xpsplay.h,
+	xstuff.h: Recovering destroyed files from xps-3.14 distro.
+
+2000-04-26 08:22  rocky
+
+	* TODO: Update.
+
+2000-04-26 08:21  rocky
+
+	* README: Update for today.
+
+2000-04-26 08:13  rocky
+
+	* xstuff.c: Dunno.
+
+2000-04-26 07:57  rocky
+
+	* version.h: Merge
+
+2000-04-26 07:44  rocky
+
+	* common.h: Was lost. Not any more.
+
+2000-04-26 07:42  rocky
+
+	* Makefile.in: Merged
+
+2000-04-26 07:41  rocky
+
+	* xstuff.c: Merged.
+
+2000-04-26 07:39  rocky
+
+	* Makefile.in, common.c, configure.in, postconf.pl, version.h,
+	xstuff.c: Makefile.in: configure.in: Add make uninstall target. 
+	version.h: increment postconf.pl update Linux kernel warning.
+
+2000-04-26 07:36  rocky
+
+	* common.c, xtest-cmd.c, cc-xtest-cmd, Makefile.in, xstuff.c, test,
+	version.h, test-makefile: Initial revision
+
+2000-04-26 07:36  rocky
+
+	* ANNOUNCE, MenuSupport.c, MenuSupport.h, THANKS, config.sub,
+	askquestion.c, askquestion.h, common.c, getpixelbyname.h,
+	install-sh, xtest-cmd.c, mkinstalldirs, process.h, callback.c,
+	callback.h, PORTING, cc-xtest-cmd, INSTALL.xps, Makefile.in,
+	acconfig.h, postconf.pl, xpstypes.h, xstuff.c, getpixelbyname.c,
+	test, version.h, dialog.c, dialog.h, test-makefile: Import lost
+	sources
+
+1999-07-05 18:32  rocky
+
+	* INSTALL.xps, acconfig.h: INSTALL.xps: note some config changes
+	are in os.h config.h.in: add XPS_DEFAULT_QUICK_KILL_SIGNAL
+
+1999-07-03 09:23  rocky
+
+	* THANKS, acconfig.h, configure.in: doc directory renamed to docs. 
+	Remember old quick kill signal for process popup if quick kill
+	selected.
+
+1999-06-19 18:18  rocky
+
+	* configure.in: Move xps.man and xps.html xps.pod to its own
+	directory "doc"
+
+1999-06-16 23:44  rocky
+
+	* THANKS, askquestion.c, askquestion.h: Allow for on-the-fly
+	customization of the ps command Allow for multi-line ps-command
+	output.  Update documentation to reflect this.
+
+1999-05-24 07:39  rocky
+
+	* configure.in: Add Comment.
+
+1999-05-24 07:37  rocky
+
+	* configure.in: Canonicalize directory names.
+
+1999-05-23 14:21  rocky
+
+	* configure.in: xps.pod, TODO: doc --metoo TODO: some things
+	removed (-lICE -lSM), some added: one line ps commands configure.in
+	Makfile.in: Better tests for X libraries via AC_PATH_XTRA
+
+1999-05-22 16:55  rocky
+
+	* ANNOUNCE: Add hook for metoo option to specifiy whether or not
+	xps should be the running color.
+
+1999-05-20 21:06  rocky
+
+	* THANKS: Update thanks.
+
+1999-03-18 01:48  rocky
+
+	* INSTALL.xps: Update to indicate need for GNU make and problem
+	with automatically setting prefix.
+
+1999-03-14 08:56  rocky
+
+	* getpixelbyname.c: Include your header.
+
+1999-03-09 00:14  rocky
+
+	* callback.c, process.h, xpstypes.h: Finally getting things focus: 
+	 canvas is selected when popped up or a process selected.    Input
+	areas where we *have* to enter an input (debug, user/color)    now
+	have the/an input area selected.
+	
+	Bug in handling -allprocs, -kill and toggle buttons associated with
+	them.  Xps is now completely commented out. Should be preferable.
+	
+	kill->quickkill in xps.pod. Document boolean variable(s).
+
+1999-03-08 07:13  rocky
+
+	* INSTALL.xps: Update to make dependencies clearer and add pointers
+	to PORTING and README.
+
+1999-03-07 16:27  rocky
+
+	* askquestion.c, callback.c, callback.h, acconfig.h, postconf.pl,
+	process.h, xpstypes.h: - Finish this quick kill thing.
+	
+	- key/mouse translations and handling more global.  - Add XPS_TICK
+	to allow granularity of refresh interval increment.
+	
+	- Move Timeout and code to callback like it should be. app_context 
+	 is now in base (but that means it has to be imported by
+	askquestion.c)
+	
+	- Makefile.in: more help files.
+	
+	- postconf.pl: Warn that there's a hint file that should be looked
+	at
+
+1999-03-06 21:27  rocky
+
+	* INSTALL.xps: Remove install hints and put in separate files.
+
+1999-03-06 21:17  rocky
+
+	* configure.in: Typo courtesy of William Blew" <wblew@home.com>
+
+1999-03-06 21:11  rocky
+
+	* dialog.c, dialog.h: [no log message]
+
+1999-03-06 21:10  rocky
+
+	* dialog.c: Move more stuff out of xstuff.c In particular a routine
+	to create a dialog and its ancillary routines.
+
+1999-03-06 15:50  rocky
+
+	* INSTALL.xps: Note Lesstif release needed.
+
+1999-03-05 00:17  rocky
+
+	* xpstypes.h: Remove C++ style comments for C-challenged compilers
+	like Sun's unless the magical option is added.
+
+1999-03-05 00:06  rocky
+
+	* THANKS: Acknowlege appreciation of help from Chris Torek.
+
+1999-03-05 00:04  rocky
+
+	* PORTING: Add instructions for porting to a new platform.
+
+1999-03-05 00:01  rocky
+
+	* ANNOUNCE: Typo.
+
+1999-02-28 09:40  rocky
+
+	* ANNOUNCE: Update for regexps.
+
+1999-02-27 18:04  rocky
+
+	* acconfig.h, configure.in, xpstypes.h: Xps.ad, common.c, common.h,
+	configure.in, xpstypes.h, process.c:   Add regular expression
+	pattern watching Makefile.in: Missing xtuff.o's dependency on
+	keymouse.h Xps.ad:   Fixed font for help and key/mouse help
+	
+	xps.pod: Update documentation for regular expressions and
+	kernel/all/user radio button.
+
+1999-02-25 16:30  rocky
+
+	* callback.c, acconfig.h, callback.h, xpstypes.h: xps.pod:  
+	Describe that terminal-program's have username not process
+	config.h.in:   Allow configuration without terminal-program
+	behaviour TODO:   user-interface wish list.  callback.{c,h},
+	xpstypes,h, xstuff.c:	Expand toggle button for all procs/user
+	procs into radio button to include   showing kernel processes.
+
+1999-02-21 23:21  rocky
+
+	* configure.in: Notes about KMEM_GROUP.  Should rethink how inform
+	about install-suid and install-sgid using NEED_SETGUID and perhaps
+	NET_SETUID.
+
+1999-02-21 22:55  rocky
+
+	* postconf.pl: Update release info.
+
+1999-02-21 22:49  rocky
+
+	* configure.in: Rule for install needing sgid
+
+1999-02-21 16:09  rocky
+
+	* postconf.pl: Correct BSDI. More precise
+
+1999-02-21 00:30  rocky
+
+	* postconf.pl: Go back to perl4 conventions, just in case we have
+	ancient perl.
+
+1999-02-20 07:53  rocky
+
+	* MenuSupport.c, MenuSupport.h, THANKS, postconf.pl: Add NetBSD
+	from Kazuki Sakamoto Additional help for process tree and therefore
+	Cascade menu help Remove erroneous Cascade button type and code
+	that I put in.
+
+1999-02-15 22:13  rocky
+
+	* acconfig.h: [no log message]
+
+1999-02-15 22:13  rocky
+
+	* acconfig.h: Add constants for XPS_MIN/MAX_REFRESH_RATE.
+
+1999-02-14 22:00  rocky
+
+	* ANNOUNCE: [no log message]
+
+1999-02-14 21:55  rocky
+
+	* ANNOUNCE: [no log message]
+
+1999-02-14 21:54  rocky
+
+	* ANNOUNCE: Move Locations from README to ANNOUNCE
+
+1999-02-14 18:26  rocky
+
+	* acconfig.h: Remove nested comment.
+
+1999-02-14 18:25  rocky
+
+	* callback.h: Add help_callback.
+
+1999-02-14 18:25  rocky
+
+	* callback.c: Add help callback.
+
+1999-02-14 13:32  rocky
+
+	* INSTALL.xps: Minor change.
+
+1999-02-14 13:29  rocky
+
+	* ANNOUNCE: Add what's generally ANNOUNCE'd
+
+1999-02-13 16:10  rocky
+
+	* getpixelbyname.h, getpixelbyname.c: [no log message]
+
+1999-02-13 07:44  rocky
+
+	* acconfig.h: [no log message]
+
+1999-02-13 07:39  rocky
+
+	* INSTALL.xps, callback.c, acconfig.h, xpstypes.h: Rename
+	NUM_USER_COLORS and move to config.h.in.  Allow for multiple colors
+	to be set in color menu dialog.  Separate common typedefs and
+	structures from xstuff.h which is now mostly procedure definitions.
+	
+	INSTALL.xps:   note variables can be set in config.h.in
+	Makefile.in:   Add dependencies for xpstypes.h xps.pod:   Document
+	user color menu. Remove some duplicate text, more   tagged HTML. 
+	common.c, common.h: xstuff.h, xstuff.c	 Allow for multiple colors
+	to be set.    Break out find_user_color_index() from GetIUD_Color()
+	so it	 can be used in in xstuff.c's color dialog.  xpstypes.h:  
+	Moved out from xstuff.h
+
+1999-02-10 01:49  rocky
+
+	* askquestion.c, callback.c, configure.in: Xps.ad: Names of menus. 
+	configure.in: a carriage returns in a message version.h: Now doing
+	3.0 Makefile.in: added getpixelbyname.{c,h,o} askquestion.c: used
+	code from Heller and Ferguson. It's a little cleaner		   
+	but still doesn't do what I want for the XmCreate dialogs.
+
+1999-02-10 01:01  rocky
+
+	* acconfig.h: Move BOGUS_ID out of common.c and put in config.h.in
+	since it can be something customers might want to customize.
+
+1999-02-08 07:55  rocky
+
+	* callback.c, configure.in: common.c:	Remove changing message2
+	(version, refresh interval) if not neeeded.  callback.c   bug in
+	setting Zoom toggle button state Xps.ad:   remove Zoom mnemonic
+	TODO:	remove things done. Another plea for better algorithms
+
+1999-02-07 08:34  rocky
+
+	* INSTALL.xps: More info about broken egcs releases.
+
+1999-02-06 19:51  rocky
+
+	* install-sh, mkinstalldirs: common.c:	 Bug in sort routine
+	causing out of range access. Change != to <   I think it was
+	possible start out src > Endnode.
+	
+	config.guess, install-sh mkinstalldirs:   Update with more recent
+	versions.
+
+1999-02-06 13:14  rocky
+
+	* configure.in: missing AC_SUBST(INSTALL_TARGET). Version 1.13
+	strikes again!
+
+1999-02-06 13:01  rocky
+
+	* configure.in: Add --enable-suid, check for whether need suid. Use
+	new proc solaris code when appropriate. Add NEED_STDC_DEFINE for
+	__STDC__ = 0.
+	
+	Note. Previous checking of version 1.13 corrupted.
+
+1999-02-06 12:24  rocky
+
+	* INSTALL.xps, THANKS, askquestion.c, askquestion.h, acconfig.h,
+	postconf.pl: Better handling of whether to use suid or not and when
+	to add #define __STDC__ 0 Error messages as dialog boxes. Test
+	overfilling static tables.
+	
+	NEW_PROC -> SOLARIS_NEW_PROC configure.in, config.h.in:   Add
+	--enable-suid, check for whether need suid. Use new proc solaris
+	code   whe appropriate. Add NEED_STDC_DEFINE for __STDC__ = 0.
+	
+	  Move the more user-oriented #defines to the top.
+	
+	postconf.pl   Update for Solaris as above.
+	
+	INSTALL.xps:   Update instructions since conf
+	
+	THANKS: a little of why.
+
+1999-02-05 07:58  rocky
+
+	* THANKS: Add thanks--it's about time.
+
+1999-02-05 07:49  rocky
+
+	* INSTALL.xps, acconfig.h: Change MAX_PROCS to XPS_MAX_PROCS, move
+	to config.h.in Document why we don't initially allow more than 1024
+	processes More detail on Solaris #include thing going on.
+
+1999-02-04 08:11  rocky
+
+	* INSTALL.xps, MenuSupport.c, MenuSupport.h, askquestion.h,
+	callback.h: Remove extra spaces at ends of files.
+
+1999-02-03 22:57  rocky
+
+	* INSTALL.xps, callback.c, acconfig.h, configure.in, postconf.pl:
+	INSTALL.xps: Add Solaris-specific instructions.  postconf.pl: Check
+	for versions after solaris 2.5 and give instructions  accordingly
+	
+	Rest: move #includes of "os.h" and "config.h" out of "common.h" and
+	put at the top as needed.
+	
+	Xps.ad: use fixed font for labels in process popup.
+	
+	configure.in, config.h.in: change RUN_SUID_ROOT to NEED_SUID_ROOT
+	and define RUN_SUID_ROOT in terms of NEED_SUID_ROOT and NEW_PROC.
+
+1999-02-02 00:12  rocky
+
+	* acconfig.h, configure.in: warranty.h: Use ANSI C string
+	continuation instead of what Harbison & Steel suggested
+	
+	Makefile.in, configure.in Change the way setuid is done
+	
+	xstuff.c: Allow for EditRes signals in menu popups.
+	
+	common.c Do display() protype the same way, non-gcc compilers
+	warned about.  Old XLC compiler barfed on it.
+	
+	Xps.ad Change/Add fonts for main window, popups
+
+1999-01-31 21:07  rocky
+
+	* acconfig.h, configure.in: configure.in: Do better about using
+	--with-x-libraries and --with-x-includes when specified. Figure out
+	prefix based on if xps is already installed (fat chance), or then
+	look for other common programs xscreensaver and then xterm.
+	
+	config.in: Make #define for whether or not to use editres based on
+	having include file *and* library file.
+	
+	xstuff. Use #define.
+
+1999-01-31 19:17  rocky
+
+	* INSTALL.xps, callback.c, callback.h, acconfig.h, configure.in:
+	Revise to put track iconify/de-iconifiy and fully obscured or not
+	so as to reduce work when information not in use.
+	
+	Add low-level section in documentation.
+	
+	Move Resize from xstuff.c to callback.c
+
+1999-01-31 09:09  rocky
+
+	* INSTALL.xps: xps.pod: AIX display bug, INSTALL.xps: rebuilding
+	across platform.  common.c: disable checksum hack (for now)
+	Makefile.in: include Xps to tar file.
+
+1999-01-30 14:48  rocky
+
+	* configure.in: Remove checking for kill program and kill
+	substitution in makesig.pl
+
+1999-01-30 14:41  rocky
+
+	* INSTALL.xps: Add xps-specific instructions.
+
+1999-01-27 19:37  rocky
+
+	* acconfig.h, configure.in: Add code so that suid programs don't
+	have the ability to change the priority or kill programs not owned
+	by them (unless root).
+
+1999-01-25 23:33  rocky
+
+	* config.sub, install-sh: GNU programs that are really part of the
+	distribution.
+
+1999-01-25 23:16  rocky
+
+	* askquestion.c, askquestion.h: Another goodie from Doug Young.
+
+1999-01-25 23:15  rocky
+
+	* callback.c, callback.h, configure.in: configure.in: get Solaris
+	suid working thanks to Caspar and Timothy xps.pod: Update for
+	-iconic which now works xstuff.{c,h}: get -iconic working and popup
+	dialog for invalid input
+
+1999-01-24 23:00  rocky
+
+	* configure.in: Remove references to iconify Add code to test for
+	setuid. But then something else goes wrong---can't find Motif
+	libraries at runtime. So put in but commented out.
+
+1999-01-24 19:03  rocky
+
+	* callback.c, callback.h, acconfig.h, configure.in: Add separate
+	state for setting user and its user menu.  Makefile fixes. Add
+	maintainer-clean and lessen dammage on distclean common: finally
+	get bubble sort with quick exit working. May have had subtle bugs
+	too. Update comments to better reflect what's going on.
+	
+	xstuff.h move many field from ApplInfo to ShellInfo so we have
+	state per window
+	
+	xstuff.c, process.c: stuff for handling two states, add "both"
+	button on user name.
+	
+	add help and version into options.
+	
+	TODO, pod: Updates on dialog boxes, many small things and maybe
+	better HTML links.
+
+1999-01-19 17:12  rocky
+
+	* acconfig.h: Makefile.in,   Look for and set app-defaults. 
+	config.h.in, configure.in:   defines for header files like SIGNAL_H
+	and routines like kill() process.c:   lint like integer cast for
+	printf	 include signal.h
+
+1999-01-17 14:34  rocky
+
+	* process.h: Change Handle_Process interface.  Add comments to
+	prototypes.  Add GPL.
+
+1999-01-17 14:06  rocky
+
+	* acconfig.h: Fix up $Id$ line for CVS.
+	
+	Add defines for HAVE_SYS_RESOURCE_H, HAVE_PWD_H, HAVE_GETPRIORITY
+	and HAVE_SETPRIORITY so we can be more careful about including
+	things that are really there.
+
+1999-01-17 13:38  rocky
+
+	* callback.h: Timeout() moved from here to xstuff.l
+
+1999-01-17 13:36  rocky
+
+	* callback.c: Big cleanup job---and what's scary is there's way
+	more to do!
+	
+	Cut debugging to integer-based so we can be more selective about
+	what we're debugging:	Use debug masks
+	
+	Add fields for selecting color of selected process and saving uid
+	that we are looking for.
+	
+	Remove RedisplayCommon and use ForceRedisplay instead.
+	
+	Timeout() moved from here to xstuff.c
+	
+	Remove unused Debug()
+
+1999-01-15 00:43  rocky
+
+	* callback.c, callback.h, process.h: process.{c.h}, Makefile.in:  
+	move all process menu stuff here (send signal, set priority)  
+	Adjust Makefile.in for new source files
+	
+	makesig.pl:   Revise to output new format of include file for new
+	signal list   used in process.c
+	
+	Xps.ad{,.h}:   Remove resources no longer used due to reworking of
+	signal list
+	
+	callback.{c,h}	 Move some callbacks to process.c. Nuke unused
+	callbacks
+	
+	xps.h, common.c, xstuff.h:   Try to better narrow scope of
+	variables by taking them out of common	 headers and putting them
+	as static local declarations   Tree things have been moved from
+	xps.h	process menu variables have been moved out of xstuff.h
+
+1999-01-10 23:06  rocky
+
+	* callback.c, callback.h: common.c:   more hueristics for prettier
+	trees.	  Try to balance amongst siblings. Use level spacing from
+	previous    if breadth decreases.
+	
+	Makefile.in:   dependecy on os.h from xstuff.h	 Commented gtk-tree
+	for AIX.
+	
+	version.h: well, what do I need to say?
+
+1998-12-29 06:01  rocky
+
+	* callback.c: Rename widgets that are buttons to x_button;
+	zoom_button, for example.
+
+1998-12-28 21:52  rocky
+
+	* MenuSupport.h: In the hope to simplify Motif menu creation.
+
+1998-12-28 21:52  rocky
+
+	* MenuSupport.c: In the hope to simplify menu creation.
+
+1998-12-28 00:19  rocky
+
+	* callback.c: [no log message]
+
+1998-12-28 00:00  rocky
+
+	* callback.c, callback.h: Break out callback routines from other X
+	routines.
+
+1998-12-27 20:19  rocky
+
+	* mkinstalldirs: [no log message]
+
+1998-12-27 09:30  rocky
+
+	* acconfig.h, postconf.pl: Now uses autoconf! Makefile is now
+	common among all architectures.  IDtouser moved from xps.c to
+	common.c where it belongs.  Xps.ad.h: Regenreated from Xps
+	postconf.pl: is Configure without the symbolic linking of Makefile
+

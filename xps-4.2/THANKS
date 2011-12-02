@@ -1,0 +1,19 @@
+Angelos D. Keromytis <angelos@keromytis.org> - OpenBSD port and patches
+Aslam Khokhar <aslam@aixpdslib.seas.ucla.edu> - AIX testing 
+Bruce Momjian <root@candle.pha.pa.us> - BSDI 4.01 patches, BSD/OS 
+      testing
+Casper Dik - Solaris par excellance (comp.unix.solaris/faq, and good guy)
+Chris Torek     - BSDI wisdom (comp.unix.bsd.bsdi.misc)
+Dan Heller & Paula Ferguson - Motif Programming Manual for OSF/Motif 1.2
+Derek Lieber  - wrote initial version 
+Doug Young's book: The X Window System Programming and Applications with Xt
+George Ferguson, et al. - ad2c
+John Prager
+Jamie Zawinski's <jwz@jwz.org> - xscreensaver
+Kazuki Sakamoto <sakamoto@netbsd.org> - NetBSD port
+Mark Kennedy 
+Oron Peled <oron@actcom.co.il> - autotool and RPM spec fixes
+Peter Breitenlohner <peb@mppmu.mpg.de> - patches to allow building outside the
+                                         source tree.
+Steve James
+

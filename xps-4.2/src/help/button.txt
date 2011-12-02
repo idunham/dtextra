@@ -1,0 +1,38 @@
+When a button is depressed (or looks depressed), the feature
+described below is "on." The initial state of push buttons can 
+be set by resources or command options. Toggle buttons and 
+radio buttons are described below.
+
+Beep: 
+  The program can arrange to beep when the number of processes grows
+  or diminishes. The keyboard-translation equivalent of this is
+  "togglebeep()". The tune to play can be set by resources "beepup" 
+  and "beepdown". 
+
+Quick Kill: 
+  The program can be arrange to point-and-kill processes. This 
+  button is like the safety latch on the trigger. Also, the
+  default behavior is to allow only the right mouse button in 
+  this endeavor. (I am left-handed.)
+
+  Depending on the shifting activity of proceses, you might have to be
+  quick though to get the right one!
+
+  The default behavior is to be nice to the process and send it a TERM
+  signal. However serial killers and die-hard sysadmins can arrange
+  for the default signal to be KILL (-9) or another signal using the
+  L<Set Quick Kill> menu.
+
+Kernel/All/User:
+  The program can show all processes, all processes including kernel 
+  processes or those associated with a particular userid or pattern. 
+  Buttons may vary depending on the capabilities of your system.
+  The keyboard-translation equivalent of this is
+  C<toggleprocs()> and C<togglekernel()>. 
+
+Zoom:
+  The program maintains two windows, a "zoomed" or maximized window
+  and a normal one. The geometry, text font, and scrollable canvas
+  window can all be set independently for the zoomed and normal
+  windows.  The keyboard-translation equivalent of this is "zoom()".
+

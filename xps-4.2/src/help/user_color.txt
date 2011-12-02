@@ -1,0 +1,25 @@
+The Set User Color Menu can be used to change the color associated with
+a given user in the process tree display. You enter a user name
+(not a uid) and an X color name like C<blue> or C<#DA7>.
+
+Each user in the process tree is assigned a color, often a different
+color. If a color assignment is not specified explicitly, the program will
+generate a color based on a hash of the uid. Sometimes this is a
+pleasing color; sometimes it is ghastly. This menu lets you assign the
+color for a user interactively.
+
+However internally, there is a table for a fixed number of associations
+between users and colors. The default is 10, but this can be changed
+when the program is built. If a color for the user had previously been
+set it that color will be overwritten. If the user is not in the internal
+table yet, the program looks for a free spot and inserts the user in
+the table. If however the table is full, a reserved spare slot is
+used. After the table is full, each time a new user color is assigned
+the last C<spare> slot is overwritten with the new user and color.
+
+If you are going to be using the program over and over again on a
+system where the user's don't change that frequently, or at least the
+important ones that you want to track, you may want to consider
+setting the user color via the X Resources C<uid1> and
+C<usercolor1>.
+

@@ -1,0 +1,46 @@
+When a process name is selected on the process-tree canvas, a dialog
+box for that process pops up if it is not already open. If it is
+already open and a different process is selected underneath, the
+process information changes. In order to show the which process is
+selected on process-tree canvas, the process name changes color to the
+color specified by the "selected" resource.
+
+The Process Dialog Box lists information about the process. Also it
+can be used to set the priority of the process or process group and
+can be used to send a signal to the process or process group.
+
+The top part of the dialog box gives information gathered from the
+"ps" command. Since a command invocation may be rather long, this is
+listed on a separate line.
+
+Below that to the left side is scrollable list of signals which can be
+sent to the process. This list is automatically generated when the
+program was compiled via the program C<makesig.pl>. The list of
+signals is in sorted order, but the most common signals are listed at
+the top according to my preference. If the C<Quick Kill> toggle button
+had been depressed, the signal selected in the L<Set Quick Kill Signal Dialog> 
+is selected. Otherwise "NO ACTION" will be selected and you
+will have to select a signal if you want to send a signal to a
+process.
+
+To the right of the scrollable list of signals is a slider which can
+be used to set the process priority. The initial value is the value at
+the time for that process at the time the process was selected.
+
+There is a notion in Unix called a process group which is a group of
+processes that are usually related in some way; perhaps they were
+spawned from a common parent. Instead of sending a kill signal to a
+specific process, the signal can be sent to the set process of
+processes in the process group. Likewise instead of setting the
+priority for a single process it can be set for the process group.
+The process group toggle button in the process dialog is used to
+indicate that a signal or priority should be applied to the process
+group rather than the process that is selected.
+
+Note that in order to for a kill signal or a change in priority to
+take effect, you may need sufficient permission to do so. This is no
+different than say if you were to run "kill" or "nice" from a shell.
+
+If there is a problem performing the action requested (and the program
+catches you), the old value is kept.
+

@@ -1,0 +1,41 @@
+The main part of the display shows processes as a tree or forest, the
+roots of the tree are on the left-hand side and the leaf processes
+(with no children) are on the right-hand side.  Which processes shown
+is determined various settings. Once can select all processes, or a
+specific process owned by specific users, and possibly kernel 
+processes as well.
+
+Process status (running, sleeping, stopped, etc.) of shown processes
+is indicated by a color.
+
+Within each level, processes are grouped so that those with the same
+parent process id are grouped together. Within this, processes are
+arranged by userid with lower number uid's appearing towards the top.
+
+This means root processes always appear at the extreme top, assuming
+the processes' parent was also a root process.  Finally, among
+processes that have a common parent (or no parent) and belong to the
+same userid, those with lower process numbers appear towards the
+top. In general, the order of children is the order in which they were
+spawned, with the older processes appearing towards towards the top.
+
+Some effort is made to effectively use the full 2-dimensional area of
+the screen by balancing levels and centering the children of a node
+between their parent.  But since a goal of the program is to visually
+give a picture of what's going on, when possible processes are kept
+close to their parents so one needn't scroll around too much and so
+that doesn't there isn't a lot of redrawing as processes are created
+or destroyed.
+
+One can click on a process to get more information (via C<ps>) about
+that process, send a signal to the process, or set its priority
+(assuming you have the permission to do so).
+
+The majority of processes in a system, one hopes, are sleeping
+processes.  The color to be selected for uid's of sleeping process can
+be specified by X resources.  If however a color is not specified, one
+is chosen at random. Generally, all processes belonging to a given
+user will be a unique color. For certain terminal programs like
+C<xterm> or C<telnet>, the name if the user is displayed rather than
+the program name.
+

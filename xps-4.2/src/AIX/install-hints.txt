@@ -1,0 +1,19 @@
+$Id: install-hints.txt,v 1.1 2002/12/02 14:55:18 rockyb Exp $
+
+It is possible if you don't have a prior installation xps or specify
+--prefix that the prefix will be set incorrectly, especially if your
+path contains directories that don't "bin."
+
+We use an autoconf macro to guess where to install xps and the macro
+can sometimes guess the wrong thing.
+
+In particular, xterm on AIX is often accessible as /usr/bin/X11.  The
+configure program may decide to try to put xps in the same place as
+xterm (if you don't have xps already installed and don't have
+xscreensaver installed either). Finding the program
+"/usr/bin/X11/xterm" configure will strip off the trailing X11/xterm
+leaving /usr/bin, and the xps binary will be put in /usr/bin/bin which
+is probably not what you intended.
+
+So do check what the prefix set is. "make -n install" to test out the
+install is always a good idea.

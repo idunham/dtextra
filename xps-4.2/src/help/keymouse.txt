@@ -1,0 +1,43 @@
+Below are the default key and mouse bindings. They can be
+overridden via L<X RESOURCES>. See also F<Xps> installed
+in your F<app-defaults> directory or F<Xps.ad> that comes 
+with the distribution.
+
+   Key         Menu
+   ------------------------------
+   c           Set user color menu
+   d           Debugging menu
+   h           Help menu
+   i           Refresh Interval menu
+   k           Set kill signal
+   u           User to watch menu
+   v           Show version and configuration information
+   w           Show No Warranty
+
+The below commands work everywhere except in 
+text input menus:
+
+   Key(s)       function
+   --------------------------------
+   a, A         :  toggleprocs()
+   b, B         :  togglebeep()
+   -            :  changespeed(-1)
+   f            :  changespeed(-1)
+   F            :  changespeed(-5)
+   Ctrl-k       :  togglekernel()
+   K            :  togglekill()
+   +            :  changespeed(1)
+   s            :  changespeed(1)
+   S            :  changespeed(5)
+   r            :  redisplay()
+   Ctrl-X       :  quit()
+   z            :  zoom()
+
+The below commands work I<only> in the process-tree
+display or canvas area.
+
+   space, return, mouse:  showprocess()
+   right mouse         :  showprocess(K)
+
+See L<Key/Mouse action> help for more information on 
+functions such as toggleprocs, showprocess.

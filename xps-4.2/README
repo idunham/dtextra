@@ -1,0 +1,48 @@
+$Id: README,v 1.4 2003/03/18 21:35:43 rockyb Exp $
+
+This directory holds the source for xps, a program to dynamically
+display in an X Window the Unix processes as a tree or forest.
+
+Almost all of the source code is covered by the GNU GENERAL PUBLIC
+LICENSE. See COPYING for details on this. However one or two files
+were taken from examples provided in Douglas Young's Motif book and
+are copyrighted by him.  Finally, one file, xpsplay.c is from an old X
+program and has the old MIT copyright on that. See the relevant source
+code for details for the use of this code.
+
+To compile the program you will need an ANSI C compiler with X-windows
+and Motif 1.2-compatible libraries. You will also need some version of
+Perl installed.
+
+See INSTALL for generic GNU configure instructions, INSTALL.xps 
+for specific xps install instructions, and */install-hints.txt 
+for platform-specific things to watch out for.
+
+The program currently has been tested on:
+
+OS      Version      CPU            Compiler        X            Motif
+-----------------------------------------------------------------------------
+AIX     4.1.5.0      PowerPC        gcc-2.95.2    X11R5         Motif 1.2
+AIX     4.2.1.0      PowerPC        gcc-2.95.2    X11R5         Motif 1.2
+AIX     4.3.2.0      PowerPC        gcc-3.2.1     X11R5         Motif 1.2
+AIX     5.1.0.0      PowerPC        gcc-3.2.1     X11R5         Motif 1.2
+AIX     4.3          ?              AIX cc        X11R5         Motif ?
+Linux   2.0.35       Pentium        gcc-2.7.2.1   X11R6.3       LessTif 0.87-1
+Linux   2.0.36       "              egcs          X11R6.3       LessTif 0.87-1
+Linux   2.2.x        Pentium        gcc-2.9	  X11R6.4       LessTif 0.87-1
+Linux   2.2.x        Pentium        gcc-2.9	  X11R6.4       LessTif 0.86.9
+Linux   2.4.20       Athlon         gcc-3.2	  XFree86 4.3.0 LessTif 0.93.18
+MkLinux 2.0.33       PowerPC        egcs-2.90.25  X11R6.3       LessTif 0.84.05
+Solaris 2.5.1        SPARC          gcc-2.7.2.1   X11R6
+Solaris 2.5.1        SPARC          egcs 1.1.1    X11R6
+Solaris 2.6          SPARC          gcc-2.9	  X11R6         Motif 1.2
+Solaris 2.7          ?              gcc-2.9	  Sun openwin   Motif 1.2
+Solaris 2.8          SPARC          gcc-3.2	  Sun openwin   Motif 1.2
+Solaris 2.8          x86            ?             ? 
+Solaris 2.8          ?              gcc-2.9	  Sun openwin   Motif 1.2
+BSDI    2.1          pentium        gcc-2.7.2.1   X11R6.3       Lesstif 3.33
+BSDI    4.01         ?              ?             ?             ? 
+NetBSD  1.3I         x86            ?             ?
+BSD/OS  4.2          P3-550         gcc 2.95.2    XFree86 4.0.1 LessTif 0.92.26
+
+
