@@ -1,0 +1,7 @@
+1. Give the list-widget a new face.  
+2. Sort references.
+3. Find similar references in database.
+4. Add a list of keywords to all references in an include file.
+5. Print directly from the program without using LaTeX and BibTeX.
+6. Write a documentation
+7. Allow strings for the RefID

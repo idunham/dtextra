@@ -1,0 +1,26 @@
+Begin3
+Title:          xmbibtex
+Version:        1.7
+Entered-date:   April 30, 2003
+Description:    xmbibtex is a LessTif (Motif) reference manager 
+		based on the BibTeX file format. It allows to add, 
+		delete, and edit references. The references can be 
+		saved in the BibTeX file format and also written on 
+		a LaTeX file that can be printed using LaTeX and 
+		BibTeX. References can be retrieved by several 
+		search strategies. Import of various Medline formats
+                is supported.
+Keywords:       BibTeX
+                reference manager
+		LessTif
+                Motif
+Author:         harald-stauss@uiowa.edu (Harald Stauss)
+Maintained-by:  harald-stauss@uiowa.edu (Harald Stauss)
+Primary-site:   sunsite.unc.edu /pub/Linux/apps/tex
+                xmbibtex-1.7.tar.gz
+                xmbibtex-1.7.lsm
+Alternate-site: 
+Original-site:  
+Platform:       Linux, LessTif, Motif
+Copying-policy: GPL
+End

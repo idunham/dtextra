@@ -1,0 +1,4 @@
+*background:	grey80
+*fontList:	-adobe-helvetica-medium-r-*-*-14-*-*-*-*-*-*-*
+*main_w.menubar.*.background:	grey70
+*main_w.w.menubar.*.fontList: -adobe-helvetica-bold-o-*-*-14-*-*-*-*-*-*-*

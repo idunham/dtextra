@@ -1,0 +1,2287 @@
+d his
+
+     (FILE 'HOME' ENTERED AT 10:08:33 ON 03 APR 1997)
+
+     FILE 'INSPEC' ENTERED AT 10:09:18 ON 03 APR 1997
+                ACT MROWKA/A
+               ---------
+L1  (      1053)SEA FILE=INSPEC (RELAXATION METHOD?/TI,CT,ST) 
+L2  (         2)SEA FILE=INSPEC L1 AND REVIEW/TI,CT 
+L3  (         2)SEA FILE=INSPEC L1 AND REVIEW/ST 
+L4  (         4)SEA FILE=INSPEC L2 OR L3 
+L5  (     12788)SEA FILE=INSPEC A4710/CC 
+L6  (        31)SEA FILE=INSPEC L1 AND L5 
+L7  (       382)SEA FILE=INSPEC (RELAXATION METHOD?/TI) 
+L8          404 SEA FILE=INSPEC L4 OR L6 OR L7 
+               ---------
+
+=> d bib ab 1-4,6,7,10,11,13,14-17,19-21,24,27,29,32,33,37,41,44-47,50,51,58,66,69,71,78,88,96,99,101,125,126,136,137,145,155
+ 
+L8   ANSWER 1 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   97:5515417  INSPEC     DN  A9708-4755E-001
+TI   An implicit   ***relaxation***     ***method***   for calculating
+     steady two-dimensional flows of a spontaneously condensing vapour.
+AU   Kosolapov, Yu.S.; Liberzon, A.S.
+SO   Computational Mathematics and Mathematical Physics (1996) vol.36,
+     no.6, p.805-15. 23 refs.
+     Doc. No.: S0965-5425(96)00098-1
+     Published by: Elsevier
+     Price: CCCC 0965-5425/96/$24.00+.00
+     CODEN: CMMPA9  ISSN: 0965-5425
+     SICI (Trl): 0965-5425(1996)36:6L.805:IRMC;1-7
+     Translation of: Zhurnal Vychislitel'noi Matematiki i Matematicheskoi
+     Fiziki (1996) vol.36, no.6, p.138-51. 23 refs.
+     CODEN: ZVMFAN  ISSN: 0044-4669
+     SICI: 0044-4669(1996)36:6L.138;1-7
+DT   Journal; Translation Abstracted
+TC   Theoretical
+CY   Russian Federation; United Kingdom
+LA   English
+AB   An implicit monotone relaxation method of second-order of accuracy
+     with respect to the space coordinates for calculating steady
+     two-dimensional flows of spontaneously condensing and wet steam is
+     constructed. Possible applications of the method are demonstrated
+     using the examples of the calculation of flows of spontaneously
+     condensing vapour in nozzles and turbine cascades. A comparison is
+     made with calculation and the experimental results obtained
+     elsewhere.
+ 
+L8   ANSWER 2 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5495029  INSPEC     DN  B9703-0290F-025; C9703-4130-037
+TI   Convergence of waveform   ***relaxation***     ***methods***   for
+     differential-algebraic systems.
+AU   Jackiewicz, Z. (Dept. of Math., Arizona State Univ., Tempe, AZ,
+     USA); Kwapisz, M.
+SO   SIAM Journal on Numerical Analysis (Dec. 1996) vol.33, no.6,
+     p.2303-17. 25 refs.
+     Published by: SIAM
+     Price: CCCC 0036-1429/96/$2.00+0.15
+     CODEN: SJNAEQ  ISSN: 0036-1429
+     SICI: 0036-1429(199612)33:6L.2303:CWRM;1-1
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   This paper gives sufficient conditions for existence and uniqueness
+     of solutions and for the convergence of Picard iterations and more
+     general waveform relaxation methods for differential-algebraic
+     systems of neutral type. The results are obtained by the contraction
+     mapping principle on Banach spaces with weighted norms and by the
+     use of the Perron-Frobenius theory of nonnegative and nonreducible
+     matrices. It is demonstrated that waveform relaxation methods are
+     convergent faster than the classical Picard iterations.
+ 
+L8   ANSWER 3 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5468386  INSPEC     DN  B9702-0290P-020; C9702-4170-023
+TI   Fourier-Laplace analysis of the multigrid waveform
+     ***relaxation***     ***method***   for hyperbolic equations.
+AU   Shlomo Ta'Asan (Dept. of Math., Carnegie Mellon Univ., Pittsburgh,
+     PA, USA); Hong Zhang
+SO   BIT (Dec. 1996) vol.36, no.4, p.831-41. 19 refs.
+     Published by: BIT Found
+     CODEN: BITTEL  ISSN: 0006-3835
+     SICI: 0006-3835(199612)36:4L.831:FLAM;1-7
+DT   Journal
+TC   Theoretical
+CY   Denmark
+LA   English
+AB   The multigrid waveform relaxation (WR) algorithm has been fairly
+     studied and implemented for parabolic equations. It has been found
+     that the performance of the multigrid WR method for a parabolic
+     equation is practically the same as that of multigrid iteration for
+     the associated steady state elliptic equation. However, the
+     properties of the multigrid WR method for hyperbolic problems are
+     relatively unknown. This paper studies the multigrid acceleration to
+     the WR iteration for hyperbolic problems, with a focus on the
+     convergence comparison between the multigrid WR iteration and the
+     multigrid iteration for the corresponding steady state equations.
+     Using a Fourier-Laplace analysis in two case studies, it is found
+     that the multigrid performance on hyperbolic problems no longer
+     shares the close resemblance in convergence factors between the WR
+     iteration for parabolic equations and the iteration for the
+     associated steady state equations.
+ 
+L8   ANSWER 4 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5467447  INSPEC     DN  A9704-8710-001; C9702-1290L-110
+TI   Fast multiple alignment of ungapped DNA sequences using information
+     theory and a   ***relaxation***     ***method***  .
+AU   Schneider, T.D. (Lab. of Math. Biol., Nat. Cancer Inst., Frederick,
+     MD, USA); Mastronarde, D.N.
+SO   Discrete Applied Mathematics (5 Dec. 1996) vol.71, no.1-3, p.259-68.
+     22 refs.
+     Published by: Elsevier
+     Price: CCCC 0166-218X/96/$15.00
+     CODEN: DAMADU  ISSN: 0166-218X
+     SICI: 0166-218X(19961205)71:1/3L.259:FMAU;1-3
+DT   Journal
+TC   Theoretical
+CY   Netherlands
+LA   English
+AB   An information theory based multiple alignment ("Malign") method was
+     used to align the DNA binding sequences of the OxyR and Fis
+     proteins, whose sequence conservation is so spread out that it is
+     difficult to identify the sites. In the algorithm described, the
+     information content of the sequences is used as a unique global
+     criterion for the quality of the alignment. The algorithm uses
+     look-up tables to avoid recalculating computationally expensive
+     functions such as the logarithm. Because there are no arbitrary
+     constants and because the results are reported in absolute units
+     (bits), the best alignment can be chosen without ambiguity. Starting
+     from randomly selected alignments, a hill-climbing algorithm can
+     track through the immense space of sn combinations, where s is the
+     number of sequences and n is the number of positions possible for
+     each sequence. Instead of producing a single alignment, the
+     algorithm is fast enough that one can afford to use many start
+     points and to classify the solutions. Good convergence is indicated
+     by the presence of a single well-populated solution class having
+     higher information content than other classes. The existence of
+     several distinct classes for the Fis protein indicates that those
+     binding sites have self-similar features.
+ 
+L8   ANSWER 6 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5462446  INSPEC     DN  A9703-0720F-002
+TI   Calorimeter apparatus using a thermal   ***relaxation***
+     ***method***  .
+AU   Azechi, L.S.; da Costa, R.F.; Medina, A.N.; Gandra, F.C.G. (Dept. de
+     Eletronica Quantica, UNICAMP, Campinas, Brazil)
+SO   Revista de Fisica Aplicada e Instrumentacao (June 1995) vol.10,
+     no.2, p.70-5. 8 refs.
+     Published by: Sociedade Brasileira Fisica
+     CODEN: RFAIEE  ISSN: 0102-6895
+     SICI: 0102-6895(199506)10:2L.70:CAUT;1-6
+DT   Journal
+TC   Experimental
+CY   Brazil
+LA   Portuguese
+AB   In this work a specific heat apparatus based on the sample thermal
+     relaxation method is presented. The system is designed for small
+     samples and can be implemented for any temperature range. A full
+     description of the system is given together with some results which
+     ensure the capability of the method.
+ 
+L8   ANSWER 7 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5443790  INSPEC     DN  B9701-6140C-449; C9701-1250-249
+TI   Robust   ***relaxation***     ***method***   for structural matching
+     under uncertainty.
+AU   Horiuchi, T. (Inst. of Inf. Sci. & Electron., Tsukuba Univ.,
+     Ibaraki, Japan); Yamamoto, K.; Yamada, H.
+SO   Proceedings of the 13th International Conference on Pattern
+     Recognition
+     Los Alamitos, CA, USA: IEEE Comput. Soc. Press, 1996. p.176-80 vol.2
+     of 4 vol. (xxxi+976+xxix+922+xxxi+1008+xxix+788) pp. 8 refs.
+     Conference: Vienna, Austria, 25-29 Aug 1996
+     Sponsor(s): Int. Assoc. Pattern Recognition
+     Price: CCCC 1015-4851/96/$5.00
+     ISBN: 0-8186-7282-X
+DT   Conference Article
+TC   Theoretical
+CY   United States
+LA   English
+AB   Probabilistic relaxation labeling processes have been widely used in
+     many different fields including image processing, pattern
+     recognition, and artificial intelligence. However it is impossible
+     to express conviction degrees to be related to human subjectivity.
+     We propose a novel relaxation scheme called "robust relaxation" for
+     structural matching under uncertainty. Since this method is
+     constructed on the Dempster-Shafer measure, the above problem can be
+     solved.
+ 
+L8   ANSWER 10 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5411436  INSPEC     DN  B9612-0250-021; C9612-1160-031
+TI   An epsilon -  ***relaxation***     ***method***   for generalized
+     separable convex cost network flow problems.
+AU   Tseng, P. (Dept. of Math., Washington Univ., Seattle, WA, USA);
+     Bertsekas, D.P.
+SO   Integer Programming and Combinatorial Optimization. 5th
+     International IPCO Conference Proceedings
+     Editor(s): Cunningham, W.C.; McCormick, S.T.; Queyranne, M.
+     Berlin, Germany: Springer-Verlag, 1996. p.85-93 of x+504 pp. 21
+     refs.
+     Conference: Vancouver, BC, Canada, 3-5 June 1996
+     Sponsor(s): Math. Programming Soc
+     ISBN: 3-540-61310-2
+DT   Conference Article
+TC   Theoretical
+CY   Germany, Federal Republic of
+LA   English
+AB   Proposes an extension of the epsilon -relaxation method to
+     generalized network flow problems with separable convex cost. The
+     method maintains epsilon -complementary slackness satisfied at all
+     iterations and adjusts the arc flows and the node prices so as to
+     satisfy flow conservation upon termination. Each iteration of the
+     method involves either a price change at a node or a flow change at
+     an arc or a flow change around a simple cycle. Complexity bounds for
+     the method are derived. For one implementation employing epsilon
+     -scaling, the bound is polynomial in the number of nodes N, the
+     number of arcs A, a certain constant Gamma depending on the arc
+     gains, and ln( epsilon 0/ epsilon ), where epsilon 0 and epsilon
+     denote, respectively, the initial and the final epsilon .
+ 
+L8   ANSWER 11 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5400764  INSPEC     DN  C9612-4130-004
+TI   A class of parallel nonlinear multisplitting   ***relaxation***
+     ***methods***   for the large sparse nonlinear complementarity
+     problems.
+AU   Zhong-Zhi Bai (Acad. Sinica, Beijing, China); De-Ren Wang
+SO   Computers & Mathematics with Applications (Oct. 1996) vol.32, no.8,
+     p.79-95. 15 refs.
+     Doc. No.: S0898-1221(96)00169-1
+     Published by: Elsevier
+     Price: CCCC 0898-1221/96/$15.00+0.00
+     CODEN: CMAPDK  ISSN: 0898-1221
+     SICI: 0898-1221(199610)32:8L.79:CPNM;1-7
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   By making use of the nonlinear multisplitting and nonlinear
+     relaxation techniques, we present a class of parallel nonlinear
+     multisplitting successive overrelaxation methods for solving large
+     sparse nonlinear complementarity problems on modern high-speed
+     multiprocessors. These new methods particularly include the
+     so-called nonlinear multisplitting SOR-Newton method, the nonlinear
+     multisplitting SOR-chord method, and the nonlinear multisplitting
+     SOR-Steffensen method. Under suitable conditions, we establish local
+     convergence theories of the new methods, and investigate their
+     asymptotic convergence rates. Numerical results show that our new
+     methods are feasible and efficient for parallel solution of
+     nonlinear complementarity problems.
+ 
+L8   ANSWER 13 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5350970  INSPEC     DN  B9610-6140C-043; C9610-5260B-035
+TI   Feature detection of moving images using a hierarchical
+     ***relaxation***     ***method***  .
+AU   Dingding Chang; Hashimoto, S. (Dept. of Appl. Phys., Waseda Univ.,
+     Tokyo, Japan)
+SO   IEICE Transactions on Information and Systems (July 1996) vol.E79-D,
+     no.7, p.997-9. 14 refs.
+     Published by: Inst. Electron. Inf. & Commun. Eng
+     CODEN: ITISEF  ISSN: 0916-8532
+     SICI: 0916-8532(199607)E79D:7L.997:FDMI;1-D
+DT   Journal
+TC   Practical
+CY   Japan
+LA   English
+AB   A hierarchical relaxation method is presented for detecting local
+     features in moving images. The relaxation processes are performed on
+     the temporal spatial pyramid, which is a multi resolution data
+     structure for the moving images. The accurate and high speed edge
+     detection can be obtained by using information in the neighboring
+     frames as well as the processed results in the higher layers of the
+     pyramid.
+ 
+L8   ANSWER 14 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5342789  INSPEC     DN  B9609-0290P-006; C9609-4170-007
+TI   Chaotic waveform   ***relaxation***     ***methods***   for
+     dynamical systems.
+AU   Yongzhong Song (Dept. of Math., Nanjing Normal Univ., China)
+SO   Applied Mathematics and Computation (Aug. 1996) vol.78, no.1,
+     p.83-100. 9 refs.
+     Published by: Elsevier
+     Price: CCCC 0096-3003/96/$15.00
+     CODEN: AMHCBQ  ISSN: 0096-3003
+     SICI: 0096-3003(199608)78:1L.83:CWRM;1-9
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   For solving the large dynamical systems of initial value problems
+     that can be described by a system of mixed implicit differential
+     equations, the waveform relaxation (WR) methods are proposed and
+     investigated by some mathematicians. In this paper, in order to
+     compute the WR methods on parallel processors and to avoid the
+     synchronization costs, the chaotic waveform relaxation (WR) methods
+     are presented and their convergence is investigated. As for the
+     special cases, the nonlinear ODEs, linear ODEs and semi-explicit
+     DAEs are discussed, respectively.
+ 
+L8   ANSWER 15 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5342518  INSPEC     DN  A9618-4710-014; C9609-7320-087
+TI   Data-parallel lower-upper   ***relaxation***     ***method***   for
+     the Navier-Stokes equations.
+AU   Wright, M.J.; Candler, G.V.; Prampolini, M. (Minnesota Univ.,
+     Minneapolis, MN, USA)
+SO   AIAA Journal (July 1996) vol.34, no.7, p.1371-7. 15 refs.
+     Published by: AIAA
+     Price: CCCC 0001-1452/96/$2.00+.50
+     CODEN: AIAJAH  ISSN: 0001-1452
+     SICI: 0001-1452(199607)34:7L.1371:DPLU;1-2
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   The lower-upper symmetric Gauss-Seidel method is modified for the
+     simulation of viscous flows on massively parallel computers. The
+     resulting diagonal data-parallel lower-upper relaxation (DP-LUR)
+     method is shown to have good convergence properties on many
+     problems. However, the convergence rate decreases on the high cell
+     aspect ratio grids required to simulate high Reynolds number flows.
+     Therefore, the diagonal approximation is relaxed, and a full matrix
+     version of the DP-LUR method is derived. The full matrix method
+     retains the data-parallel properties of the original and reduces the
+     sensitivity of the convergence rate to the aspect ratio of the
+     computational grid. Both methods are implemented on the Thinking
+     Machines CM-5, and a large fraction of the peak theoretical
+     performance of the machine is obtained. The low memory use and high
+     parallel efficiency of the methods make them attractive for
+     large-scale simulation of viscous flows.
+ 
+L8   ANSWER 16 OF 404  INSPEC  COPYRIGHT 1997 FIZ KARLSRUHE
+AN   96:5323906  INSPEC     DN  A9616-4740K-008
+TI     ***Relaxation***     ***method***   for 3-D problems in supersonic
+     aerodynamics.
+AU   Karamyshev, V.; Kovenya, V.; Cherny, S. (Inst. of Comput. Technol.,
+     Rossijskaya Akad. Nauk, Novosibirsk, Russia)
+SO   Fourteenth International Conference on Numerical Methods in Fluid
+     Dynamics. Proceedings of the Conference
+     Editor(s): Deshpande, S.M.; Desai, S.S.; Narasimha, R.
+     Berlin, Germany: Springer-Verlag, 1995. p.280-4 of xiii+588 pp. 3
+     refs.
+     Conference: Bangalore, India, 11-15 July 1994
+     ISBN: 3-540-59280-6
+DT   Conference Article
+TC   Theoretical
+CY   Germany, Federal Republic of
+LA   English
+AB   A version of global iterations method is considered for the
+     numerical solution of stationary 3-D problems of supersonic
+     aerodynamics with the accelerated convergence of internal iteration
+     processes in marching cross-sections by the least square method.
+ 
+L8   ANSWER 17 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5311610  INSPEC     DN  B9608-0290Z-005; C9608-4190-003
+TI   The monotone convergence of a class of parallel nonlinear
+     ***relaxation***     ***methods***   for nonlinear complementarity
+     problems.
+AU   Zhong-Zhi Bai (State Key Lab., Acad. Sinica, Beijing, China)
+SO   Computers & Mathematics with Applications (June 1996) vol.31, no.12,
+     p.17-33. 26 refs.
+     Doc. No.: S0898-1221(96)00073-9
+     Published by: Elsevier
+     Price: CCCC 0898-1221/96/$15.00+0.00
+     CODEN: CMAPDK  ISSN: 0898-1221
+     SICI: 0898-1221(199606)31:12L.17:MCCP;1-9
+DT   Journal
+TC   Practical; Theoretical
+CY   United Kingdom
+LA   English
+AB   We set up a class of parallel nonlinear multisplitting AOR methods
+     by directly multisplitting the nonlinear mapping involved in the
+     nonlinear complementarity problems. The different choices of the
+     relaxation parameters can yield all the known and a lot of new
+     relaxation methods, as well as a lot of new relaxed parallel
+     nonlinear multisplitting methods for solving the nonlinear
+     complementarity problems. The two-sided approximation properties and
+     the influences on the convergence rates from the relaxation
+     parameters about our new methods are shown, and sufficient
+     conditions guaranteeing the methods to converge globally are
+     discussed. Finally, a lot of numerical results show that our new
+     methods are feasible and efficient.
+ 
+L8   ANSWER 19 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5280714  INSPEC     DN  C9607-1250-142
+TI   A   ***relaxation***     ***method***   to classification of
+     straight line segments.
+AU   Faber, P. (Dept. of Math. & Inf. Sci., Friedrich-Schiller-Univ.,
+     Jena, Germany)
+SO   Proceedings of The First International Conference on Visual
+     Information Systems
+     Melbourne, Vic., Australia: Victoria Univ. Technol, 1996. p.283-92
+     of viii+585 pp. 16 refs.
+     Conference: Melbourne, Vic., Australia, 5-6 Feb 1996
+DT   Conference Article
+TC   New Development; Practical
+CY   Australia
+LA   English
+AB   A new approach for classifying characteristic edge segments is
+     presented. The algorithm is based on a relaxation method. It uses
+     local features of edge segments for initialization and global
+     relations between all edge segments to update the values of
+     interpretation. Several updating operators F are investigated with
+     respect to their characteristics, of which the correctness of the
+     results and the iteration steps (speed of convergence) are most
+     important. Some experimental results on intensity images are given
+     in this paper to highlight the distinctive features of the presented
+     technique.
+ 
+L8   ANSWER 20 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5269829  INSPEC     DN  C9607-1290-001
+TI   Incorporating facet-inducing inequalities into graphical-construct-
+     based Lagrangian   ***relaxation***     ***methodologies***  .
+AU   Ali, A.I.; Shmerling, S. (Sch. of Manage., Massachusetts Univ.,
+     Amherst, MA, USA)
+SO   Operations Research Letters (Feb. 1996) vol.18, no.4, p.177-84. 32
+     refs.
+     Published by: Elsevier
+     Price: CCCC 0167-6377/96/$15.00
+     CODEN: ORLED5  ISSN: 0167-6377
+     SICI: 0167-6377(199602)18:4L.177:IFII;1-W
+DT   Journal
+TC   Practical; Theoretical
+CY   Netherlands
+LA   English
+AB   This paper shows that facet-inducing inequalities can be
+     incorporated into graphical-construct-based Lagrangian relaxation
+     methodologies by including them as dualized constraints. It develops
+     an algorithm that successively identifies additional facet-inducing
+     inequalities and incorporates them into the Lagrangian function.
+     Computational experience shows that the algorithm can resolve
+     duality gaps using relatively few facet-inducing inequalities.
+ 
+L8   ANSWER 21 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5268027  INSPEC     DN  B9606-8110B-084; C9606-3340H-169
+TI   Practical approach to unit commitment problem using genetic
+     algorithm and Lagrangian   ***relaxation***     ***method***  .
+AU   Ohta, T.; Matsui, T.; Takata, T. (Chubu Electric Power Co. Inc.,
+     Nagoya, Japan); Kato, M.; Aoyagi, M.; Kunugi, M.; Shimada, K.;
+     Nagata, J.
+SO   ISAP '96. International Conference on Intelligent Systems
+     Applications to Power Systems Proceedings (Cat. No.96TH8152)
+     Editor(s): Mohammed, O.A.; Tomsovic, K.
+     New York, NY, USA: IEEE, 1996. p.434-40 of xxv+476 pp. 7 refs.
+     Conference: Orlando, FL, USA, 28 Jan-2 Feb 1996
+     Sponsor(s): IEEE Power Eng. Soc.; IEEE Neural Network Council; NSF
+     Price: CCCC 0 7803 3115 X/96/$5.00
+     ISBN: 0-7803-3115-X
+DT   Conference Article
+TC   Theoretical
+CY   United States
+LA   English
+AB   This paper presents a practical method of solving the power system
+     unit commitment problem by using a genetic algorithm and the
+     Lagrangian relaxation method, making use of the advantages of both.
+     Moreover, the introduction of heuristics simplifies genetic string
+     manipulations which improve computational efficiency. Numerical
+     results have shown that the method is effective in solving the
+     practical unit commitment problem.
+ 
+L8   ANSWER 24 OF 404  INSPEC  COPYRIGHT 1997 FIZ KARLSRUHE
+AN   96:5245715  INSPEC     DN  A9610-6630H-007
+TI   Determination of chemical diffusion coefficient of SrFeCo0.5Ox by
+     the conductivity   ***relaxation***     ***method***  .
+AU   Ma, B.; Balachandran, U.; Park, J.H. (Energy Technol. Div., Argonne
+     Nat. Lab., IL, USA); Segre, C.U.
+SO   Solid State Ionics, Diffusion & Reactions (15 Jan. 1996) vol.83,
+     no.1-2, p.65-71. 26 refs.
+     Published by: Elsevier
+     Price: CCCC 0167-2738/96/$15.00
+     CODEN: SSIOD3  ISSN: 0167-2738
+     SICI: 0167-2738(19960115)83:1/2L.65:DCDC;1-E
+DT   Journal
+TC   Experimental; Theoretical
+CY   Netherlands
+LA   English
+AB   A conductivity relaxation experiment has been conducted on an
+     SrFeCo0.5Ox sample by abruptly changing the oxygen partial pressure
+     in the atmosphere and monitoring the change of conductivity as a
+     function of time. The re-equilibrium process obeys Fick's second
+     law. By fitting the relaxation data to the solution of the diffusion
+     equation with appropriate boundary conditions, we could determine
+     the oxygen chemical diffusion coefficient and the activation energy.
+     The oxygen diffusion coefficient is 8.9*10-7 cm2/s at 900 degrees C
+     and it increases with increase in temperature. Measured activation
+     energy is 0.92 eV, which is slightly lower than that of other oxides
+     in the system SrFe1-xCoxOy.
+ 
+L8   ANSWER 27 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5205427  INSPEC     DN  B9604-1130B-019; C9604-7410D-099
+TI     ***Relaxation***     ***methods***   for analogue fault
+     simulation.
+AU   Zwolinski, M. (Dept. of Electron. & Comput. Sci., Southampton Univ.,
+     UK)
+SO   1995 20th International Conference on Microelectronics. Proceedings
+     (Cat. No.95TH8108)
+     New York, NY, USA: IEEE, 1995. p.467-71 vol.2 of 2 vol. x+viii+870
+     pp. 4 refs.
+     Conference: Nis, Serbia, 12-14 Sept 1995
+     Sponsor(s): IEEE Electron. Devices Soc
+     Price: CCCC 0 7803 2786 1/95/$4.00
+     ISBN: 0-7803-2786-1
+DT   Conference Article
+TC   Theoretical
+CY   United States
+LA   English
+AB   The fault simulation of analogue circuits is an inherently difficult
+     problem because of the lack of a simple fault model and because
+     analogue simulation is itself slow. This paper describes a technique
+     in which faulty and fault-free circuits are simulated together, such
+     that if the terminal voltages of an active device are the same for
+     the faulty and fault-free circuit, the model values calculated for
+     the fault-free simulation are reused in the faulty simulation. A
+     simple example is given in which it is shown that some savings in
+     the CPU time are possible. Suggestions for further development of
+     the algorithm to give substantial CPU savings are given.
+ 
+L8   ANSWER 29 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   96:5156791  INSPEC     DN  A9604-4710-004
+TI   Assessment of some iterative methods for non-symmetric linear
+     systems arising in computational fluid dynamics.
+AU   Soria, A.; Ruel, F. (Safety Technol. Inst., Comm. of the Eur.
+     Communities, Ispra, Italy)
+SO   International Journal for Numerical Methods in Fluids (30 Dec. 1995)
+     vol.21, no.12, p.1171-200. 26 refs.
+     Published by: Wiley
+     Price: CCCC 0271-2091/95/121171-30
+     CODEN: IJNFDW  ISSN: 0271-2091
+     SICI: 0271-2091(19951230)21:12L.1171:ASIM;1-I
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   Various rests have been carried out in order to compare the
+     performances of several methods used to solve the non-symmetric
+     linear systems of equations arising from implicit discretizations of
+     CFD problems, namely the scalar advection-diffusion equation and the
+     compressible Euler equations. The iterative schemes under
+     consideration belong to three families of algorithms: relaxation
+     (Jacobi and Gauss-Seidel), gradient and Newton methods. Two gradient
+     methods have been selected: a Krylov subspace iteration method
+     (GMRES) and a non-symmetric extension of the conjugate gradient
+     method (CGS). Finally, a quasi-Newton method has also been
+     considered (Broyden). The aim of this paper is to provide
+     indications of which appears to be the most adequate method
+     according to the particular circumstances as well as to discuss the
+     implementation aspects of each scheme.
+ 
+L8   ANSWER 32 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:5089277  INSPEC     DN  C9512-4140-033
+TI   A parallel   ***relaxation***     ***method***   for quadratic
+     programming problems with interval constraints.
+AU   Sugimoto, T. (Minist. of International Trade & Industry, Tokyo,
+     Japan); Fukushima, M.; Ibaraki, T.
+SO   Journal of Computational and Applied Mathematics (20 June 1995)
+     vol.60, no.1-2, p.219-36. 18 refs.
+     Price: CCCC 0377-0427/95/$09.50
+     CODEN: JCAMDI  ISSN: 0377-0427
+     Conference: International Meeting on Linear/Nonlinear Iterative
+     Methods and Verification of Solution. Matsuyama, Japan, 6-9 July
+     1993
+DT   Conference Article; Journal
+TC   Theoretical
+CY   Netherlands
+LA   English
+AB   Optimization problems with interval constraints are encountered in
+     various fields such as network flows and computer tomography. As
+     these problems are usually very large, they are not easy to solve
+     without taking their sparsity into account. Recently "row-action
+     methods", which originate from the classical Hildreth's method for
+     quadratic programming problems, have drawn much attention, since
+     they are particularly useful for large and sparse problems. Various
+     row-action methods have already been proposed for optimization
+     problems with interval constraints, but they mostly belong to the
+     class of sequential methods based on the Gauss-Seidel and SOR
+     methods. In this paper, we propose a highly parallelizable method
+     for solving those problems, which may be regarded as an application
+     of the Jacobi method to the dual of the original problems. We prove
+     convergence of the algorithm and report some computational results
+     to demonstrate its effectiveness.
+ 
+L8   ANSWER 33 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:5088386  INSPEC     DN  B9512-0290P-007; C9512-4170-014
+TI   On the multigrid waveform   ***relaxation***     ***method***  .
+AU   Ta'asan, S. (Dept. of Math., Carnegie Mellon Univ., Pittsburgh, PA,
+     USA); Zhang, H.
+SO   SIAM Journal on Scientific Computing (Sept. 1995) vol.16, no.5,
+     p.1092-104. 13 refs.
+     Price: CCCC 1064-8275/95/$1.50+0.10
+     CODEN: SJOCE3  ISSN: 1064-8275
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   The multigrid waveform relaxation method is an efficient method for
+     solving certain classes of time-dependent partial differential
+     equations (PDEs). This paper studies the relationship between this
+     method and the analogous multigrid method for steady-state problems.
+     Using a Fourier-Laplace analysis, practical convergence rate
+     estimates of the multigrid waveform relaxation are obtained.
+     Experimental results show that the analysis yields accurate
+     performance prediction.
+ 
+L8   ANSWER 37 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:5060888  INSPEC     DN  A9521-8140G-003
+TI   Stress   ***relaxation***     ***method***   for investigation of
+     softening kinetics in hot deformed steels.
+AU   Karjalainen, L.P. (Dept. of Mech. Eng., Oulu Univ., Finland)
+SO   Materials Science and Technology (June 1995) vol.11, no.6, p.557-65.
+     30 refs.
+     CODEN: MSCTEP  ISSN: 0267-0836
+DT   Journal
+TC   Experimental
+CY   United Kingdom
+LA   English
+AB   The feasibility of using high temperature stress relaxation to
+     monitor the restoration process in hot deformed austenite has been
+     studied. The stress relaxation technique was applied to determine
+     the kinetics of softening in C-Mn and C-Mn-Nb steels, and the
+     effects of temperature, axisymmetric compressive strain, strain
+     rate, and reheating temperature are demonstrated and the results
+     compared with the predicted values. In particular; the role of
+     niobium in preventing recrystallisation is considered. The results
+     show that the method is able to reveal the progress of static
+     recrystallisation, and that the softening ratio at any given time
+     can be predicted from the recorded relaxation curves. The effects of
+     some particular experimental factors on the results are discussed,
+     such as an applied stress during the softening and the longitudinal
+     temperature gradient present in the specimens. The particular
+     effectiveness of the technique for the investigation of fast
+     restoration processes such as recovery and metadynamic
+     recrystallisation due to instantaneous data acquisition after the
+     deformation stage is emphasised.
+ 
+L8   ANSWER 41 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:4988305  INSPEC     DN  A9515-9850-023
+TI     ***Relaxation***     ***method***   for automatic identification
+     (of galaxies).
+AU   Delbos, C.; Pinon, J.M.; Servigne, S.; Vidal, F. (Inst. Nat. des
+     Sci. Appliquees, Villeurbanne, France); Garnier, R.; Paturel, G.
+SO   Astrophysical Letters & Communications (1995) vol.31, no.1-6,
+     p.91-3. 1 refs.
+     CODEN: ALECE7  ISSN: 0888-6512
+     Conference: World of Galaxies II. Lyon, France, 5-7 Sept 1994
+DT   Conference Article; Journal
+TC   Application; Practical
+CY   Switzerland
+LA   English
+AB   In the Lyon-Meudon extragalactic database, LEDA, images are managed
+     together with astrophysical parameters. The probabilistic relaxation
+     method is used to allow an automatic cross-identification between a
+     well-identified galaxy and the corresponding flux enhancement on the
+     image. A test is performed to control the result.
+ 
+L8   ANSWER 44 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:4919845  INSPEC     DN  B9505-5240-010
+TI   Transient analysis of lossy coupled transmission lines in a lossy
+     medium using the waveform   ***relaxation***     ***method***  .
+AU   Lau, F.C.M. (Dept. of Electron. Eng., Hong Kong Polytech., Hong
+     Kong); Deeley, E.M.
+SO   IEEE Transactions on Microwave Theory and Techniques (March 1995)
+     vol.43, no.3, p.692-7. 3 refs.
+     Price: CCCC 0018-9480/95/$04.00
+     CODEN: IETMAB  ISSN: 0018-9480
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   The waveform relaxation method has been shown to be both efficient
+     and accurate when applied to coupled transmission lines with
+     conductor losses. In this paper, the method is generalized to
+     include the dielectric loss surrounding the transmission lines. The
+     distributed loss model assumes that the conductance matrix is
+     approximately diagonal and its product with the resistive matrix is
+     a scalar matrix. Computational results using the model is presented
+     and compared with HSPICE solutions.
+ 
+L8   ANSWER 45 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:4866237  INSPEC     DN  A9504-6120-012
+TI   Molecular dynamics studies in isotropic phase of n-TPEB's by
+     dielectric   ***relaxation***     ***method***  .
+AU   Jadzyn, J. (Inst. of Molecular Phys., Polish Acad. of Sci., Poznan,
+     Poland); Legrand, C.; Isaert, N.; Cartier, A.; Bonnet, P.;
+     Czechowski, G.; Zywucki, B.
+SO   Journal of Molecular Liquids (Nov. 1994) vol.62, p.55-63. 13 refs.
+     Price: CCCC 0167-7322/94/$07.00
+     CODEN: JMLIDT  ISSN: 0167-7322
+DT   Journal
+TC   Theoretical
+CY   Netherlands
+LA   English
+AB   The result of dielectric relaxation measurements (1 kHz/1 GHz) for
+     series of mesogenic molecules CnH2n+1- phi - phi CH2-CH2 phi -NCS,
+     n-TPEB, (n=7/10) in the isotropic phase, have been presented. Two
+     Debye-type bands have been interpreted as a dielectric absorption
+     due to the rotation around the long and short molecular axis. An
+     optimization of the geometry of non-rigid TPEB molecules have been
+     made using a quantum mechanics semi-empirical method PM3.
+ 
+L8   ANSWER 46 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   95:4846859  INSPEC     DN  C9502-1230D-025
+TI   Modified   ***relaxation***     ***method***   for solution of
+     continuous recurrent neural networks.
+AU   Wilamowski, B.M.; Kanarowski, S.M. (Dept. of Electr. Eng., Wyoming
+     Univ., Laramie, WY, USA)
+SO   Proceedings of the 36th Midwest Symposium on Circuits and Systems
+     (Cat. No.93CH3381-1)
+     New York, NY, USA: IEEE, 1993. p.1081-4 vol.2 of 2 vol. xxxv+1565
+     pp. 9 refs.
+     Conference: Detroit, MI, USA, 16-18 Aug 1993
+     Sponsor(s): Wayne State Univ.; IEEE Circuits & Syst. Soc
+     Price: CCCC CH3381-1/93/$01.00
+     ISBN: 0-7803-1760-2
+DT   Conference Article
+TC   Theoretical
+CY   United States
+LA   English
+AB   The derivation of a modified relaxation algorithm is presented
+     followed by demonstration examples. The algorithm converges very
+     well for continuous recurrent neural networks with both low and high
+     gain neurons. This enables one to simulate recurrent Hopfield
+     networks with both "soft" and "hard" continuous activation
+     functions. The algorithm is suitable for large systems since the
+     computational effort is proportional only to the system size, in
+     contrast to the commonly used Newton-Raphson method where power
+     relationships exist.
+ 
+L8   ANSWER 47 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   94:4837619  INSPEC     DN  B9501-8230-017
+TI   Environmentally constrained economic dispatch using the LaGrangian
+     ***relaxation***     ***method***  .
+AU   El-Keib, A.A.; Ma, H. (Alabama Univ., Tuscaloosa, AL, USA); Hart,
+     J.L.
+SO   IEEE Transactions on Power Systems (Nov. 1994) vol.9, no.4,
+     p.1723-9. 18 refs.
+     Price: CCCC 0885-8950/94/$04.00
+     CODEN: ITPSEG  ISSN: 0885-8950
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   This paper presents a general formulation of the environmentally
+     constrained economic dispatch (ECED) problem based on the
+     requirements of Clean Air Act Amendments of 1990 and others which
+     may be imposed by local air quality regulations. The formulation
+     considers multiple NOx constraints and incorporates the utilization
+     of the affected units (those named in the legislation) along with
+     SO2 constraints. It also proposes a new algorithm to solve the
+     problem for large power systems. This algorithm has the ability to
+     handle a large number of various types of linear and nonlinear
+     environmental constraints. It is reliable, and viable for both
+     offline and online applications. Test results on a large size power
+     system demonstrate the possible savings which can be realized by
+     using the algorithm. Details of the problem formulation and the
+     solution technique are given in the paper.
+ 
+L8   ANSWER 50 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   94:4806786  INSPEC     DN  A9424-3325-009
+TI   Constant-  ***relaxation***     ***methods***   for diffusion
+     measurements in the fringe field of superconducting magnets.
+AU   Demco, D.E.; Johansson, A.; Tegenfeldt, J. (Inst. of Chem., Uppsala
+     Univ., Sweden)
+SO   Journal of Magnetic Resonance, Series A (Oct. 1994) vol.110, no.2,
+     p.183-93. 38 refs.
+     Price: CCCC 1064-1858/94/$6.00
+     CODEN: JMRAE2  ISSN: 1064-1858
+DT   Journal
+TC   Experimental
+CY   United States
+LA   English
+AB   A number of new NMR methods have been introduced for measuring
+     molecular self-diffusion coefficients in the fringe field of
+     superconducting magnets, avoiding the determination of longitudinal
+     and transverse magnetization relaxation rates. Constant-relaxation
+     methods based on the stimulated-echo product signals allow the
+     determination of both constant and time-dependent diffusion
+     coefficients. A density-operator formalism taking into account
+     phenomenologically the effect of relaxation and diffusion encoding
+     on the Liouville coordinates has been used to introduce and
+     characterize an inhomogeneous mixed echo. This echo corresponds to a
+     spatial and temporal superposition of a conventional spin echo and a
+     stimulated echo. The mixed echo is generated by the action of a
+     pulse sequence based on a stimulated-echo three-pulse sequence with
+     an insertion of a Carr-Purcell-like pulse sequence in the last pulse
+     interval. A constant relaxation method using a Carr-Purcell
+     mixed-echo pulse sequence has been developed. It has proved to be
+     advantageous when T2 is not very small compared to T1. The
+     performance and limitations of these methods are discussed and
+     demonstrated experimentally.
+ 
+L8   ANSWER 51 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   94:4766926  INSPEC     DN  C9411-1250B-003
+TI   Recognition of handwritten Chinese characters by modified
+     ***relaxation***     ***methods***  .
+AU   An-Bang Wang; Kuo-Chin Fan (Inst. of Comput. Sci. & Electron. Eng.,
+     Nat. Central Univ., Chung-Li, Taiwan); Huang, J.S.
+SO   Image and Vision Computing (Oct. 1994) vol.12, no.8, p.509-22. 26
+     refs.
+     Price: CCCC 0262-8856/94/08/0509-14$10.00
+     CODEN: IVCODK  ISSN: 0262-8856
+DT   Journal
+TC   Practical; Theoretical
+CY   United Kingdom
+LA   English
+AB   We propose a novel stroke segmentation method and two modified
+     relaxation methods with which to recognize handwritten Chinese
+     characters. The new stroke segmentation method is based on thinning
+     and quadratic equation fit. After stroke segmentation and size
+     normalization, redundant strokes are detected and deleted. With the
+     deletion of redundant strokes, only prominent strokes that must
+     appear in the writing of a character are stored in the database,
+     greatly decreasing the matching time and complexity. The features of
+     each stroke are then extracted. Using the features of a character,
+     two modified relaxation matching methods are introduced to recognize
+     the unknown input character. After relaxation matching, certain
+     rules are devised to detect certain distorted characters, and also
+     to resolve ambiguity when it happens. Some of these distorted
+     characters are reconstructed and their feature vector lists are
+     modified to reflect the change. It is then sent back to the feedback
+     relaxation matching process once again. Experiments are conducted on
+     300 constrained handwritten characters written by two people; 13
+     similar characters and 42 distorted characters are also tested to
+     verify the validity of the approach. The success rate for stroke
+     segmentation is 93.3%. Two proposed matching methods are also
+     efficient and suitable for stroke-based Chinese character
+     recognition. The overall recognition rate is 98.7%, without using
+     Rules 2-5 and without considering the abnormal connection and
+     intersection of strokes.
+ 
+L8   ANSWER 58 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   94:4617645  INSPEC     DN  B9404-6140C-253; C9404-1250-153
+TI   Finding edge in images: a hierarchical   ***relaxation***
+     ***method***  .
+AU   Dingding Chang; Hashimoto, S. (Sch. of Sci. & Eng., Waseda Univ.,
+     Tokyo, Japan)
+SO   Transactions of the Society of Instrument and Control Engineers
+     (1993) vol.29, no.12, p.1379-87. 15 refs.
+     CODEN: TSICA9  ISSN: 0453-4654
+DT   Journal
+TC   Theoretical
+CY   Japan
+LA   English
+AB   Edge features can be used in the scene analysis and computer vision.
+     In this paper, we present a hierarchical relaxation method for
+     detecting edge features in images. The relaxation processes are
+     performed on the pyramid, which is a hierarchical representation
+     about the image. Using multiresolution information about the image,
+     we can change the weighted coefficients by considering the processed
+     results at high hierarchy as a measurement of the local edge
+     features in the image, satisfactory detection can be obtained in all
+     the parts of the image, and convergence speed of the relaxation
+     processes can be improved greatly. This method has the advantage of
+     detection of complete border of the objects in the image.
+ 
+L8   ANSWER 66 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   93:4531812  INSPEC     DN  A9401-8715M-011; C9401-7320-044
+TI   Divide-and-conquer, pattern matching, and   ***relaxation***
+     ***methods***   in interpretation of 2-D NMR spectra of
+     polypeptides.
+AU   Von-Wun Soo (Dept. of Comput. Sci. & Nat. Tsing Hua Univ., Hsin-Chu,
+     Taiwan); Jan-Fu Hwang; Tung-Bo Chen; Chin Yu
+SO   Journal of Computational Chemistry (Oct. 1993) vol.14, no.10,
+     p.1164-71. 22 refs.
+     Price: CCCC 0192-8651/93/101164-08
+     CODEN: JCCHDD  ISSN: 0192-8651
+DT   Journal
+TC   Practical; Theoretical
+CY   United States
+LA   English
+AB   One task in the interpretation of the 2-D nuclear magnetic resonance
+     (NMR) spectrum is to assign its signal patterns to their
+     corresponding amino acids in proteins or polypeptides. To carry out
+     this task of interpretation, one requires sufficient chemical
+     knowledge and expertise to reason from a set of highly noisy data.
+     The authors present a system called RUBIDIUM (a Rule-Based
+     Identification in 2-D NMR Spectrum) to formulate the expertise and
+     automate the process of interpretation. Given a protein or
+     polypeptide with a known amino acid sequence and the 2-D NMR spectra
+     (both COSY and NOESY), RUBIDIUM yields plausible assignments of
+     lines that account for most signals observed in the spectrum and
+     conform to prior chemical knowledge. Rules of pattern matching are
+     used to detect plausible signal patterns. The expertise of the
+     sequence-specific assignment task is formulated to assign a signal
+     pattern to amino acids. To cope with ambiguities and noise, RUBIDIUM
+     adopts various low-level data preprocessing techniques, the strategy
+     of divide and conquer, and the relaxation technique to decrease the
+     complexity and recover from overconstrained conditions. The
+     polypeptides oxytocin and vasopressin are used to illustrate the
+     performance of RUBIDIUM.
+ 
+L8   ANSWER 69 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   93:4510863  INSPEC     DN  A9323-0720-002
+TI   Temperature dependence measurements of thermal parameters of solid
+     samples by the   ***relaxation***     ***method***  .
+AU   Budke, O.; Dieska, P. (Dept. of Phys., Slovak Tech. Univ.,
+     Bratislava, Slovakia)
+SO   International Journal of Heat and Mass Transfer (Oct. 1993) vol.36,
+     no.15, p.3869-72. 7 refs.
+     Price: CCCC 0017-9310/93/$6.00+0.00
+     CODEN: IJHMAK  ISSN: 0017-9310
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   A generalization of the relaxation method (Budke and Dieska, 1985)
+     has been elaborated. While an application of the relaxation method
+     requires the sample holder temperature to be constant in time, this
+     generalized version admits a polynomial change of the sample holder
+     temperature. Such a temperature course is a very common and
+     realistic one at temperature dependence measurements of thermal
+     parameters.
+ 
+L8   ANSWER 71 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   93:4476853  INSPEC     DN  B9310-1160-003
+TI   Use of a Laplace-transform   ***relaxation***     ***method***   for
+     the analysis of nonlinear electric circuits.
+AU   Ichikawa, S.; Tada, H. (Fac. of Eng., Kyoto Univ., Japan)
+SO   Electronics and Communications in Japan, Part 3 (Fundamental
+     Electronic Science) (Dec. 1992) vol.75, no.12, p.11-20. 5 refs.
+     Price: CCCC 1042-0967/92/0012-0011
+     CODEN: ECJSER  ISSN: 1042-0967
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   The relaxation method is suitable for analysis of large-scale
+     circuits such as those simulating VLSI circuits. Complex frequency
+     domain analysis by means of the Laplace transform is carried out.
+     Semiconducting elements such as transistors of the VLSI circuits
+     exhibit nonlinear characteristics. Thus, the differential equations
+     to be used in the relaxation method must be nonlinear. In some
+     cases, the properties of nonlinear elements are given not by
+     analytic functions but by a series of discrete numerical values such
+     as observed data. To express the nonlinearity of these elements,
+     multidimensional interpolation formulas are used and practical
+     computer algorithms for solving them are derived. The analysis of
+     the conditions of convergence of the relaxation method shows that
+     the proposed algorithm is applicable to circuits which operate in
+     both stable and unstable domains, such as oscillators.
+ 
+L8   ANSWER 78 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   93:4369351  INSPEC     DN  B9305-8110D-001
+TI   An application of the Lagrangean   ***relaxation***     ***method***
+     to unit commitment scheduling in a power generation system with
+     pumped-storage units.
+AU   Kim, S. (Dept. of Manage. Sci. & Technol. Taejon, South Korea);
+     Rhee, M.
+SO   Computers & Industrial Engineering (Jan. 1993) vol.24, no.1,
+     p.69-79. 27 refs.
+     Price: CCCC 0360-8352/93/$6.00+0.00
+     CODEN: CINDDL  ISSN: 0360-8352
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   The Lagrangean relaxation method is applied to the unit commitment
+     problem of a power generation system with pumped-storage units. The
+     shortest path algorithm is used for the subproblem for each thermal
+     unit and the minimal cost flow algorithm is used for each
+     pumped-storage unit. A method for finding a better feasible solution
+     from a solution of a relaxed problem is presented. A real Korean
+     power generation system with 39 thermal units and one pumped-storage
+     unit is tested. The authors considered 168 planning hours and were
+     able to find a near optimal solution (within 0.5% of optimal)
+     consuming a reasonable amount of CPU time.
+ 
+L8   ANSWER 88 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   92:4276811  INSPEC     DN  A9224-4740-002
+TI   Iterative methods for stationary solutions to the steady-state
+     compressible Navier-Stokes equations.
+AU   Sjogreen, B. (Dept. of Sci. Comput., Uppsala Univ., Sweden)
+SO   Computers & Fluids (Oct. 1992) vol.21, no.4, p.627-45. 15 refs.
+     Price: CCCC 0045-7930/92/$5.00+0.00
+     CODEN: CPFLBI  ISSN: 0045-7930
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   Numerical experiments are presented for the solution of the
+     steady-state compressible Navier-Stokes equations. One test problem
+     is fixed supersonic flow past a double ellipse, and the various
+     solution methods studied. The problem is discretized using Osher's
+     scheme, first- and second-order accurate. The fastest convergence to
+     steady state is obtained using Newton's method. Simplifications of
+     Newton's method based on domain decomposition are shown to perform
+     well, whereas line relaxation methods meet with difficulties.
+ 
+L8   ANSWER 96 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   92:4185303  INSPEC     DN  A9216-4110D-010; B9208-5120-012
+TI   The use of a   ***relaxation***     ***method***   to calculate the
+     3D magnetic field contribution of an iron yoke.
+AU   Caspi, S.; Helm, M.; Laslett, L.J. (Lawrence Berkeley Lab., CA, USA)
+SO   IEEE Transactions on Magnetics (March 1992) vol.28, no.2, p.1096-8.
+     2 refs.
+     Price: CCCC 0018-9464/92/$03.00
+     CODEN: IEMGAQ  ISSN: 0018-9464
+     Conference: Computation of Electromagnetic Fields (COMPUMAG).
+     Sorrento, Italy, 7-11 July 1991
+     Sponsor(s): IEEE
+DT   Conference Article; Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   A computational procedure has been developed for calculating the 3-D
+     field produced by an axisymmetric iron yoke of high permeability in
+     the presence of a system of conductors. The procedure is
+     particularly applicable to the end regions of multipole magnets of
+     the sort used in particle accelerators. The field produced by the
+     conductors is calculated using the Biot-Savart law. If one solves
+     the appropriate individual differential equations for specified
+     scalar potential functions throughout the iron-free region, with the
+     proper applied boundary condition for the scalar potential of each
+     harmonic number, one will achieve upon summation the appropriate
+     potential function to describe the field contribution of the
+     surrounding high-permeability iron.
+ 
+L8   ANSWER 99 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   92:4152884  INSPEC     DN  A9212-4730-015
+TI   Flow of a viscous fluid past a flexible membrane at low Reynolds
+     numbers.
+AU   Yamamoto, K.; Okada, M.; Kameyama, J. (Dept. of Mech. Eng., Fac. of
+     Eng., Okayama Univ., Japan)
+SO   Fluid Dynamics Research (April 1992) vol.9, no.5-6, p.289-99. 13
+     refs.
+     Price: CCCC 0169-5983/92/$3.75
+     CODEN: FDRSEH  ISSN: 0169-5983
+DT   Journal
+TC   Theoretical
+CY   Netherlands
+LA   English
+AB   The numerical calculation of a steady two-dimensional viscous flow
+     past a flexible membrane is treated. Both edges of the membrane are
+     fixed in the flow and its chord is set normal to the flow. The
+     Navier-Stokes equation in terms of the stream function and the
+     vorticity is transformed to the body fitted coordinate system. The
+     numerical calculations, based on a finite difference method and
+     relaxation method, are carried out for several values of the
+     membranes tension for cases when the Reynolds numbers are 5, 10 and
+     20. It is found that two different shapes of the membranes are
+     possible at a given value of tension and Reynolds number: one with a
+     small deformation, and the other with a large deformation. Two
+     vortices appear in the concave region of the membrane if its
+     deformation increases beyond a certain extent.
+ 
+L8   ANSWER 101 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   92:4140055  INSPEC     DN  A9211-4740K-003
+TI   An improved upwind finite volume   ***relaxation***     ***method***
+     for high speed viscous flows.
+AU   Taylor, A.C., III (Dept. of Mech. Eng. & Mech., Old Dominion Univ.,
+     Norfolk, VA, USA); Wing-fai Ng; Walters, R.W.
+SO   Journal of Computational Physics (March 1992) vol.99, no.1,
+     p.159-68. 22 refs.
+     Price: CCCC 0021-9991/92/$3.00
+     CODEN: JCTPAH  ISSN: 0021-9991
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   An improved upwind relaxation algorithm for the Navier-Stokes
+     equations is presented, and results are given from the application
+     of the method to two test problems, including (1) a shock/boundary
+     layer interaction on a flat plate (Minfinity =2.0) and (2) a
+     high-speed inlet (Minfinity =5.0). The technique is restricted to
+     high-speed (i.e., supersonic/hypersonic) viscous flows. The new
+     algorithm depends on a partitioning of the global domain into
+     regions or sub-domains, where a relatively thin 'elliptic' region is
+     identified near each solid wall boundary, and the remainder of the
+     flowfield is identified to be a single larger 'hyperbolic' (i.e.,
+     hyperbolic/parabolic in the streamwise direction) region. A direct
+     solution procedure by lower/upper factorization is applied to the
+     elliptic region, the results of which are then coupled to a standard
+     line Gauss-Seidel relaxation sweep across the entire domain in the
+     primary flow direction.
+ 
+L8   ANSWER 125 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   91:3784657  INSPEC     DN  A91013094
+TI   A new approach to the borehole temperature   ***relaxation***
+     ***method***  .
+AU   Wilhelm, H. (Geophys. Inst., Karlsruhe Univ., West Germany)
+SO   Geophysical Journal International (Nov. 1990) vol.103, no.2,
+     p.469-81. 20 refs.
+     ISSN: 0956-540X
+DT   Journal
+TC   Practical
+CY   United Kingdom
+LA   English
+AB   The borehole temperature relaxation method is used to determine in
+     situ thermal properties of rock by a thermal disturbance in an
+     uncased borehole. The conventional application of this method is
+     based on the assumption that the heat flow through the borehole wall
+     is constant in time and only a function of depth during the
+     disturbance phase. The new approach described in this paper offers a
+     solution to the problem which does not refer directly to the thermal
+     history during the disturbance phase. It is only based on
+     temperature measurements during the relaxation phase when the
+     disturbance fades away by conduction.
+ 
+L8   ANSWER 126 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   91:3778580  INSPEC     DN  A91013447; B91006258
+TI   A   ***relaxation***     ***method***   for integral inversion
+     applied to HF radar measurement of the ocean wave directional
+     spectrum.
+AU   Wyatt, L.R. (Dept. of Appl. & Comput. Math., Sheffield Univ., UK)
+SO   International Journal of Remote Sensing (Aug. 1990) vol.11, no.8,
+     p.1481-94. 22 refs.
+     Price: CCCC 0143-1161/90/$3.00
+     CODEN: IJSEDK  ISSN: 0143-1161
+DT   Journal
+TC   Practical; Theoretical
+CY   United Kingdom
+LA   English
+   
+AB   The Chahine-Twomey relaxation method for inversion of the
+     atmospheric radiative transfer equation is extended to provide an
+     inverse solution to Barrick's equation describing second order
+     scatter of high frequency (HF) radio waves from the ocean surface.
+     The success of the method is demonstrated using synthesised radar
+     Doppler spectra obtained by solving the direct problem with wave
+     buoy directional spectrum measurements. Wave buoy measurements are
+     limited in the range of directional characteristics that can be
+     measured. The results presented suggest that HF radar is capable of
+     providing a more general measurement of the directional spectrum.
+ 
+L8   ANSWER 136 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   90:3707065  INSPEC     DN  B90058649; C90056028
+TI   Lagrangian   ***relaxation***     ***method***   for long-term unit
+     commitment.
+AU   Aoki, K.; Nara, K.; Satoh, T.; Itoh, M. (Dept. of Electr. & Syst.
+     Eng., Hiroshima Univ., Japan)
+SO   Power Systems and Power Plant Control 1989. Selected Papers from the
+     IFAC Symposium
+     Editor(s): Uhi Ahn
+     Oxford, UK: Pergamon, 1990. p.123-8 of xvi+545 pp. 8 refs.
+     Conference: Seoul, South Korea, 22-25 Aug 1989
+     Sponsor(s): IFAC
+     SBN: 0-08-037039-x
+DT   Conference Article
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   The authors present a new method for large-scale long-term unit
+     commitment problem composed of three types of generating units. In
+     the proposed unit commitment algorithm, the transmission loss is
+     expressed as a quadratic function of generator outputs. In the
+     demand increasing period in the morning, the planning period (one
+     hour) should be divided into shorter periods such as a half an hour
+     of fifteen minutes, and the ramping rate constraints should be
+     imposed on generator outputs. Since the unit commitment problem
+     (primal problem) is formulated as a large-scale mixed-integer
+     programming problem, the Lagrangian relaxation method is employed to
+     solve the problem efficiently.
+ 
+L8   ANSWER 137 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   90:3690713  INSPEC     DN  A90110333
+TI   A method for solving three-dimensional viscous incompressible flows
+     over slender bodies.
+AU   Rosenfeld, M.; Israeli, M.; Wolfshtein, M. (Technion-Israel Inst. of
+     Technol., Haifa, Israel)
+SO   Journal of Computational Physics (June 1990) vol.88, no.2, p.255-83.
+     21 refs.
+     Price: CCCC 0021-9991/90/$3.00
+     CODEN: JCTPAH  ISSN: 0021-9991
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   A marching iterative method for solving the three-dimensional
+     incompressible and steady reduced Navier-Stokes equations in general
+     orthogonal coordinate systems is described with the velocity and the
+     pressure as dependent variables. The coupled set of the linearized
+     finite-difference continuity and momentum equations are solved
+     iteratively without any splitting or factorization errors. Each
+     iteration consists of spatial marching from the upstream boundary to
+     the downstream boundary. The discrete continuity and the two
+     linearized crossflow momentum equations are satisfied at each
+     marching step, even when the mainstream momentum equation is not
+     converged. This solution procedure is equivalent to the solution of
+     a single Poisson-like equation by the successive plane over
+     relaxation method, while other available solution methods employ a
+     Jacobi-type iterative scheme and therefore are less efficient.
+     Several properties of the numerical method have been assessed
+     through a series of tests performed on the laminar incompressible
+     flow over prolate spheroids at intermediate incidence.
+ 
+L8   ANSWER 145 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   90:3632363  INSPEC     DN  B90034989; C90036810
+TI   Availability of nonlinear   ***relaxation***     ***method***   for
+     network analysis in the frequency domain.
+AU   Kawashima, T.; Hagiwara, Y.; Asai, H. (Fac. of Eng., Shizuoka Univ.,
+     Hamamatsu, Japan)
+SO   Transactions of the Institute of Electronics, Information and
+     Communication Engineers A (Dec. 1989) vol.J72A, no.12, p.2061-4. 4
+     refs.
+     CODEN: DJTAER  ISSN: 0913-5707
+DT   Journal
+TC   Theoretical; Experimental
+CY   Japan
+LA   Japanese
+AB   Describes the availability of the nonlinear relaxation method for
+     the solution of the determining equation given by the harmonic
+     balance method for the frequency domain network analysis. The
+     authors show that their algorithm saves CPU time and memory
+     capacity, compared with the previous one.
+ 
+L8   ANSWER 155 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   90:3521419  INSPEC     DN  A90007776
+TI   Application of thermal conductivity measurement by the
+     ***relaxation***     ***method***   to crystallization kinetics of
+     glassy As2Se3+1 mol.% In.
+AU   Budke, O. (Dept. of Phys., Slovak Tech. Univ., Bratislava,
+     Czechoslovakia); Svec, P.
+SO   Physica Status Solidi A (16 Sept. 1989) vol.115, no.1, p.143-8. 13
+     refs.
+     CODEN: PSSABA  ISSN: 0031-8965
+DT   Journal
+TC   Experimental
+CY   German Democratic Republic
+LA   English
+AB   The use of a recently developed nonstationary relaxation method of
+     measuring thermal conductivity lambda of solids for monitoring
+     crystallization kinetics of chalcogenide glasses has been analyzed.
+     Time dependences lambda (t) upon crystallization have been obtained
+     for isothermally annealed glasses As2Se3+1 mol.% In and the models
+     for calculation of degree of crystallinity and evaluation of kinetic
+     parameters of crystallization have been presented. Activation energy
+     of crystallization, dimensionality of grain growth, and character of
+     nucleation have been determined and the character of kinetic
+     behavior has been discussed with consideration to possible
+     autocatalysis of the process.
+
+=> d bib ab 156,158,170,174,177,200,211,212,221,224,225,230,240,243,246,258,278,281,283,285,290,300,304,306,314,317,327,328,340
+ 
+L8   ANSWER 156 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   89:3495790  INSPEC     DN  C89066511
+TI   Solution of ordinary differential equations by waveform
+     ***relaxation***     ***methods***  .
+AU   Skelboe, S. (Dept. of Comput. Sci., Copenhagen Univ., Denmark)
+SO   Aspects of Computation on Asynchronous Parallel Processors.
+     Proceedings of the IFIP WG 2.5 Working Conference
+     Editor(s): Wright, M.
+     Amsterdam, Netherlands: North-Holland, 1989. p.225 of xi+271 pp. 0
+     refs.
+     Conference: Stanford, CA, USA, 22-26 Aug 1988
+     Sponsor(s): Lawrence Livermore Nat. Lab.; Appl. Dynamics Int.;
+     Stanford Univ
+     ISBN: 0-444-87310-4
+DT   Conference Article
+TC   Theoretical
+CY   Netherlands
+LA   English
+AB   Summary form only given, as follows. Waveform relaxation methods
+     have proved efficient for the simulation of digital circuits using
+     parallel computers. The author describes the method and reports on
+     some of the research activities in this area including: application
+     of the Gauss-Seidel method on parallel computers; stability
+     properties of multirate integration formulas; and application of
+     waveform relaxation to chemical process simulation.
+ 
+L8   ANSWER 158 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   89:3470743  INSPEC     DN  A89120540
+TI   Numerical simulation of laminar incompressible viscous flow with
+     extremely thin finite elements near the boundaries.
+AU   D'Errico, M.A.
+CS   Inst. Nat. Recherche Inf. Autom., Le Chesnay, France
+NR   997
+SO   Feb. 1989. 29 pp. 9 refs.
+DT   Report
+TC   Theoretical
+CY   France
+LA   French
+AB   Viscous and lamina flow simulations are a source of problems at very
+     high Reynolds number (Re) because of the boundary layers. Extremely
+     thin discretization grids are needed in the perpendicular direction
+     to the boundary layer and that produces a bad, or at least mediocre,
+     conditioning of the linear systems. The author does not propose a
+     new approximation in order to solve the problem, but a new way of
+     resolving the linear system that arises from a finite element
+     discretization of the nonstationary, incompressible and laminar
+     Navier-Stokes equations. It is a simple idea that consists in
+     changing the method of resolution in the boundary layer by a block
+     relaxation method, adapted to physics, that imitates the method of
+     resolution of the parabolic Prandtl boundary layer equations, while
+     in the remaining domain a Cholesky or conjugate gradient method is
+     employed. The global linear system is solved by blocks. The first
+     corresponds to the boundary layer and wake; the second corresponds
+     to the remaining domain. The author obtained better results on a
+     wing profile at Reynolds number 100000 because this method seems not
+     to propagate the round off errors due to the bad conditioning of the
+     global linear system.
+ 
+L8   ANSWER 170 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   89:3321079  INSPEC     DN  A89029184; C89023068
+TI   An adaptive dynamic   ***relaxation***     ***method***   for
+     nonlinear problems.
+AU   Shizhong Qiang (Dept. of Civil Eng., Southwestern Jiaotong Univ.,
+     Emei, China)
+SO   Computers and Structures (1988) vol.30, no.4, p.855-9. 9 refs.
+     Price: CCCC 0045-7949/88/$3.00+0.00
+     CODEN: CMSTCJ  ISSN: 0045-7949
+DT   Journal
+TC   Practical; Theoretical
+CY   United Kingdom
+LA   English
+AB   Outlines the so-called dynamic relaxation method (DRM) which is
+     found to be suitable in analyses of both geometrical and material
+     nonlinearities using personal computers, and discuss an approach
+     recently developed at SWJT for the automatic selection of iteration
+     parameters in the DRM. The solution of a nonlinear truss-spring, the
+     analysis of plate bending problems with large deflections under
+     transverse loading, and the calculation of the ultimate load of
+     plates under an in-plane load, using DRM with personal computers,
+     are described.
+ 
+L8   ANSWER 174 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   89:3264002  INSPEC     DN  C89000789
+TI   Lagrangian   ***relaxation***     ***methods***   solving the
+     minimum fleet size multiple traveling salesman problem with time
+     windows.
+AU   Desrosiers, J.; Sauve, M.; Soumis, F. (Ecole des Hautes Etudes
+     Commerciales, Montreal, Que., Canada)
+SO   Management Science (Aug. 1988) vol.34, no.8, p.1005-22. 36 refs.
+     Price: CCCC 0025-1909/88/3408-1005$01.25
+     CODEN: MSCIAM  ISSN: 0025-1909
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   Considers the problem of finding the minimum number of vehicles
+     required to visit once a set of nodes subject to time window
+     constraints, for homogeneous fleet of vehicles located at a common
+     depot. This problem can be formulated as a network flow problem with
+     additional time constraints. The paper presents an optimal solution
+     approach using the augmented Lagrangian method. Two Lagrangian
+     relaxations are studied. In the first one, the time constraints are
+     relaxed producing network subproblems which are easy to solve, but
+     the bound obtained is weak. In the second relaxation, constraints
+     requiring that each node be visited are relaxed producing shortest
+     path subproblems with time window constraints and integrality
+     conditions. The bound produced is always excellent. Numerical
+     results for several actual school busing problems with up to 223
+     nodes are discussed. Comparisons with a set partitioning formulation
+     solved by column generation are given.
+ 
+L8   ANSWER 177 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   88:3235109  INSPEC     DN  B88064577
+TI   Waveform   ***relaxation***     ***method***  .
+AU   Urahama, K. (Fac. of Eng., Kyushu Univ., Fukuoka, Japan)
+SO   Journal of the Institute of Electronics, Information and
+     Communication Engineers (Feb. 1988) vol.71, no.2, p.145-7. 21 refs.
+     CODEN: DJTGEB  ISSN: 0373-6121
+DT   Journal
+TC   Application; Experimental
+CY   Japan
+LA   Japanese
+AB   The waveform relaxation method is a repetitive method of the
+     initialization problem for the algebraic/differential equation
+     system, which is similar to Picard's consecutive simulation, the
+     method to apply the Newton method to differential equations, etc.
+     The waveform relaxation method has lately been proved to be
+     effective particularly for simulation of the MOS digital circuit.
+     The multirate integration method is effective for transient analysis
+     of the circuit. In the waveform relaxation method, multirate
+     integration is carried in a natural form. The author describes the
+     convergence of the waveform relaxation method in transient analysis
+     of the MOS digital circuit and high-speed simulation techniques.
+ 
+L8   ANSWER 200 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   87:2965207  INSPEC     DN  A87113750
+TI   Applications of exponential   ***relaxation***     ***methods***
+     for corrosion studies and corrosion rate measurement.
+AU   Lakshminarayanan, V. (Raman Res. Inst., Bangalore, India);
+     Rajagopalan, S.R.
+SO   Proceedings of the Indian Academy of Sciences, Chemical Sciences
+     (Oct. 1986) vol.97, no.3-4, p.465-77. 6 refs.
+     CODEN: PIAADM  ISSN: 0370-0089
+DT   Journal
+TC   Theoretical
+CY   India
+LA   English
+AB   Investigations on the use of an exponential relaxation technique for
+     studying corrosion systems are reported. The polarisation resistance
+     and the double layer capacitance of corrosion systems can be
+     obtained by the small amplitude exponential relaxation technique
+     (SAERT). The rate of corrosion can be measured by the large
+     amplitude exponential relaxation technique (LAERT). This technique
+     yields an 'accelerated Tafel plot' only when the charging current is
+     negligible, which is seldom so. Methods for correcting for double
+     layer charging are described. Double layer capacitance as a function
+     of potential is obtained from LAERT. Therefore it can be used for
+     studies on inhibitors. The utility of LAERT for corrosion systems
+     with only one of the conjugate reactions under activation control is
+     established. The effect of series resistance (Re) is discussed and
+     an in situ method for its determination is described. A procedure
+     for correcting the experimental data for errors due to Re is given.
+ 
+L8   ANSWER 211 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   87:2860637  INSPEC     DN  A87051021
+TI   Multiple grid and Osher's scheme for the efficient solution of the
+     steady Euler equations.
+AU   Hemker, P.W.; Spekreijse, S.P. (Centrum voor Wiskunde en Inf.,
+     Amsterdam, Netherlands)
+SO   Applied Numerical Mathematics (Dec. 1986) vol.2, no.6, p.475-93. 22
+     refs.
+     Price: CCCC 0168-9274/86/$3.50
+     CODEN: ANMAEL  ISSN: 0168-9274
+DT   Journal
+TC   Theoretical; Experimental
+CY   Netherlands
+LA   English
+AB   An iterative method is developed for the solution of the steady
+     Euler equations for inviscid flow. The system of hyperbolic
+     conservation laws is discretized by a finite-volume
+     Osher-discretization. The iterative method is a multiple grid (FAS)
+     iteration with symmetric Gauss-Seidel (SGS) as a relaxation method.
+     Initial estimates are obtained by full multigrid (FMG). In the
+     pointwise relaxation the equations are kept in block-coupled form
+     and local linearization of the equations and the boundary conditions
+     is considered. The efficient formulation of Osher's discretization
+     of the 2-D nonisentropic steady Euler equations and its
+     linearization is presented. The efficiency of FAS-SGS iteration is
+     shown for a transonic model problem. It appears that, for the
+     problem considered, the rate of convergence is almost independent of
+     the grid size and that for all mesh sizes the discrete system is
+     solved up to truncation error accuracy in only a few (2 or 3)
+     iteration cycles.
+ 
+L8   ANSWER 212 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   87:2845023  INSPEC     DN  C87021805
+TI   An introduction to   ***relaxation***     ***methods***  .
+AU   Williams, G. (BYTE, Peterborough, NH, USA)
+SO   BYTE (Jan. 1987) vol.12, no.1, p.111-14, 116, 118, 120, 122, 124. 0
+     refs.
+     CODEN: BYTEDJ  ISSN: 0360-5280
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   A numeric technique called the relaxation method is very useful in
+     solving such matters as systems of simultaneous equations. The
+     author concentrates on the solution of two-dimensional systems that
+     can be described by Poisson's equation. He focuses on a special
+     case, Laplace's equation.
+ 
+L8   ANSWER 221 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   86:2730070  INSPEC     DN  A86101541
+TI   A direct   ***relaxation***     ***method***   for calculating
+     eigenfunctions and eigenvalues of the Schrodinger equation on a
+     grid.
+AU   Kosloff, R. (Dept. of Phys. Chem., Hebrew Univ., Jerusalem, Israel);
+     Tal-Ezer, H.
+SO   Chemical Physics Letters (13 June 1986) vol.127, no.3, p.223-30. 23
+     refs.
+     Price: CCCC 0009-2614/86/$03.50
+     CODEN: CHPLBC  ISSN: 0009-2614
+DT   Journal
+TC   Theoretical
+CY   Netherlands
+LA   English
+AB   Eigenfunctions and eigenvalues of the Schrodinger equation are
+     determined by propagating the Schrodinger equation in imaginary
+     time. The method is based on representing the Hamiltonian operation
+     on a grid. The kinetic energy is calculated by the Fourier method.
+     The propagation operator is expanded in a Chebychev series. Excited
+     states are obtained by filtering out the lower states. Comparative
+     examples include: eigenfunctions and eigenvalues of the Morse
+     oscillator, the Henon-Heiles system and weakly bound states of He on
+     a Pt surface.
+ 
+L8   ANSWER 224 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   86:2667490  INSPEC     DN  A86063383
+TI   A   ***relaxation***     ***method***   for steady Navier-Stokes
+     equations, based on flux-vector splitting.
+AU   Dick, E. (Dept. of Machinery, State Univ. of Ghent, Belgium)
+SO   Numerical Methods in Laminar and Turbulent Flow. Proceedings of the
+     Fourth International Conference
+     Editor(s): Taylor, C.; Olson, M.D.; Gresho, P.M.; Habashi, W.G.
+     Swansea, UK: Pineridge Press, 1985. p.527-38 vol.1 of 2 vol. 1851
+     pp. 4 refs.
+     Conference: Swansea, UK, 9-12 July 1985
+     Sponsor(s): US Office Naval Res.
+     ISBN: 0-906674-43-3
+DT   Conference Article
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   Using the example of Cauchy-Riemann equations, the flux-vector
+     splitting method is illustrated for systems of first order
+     equations. It is shown that for this linear elliptic system of
+     equations, flux-vector splitting combined with upwind differencing
+     results in discrete equations which can be solved by relaxation
+     methods. It is shown how the same splitting can be used on the
+     hybrid first order (subprincipal) part of the steady Navier-Stokes
+     equations in primitive variable form. By the use of central
+     difference discretisations on the second order (principal) part, the
+     resulting set of discrete equations can be solved by relaxation
+     methods. A computational example on a backward facing step problem
+     is given.
+ 
+L8   ANSWER 225 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   86:2653230  INSPEC     DN  B86027038; C86025933
+TI   Application of the   ***relaxation***     ***method***   to analysis
+     of DC nonlinear networks.
+AU   Tadeusiewicz, M. (Inst. of Principles of Electr. Eng., Tech. Univ.,
+     Lodz, Poland)
+SO   Modelling, Simulation & Control A (1984) vol.1, no.3, p.9-16. 9
+     refs.
+     CODEN: MSCAE2  ISSN: 0761-2508
+DT   Journal
+TC   Theoretical
+CY   France
+LA   English
+AB   The application of the relaxation method to computer-aided analysis
+     of nonlinear networks is discussed. For a certain class of DC
+     nonlinear networks, the sufficient conditions under which the
+     relaxation sequence is convergent to a unique solution for each
+     initial guess are formulated. The diode-transistor networks are
+     discussed and a numerical example is demonstrated.
+ 
+L8   ANSWER 230 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   86:2588411  INSPEC     DN  B86007690; C86008145
+TI   A block   ***relaxation***     ***method***   for the
+     three-dimensional Poisson equation.
+AU   Huang Duo (Comput. Center, Acad. Sinica, China)
+SO   Mathematica Numerica Sinica (1985) vol.7, no.3, p.332-6. 6 refs.
+     CODEN: JSUXDP  ISSN: 0254-7791
+DT   Journal
+TC   Theoretical
+CY   China
+LA   Chinese
+AB   A block relaxation method is proposed for the three-dimensional
+     Poisson equation on the basis of a cyclic reduction method. Its
+     convergence is analysed and a formula for determining the optimum
+     relaxation factor is given.
+ 
+L8   ANSWER 240 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   85:2475705  INSPEC     DN  C85031615
+TI   A Lagrangean-  ***relaxation***     ***method***   for the
+     constrained assignment problem.
+AU   Aggarwal, V. (Dept. of Manage. & Syst., Washington State Univ.,
+     Pullman, WA, USA)
+SO   Computers & Operations Research (1985) vol.12, no.1, p.97-106. 14
+     refs.
+     Price: CCCC 0305-0548/85$3.00+.00
+     CODEN: CMORAP  ISSN: 0305-0548
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   This paper addresses the problem of finding a minimal weight
+     assignment subject to a knapsack-type constraint. It develops a
+     two-stage algorithm based on the Lagrangean-relaxation formulation
+     of this problem. The first stage obtains the optimal Lagrange
+     multiplier in a polynomial effort by generating the efficient
+     frontier in a bicriteria framework. The second stage uses this
+     information to zero in on the optimal solution in a relatively lower
+     depth of search in the ordered-generation-of-assignments framework.
+     The algorithm is supported by a numerical example and its advantages
+     over other schemes are shown.
+ 
+L8   ANSWER 243 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   85:2448430  INSPEC     DN  A85058371
+TI   Measurement of thermal parameters of small plane-parallel samples by
+     a   ***relaxation***     ***method***  .
+AU   Budke, O.; Dieska, P. (Dept. of Phy., Electrotech., Slovak Tech.
+     Univ., Bratislava, Czechoslovakia)
+SO   Acta Physica Slovaca (1985) vol.35, no.1, p.27-39. 2 refs.
+     CODEN: APSVCO  ISSN: 0323-0465
+DT   Journal
+TC   Experimental
+CY   Czechoslovakia
+LA   English
+AB   A non-stationary method for measuring thermal conductivity and
+     thermal diffusivity of small plane-parallel samples (5*5*1 mm3) is
+     developed. The principle of the method consists in measuring the
+     time dependence of the temperature of a plane heat source heated by
+     a constant power during a finite time interval. The heat capacity of
+     the source is taken into account in the formulation of the problem.
+     A model is proposed to estimate a parasitical heat flow through the
+     lead-in wires of the heat source and the wires of the thermocouple
+     used for measuring the temperature of the heat source. The method is
+     suitable for a quick measuring of the temperature dependence of
+     thermal parameters.
+ 
+L8   ANSWER 246 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   85:2404651  INSPEC     DN  C85012851
+TI   A case for   ***relaxation***     ***methods***  .
+AU   Kumar, G.S. (Sch. of Bus. Adm., Tennessee Univ., Martin, TN, USA)
+SO   Proceedings of the 16th Annual Meeting of the American Institute for
+     Decision Sciences
+     Atlanta, GA, USA: American Inst. Decision Sci, 1984. p.682 of
+     xvii+817 pp. Microfiche
+     Conference: Toronto, Ont., Canada, 5-7 Nov 1984
+DT   Conference Article
+TC   Theoretical
+CY   United States
+LA   English
+AB   Summary form only given, as follows. Many practical problems can be
+     reduced to finding a point of a polyhedron. Relaxation methods solve
+     the problem by successively finding points of polyhedrons containing
+     the polyhedron of interest. The authors discuss the advantages of
+     using iterative methods for large scale linear programs and survey
+     some of the relaxation methods.
+ 
+L8   ANSWER 258 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   84:2178142  INSPEC     DN  A84013606
+TI     ***Relaxation***     ***methods***   in investigations of
+     transport processes.
+AU   Buevich, Yu.A.; Yasnikov, G.P.
+SO   Journal of Engineering Physics (March 1983) vol.44, no.3, p.340-53.
+     131 refs.
+     CODEN: JEPHAL  ISSN: 0022-0841
+     Translation of: Inzhenerno-Fizicheskii Zhurnal (March 1983) vol.44,
+     no.3, p.489-504. 131 refs.
+     CODEN: INFZA9  ISSN: 0021-0285
+DT   Journal; Translation Abstracted
+TC   Theoretical
+CY   Byelorussian SSR; USSR; United States
+LA   English
+AB   In spite of the large variety of existing transport processes they
+     all have one fundamental property in common: these processes strive
+     to neutralize external actions that take a system out of the
+     equilibrium state. Any physical system has some inertia, related to
+     internal processes specific to the system. Such processes are
+     activated with breakdown of equilibrium and are characterized by
+     their own internal variables. The approach of the system to
+     equilibrium, which results in the observed transport processes, can
+     be viewed as a collection of relaxation processes for these internal
+     variables. The authors limit their analysis to the relaxation
+     formalism of nonequilibrium thermodynamics, and they briefly analyze
+     its relation to the methods of the theory of dynamic systems.
+ 
+L8   ANSWER 278 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   81:1752235  INSPEC     DN  B81044945; C81031168
+TI   Resolution of the bilinear programming problem via a
+     ***relaxation***     ***method***  .
+AU   Chagoya-Guzman, A.; Fonlupt, J. (Lab. d'Informatique et de Math.
+     Appl., Grenoble, France)
+SO   Methods of Operations Research (1981) vol.40, p.59-62. 5 refs.
+     CODEN: MEORDE  ISSN: 0078-5318
+     Conference: Vth Symposium on Operations Research. Cologne, West
+     Germany, 25-27 Aug 1980
+DT   Conference Article; Journal
+TC   Theoretical
+CY   Germany, Federal Republic of
+LA   English
+AB   The bilinear programming problem (BPP) may be defined in the
+     following form: v=min(v(x,y)=<pT,x>+<qT,y>+<xT,Cy>; x epsilon K1, y
+     epsilon K2) where K1=(x>or=0; Ax=e) K2=(y>or=0; By=f) are two
+     polytopes. The goal is to find the global optimum (x,y) and the
+     value v=v(x,y) of (BPP). Special methods for nonconvex problems are
+     needed.
+ 
+L8   ANSWER 281 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   81:1722606  INSPEC     DN  C81024877
+TI   The Lagrangian   ***relaxation***     ***method***   for solving
+     integer programming problems.
+AU   Fisher, M.L. (Univ. of Pennsylvania , Philadelphia, PA, USA)
+SO   Management Science (Jan. 1981) vol.27, no.1, p.1-18. 46 refs.
+     CODEN: MSCIAM  ISSN: 0025-1909
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   Many hard integer programming problems can be viewed as easy
+     problems complicated by a relatively small set of side constraints.
+     Dualizing the side constraints produces a Lagrangian problem that is
+     easy to solve and whose optimal value is a lower bound (for
+     minimization problems) on the optimal of the original problem. The
+     Lagrangian problem can thus be used in place of a linear programming
+     relaxation to provide bounds in a branch and bound algorithm. This
+     approach has led to dramatically improved algorithms for a number of
+     important problems in the areas of routing, location, scheduling,
+     assignment and set covering. The paper is a review of Lagrangian
+     relaxation based on what has been learned in the last decade.
+ 
+L8   ANSWER 283 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   81:1694822  INSPEC     DN  B81029190
+TI     ***Relaxation***     ***methods***   in digital image
+     segmentation.
+AU   Gerbrands, J.J. (Tech. Hogeschool Delft, Delft, Netherlands)
+SO   Tijdschrift van het Nederlands Elektronica- en Radiogenootschap
+     (1981) vol.46, no.1, p.11-16. 11 refs.
+     CODEN: NERTA9  ISSN: 0374-3853
+DT   Journal
+TC   Theoretical
+CY   Netherlands
+LA   Dutch
+AB   Probabilistic relaxation label procedures are discussed in the
+     context of low-level image segmentation. Two examples are discussed
+     in detail. The first is the reinforcement of edges as proposed by
+     Schachter et al. (1977). The second example deals with image
+     segmentation by clustering in the feature domain followed by
+     relaxation in the spatial domain. The features used are gray-level
+     and texture.
+ 
+L8   ANSWER 285 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   81:1673539  INSPEC     DN  A81042064
+TI   On a   ***relaxation***     ***method***   for calculating two
+     dimensional transonic fields of flow.
+AU   Kozel, K.; Polasek, J.; Vavrincova, M. (Tech. Univ. Prague, Prague,
+     Czechoslovakia)
+SO   Zeitschrift fur Angewandte Mathematik und Mechanik (1980) vol.60,
+     no.7, p.204-6. 6 refs.
+     CODEN: ZAMMAX  ISSN: 0044-2267
+DT   Journal
+TC   Theoretical
+CY   German Democratic Republic
+LA   German
+AB   Applies the relaxation method to the calculation of the two
+     dimensional steady state transonic flow fields during flow round
+     thin profiled cascades and round a thin single profile between two
+     parallel walls. After formulating the differential equations for
+     both instances and stating the difference problems involved, it is
+     shown that the results obtained were in good agreement, in the first
+     instance, with interferograms and, in the second, with
+     experimentally obtained results.
+ 
+L8   ANSWER 290 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   81:1613678  INSPEC     DN  C81000582
+TI   A product rule   ***relaxation***     ***method***  .
+AU   Kirby, R.L. (Computer Sci. Center, Univ. of Maryland, College Park,
+     MD, USA)
+SO   Computer Graphics and Image Processing (June 1980) vol.13, no.2,
+     p.158-89. 11 refs.
+     CODEN: CGIPBG  ISSN: 0146-664X
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   Probabilistic relaxation estimates the probabilities of the
+     potential labelings of the nodes of a multigraph. The constraints
+     used are limited to those nodes which are connected by arcs in this
+     multigraph. A multiplicative formula called the product rule is
+     introduced for combining the estimates of several nodes. This
+     formula is then shown to correspond to a discrete relaxation
+     operator. Experiments were made using the product rule to break a
+     substitution cipher and to disambiguate the semantic labeling of the
+     pixels of a color image of a house. The experiments showed that in
+     some applications, the product rule converges more rapidly to
+     estimates that permit making reasonable decisions than did a
+     previous formula using arithmetic averaging. The experiments also
+     suggested ways to refine the relaxation formulas to produce more
+     precise estimates.
+ 
+L8   ANSWER 300 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   79:1373449  INSPEC     DN  C79020046
+TI     ***Relaxation***     ***methods***   in image processing and
+     analysis.
+AU   Rosenfeld, A. (Computer Sci. Center, Univ. of Maryland, College
+     Park, MD, USA)
+SO   Proceedings of the 4th International Joint Conference on Pattern
+     Recognition
+     Kyoto, Japan: Kyoto, Univ, 1978. p.181-5 of xxii+1166 pp. 12 refs.
+     Conference: Kyoto, Japan, 7-10 Nov 1978
+     Sponsor(s): Internat. Assoc. Pattern Recognition
+DT   Conference Article
+TC   Theoretical
+CY   Japan
+LA   English
+AB   Describes a class of iterative, parallel processes known as
+     relaxation methods, and reviews some of their uses in image
+     processing and analysis, with emphasis on recent developments.
+ 
+L8   ANSWER 304 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   79:1296648  INSPEC     DN  A79011888
+TI   The correct use of the dielectric   ***relaxation***
+     ***method***   in studying dimensions, shape, and conformational
+     transitions in proteins.
+AU   Sedykh, N.V.; Fel'dman, Yu.D. (Kazan' Univ., Kazan', USSR)
+SO   Colloid Journal of the USSR (July-Aug. 1977) vol.39, no.4, p.719-20.
+     13 refs.
+     CODEN: COJOA5  ISSN: 0010-1303
+     Translation of: Kolloidnyi Zhurnal (July-Aug. 1977) vol.39, no.4,
+     p.806-8. 13 refs.
+     CODEN: KOZHAG  ISSN: 0023-2912
+DT   Journal; Translation Abstracted
+TC   Theoretical
+CY   USSR; United States
+LA   English
+AB   An examination is made of the possibility of correct use of the
+     dipole relaxation method in investigating the shapes, sizes, and
+     confirmation of proteins in solution. Methods are given for taking
+     into account the difficulties associated with problems of
+     macroscopic viscosity, discreteness of the medium, and the selection
+     of a bipolymer model. The sensitivity of the method to change in
+     dimensions of the dipole-active axis of the macromolecule is
+     evaluated.
+ 
+L8   ANSWER 306 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   78:1257228  INSPEC     DN  A78078977; B78046557
+TI   Coherence   ***relaxation***     ***methods***   for holography.
+AU   Leith, E.N. (Univ. of Michigan, Ann Arbor, MI, USA)
+SO   Proceedings of the Society of Photo-Optical Instrumentation
+     Engineers, vol.120. Three-Dimensional Imaging
+     Editor(s): Benton, S.A.
+     Bellingham, WA, USA: Soc. Photo-Optical Instrumentation Engr(s),
+     1977. p.145-9 of vi+214 pp. 0 refs.
+     Conference: San Diego, CA, USA, 25-26 Aug 1977
+     Sponsor(s): Soc. Photo-Optical Instrumentation Engr(s)
+     ISBN: 0-89252-147-3
+DT   Conference Article
+TC   Practical
+CY   United States
+LA   English
+AB   Techniques for producing and receiving holograms in light of reduced
+     coherence are described. Both coherent and incoherent methods are
+     considered.
+ 
+L8   ANSWER 314 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   77:1110457  INSPEC     DN  A77080137
+TI     ***Relaxation***     ***methods***   for time dependent
+     conservation equations in fluid mechanics.
+AU   Wirz, H.J. (von Karman Inst. for Fluid Dynamics, Rhode-St-Genese,
+     Belgium)
+SO   AGARD Lecture Series No.86 on Computational Fluid Dynamics
+     Neuilly sur Seine, France: AGARD, 1977. p.4/1-49 of v+168 pp. 27
+     refs.
+     Conference: Rhode-Saint-Genese, Belgium, 19-23 March 1977
+     Sponsor(s): AGARD
+DT   Conference Article
+TC   Theoretical
+CY   France
+LA   English
+AB   The approximate discrete solution of the fundamental steady state
+     conservation equations of classical physics and in particular fluid
+     mechanics leads in general to large nonlinear systems of algebraic
+     equations, which must be solved iteratively. Of predominant interest
+     is, of course, the reliability of the discrete analogue of the basic
+     conservation laws (numerical model) for finite mesh size. Due to the
+     inherent limitations of available computers (speed, capacity) a
+     second issue plays an equally important role namely the problem of
+     efficiency of iterative methods. The acceleration of the convergence
+     of these methods to solve stationary partial differential equations
+     is the subject of relaxation.
+ 
+L8   ANSWER 317 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   77:1048606  INSPEC     DN  A77039760
+TI   Gaussian   ***relaxation***     ***method***  . I. Homopolar
+     tetrahedral solids.
+AU   Mele, E.J.; Joannopoulos, J.D. (Dept. of Phys., MIT, Cambridge, MA,
+     USA)
+SO   Physical Review B (Solid State) (15 Jan. 1977) vol.15, no.2,
+     p.901-8. 11 refs.
+     CODEN: PLRBAQ  ISSN: 0556-2805
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   A method is developed for extending an empirical tight-binding
+     theory to calculate the densities of state for very large but finite
+     systems. A set of bond-centred analytic wave functions are derived
+     for application of the method to the calculation of charge densities
+     in crystalline Ge as a model homopolar tetrahedral solid.
+ 
+L8   ANSWER 327 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   76:878527  INSPEC     DN  A76027657
+TI   On Chahine's   ***relaxation***     ***method***   for the radiative
+     transfer equation.
+AU   Barcilon, V. (Dept. of Geophys. Sci., Univ. of Chicago, Chicago, IL,
+     USA)
+SO   Journal of the Atmospheric Sciences (Aug. 1975) vol.32, no.8,
+     p.1626-30. 11 refs.
+     CODEN: JAHSAK  ISSN: 0022-4928
+DT   Journal
+TC   Practical; Theoretical
+CY   United States
+LA   English
+AB   The iteration scheme proposed by Chahine for the solution of the
+     radiative transfer equation is discussed in the context of the
+     inverse problem for the thermal structure of the atmosphere.
+     Sufficient conditions which insure the convergence of the iteration
+     are given.
+ 
+L8   ANSWER 328 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   76:875651  INSPEC     DN  A76024138
+TI   Measurement of the thermal properties of a metal using a
+     ***relaxation***     ***method***  .
+AU   Fox, J.N.; McMaster, R.H. (Dept. of Phys., Indiana Univ. of
+     Pennsylvania, Indiana, PA, USA)
+SO   American Journal of Physics (Dec. 1975) vol.43, no.12, p.1083-6. 7
+     refs.
+     CODEN: AJPIAS  ISSN: 0002-9505
+DT   Journal
+TC   Experimental
+CY   United States
+LA   English
+AB   A dynamic method for determining the thermal conductivity and
+     specific heat of metals in the range 273 to 373K is described. The
+     necessary theory and experimental techniques for recording the
+     change in temperature as a function of time are given.
+ 
+L8   ANSWER 340 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   75:812663  INSPEC     DN  A75069822
+TI   Non-linear   ***relaxation***     ***methods***  . III.
+     Current-controlled perturbations.
+AU   Rangarajan, S.K. (Materials Sci. Div., Nat. Aeronautical Lab.,
+     Bangalore, India)
+SO   Journal of Electroanalytical Chemistry and Interfacial
+     Electrochemistry (25 June 1975) vol.62, no.1, p.31-41. 5 refs.
+     CODEN: JEIEBC  ISSN: 0022-0728
+DT   Journal
+TC   Theoretical
+CY   Switzerland
+LA   English
+AB   For pt.II see ibid., vol.56, no.1, p.27 (1974). A unified theory is
+     presented for the potential perturbations resulting from the
+     disturbance of an electrode electrolyte interface system with an
+     arbitrary current profile. A functional expression, valid for
+     evaluating all orders of potential perturbation when a current of
+     known profile is superimposed, is derived. Generalized expressions
+     for distortion potential and rectification potential are given. The
+     problems of iR drop and charging current compensation are also
+     discussed.
+
+=> d bib ab 341-343,357,359,361,363,376,377,381,386,389,392,399,404,403,402
+ 
+L8   ANSWER 341 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   75:792706  INSPEC     DN  A75059938
+TI   The simulation of skin temperature distributions by means of a
+     ***relaxation***     ***method***   (applied to IR thermography).
+AU   Vermey, G.F. (Dept. of Electrical Engng. Twente Univ. of Technol.,
+     Enschede, Netherlands)
+SO   Physics in Medicine and Biology (May 1975) vol.20, no.3, p.384-94.
+     13 refs.
+     CODEN: PHMBA7  ISSN: 0031-9155
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   To solve the differential equation for the heat in a two-layer,
+     rectangular piece of skin tissue, a relaxation method, based on a
+     finite difference technique, is used. The temperature distributions
+     on the skin surface are calculated. The results are used to derive a
+     criterion for the resolution for an infrared thermograph in a
+     specific situation. A major limitation on the resolution in medical
+     thermography is given. As an example of the power of the model, the
+     sensitivity of the temperature profiles for variations of the layer
+     thickness is determined.
+ 
+L8   ANSWER 342 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   75:790638  INSPEC     DN  A75057639
+TI     ***Relaxation***     ***methods***   in fluid mechanics.
+AU   Lomax, H.; Steger, J.L. (NASA, Moffett Field, CA, USA)
+SO   Annual review of fluid mechanics. Vol.7
+     Editor(s): Van Dyke, M.; Vincenti, G.
+     Palo Alto, CA, USA: Annual Reviews, 1975. p.63-88 of ix+398 pp. 70
+     refs.
+     Price: $15.50
+     ISBN: 0-8243-0707-0
+DT   Book Article
+TC   Bibliography; General Review
+CY   United States
+LA   English
+AB   It is assumed that the numerical model is an accurate
+     finite-difference representation of the physical problem for which
+     it was constructed. An iterative solution of a coupled set of
+     difference equations is considered and methods are considered that
+     carry successive approximates to a state that is invariant with
+     further iteration and independent of the initial guess. This defines
+     a process of relaxation. The time-like aspect and basic principles
+     of relaxation are presented.
+ 
+L8   ANSWER 343 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   75:784468  INSPEC     DN  C75015687
+TI   A   ***relaxation***     ***method***   for reconstructing objects
+     from noise X-rays.
+AU   Herman, G.T. (State Univ. New York, Buffalo, Amherst, MA, USA)
+SO   Mathematical Programming (Feb. 1975) vol.8, no.1, p.1-19. 22 refs.
+     CODEN: MHPGA4  ISSN: 0025-5610
+DT   Journal
+TC   Application; Theoretical
+CY   Netherlands
+LA   English
+AB   An algorithm is presented for estimating the density distribution in
+     a cross section of an object from X-ray data which in practice is
+     unavoidably noisy. The data give rise to a large sparse system of
+     inconsistent equations, not untypically 105 equations with 104
+     unknowns, with only about 1% of the coefficients non-zero. Using the
+     physical interpretation of the equations, each equality can in
+     principle be replaced by a pair of inequalities, giving the limits
+     within which the sum is believed to lie. An algorithm is proposed
+     for solving this set of inequalities. The algorithm is basically a
+     relaxation method. A finite convergence result is proved. In spite
+     of the large size of the system, in the application area of interest
+     practical solution on a computer is possible because of the simple
+     geometry of the problem and the redundancy of equations obtained
+     from nearby X-rays. The algorithm has been implemented, and is
+     demonstrated by actual reconstructions.
+ 
+L8   ANSWER 357 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   73:537779  INSPEC     DN  C73016792
+TI   A new   ***relaxation***     ***method***   for obtaining the lowest
+     eigenvalue and eigenvector of a matrix equation.
+AU   Muda, Y. (Osaka Univ., Suita, Japan)
+SO   International Journal for Numerical Methods in Engineering (1973)
+     vol.6, no.4, p.511-19. 4 refs.
+     CODEN: IJNMBH  ISSN: 0029-5981
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   The matrix eigenvalue problem Hui= lambda iui is considered. It is
+     shown that when a new approximate vector v(n+1) to u1 (the
+     eigenvector of the lowest eigenvalue) is computed from the present
+     one v(n) by the relation v(n+1)=(1- alpha H+ beta H2)v(n+1)=1- alpha
+     H+BH2- gamma H3)v(n), the convergence rate is at least double that
+     of the gradient method which corresponds to set beta = theta =0.
+     Moreover, by choosing parameters alpha , beta , or gamma properly,
+     one can get about three to five times faster convergence rate than
+     that of the latter method, for H having very small lambda 2- lambda
+     1 and very large lambda N (the largest eigenvalue). Further
+     modifications are suggested. The relation with the Richardson method
+     is also discussed.
+ 
+L8   ANSWER 359 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   73:531350  INSPEC     DN  A73044722
+TI   On linear   ***relaxation***     ***methods***  .
+AU   Rangarajan, S.K. (Nat. Aeronautical Lab., Bangalore, India)
+SO   Journal of Electroanalytical Chemistry and Interfacial
+     Electrochemistry (9 Feb. 1973) vol.41, no.3, p.459-71. 5 refs.
+     CODEN: JEIEBC  ISSN: 0022-0728
+DT   Journal
+TC   Theoretical
+CY   Switzerland
+LA   English
+AB   A parametric approach towards the classification of relaxation
+     methods is presented. It is emphasised how such a perspective is
+     non-trivial and informative. As a natural consequence, this formal
+     theory of the methodology of linear methods suggests two new
+     current-based transient techniques with two parameters. A comparison
+     of one of these is made with the other methods already available.
+ 
+L8   ANSWER 361 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   73:530411  INSPEC     DN  A73043526
+TI   Determination of some structure characteristic data of a ribonucleic
+     acid and of a protein through the dielectric   ***relaxation***
+     ***method***  .
+AU   Constantinescu, S.; Dumitrescu, H. (Inst. Politehnic 'Gheorghe
+     Gheorghiu-Dej' Bucuresti, Romania)
+SO   Buletinul Institutului Politehnic 'Gheorghe Gheorghiu-Dej' Bucuresti
+     (Nov.-Dec. 1972) vol.34, no.6, p.29-33. 2 refs.
+     CODEN: BIGBAY  ISSN: 0366-0419
+DT   Journal
+TC   Experimental
+CY   Romania
+LA   Romanian
+AB   The paper shows the results of the study on some bipolymers (a
+     ribonucleic acid and a protein-ovalbumin) through the dielectric
+     relaxation method. Information is obtained concerning the mode of
+     statistical arrangement, the dipole moment, molecular weight, etc.
+     of the studied biopolymers in dilute solutions.
+ 
+L8   ANSWER 363 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   73:526795  INSPEC     DN  C73015129
+TI   A program using the successive extrapolated   ***relaxation***
+     ***method***   to solve Laplace's equation.
+AU   Kinsner, W.; Torre, E.D. (McMaster Univ., Hamilton, Ont., Canada)
+SO   IEEE Transactions on Microwave Theory and Techniques (May 1973)
+     vol.MTT21, no.5, p.365. 2 refs.
+     CODEN: IETMAB  ISSN: 0018-9480
+DT   Journal
+TC   Application; Theoretical
+CY   United States
+LA   English
+AB   Using Fortran IV, the program determines fields satisfying Laplace's
+     equation with Dirichlet and/or Neumann boundary conditions.
+     Subroutine SER may be applied to other iterative methods.
+ 
+L8   ANSWER 376 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   72:374963  INSPEC     DN  C72009526
+TI     ***Relaxation***     ***methods***  .
+AU   Birkhoff, G. (Harvard Univ., MA, USA)
+SO   Regional Conference Series in Applied Mathematics (1971) no.1,
+     p.29-37. 10 refs.
+     CODEN: RCSMBO  ISSN: 0160-7642
+DT   Journal
+TC   Theoretical
+CY   United States
+LA   English
+AB   Discusses iterative methods for solving systems of linear (vector)
+     equations of the form Au=b. Methods involving 'relaxation methods'
+     are especially applicable when A is a Stieltjos mat4ix of the form
+     A=D-E-F, F=E/sup T/. The Gauss-Seidal method, Richardson's method,
+     point successive overrelaxation, line and block overrelaxation and
+     rates of convergence of methods are considered.
+ 
+L8   ANSWER 377 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   72:374041  INSPEC     DN  C72008575
+TI     ***Relaxation***     ***methods***   for pure and mixed integer
+     programming problems.
+AU   Gorry, G.A.; Shapiro, J.F. (MIT, Cambridge, MA, USA); Wolsey, L.A.
+SO   Management Science (Jan. 1971) vol.18, pt.1, no.5, p.229-39. 12
+     refs.
+     CODEN: MSCIAM  ISSN: 0025-1909
+DT   Journal
+TC   Practical
+CY   United States
+LA   English
+AB   The usefulness of group theoretic methods in solving integer
+     programming (IP) problems is extended by procedures for controlling
+     the size of the groups. The main procedure given shows how an
+     optimal linear programming basis can be altered to reduce the
+     magnitude of its determinant thereby reducing the size of the group
+     induced by the basis. An adaption of Benders' mixed IP algorithm is
+     given which uses these methods. Some limited computational
+     experience is given.
+ 
+L8   ANSWER 381 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   71:323191  INSPEC     DN  C71023758
+TI     ***Relaxation***     ***method***   for mixed boundary conditions.
+AU   Niki, H.; Kimura, H.; Usui, M.; Akutu, Y. (okayama Coll. Sci.,
+     Syuku, Japan)
+SO   Electronics Letters (9 Sept. 1971) vol.7, no.18, p.525-7
+     CODEN: ELLEAK  ISSN: 0013-5194
+DT   Journal
+TC   Theoretical
+CY   United Kingdom
+LA   English
+AB   The numerical solution of Laplace's equation in 2-dimensional
+     Cartesian co-ordinates with mixed boundary conditions is described
+     using the successive-overrelaxation method for solution with the
+     acceleration parameter decided by a method proposed formerly. Its
+     effectiveness is compared with that of other methods.
+ 
+L8   ANSWER 386 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   71:233879  INSPEC     DN  A71019840
+TI   A   ***relaxation***     ***method***   for the computation of model
+     stellar atmospheres.
+AU   Price, M.J. (Kitt Peak Nat. Obs., Tucson, AZ, USA)
+SO   Theory and observation of normal stellar atmospheres, proceedings of
+     3rd Harvard-Smithsonian conference on stellar atmospheres
+     Editor(s): Gingerich, O.
+     Cambridge, MA, USA: MIT Press, 1969. p.139-41 of xv+472 pp.
+     Conference: Cambridge, MA, USA, 8-11 April 1968
+     Sponsor(s): Smithsonian Astrophys. Obs.; Harvard College Obs
+     ISBN: 0-262-07035-9
+DT   Conference Article
+TC   Theoretical
+CY   United States
+LA   English
+AB   A Monte Carlo relaxation method has been developed for the
+     computation of model stellar atmospheres. The equations of
+     statistical equilibrium for the atomic-level populations are solved
+     simultaneously with the radiative-transfer and electron-temperature
+     equations by use of the constraints of hydrostatic and radiative
+     equilibrium. Selected LTE boundary conditions are applied deep in
+     the atmosphere. In the solution of the statistical-equilibrium
+     equations, all possible electron collisional and radiative processes
+     are considered. In formulating the source function, all atomic
+     processes contributing to the absorption and emission coefficients
+     are considered in microscopic detail. The local electron temperature
+     is obtained by solving the kinetic-energy balance equation for the
+     electron gas. All electron collisional and radiative processes
+     whereby kinetic energy is gained and lost by the electron gas are
+     considered. Thomson scattering is taken into account in formulating
+     the equation of radiative transfer. The free-bound and bound-bound
+     radiation is transferred throughout the atmosphere by use of the
+     Monte Carlo technique.
+ 
+L8   ANSWER 389 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   70:187216  INSPEC     DN  A70068527
+TI   Thermodynamic properties of interstitial solid solutions by
+     ***relaxation***     ***methods***  .
+AU   Alefeld, G.; Volkl, J.; Tretkowski, J. (Inst. Festkorper,
+     Neutronenphys., Julich, West Germany)
+SO   Journal of the Physics and Chemistry of Solids (Aug. 1970) vol.31,
+     no.8, p.1765-9. 17 refs.
+     CODEN: JPCSAW  ISSN: 0022-3697
+     Conference: International conference on ultrasonic attenuation and
+     internal friction. Providence, RI, USA, 3-6 Sept 1969
+     Sponsor(s): IUPAP
+DT   Conference Article; Journal
+CY   United Kingdom
+LA   English
+AB   By elastic relaxation methods the derivative ( delta mu / delta rho
+     )T of the chemical potential of solutes can be determined absolutely
+     as a function of temperature and density rho . Therefore useful
+     parameters which characterize the solubility of gases in metals or
+     which determine phase transitions of solutes can be found by elastic
+     relaxation methods. As an example experiments on hydrogen in niobium
+     are discussed. On the basis of experimental parameters (trace of the
+     elastic dipole moment tensor, critical density, critical
+     temperature) it will be argued that the attractive interaction of H
+     in Nb, which is responsible for the phase transition, is of elastic
+     nature.
+ 
+L8   ANSWER 392 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   70:125882  INSPEC     DN  A70029268; C70007947
+TI   A computer adaptation of southwell's   ***relaxation***
+     ***method***   with application to elastic-plastic stress analysis.
+AU   Wesner, J.W., Jr.
+CS   Carnegie-Mellon Univ., Pittsburgh, PA, USA
+SO   205 pp. Availability: Univ. Microfilms, Ann Arbor, MI., USA Order
+     no. 68-17620
+DT   Dissertation
+CY   United States
+LA   English
+AB   Southwell's relaxation method is studied, as a means for solving
+     problems of elastic-perfectly plastic stress analysis with the aid
+     of a digital computer. Procedures are developed for computerized
+     relaxation. A number of the special techniques for facilitating hand
+     relaxation are evaluated, and those which profitably adapt to
+     automatic computation are incorporated into the computerized
+     process. Specific applications of the method to problems of
+     elastic-perfectly plastic stress analysis are considered. Special
+     techniques are developed for the yielded zone. These are then
+     demonstrated by solutions for the notched bar loaded in tension, and
+     for the plane strain indenter. The computer method is evaluated by
+     comparing the notched bar solutions with similar solutions obtained
+     by hand. Results for the indenter are compared with slip-line
+     theory, and with a solution obtained using a finite- element
+     computer code.
+ 
+L8   ANSWER 399 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   69:58871  INSPEC     DN  C69009320
+TI   A digital computer solution of the Laplace equation using the
+     dynamic   ***relaxation***     ***method***  .
+AU   Rushton, K.R.; Laing, L.M. (Univ. Birmingham, UK)
+SO   Aeronautical Quarterly (Nov. 1968) vol.19, pt.4, p.375-87
+     CODEN: AEQUAY  ISSN: 0001-9259
+DT   Journal
+CY   United Kingdom
+LA   English
+AB   The Dynamic Relaxation solution of the Laplace equation introduces
+     dynamic terms into the basic equation. When this is written as an
+     explicit finite difference formulation it can be solved by an
+     iterative process which only requires a simple substitution routine.
+     The method is easy to programme and requires small storage in the
+     computer. By studying problems involving wind tunnel interference in
+     steady flow, the potentialities of the method are demonstrated.
+ 
+L8   ANSWER 404 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   69:6426  INSPEC     DN  A69004293
+TI   A systematic   ***relaxation***     ***method***   for the
+     determination of the normal modes and the natural frequencies of
+     vibrating systems.
+AU   Allman, D.J.; Brotton, D.M. (Dept. Civil Engineering, StrEngineering
+     Div., Univ. Manchester Inst. Sci. Technology, UK)
+SO   International Journal of Mechanical Sciences (Feb. 1968) vol.10,
+     no.2, p.129-41. 10 refs.
+     CODEN: IMSCAW  ISSN: 0020-7403
+DT   Journal
+CY   United Kingdom
+LA   English
+AB   A systematic relaxation method for the determination of the normal
+     modes and natural frequencies of harmonic and quasi-harmonic
+     vibrating systems is presented. The method is capable of dealing
+     with systems which can be idealized as discrete masses with
+     interconnecting massless elastic springs. The method is based on the
+     numerical integration of the restraint accelerations acting on the
+     masses of a system as it vibrates in a constrained configuration and
+     it is thus convenient for use with a digital comowever,Hsolutions to
+     systems with a small number of degrees of freedom may be obtained by
+     hand calculations alone.
+ 
+L8   ANSWER 403 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   69:19149  INSPEC     DN  C69002847
+TI   Numerical solution of the problem of heat propagation in one
+     dimension by the iterative super-  ***relaxation***     ***method***
+     .
+AU   Ribero dos Santos, J.; Rigal, A.
+SO   Remote Sensing of Environment (July 1968) vol.2, no.10, p.53-64
+     CODEN: RSEEA7  ISSN: 0034-4257
+DT   Journal
+CY   United States
+LA   French
+AB   Concerns the problem of heat propagation or diffusion in one
+     dimension in an isotropic homogeneous medium. The 2nd order
+     approximation of the problem can be expressed in a formula depending
+     on a parameter theta . For a certain value of theta a 4th order
+     approximation in x and a second order approximation in t can be
+     obtained. The problem is solved by the iterative super-relaxation
+     method, applying the property of the reducibility of the total
+     linear system. A numerical example is also given.
+ 
+L8   ANSWER 402 OF 404  INSPEC  COPYRIGHT 1997 IEE
+AN   69:19158  INSPEC     DN  C69002856
+TI   On the use of gradient   ***relaxation***     ***method***   for
+     solution of a system of nonlinear equations.
+AU   Spiridonov, V.S.
+SO   Zhurnal Vychislitel'noi Matematiki i Matematicheskoi Fiziki (July
+     1968) vol.8, no.4, p.872-3
+     CODEN: ZVMFAN  ISSN: 0044-4669
+DT   Journal
+CY   USSR
+LA   Russian
+AB   An algorithm is given for convergence of an iterative
+     trajectory-following method if the vicinity of a root is convex.
+
+=> 

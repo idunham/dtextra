@@ -1,0 +1,32 @@
+Ver. 1.7
+Removed minor bug.
+
+Ver. 1.6
+Modified to work with Slackware 9.0
+
+Ver. 1.5
+Modified to work with Slackware 3.5.0 and egcs-1.0.3
+
+Ver. 1.4
+Added support for resource files. An application default file
+named XmBibTeX was added. In addition, the resources of the 
+program can now be set via editres (thanks to Andreas Wassatsch,
+who sent me that patch).
+
+Ver. 1.3
+Changed an error in c_refform.cc and mybiblio.cc concerning
+mastersthesis (thanks to Andreas Wassatsch for the bug report)
+
+Added a dialog that warns that a database already exists before 
+overwriting it.
+
+Ver. 1.2
+Added Medline PubMed filter.
+
+Ver. 1.1
+Added Inspec filter. Thanks to Ralf Mrowka for writing this filter.
+Changed field length for BibTeX fields from 950 to 3000 characters.
+Cleaned up the BIBLIO class.
+
+Ver. 1.0
+No changes since this is the first release.
