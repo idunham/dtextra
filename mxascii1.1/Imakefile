@@ -41,6 +41,6 @@ SRCS =	main.c crui.c callbacks.c nullcb.c menui.c mpulldown.c \
 OBJS =	main.o crui.o callbacks.o nullcb.o menui.o mpulldown.o\
         setcb.o converter.o
 
-ComplexProgramTarget(mxascii)
+ComplexProgramTargetNoMan(mxascii)
 
 main.o: Mxascii.ad.h MXascii.ad

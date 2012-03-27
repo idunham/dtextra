@@ -41,6 +41,6 @@ SRCS =	motif.c main.c mppp.c utils.c llist.c setget.c script.c \
 OBJS = motif.o main.o mppp.o utils.o llist.o setget.o script.o \
         icons.o menu.o cvter.o futils.o
         
-ComplexProgramTarget(xmppp)
+ComplexProgramTargetNoMan(xmppp)
 
 motif.o: Xmppp.ad.h 
