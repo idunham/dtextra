@@ -1132,7 +1132,7 @@ install::
 	done
 
 install:: xtar.doc
-	$(INSTALL) $(INSTALLFLAGS) $(INSTDATFLAGS) xtar.doc $(DESTDIR) $(LIBDIR)/xtar
+	$(INSTALL) $(INSTALLFLAGS) $(INSTDATFLAGS) xtar.doc $(DESTDIR)$(LIBDIR)/xtar
 
 install:: XTar.ad
 	@if [ -d $(DESTDIR)$(XAPPLOADDIR) ]; then \
