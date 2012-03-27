@@ -54,10 +54,10 @@ XCOMM should work. If it fails, substitute the LOCAL_LIBRARIES= with one of
 XCOMM these:
 XCOMM LOCAL_LIBRARIES= $(XMLIB) $(XTOOLLIB) $(XLIB)
 XCOMM or
-XCOMM  LOCAL_LIBRARIES= -lXm -lXt -lX11
+LOCAL_LIBRARIES= -lXm -lXt -lX11
 XCOMM
 
-LOCAL_LIBRARIES= XmClientLibs
+XCOMM LOCAL_LIBRARIES= XmClientLibs
 
 #ifdef HPArchitecture
 CCOPTIONS= -Aa -D_HPUX_SOURCE -Dhpux

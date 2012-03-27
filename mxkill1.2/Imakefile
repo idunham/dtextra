@@ -40,6 +40,6 @@ OBJS=	main.o mxerror.o error.o mpulldown.o crui.o menui.o ps.o\
 		setsbc.o regex.o converter.o alncolor.o bestpix.o setcurs.o
 
 
-ComplexProgramTarget(mxkill)
+ComplexProgramTargetNoMan(mxkill)
 
 main.o: MXkill.ad.h
