@@ -1,0 +1,127 @@
+** Copyright 1991-94 Lionel MALLET -- See file COPYRIGHT **
+
+			Pixmap version 2.6 R4/R5/R6 version
+
+WHAT IS Pixmap?
+==============
+
+Pixmap is a pixmap editor based on XPM version 3.4 library from
+Arnaud Le Hors - GROUPE BULL, derived from Davor Matic's bitmap editor
+(Davor Matic is member of the XConsortium AnneX).
+
+Here is provided a program similar to the bitmap editor. As Bitmap, it
+provides facilities to edit pixmaps stored in files in XPM 3 format.
+
+NOTE: The XPM library is mandatory. You should have got and installed
+it before proceeding.
+
+See the Pixmap Manual (pixmap.man) for more details.
+
+HOW TO GET Pixmap?
+=================
+
+New pixmap updates are announced on the comp.windows.x newsgroup, and
+on the "pixmap" list. All new "official" pixmap releases can be
+found by ftp on:
+
+  ftp.x.org	 (198.112.44.100)  contrib/applications/pixmap	(Boston, USA)
+  avahi.inria.fr (192.5.60.47)     pub/pixmap	(Sophia Antipolis, France)
+
+
+DOCUMENTATION:
+=============
+
+Pixmap is not fully documented but is also self explanatory. A
+Reference Card in LaTeX format is joined which contains the main
+facilities of the editor: accelerator keys, resources, application
+files, ... The rest of the information can be found in the manual file
+pixmap.man.  We can mail you a PostScript version of the documentation
+if you are not able to print it (quite impossible).
+
+INSTALLATION:
+============
+
+To obtain the Pixmap editor program, first uncompress and untar the
+compressed tar file (or unshar the shar file) in an approriate
+directory.
+
+Pixmap only compiles with Imake.
+As Pixmap can have two different interfaces, based on Athena and
+Motif, (see MOTIF DISCUSSION about Motif version) you should look at
+the Imakefile to set the variables corresponding to the version you
+wish to obtain. The default version is the Athena one.
+
+The variable of interest is USE_MOTIF (#define or #undef it as you like).
+
+You should also look at the lines concerning the Pixmap.ad file creation.
+
+In any case, you should set up the XPM relative variables correctly.
+These are XPM_INCLUDEDIR and XPM_LIBDIR.
+
+You should also check the setting of APPDEFDIR and RGBF so that they
+point to your site application defaults directory and rgb.txt file
+(the latter is usually under $(LIBDIR)/rgb.txt with LIBDIR=/usr/lib/X11).
+
+Double check the Imakefile and type:
+
+	xmkmf -a
+	make
+
+which will build the pixmap program and its application defaults file. 
+Then do:
+
+     	make install
+	make install.man
+
+which will install the program, application defaults file, the pixmap
+man page and the bitmaps used as image labels of buttons.
+
+If it fails, you may edit the Imakefile to add compilation flags to
+suit your machine.
+
+NOTE: A sample dotpixmap file (color configuration file) is created by
+the Makefile based on the rgb.txt file (RGBF variable). You can
+extract parts of this file to build your own .pixmap file used by
+Pixmap.
+
+NOTE: This version is an intermediate between R4 and R5/R6. It provides
+R5 include files missing in R4. Thus, if you are already running R5,
+you can remove the files Xfuncs.h, Xosdefs.h and Xfuncproto.h under
+pixmap/X11 directory.
+
+CONVERTERS:
+==========
+
+In the Xmu directory you can find different converters about XPM.
+These are converters that can be installed in an application to allow
+specification of pixmap resources in .Xdefaults and application
+default files.  No Makefile or Imakefile is provided to compile or
+install them. However, someone is currently working on converters to
+allow full use of the Xpm library features through resources.
+
+KNOWN PROBLEMS:
+==============
+
+The accelerators don't seem to work with Athena with X11R4.
+
+Sometimes pixmap stops when not able to malloc memory after a few
+loading ops. 
+
+DISCUSSION:
+==========
+
+There is a mailing list to discuss about Pixmap which is 
+pixmap@sophia.inria.fr.
+Any request to subscribe should be sent to pixmap-talk-request@sophia.inria.fr.
+
+COPYRIGHT:
+==========
+
+  Copyright 1991-1994 Lionel MALLET --
+  See licence conditions in the COPYRIGHT file of the Pixmap distribution
+
+Please mail any bug reports or modifications done, comments, suggestions,
+requests for updates or patches to port on another machine to:
+
+pixmap@sophia.inria.fr		(INTERNET)
+

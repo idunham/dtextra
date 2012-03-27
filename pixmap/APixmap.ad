@@ -1,0 +1,389 @@
+Pixmap*selFile.allowShellResize:		True
+Pixmap*TransientShell.allowShellResize:		True
+Pixmap*font:	-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-iso*-*
+Pixmap*shapeStyle:				oval
+Pixmap*cursor:					left_ptr
+Pixmap*pane.orientation:			horizontal
+
+Pixmap*Form*top:				ChainTop
+Pixmap*Form*bottom:				ChainTop
+Pixmap*Form*left:				ChainLeft
+Pixmap*Form*right:				ChainLeft
+
+Pixmap*MenuButton.leftBitmap:			menu12
+Pixmap*form*width:              		120
+Pixmap*form*height:             		15
+
+Pixmap*baseTranslations:#override\
+                        Meta<Key>l:      do-load()\n\
+                        Meta<Key>i:      do-insert()\n\
+                        Meta<Key>s:      do-save()\n\
+                        Meta<Key>a:      do-save-as()\n\
+                        Meta<Key>r:      do-resize()\n\
+                        Meta<Key>e:      do-rescale()\n\
+                        Meta<Key>f:      do-filename()\n\
+			Meta<Key>h:	do-hintscmt()\n\
+			Meta<Key>c:	do-colorscmt()\n\
+			Meta<Key>p:	do-pixelscmt()\n\
+                        Meta<Key>q:	do-quit()\n\
+			Ctrl<Key>a:	do-addcolor()\n\
+			Ctrl<Key>s:	do-symbname()\n\
+			Ctrl<Key>m:	do-mononame()\n\
+			Ctrl<Key>4:	do-grey4name()\n\
+			Ctrl<Key>g:	do-greyname()\n\
+			Ctrl<Key>n:	do-colorname()\n\
+                        <Key>i:     	switch-image()\n\
+                        <Key>g:     	switch-grid()\n\
+                        <Key>a:     	switch-axes()\n\
+                        <Key>p:     	switch-proportional()\n\
+                        <Key>z:     	switch-zoom()\n\
+			<Key>x:		zoom-in()\n\
+			<Key>y:		zoom-out()\n\
+			<Key>f:		zoom-factor()\n\
+                        Ctrl<Key>c:     do-cut()\n\
+                        Ctrl<Key>x:     do-copy()\n\
+                        Ctrl<Key>p:     do-paste()\n\
+			Ctrl<Key>o:	do-crop()
+
+Pixmap*Dialog.value*baseTranslations: #augment\
+			<Key>:		insert-char()\n
+
+Pixmap*Toggle.translations:	<EnterWindow>:	        highlight(WhenUnset)\n\
+				<LeaveWindow>:	        unhighlight()\n\
+				<Btn1Down>,<Btn1Up>: 	set() notify()
+
+Pixmap*MenuButton.translations:	<EnterWindow>:  highlight()\n\
+				<LeaveWindow>:  reset()\n\
+				<BtnDown>:      reset() fix-menu() PopupMenu()
+
+Pixmap*Dialog.value.translations:#override <Key>Return: set-okay()
+
+Pixmap*image.label.translations:#override <Btn1Down>,<Btn1Up>: switch-image()
+Pixmap*image.label.label:			
+Pixmap*image.width:				50
+Pixmap*image.height:				50
+
+Pixmap*colorView.allowHoriz:			True
+Pixmap*colorView.allowVert:			True
+Pixmap*colorView.useBottom:			True
+Pixmap*colorView.useRight:			True
+Pixmap*colorView.width:				500
+Pixmap*colorView.height:			70
+Pixmap*colorView.preferredPaneSize:		70
+Pixmap*colorView.skipAdjust:			False
+
+Pixmap*colorPane.width:				500
+Pixmap*colorPane.height:			70
+Pixmap*colorPane*Command.label:			
+Pixmap*colorPane*Command.width:			15
+Pixmap*colorPane*Command.height:		15
+
+Pixmap*pixmapView.allowHoriz:			True
+Pixmap*pixmapView.allowVert:			True
+Pixmap*pixmapView.useBottom:			True
+Pixmap*pixmapView.useRight:			True
+Pixmap*pixmapView.width:			500
+Pixmap*pixmapView.height:			500
+
+Pixmap*pixmap.pixmapWidth:			32
+Pixmap*pixmap.pixmapHeight:			32
+Pixmap*pixmap.squareSize:			15
+Pixmap*pixmap.cursor:           		tcross
+Pixmap*pixmap.stipple:				@PIXMAPDIR@Stipple
+
+Pixmap*info*label.font:-adobe-helvetica-bold-r-normal--*-100-*-*-p-*-iso8859-1
+Pixmap*info*label.height:			150
+
+Pixmap*TransientShell.width:			300
+
+!Pixmap*Dialog.value.borderWidth:		0
+Pixmap*input*icon:				Term
+Pixmap*qsave*icon:				Term
+Pixmap*file*icon:				Term
+Pixmap*error*icon:				Excl
+Pixmap*Dialog.Yes.label:			Yes
+Pixmap*Dialog.No.label:				No
+Pixmap*Dialog.Okay.label:			OK
+Pixmap*Dialog.Abort.label:			Abort
+Pixmap*Dialog.Cancel.label:			Cancel
+Pixmap*Dialog.Retry.label:			Retry
+
+Pixmap*MenuButton.width:			52
+
+Pixmap*SimpleMenu.width:			0
+Pixmap*SimpleMenu.height:			0
+Pixmap*SimpleMenu.cursor:			hand2
+Pixmap*SimpleMenu.line.height:			0
+
+Pixmap*fileButton.label:			File
+Pixmap*fileButton.menuName:			fileMenu
+
+Pixmap*editButton.label:			Edit
+Pixmap*editButton.fromHoriz: 			fileButton
+Pixmap*editButton.menuName:			editMenu
+
+Pixmap*colorButton.width:			120
+Pixmap*colorButton.label:			Foreground Color
+Pixmap*colorButton.fromHoriz:			editButton
+Pixmap*colorButton.menuName:			colorMenu
+
+Pixmap*extensionButton.width:			120
+Pixmap*extensionButton.label:			Xpm Extensions
+Pixmap*extensionButton.fromHoriz:		colorButton
+Pixmap*extensionButton.menuName:		extensionMenu
+
+Pixmap*infoButton.width:			48
+Pixmap*infoButton.label:			About
+Pixmap*infoButton.fromHoriz: 			extensionButton
+
+Pixmap*formy.status*top:			ChainTop
+Pixmap*formy.status*bottom:			ChainTop
+Pixmap*formy.status*left:			ChainLeft
+Pixmap*formy.status*right:			ChainRight
+Pixmap*status.fromHoriz:			infoButton
+Pixmap*status.borderWidth:			0
+
+Pixmap*infoPopup.width:				335
+Pixmap*infoPopup.height:			150
+
+Pixmap*SmeBSB.HorizontalMargins:		32
+
+Pixmap*fileMenu.load.label:			Load...[Alt l]
+Pixmap*fileMenu.insert.label:			Insert...[Alt i]
+Pixmap*fileMenu.save.label:			Save [Alt s]
+Pixmap*fileMenu.saveAs.label:			Save As...[Alt a]
+Pixmap*fileMenu.resize.label:			Resize...[Alt r]
+Pixmap*fileMenu.rescale.label:			Rescale...[Alt e]
+Pixmap*fileMenu.filename.label:			Filename...[Alt f]
+Pixmap*fileMenu.hintsCmt.label:			Hints comment...[Alt h]
+Pixmap*fileMenu.colorsCmt.label:		Colors comment...[Alt c]
+Pixmap*fileMenu.pixelsCmt.label:		Pixels comment...[Alt p]
+Pixmap*fileMenu.quit.label:			Quit [Alt q]
+
+Pixmap*editMenu.image.label:			Image [i]
+Pixmap*editMenu.grid.label:			Grid [g]
+Pixmap*editMenu.axes.label:			Axes [a]
+Pixmap*editMenu.proportional.label:		Proportional [p]
+Pixmap*editMenu.zoom.label:			Zoom [z]
+Pixmap*editMenu.zoomIn.label:			Zoom In [x]
+Pixmap*editMenu.zoomOut.label:			Zoom Out [y]
+Pixmap*editMenu.zoomFactor.label:		Zoom Factor [f]
+Pixmap*editMenu.cut.label:			Cut [Ctrl c]
+Pixmap*editMenu.copy.label:			Copy [Ctrl x]
+Pixmap*editMenu.paste.label:			Paste [Ctrl p]
+Pixmap*editMenu.crop.label:			Crop [Ctrl o]
+
+Pixmap*colorMenu.addColor.label:		Add Color...[Ctrl a]
+Pixmap*colorMenu.symbolicName.label:		Symbolic name...[Ctrl s]
+Pixmap*colorMenu.monochromeName.label:		Monochrome name...[Ctrl m]
+Pixmap*colorMenu.g4Name.label:			Grey scale 4 name...[Ctrl 4]
+Pixmap*colorMenu.gName.label:			Grey scale name...[Ctrl g]
+Pixmap*colorMenu.cName.label:			Color name...[Ctrl n]
+
+Pixmap*extensionMenu.addExtension.label:	Add Extension...
+
+Pixmap*form.undo.label:				Undo
+
+Pixmap*form.clear.vertDistance:			10
+Pixmap*form.clear.fromVert:			undo
+Pixmap*form.clear.label:			Clear
+Pixmap*form.set.fromVert: 			clear
+Pixmap*form.set.label:				Set
+Pixmap*form.redraw.fromVert:			set
+Pixmap*form.redraw.label:			Redraw
+
+Pixmap*form.copy.vertDistance:			10
+Pixmap*form.copy.fromVert:			redraw
+Pixmap*form.copy.label:				Copy
+Pixmap*form.move.fromVert: 			copy
+Pixmap*form.move.radioGroup:			copy
+Pixmap*form.move.label:				Move
+Pixmap*form.mark.fromVert:			move
+Pixmap*form.mark.label:				Mark
+Pixmap*form.mark.radioGroup:			copy
+Pixmap*form.unmark.fromVert:			mark
+Pixmap*form.unmark.label:			Unmark
+Pixmap*form.unmark.radioGroup:			copy
+
+Pixmap*form.flipHoriz.vertDistance:		10
+Pixmap*form.flipHoriz.width:			36
+Pixmap*form.flipHoriz.height:			36
+Pixmap*form.flipHoriz.fromVert: 		unmark
+Pixmap*form.flipHoriz.bitmap:			@PIXMAPDIR@FlipHoriz
+Pixmap*form.up.vertDistance:			10
+Pixmap*form.up.width:				36
+Pixmap*form.up.height:				36
+Pixmap*form.up.fromVert: 			unmark
+Pixmap*form.up.fromHoriz:			flipHoriz
+Pixmap*form.up.bitmap:				@PIXMAPDIR@Up
+Pixmap*form.flipVert.vertDistance:		10
+Pixmap*form.flipVert.width:			36
+Pixmap*form.flipVert.height:			36
+Pixmap*form.flipVert.fromVert: 			unmark
+Pixmap*form.flipVert.fromHoriz:			up
+Pixmap*form.flipVert.bitmap:			@PIXMAPDIR@FlipVert
+Pixmap*form.left.width:				36
+Pixmap*form.left.height:			36
+Pixmap*form.left.fromVert: 			flipHoriz
+Pixmap*form.left.bitmap:			@PIXMAPDIR@Left
+Pixmap*form.fold.width:				36
+Pixmap*form.fold.height:			36
+Pixmap*form.fold.fromVert: 			up
+Pixmap*form.fold.fromHoriz: 			left
+Pixmap*form.fold.bitmap:			@PIXMAPDIR@Fold
+Pixmap*form.right.width:			36
+Pixmap*form.right.height:			36
+Pixmap*form.right.fromVert: 			flipVert
+Pixmap*form.right.fromHoriz: 			fold
+Pixmap*form.right.bitmap:			@PIXMAPDIR@Right
+Pixmap*form.rotateLeft.width:			36
+Pixmap*form.rotateLeft.height:			36
+Pixmap*form.rotateLeft.fromVert:		left
+Pixmap*form.rotateLeft.bitmap:			@PIXMAPDIR@RotateLeft
+Pixmap*form.down.width:				36
+Pixmap*form.down.height:			36
+Pixmap*form.down.fromVert: 			fold
+Pixmap*form.down.fromHoriz: 			rotateLeft
+Pixmap*form.down.bitmap:			@PIXMAPDIR@Down
+Pixmap*form.rotateRight.width:			36
+Pixmap*form.rotateRight.height:			36
+Pixmap*form.rotateRight.fromVert:		right
+Pixmap*form.rotateRight.fromHoriz:		down
+Pixmap*form.rotateRight.bitmap:			@PIXMAPDIR@RotateRight
+
+Pixmap*form.point.vertDistance:			10
+Pixmap*form.point.fromVert: 			rotateLeft
+Pixmap*form.point.radioGroup:  			move
+Pixmap*form.point.label:			Point
+Pixmap*form.curve.fromVert: 			point
+Pixmap*form.curve.radioGroup:  			point
+Pixmap*form.curve.label:			Curve
+Pixmap*form.line.fromVert: 			curve
+Pixmap*form.line.radioGroup: 			curve
+Pixmap*form.line.label:				Line
+Pixmap*form.rectangle.fromVert: 		line
+Pixmap*form.rectangle.radioGroup:  		line
+Pixmap*form.rectangle.label:			Rectangle
+Pixmap*form.filledRectangle.fromVert: 		rectangle
+Pixmap*form.filledRectangle.radioGroup:  	rectangle
+Pixmap*form.filledRectangle.label:		Filled Rectangle
+Pixmap*form.circle.fromVert: 			filledRectangle
+Pixmap*form.circle.radioGroup:  		filledRectangle
+Pixmap*form.circle.label:			Circle
+Pixmap*form.filledCircle.fromVert: 		circle
+Pixmap*form.filledCircle.radioGroup:  		circle
+Pixmap*form.filledCircle.label:			Filled Circle
+Pixmap*form.floodFill.fromVert:			filledCircle
+Pixmap*form.floodFill.radioGroup:  		filledCircle
+Pixmap*form.floodFill.label:			Flood Fill
+Pixmap*form.text.fromVert:			floodFill
+Pixmap*form.text.radioGroup:  			floodFill
+Pixmap*form.text.label:				Text
+Pixmap*form.setHotSpot.vertDistance:		10
+Pixmap*form.setHotSpot.fromVert:		text
+Pixmap*form.setHotSpot.radioGroup:		text
+Pixmap*form.setHotSpot.label:			Set Hot Spot
+Pixmap*form.clearHotSpot.fromVert:		setHotSpot
+Pixmap*form.clearHotSpot.radioGroup:		setHotSpot
+Pixmap*form.clearHotSpot.label:			Clear Hot Spot
+
+
+! Port Editor Buttons
+!
+Pixmap*form.setPort.vertDistance:		10
+Pixmap*form.setPort.fromVert:			clearHotSpot
+Pixmap*form.setPort.radioGroup:			point
+Pixmap*form.setPort.label:			Set Port
+Pixmap*form.clearPort.fromVert:			setPort
+Pixmap*form.clearPort.radioGroup:		point
+Pixmap*form.clearPort.label:			Clear Port
+Pixmap*form.movePort.fromVert:			clearPort
+Pixmap*form.movePort.radioGroup:		point
+Pixmap*form.movePort.label:			Move Port
+Pixmap*form.portInfo.fromVert:			movePort
+Pixmap*form.portInfo.radioGroup:		point
+Pixmap*form.portInfo.label:			Port Info ... 
+
+!  Extension Editor 
+Pixmap*extEditorShell.width:			510
+Pixmap*extEditor.text.width:			500
+Pixmap*extEditor.name.width:			500
+Pixmap*extEditor.text.height:			200
+Pixmap*extEditor.text.fromVert:			name
+Pixmap*extEditor.ok.fromVert:			text
+Pixmap*extEditor.cancel.fromVert:		text
+Pixmap*extEditor.cancel.fromHoriz:		ok
+Pixmap*extEditor.remove.fromVert:		text
+Pixmap*extEditor.remove.fromHoriz:		cancel
+Pixmap*extEditor.Command.left:            	ChainLeft
+Pixmap*extEditor.Command.right:           	ChainLeft
+Pixmap*extEditor.Command.bottom:          	ChainBottom
+Pixmap*extEditor.Command.top:             	ChainBottom
+Pixmap*extEditor.name.top:               	ChainTop
+Pixmap*extEditor.name.bottom:            	ChainTop
+Pixmap*extEditor.text.bottom:             	ChainBottom
+Pixmap*extEditor.text.top:                	ChainTop
+Pixmap*extEditor.name.justify:			left
+Pixmap*extEditor.name.borderWidth:		0
+Pixmap*extEditor.ok.label:			Okay
+Pixmap*extEditor.cancel.label:			Cancel
+Pixmap*extEditor.remove.label:			Remove
+Pixmap*extEditor.text*editType:			edit
+Pixmap*extEditor.text.wrap:			word
+Pixmap*extEditor.text.autoFill:			False
+Pixmap*extEditor.text.scrollVertical:		always
+Pixmap*extEditor.text*baseTranslations: #augment\
+			<Key>:		insert-char()\n
+
+! Text options dialog
+Pixmap*textOptions.fontName*string:	-*-fixed-medium-*-*-*-13-*-100-*-*-60-*-*
+Pixmap*textOptions.textString*string:		Hello, Woody!
+Pixmap*textOptionsShell.width:			465
+Pixmap*textOptions.title.width:			455
+Pixmap*textOptions.fontStatus.width:		455
+Pixmap*textOptions.fontLabel.width:		100
+Pixmap*textOptions.textLabel.width:		100
+Pixmap*textOptions.fontName.width:		350
+Pixmap*textOptions.textString.width:		350
+Pixmap*textOptions.fontStatus.fromVert:		title
+Pixmap*textOptions.fontLabel.fromVert:		fontStatus
+Pixmap*textOptions.fontName.fromVert:		fontStatus
+Pixmap*textOptions.fontName.fromHoriz:		fontLabel
+Pixmap*textOptions.textLabel.fromVert:		fontLabel
+Pixmap*textOptions.textString.fromVert:		fontLabel
+Pixmap*textOptions.textString.fromHoriz:	textLabel
+Pixmap*textOptions.close.vertDistance:		20
+Pixmap*textOptions.close.fromVert:		textLabel
+Pixmap*textOptions.apply.vertDistance:		20
+Pixmap*textOptions.apply.fromVert:		textLabel
+Pixmap*textOptions.apply.fromHoriz:		close
+Pixmap*textOptions.title.label:			Text Options
+Pixmap*textOptions.fontStatus.label:
+Pixmap*textOptions.fontLabel.label:		Font Name:
+Pixmap*textOptions.textLabel.label:		Text String:
+Pixmap*textOptions.title.justify:		Center
+Pixmap*textOptions.fontStatus.justify:		Center
+Pixmap*textOptions.fontLabel.justify:		Right
+Pixmap*textOptions.textLabel.justify:		Right
+Pixmap*textOptions.Label.borderWidth:		0
+Pixmap*textOptions*close*label:			Close
+Pixmap*textOptions*apply*label:			Apply
+Pixmap*textOptions.fontName*editType:		edit
+Pixmap*textOptions.fontName.resizable:		True
+Pixmap*textOptions.fontName.resize:		width
+Pixmap*textOptions.textString*editType:		edit
+Pixmap*textOptions.textString.resizable:	True
+Pixmap*textOptions.textString.resize:		width
+
+Pixmap*textOptions.fontName.translations:#override <Key>Return: apply()
+Pixmap*textOptions.textString.translations:#override <Key>Return: apply()
+Pixmap*textOptions.fontName*baseTranslations: #augment\
+			<Key>:		insert-char()
+Pixmap*textOptions.textString*baseTranslations: #augment\
+			<Key>:		insert-char()
+
+
+
+
+
+

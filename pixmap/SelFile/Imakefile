@@ -1,0 +1,25 @@
+#ifndef XCOMM
+#define XCOMM #
+#endif
+
+XCOMM Imakefile for SelFile (pfp)
+
+       INCLUDES = -I.
+   INSTALLFLAGS = $(INSTINCFLAGS)
+       LINTLIBS = $(LINTXTOLL) $(LINTXLIB) 
+
+HEADERS = xpm.h
+  SRCS = SelFile.c Path.c Dir.c Draw.c
+  OBJS = SelFile.o Path.o Dir.o Draw.o
+ SELFILE_DEFINE = -DSELFILE -DHOME_ON_DEMAND
+
+NormalLibraryObjectRule()
+
+NormalLibraryTarget(Xgnu,$(OBJS))
+InstallLibrary(Xgnu,$(USRLIBDIR))
+
+DependTarget()
+
+depend:: SFinternal.h 
+
+

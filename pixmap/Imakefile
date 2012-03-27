@@ -1,0 +1,102 @@
+#ifdef BandAidCompiler
+#include BandAidCompiler
+#endif
+
+XCOMM
+XCOMM  Author:    Lionel Mallet, Simulog 
+XCOMM  Created:   April 20, 1991.
+XCOMM
+
+XCOMM def/undef USE_MOTIF there if you want Pixmap to use Motif or not.
+#define USE_MOTIF
+#ifdef HPArchitecture
+CCOPTIONS = -Aa -D_HPUX_SOURCE -DNO_EDITRES
+#if ProjectX > 4
+MOTIFVER = Motif1.2
+R5EXT    =
+#else
+MOTIFVER = Motif1.1
+R5EXT    = -I.
+#endif
+#endif
+
+XCOMM Where you have rgb.txt
+RGBTXT = /etc/X11/rgb.txt
+
+XCOMM LUCS extra variable for where bitmaps go
+PIXMAPDIR = $(LIBDIR)/Pixmap
+
+XCOMM Specify here your Xpm installation directories
+        XPM_INCLUDEDIR = /usr/include/X11
+        XPM_LIBDIR = /usr/lib
+XCOMM        XPM_INCLUDEDIR = /net/koala/include
+XCOMM        XPM_LIBDIR = /net/koala/lib/sun4
+        EXTRA_INCLUDES = $(R5EXT) -I. -I.. -I$(XPM_INCLUDEDIR) -I/usr/include/$(MOTIFVER) -I/usr/include/freetype2
+
+#ifdef USE_MOTIF
+XCOMM Motif configuration
+  LOCAL_DEFINES = $(IEEE_DEFS) $(SIGNAL_DEFINES) -D_NO_PROTO
+LOCAL_LIBRARIES = -L$(XPM_LIBDIR) -lXpm -L/usr/lib/$(MOTIFVER) -lXm $(XMULIB) $(XTOOLLIB) $(XLIB)
+        BITMAPS = MDown MFlipHoriz MFlipVert MFold  MLeft MRight MRotateLeft \
+                  MRotateRight Stipple MUp
+#else
+XCOMM Athena configuration
+  LOCAL_DEFINES = $(IEEE_DEFS) $(SIGNAL_DEFINES) -DUSE_ATHENA
+        DEPLIBS = XawClientDepLibs
+LOCAL_LIBRARIES =  -L$(XPM_LIBDIR) -lXpm -LSelFile -lXgnu XawClientLibs
+        BITMAPS = Down FlipHoriz FlipVert Fold  Left Right RotateLeft \
+                  RotateRight Stipple Up Term Excl
+
+#define IHaveSubdirs
+#define PassCDebugFlags 'CC=$(CC)' 'CFLAGS=$(CFLAGS)' 
+
+        SUBDIRS = SelFile
+        DEPLIBS = Xgnu
+
+#endif
+
+  SYS_LIBRARIES = -lm
+           SRCS = PixEdit.c Pixmap.c Dialog.c 
+           OBJS = PixEdit.o Pixmap.o Dialog.o 
+
+#if ProjectX < 5
+        DEFINES = $(LOCAL_DEFINES) -DXPointer="char *" \
+			-DAPPDEFDIR=\"$(XAPPLOADDIR)\" \
+			-DRGBF=\"$(RGBTXT)\" -DNO_EDITRES
+#else
+        DEFINES = $(LOCAL_DEFINES) -DAPPDEFDIR=\"$(XAPPLOADDIR)\" \
+			-DRGBF=\"$(RGBTXT)\"
+#endif
+
+ComplexProgramTarget(pixmap)
+InstallAppDefaults(Pixmap)
+MakeDirectories(install, $(PIXMAPDIR))
+InstallMultipleFlags($(BITMAPS), $(PIXMAPDIR), $(INSTDATFLAGS))
+
+AllTarget(dotpixmap)
+
+all:: Pixmap.ad
+
+clean:: Pixmap.ad
+	$(RM) Pixmap.ad
+
+#ifdef USE_MOTIF
+Pixmap.ad: MPixmap.ad
+	@echo Pixmap compiled with Motif.
+	@sed -e "s#@PIXMAPDIR@#$(PIXMAPDIR)/#g" <MPixmap.ad >Pixmap.ad
+#else
+NamedMakeSubdirs(Xgnu, SelFile)
+
+Pixmap.ad: APixmap.ad
+	@echo Pixmap compiled with Athena.
+	@sed -e "s#@PIXMAPDIR@#$(PIXMAPDIR)/#g" <APixmap.ad >Pixmap.ad
+#endif
+
+dotpixmap: $(RGBTXT)
+	awk 'NF == 4 && $$4 !~ /[Gg]rey/ && $$4 !~ /[0-9]/ {print $$4}' $(RGBTXT) > dotpixmap
+
+doc:	Pixmap.tex
+	latex Pixmap.tex
+	latex Pixmap.tex
+	dvips -o Pixmap.ps Pixmap.dvi
+

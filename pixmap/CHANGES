@@ -1,0 +1,43 @@
+Changes to the pixmap program are summarized here:
+
+	1.1 September 1991 
+		Original version. Support for the Xpm3.0 library.
+		Released as the MIT R5 contrib version.
+
+	1.1pl1 October 1991
+		Fix to functions' prototypes and casts.
+
+	1.1pl2 November 1991
+		Allocs protected by calling Xt functions.
+		Initialization of PixmapWidget's comments fixed.
+		
+	2.0 October 1992
+		Version 2.0. Support for the Xpm3.2 library.
+		Redesigned color interface, full support for
+		transparent color, extension and text edition.
+
+	2.1 October 1992
+		Version 2.1. A lot of fixes for ANSI compilers.
+
+	2.2 February 1994
+		Version 2.2. Port to Xpm3.3. File selector dialog
+		in both Athena and Motif versions (Thx to Erik M.
+		van der Poel, erik@sra.co.jp for the Athena version).
+		Support for EditRes protocol. Private colormap.
+
+	2.3 February 1994
+		Version 2.3. Distribution packing mismatch on 
+		Graphics.c in 2.2.
+
+	2.4 Februrary 1994
+		Version 2.4. Distribution packing mismatch on
+		several files in 2.3.
+		Patch from R.K.Lloyd@csc.liv.ac.uk to compile on
+		HP-UX 9.01 with ANSI C.
+
+	2.5 April 1994
+		Version 2.5. Port to Xpm 3.4. Fix of selection
+		mechanism. 
+
+        2.6 May 1994
+	        Version 2.6. Submission to X11R6 contrib.

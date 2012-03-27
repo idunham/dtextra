@@ -1,0 +1,388 @@
+Pixmap*TransientShell.allowShellResize:		True
+Pixmap*fontList:-adobe-helvetica-bold-r-normal--12-120-*-*-*-*-iso*-*
+Pixmap*menuCursor:				left_ptr
+
+Pixmap*pixmap.baseTranslations:#override\
+                        Meta<Key>l:      do-load()\n\
+                        Meta<Key>i:      do-insert()\n\
+                        Meta<Key>s:      do-save()\n\
+                        Meta<Key>a:      do-save-as()\n\
+                        Meta<Key>r:      do-resize()\n\
+                        Meta<Key>e:      do-rescale()\n\
+                        Meta<Key>f:      do-filename()\n\
+			Meta<Key>h:	do-hintscmt()\n\
+			Meta<Key>c:	do-colorscmt()\n\
+			Meta<Key>p:	do-pixelscmt()\n\
+                        Meta<Key>q:	do-quit()\n\
+			Ctrl<Key>a:	do-addcolor()\n\
+			Ctrl<Key>s:	do-symbname()\n\
+			Ctrl<Key>m:	do-mononame()\n\
+			Ctrl<Key>4:	do-grey4name()\n\
+			Ctrl<Key>g:	do-greyname()\n\
+			Ctrl<Key>n:	do-colorname()\n\
+                        <Key>i:     	switch-image()\n\
+                        <Key>g:     	switch-grid()\n\
+                        <Key>a:     	switch-axes()\n\
+                        <Key>p:     	switch-proportional()\n\
+                        <Key>z:     	switch-zoom()\n\
+			<Key>x:		zoom-in()\n\
+			<Key>y:		zoom-out()\n\
+			<Key>f:		zoom-factor()\n\
+                        Ctrl<Key>c:     do-cut()\n\
+                        Ctrl<Key>x:     do-copy()\n\
+                        Ctrl<Key>p:     do-paste()\n\
+			Ctrl<Key>o:	do-crop()
+
+Pixmap*MarginTop:				0
+Pixmap*MarginBottom:				0
+Pixmap*input.dialogStyle:		DIALOG_FULL_APPLICATION_MODAL
+Pixmap*error.dialogStyle:		DIALOG_FULL_APPLICATION_MODAL
+Pixmap*qsave.dialogStyle:		DIALOG_FULL_APPLICATION_MODAL
+Pixmap*file.dialogStyle:		DIALOG_FULL_APPLICATION_MODAL
+Pixmap*extEditor_popup*dialogStyle:	DIALOG_FULL_APPLICATION_MODAL
+
+Pixmap*image.label.translations:#override<Btn1Down>,<Btn1Up>:switch-image()
+Pixmap*image.label.label:			
+Pixmap*image.width:				50
+Pixmap*image.height:				50
+
+Pixmap*formy.topAttachment:			ATTACH_FORM
+Pixmap*formy.leftAttachment:			ATTACH_FORM
+Pixmap*formy.rightAttachment:			ATTACH_FORM
+
+Pixmap*vPane.topAttachment: 			ATTACH_FORM
+Pixmap*vPane.bottomAttachment: 			ATTACH_FORM
+Pixmap*vPane.rightAttachment:			ATTACH_FORM
+
+Pixmap*pixmapView.width:			510
+Pixmap*pixmapView.height:			510
+Pixmap*pixmapView.scrollingPolicy: 		AUTOMATIC
+Pixmap*pixmapView.scrollBarDisplayPolicy: 	AS_NEEDED
+Pixmap*pixmapView.visualPolicy: 		CONSTANT
+Pixmap*pixmapView.resizable:			True
+Pixmap*pviewHS.orientation:			HORIZONTAL
+Pixmap*pviewVS.orientation:			VERTICAL
+
+Pixmap*pixmap.pixmapWidth:			32
+Pixmap*pixmap.pixmapHeight:			32
+Pixmap*pixmap.squareSize:			15
+Pixmap*pixmap.cursor:           		tcross
+Pixmap*pixmap.stipple:				@PIXMAPDIR@Stipple
+
+Pixmap*colorView.width:				508
+Pixmap*colorView.height:			70
+Pixmap*colorView.scrollingPolicy: 		AUTOMATIC
+Pixmap*colorView.scrollBarDisplayPolicy: 	AS_NEEDED
+Pixmap*colorView.visualPolicy: 			CONSTANT
+Pixmap*colorView.resizable:			True
+Pixmap*cviewHS.orientation:			HORIZONTAL
+Pixmap*cviewVS.orientation:			VERTICAL
+
+Pixmap*colorPane.orientation:			VERTICAL
+Pixmap*colorPane.numColumns:			40
+Pixmap*colorPane.packing:			PACK_COLUMN
+Pixmap*colorPane.spacing:			0
+Pixmap*colorPane.marginWidth:			0
+Pixmap*colorPane.marginHeight:			0
+Pixmap*colorPane*XmPushButton.marginLeft:	5
+Pixmap*colorPane*XmPushButton.marginRight:	5
+Pixmap*colorPane*XmPushButton.marginTop:	5
+Pixmap*colorPane*XmPushButton.marginBottom:	5
+Pixmap*colorPane*XmPushButton.labelString:
+Pixmap*colorPane*XmPushButton.shadowThickness: 	2
+Pixmap*colorPane*XmPushButton.fillOnArm:	False
+Pixmap*colorPane*XmPushButton.topShadowColor:	gray70
+Pixmap*colorPane*XmPushButton..bottomShadowColor: gray30
+
+Pixmap*info*label.fontList:-adobe-helvetica-bold-r-normal--*-100-*-*-p-*-iso8859-1
+Pixmap*info*label.height:			150
+Pixmap*infoPopup.width:				300
+Pixmap*infoPopup.height:			150
+
+Pixmap*fileButton.labelString:			File
+Pixmap*editButton.labelString:			Edit
+Pixmap*colorButton.labelString:			Foreground Color
+Pixmap*extensionButton.labelString:		Xpm Extensions
+Pixmap*status.labelString:			Filename: foobargeefoobargee
+Pixmap*statusb.labelString:			Size: xxxxxxxxx
+Pixmap*infoButton.labelString:			About
+Pixmap*infoButton.width:			48
+Pixmap*infoButton.rightAttachment:		ATTACH_FORM
+
+Pixmap*fileMenu.load.labelString:		Load...
+Pixmap*fileMenu.load.accelerator:		Alt<Key>l
+Pixmap*fileMenu.load.acceleratorText:		Alt l
+Pixmap*fileMenu.insert.labelString:		Insert...
+Pixmap*fileMenu.insert.accelerator:		Alt<Key>i
+Pixmap*fileMenu.insert.acceleratorText:		Alt i
+Pixmap*fileMenu.save.labelString:		Save
+Pixmap*fileMenu.save.accelerator:		Alt<Key>s
+Pixmap*fileMenu.save.acceleratorText:		Alt s
+Pixmap*fileMenu.saveAs.labelString:		Save As...
+Pixmap*fileMenu.saveAs.accelerator:		Alt<Key>a
+Pixmap*fileMenu.saveAs.acceleratorText:		Alt a
+Pixmap*fileMenu.resize.labelString:		Resize...
+Pixmap*fileMenu.resize.accelerator:		Alt<Key>r
+Pixmap*fileMenu.resize.acceleratorText:		Alt r
+Pixmap*fileMenu.rescale.labelString:		Rescale...
+Pixmap*fileMenu.rescale.accelerator:		Alt<Key>e
+Pixmap*fileMenu.rescale.acceleratorText:	Alt e
+Pixmap*fileMenu.filename.labelString:		Filename...
+Pixmap*fileMenu.filename.accelerator:		Alt<Key>f
+Pixmap*fileMenu.filename.acceleratorText:	Alt f
+Pixmap*fileMenu.hintsCmt.labelString:		Hints comment...
+Pixmap*fileMenu.hintsCmt.accelerator:		Alt<Key>h
+Pixmap*fileMenu.hintsCmt.acceleratorText:	Alt h
+Pixmap*fileMenu.colorsCmt.labelString:		Colors comment...
+Pixmap*fileMenu.colorsCmt.accelerator:		Alt<Key>c
+Pixmap*fileMenu.colorsCmt.acceleratorText:	Alt c
+Pixmap*fileMenu.pixelsCmt.labelString:		Pixels comment...
+Pixmap*fileMenu.pixelsCmt.accelerator:		Alt<Key>p
+Pixmap*fileMenu.pixelsCmt.acceleratorText:	Alt p
+Pixmap*fileMenu.quit.labelString:		Quit
+Pixmap*fileMenu.quit.accelerator:		Alt<Key>q
+Pixmap*fileMenu.quit.acceleratorText:		Alt q
+
+Pixmap*editMenu.image.labelString:		Image
+Pixmap*editMenu.image.accelerator:		<Key>i
+Pixmap*editMenu.image.acceleratorText:		i
+Pixmap*editMenu.image.marginHeight: 		0
+Pixmap*editMenu.image.marginTop: 		0
+Pixmap*editMenu.image.marginBottom: 		0
+Pixmap*editMenu.grid.labelString:		Grid
+Pixmap*editMenu.grid.accelerator:		<Key>g
+Pixmap*editMenu.grid.acceleratorText:		g
+Pixmap*editMenu.grid.marginHeight: 		0
+Pixmap*editMenu.grid.marginTop: 		0
+Pixmap*editMenu.grid.marginBottom: 		0
+Pixmap*editMenu.axes.labelString:		Axes
+Pixmap*editMenu.axes.accelerator:		<Key>a
+Pixmap*editMenu.axes.acceleratorText:		a
+Pixmap*editMenu.axes.marginHeight: 		0
+Pixmap*editMenu.axes.marginTop: 		0
+Pixmap*editMenu.axes.marginBottom: 		0
+Pixmap*editMenu.proportional.labelString:	Proportional
+Pixmap*editMenu.proportional.accelerator:	<Key>p
+Pixmap*editMenu.proportional.acceleratorText:	p
+Pixmap*editMenu.proportional.marginHeight: 	0
+Pixmap*editMenu.proportional.marginTop: 	0
+Pixmap*editMenu.proportional.marginBottom: 	0
+Pixmap*editMenu.zoom.labelString:		Zoom
+Pixmap*editMenu.zoom.accelerator:		<Key>z
+Pixmap*editMenu.zoom.acceleratorText:		z
+Pixmap*editMenu.zoom.marginHeight: 		0
+Pixmap*editMenu.zoom.marginTop: 		0
+Pixmap*editMenu.zoom.marginBottom: 		0
+Pixmap*editMenu.zoomIn.labelString:		Zoom In
+Pixmap*editMenu.zoomIn.accelerator:		<Key>x
+Pixmap*editMenu.zoomIn.acceleratorText:		x
+Pixmap*editMenu.zoomIn.marginHeight: 		0
+Pixmap*editMenu.zoomIn.marginTop: 		0
+Pixmap*editMenu.zoomIn.marginBottom: 		0
+Pixmap*editMenu.zoomOut.labelString:		Zoom Out
+Pixmap*editMenu.zoomOut.accelerator:		<Key>y
+Pixmap*editMenu.zoomOut.acceleratorText:	y
+Pixmap*editMenu.zoomOut.marginHeight: 		0
+Pixmap*editMenu.zoomOut.marginTop: 		0
+Pixmap*editMenu.zoomOut.marginBottom: 		0
+Pixmap*editMenu.zoomFactor.labelString:		Zooming Factor
+Pixmap*editMenu.zoomFactor.accelerator:		<Key>f
+Pixmap*editMenu.zoomFactor.acceleratorText:	f
+Pixmap*editMenu.zoomFactor.marginHeight: 	0
+Pixmap*editMenu.zoomFactor.marginTop: 		0
+Pixmap*editMenu.zoomFactor.marginBottom: 	0
+Pixmap*editMenu.cut.labelString:		Cut
+Pixmap*editMenu.cut.accelerator:		Ctrl<Key>c
+Pixmap*editMenu.cut.acceleratorText:		Ctrl c
+Pixmap*editMenu.copy.labelString:		Copy
+Pixmap*editMenu.copy.accelerator:		Ctrl<Key>x
+Pixmap*editMenu.copy.acceleratorText:		Ctrl x
+Pixmap*editMenu.paste.labelString:		Paste
+Pixmap*editMenu.paste.accelerator:		Ctrl<Key>p
+Pixmap*editMenu.paste.acceleratorText:		Ctrl p
+Pixmap*editMenu.crop.labelString:		Crop
+Pixmap*editMenu.crop.accelerator:		Ctrl<Key>o
+Pixmap*editMenu.crop.acceleratorText:		Ctrl o
+
+Pixmap*colorMenu.addColor.labelString:		Add Color...
+Pixmap*colorMenu.addColor.accelerator:		Ctrl<Key>a
+Pixmap*colorMenu.addColor.acceleratorText:	Ctrl a
+Pixmap*colorMenu.symbolicName.labelString:	Symbolic name...
+Pixmap*colorMenu.symbolicName.accelerator:	Ctrl<Key>s
+Pixmap*colorMenu.symbolicName.acceleratorText:	Ctrl s
+Pixmap*colorMenu.monochromeName.labelString:	Monochrome name...
+Pixmap*colorMenu.monochromeName.accelerator:	Ctrl<Key>m
+Pixmap*colorMenu.monochromeName.acceleratorText:Ctrl m
+Pixmap*colorMenu.g4Name.labelString:		Grey scale 4 name...
+Pixmap*colorMenu.g4Name.accelerator:		Ctrl<Key>4
+Pixmap*colorMenu.g4Name.acceleratorText:	Ctrl 4
+Pixmap*colorMenu.gName.labelString:		Grey scale name...
+Pixmap*colorMenu.gName.accelerator:		Ctrl<Key>g
+Pixmap*colorMenu.gName.acceleratorText:		Ctrl g
+Pixmap*colorMenu.cName.labelString:		Color name...
+Pixmap*colorMenu.cName.accelerator:		Ctrl<Key>n
+Pixmap*colorMenu.cName.acceleratorText:		Ctrl n
+
+Pixmap*extensionMenu.addExtension.labelString:	Add Extension...
+
+Pixmap*pane.leftAttachment:			ATTACH_FORM
+Pixmap*pane.rightAttachment:			ATTACH_FORM
+Pixmap*pane.topAttachment:			ATTACH_FORM
+Pixmap*pane.bottomAttachment:			ATTACH_FORM
+Pixmap*pane.packing:				PACK_NONE
+Pixmap*pane*navigationType:			NONE
+Pixmap*pane*traversalOn:			False
+Pixmap*form*translations: <Motion>:            ManagerGadgetButtonMotion()\n\
+			  <Btn1Down>:          ManagerGadgetArm()\n\
+			  <Btn1Down>,<Btn1Up>: ManagerGadgetActivate()\n\
+			  <Btn1Up>:            ManagerGadgetActivate()\n\
+			  <Btn1Down>(2+):      ManagerGadgetMultiArm()\n\
+			  <Btn1Up>(2+):        ManagerGadgetMultiActivate()
+
+Pixmap*form.spacing:				0
+Pixmap*form.undo.labelString:			Undo
+Pixmap*form.clear.labelString:			Clear
+Pixmap*form.set.labelString:			Set
+Pixmap*form.redraw.labelString:			Redraw
+
+Pixmap*form.copy.labelString:			Copy
+Pixmap*form.move.labelString:			Move
+Pixmap*form.mark.labelString:			Mark
+Pixmap*form.unmark.labelString:			Unmark
+
+Pixmap*formh.orientation:			HORIZONTAL
+Pixmap*formh.marginWidth:			15
+Pixmap*formh.spacing:				10
+Pixmap*formh.marginHeight:			0
+Pixmap*formh.flipHoriz.labelType:		PIXMAP
+Pixmap*formh.flipHoriz.labelPixmap:		@PIXMAPDIR@MFlipHoriz
+Pixmap*formh.up.labelType:			PIXMAP
+Pixmap*formh.up.labelPixmap:			@PIXMAPDIR@MUp
+Pixmap*formh.flipVert.labelType:		PIXMAP
+Pixmap*formh.flipVert.labelPixmap:		@PIXMAPDIR@MFlipVert
+Pixmap*formh.left.labelType:			PIXMAP
+Pixmap*formh.left.labelPixmap:			@PIXMAPDIR@MLeft
+Pixmap*formh.fold.labelType:			PIXMAP
+Pixmap*formh.fold.labelPixmap:			@PIXMAPDIR@MFold
+Pixmap*formh.right.labelType:			PIXMAP
+Pixmap*formh.right.labelPixmap:			@PIXMAPDIR@MRight
+Pixmap*formh.rotateLeft.labelType:		PIXMAP
+Pixmap*formh.rotateLeft.labelPixmap:		@PIXMAPDIR@MRotateLeft
+Pixmap*formh.down.labelType:			PIXMAP
+Pixmap*formh.down.labelPixmap:			@PIXMAPDIR@MDown
+Pixmap*formh.rotateRight.labelType:		PIXMAP
+Pixmap*formh.rotateRight.labelPixmap:		@PIXMAPDIR@MRotateRight
+
+Pixmap*form.point.labelString:			Point
+Pixmap*form.curve.labelString:			Curve
+Pixmap*form.line.labelString:			Line
+Pixmap*form.rectangle.labelString:		Rectangle
+Pixmap*form.filledRectangle.labelString:	Filled Rectangle
+Pixmap*form.circle.labelString:			Circle
+Pixmap*form.filledCircle.labelString:		Filled Circle
+Pixmap*form.floodFill.labelString:		Flood Fill
+Pixmap*form.setHotSpot.labelString:		Set Hot Spot
+Pixmap*form.clearHotSpot.labelString:		Clear Hot Spot
+
+
+
+! Port Editor Buttons
+!
+Pixmap*form.setPort.labelString:		Set Port
+Pixmap*form.clearPort.labelString:		Clear Port
+Pixmap*form.movePort.labelString:		Move Port
+Pixmap*form.portInfo.labelString:		Port Info ... 
+
+Pixmap*textOptions_popup.minWidth:		400
+Pixmap*textOptions_popup.minHeight:		150
+Pixmap*textOptions.width:			400
+Pixmap*textOptions.height:			150
+Pixmap*textOptions.autoUnmanage:		False
+Pixmap*textOptions.title.labelString:		Text Options
+Pixmap*textOptions.fontStatus.labelString:      
+Pixmap*textOptions.fontLabel.labelString:	Font Name:
+Pixmap*textOptions.textLabel.labelString:	Text String:
+Pixmap*textOptions.close.labelString:		Close
+Pixmap*textOptions.close.width:			70
+Pixmap*textOptions.apply.labelString:		Apply
+Pixmap*textOptions.apply.width:			70
+Pixmap*textOptions.fontName.value:    -*-fixed-medium-*-*-*-13-*-100-*-*-60-*-*
+Pixmap*textOptions.textString.value:		Hello, Woody!
+Pixmap*textOptions.title.topAttachment:		ATTACH_POSITION
+Pixmap*textOptions.title.topPosition:		5
+Pixmap*textOptions.title.leftAttachment:	ATTACH_FORM
+Pixmap*textOptions.title.rightAttachment:	ATTACH_FORM
+Pixmap*textOptions.fontStatus.topAttachment:	ATTACH_POSITION
+Pixmap*textOptions.fontStatus.topPosition:	15
+Pixmap*textOptions.fontStatus.leftAttachment:	ATTACH_FORM
+Pixmap*textOptions.fontStatus.rightAttachment:	ATTACH_FORM
+Pixmap*textOptions.fontLabel.topAttachment:	ATTACH_POSITION
+Pixmap*textOptions.fontLabel.topPosition:	33
+Pixmap*textOptions.fontLabel.leftAttachment:	ATTACH_POSITION
+Pixmap*textOptions.fontLabel.leftPosition:	5
+Pixmap*textOptions.fontName.topAttachment:	ATTACH_POSITION
+Pixmap*textOptions.fontName.topPosition:	30
+Pixmap*textOptions.fontName.leftAttachment:	ATTACH_POSITION
+Pixmap*textOptions.fontName.leftPosition:	25
+Pixmap*textOptions.fontName.rightAttachment:	ATTACH_POSITION
+Pixmap*textOptions.fontName.rightPosition:	95
+Pixmap*textOptions.textLabel.topAttachment:	ATTACH_POSITION
+Pixmap*textOptions.textLabel.topPosition:	55
+Pixmap*textOptions.textLabel.leftAttachment:	ATTACH_POSITION
+Pixmap*textOptions.textLabel.leftPosition:	5
+Pixmap*textOptions.textString.topAttachment:	ATTACH_POSITION
+Pixmap*textOptions.textString.topPosition:	52
+Pixmap*textOptions.textString.leftAttachment:	ATTACH_POSITION
+Pixmap*textOptions.textString.leftPosition:	25
+Pixmap*textOptions.textString.rightAttachment:	ATTACH_POSITION
+Pixmap*textOptions.textString.rightPosition:	95
+Pixmap*textOptions.close.bottomAttachment:	ATTACH_POSITION
+Pixmap*textOptions.close.bottomPosition:	95
+Pixmap*textOptions.close.leftAttachment:	ATTACH_POSITION
+Pixmap*textOptions.close.leftPosition:		25
+Pixmap*textOptions.apply.bottomAttachment:	ATTACH_POSITION
+Pixmap*textOptions.apply.bottomPosition:	95
+Pixmap*textOptions.apply.leftAttachment:	ATTACH_POSITION
+Pixmap*textOptions.apply.leftPosition:		60
+
+! Extension editor dialog
+Pixmap*extEditor_popup.minHeight:		250
+Pixmap*extEditor_popup.minWidth:		220
+Pixmap*extEditor_popup*XmForm.height:		300
+Pixmap*extEditor_popup*XmForm.width:		250
+Pixmap*extEditor_popup*text.editMode:		MULTI_LINE_EDIT
+Pixmap*extEditor_popup*ok.labelString:		Okay
+Pixmap*extEditor_popup*cancel.labelString:	Cancel
+Pixmap*extEditor_popup*remove.labelString:	Remove
+Pixmap*extEditor_popup*name.leftAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*name.leftPosition:	5
+Pixmap*extEditor_popup*name.topAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*name.topPosition:	5
+Pixmap*extEditor_popup*textSW.leftAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*textSW.leftPosition:	5
+Pixmap*extEditor_popup*textSW.rightAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*textSW.rightPosition:	95
+Pixmap*extEditor_popup*textSW.topAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*textSW.topPosition:	15
+Pixmap*extEditor_popup*textSW.bottomAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*textSW.bottomPosition:	80
+Pixmap*extEditor_popup*ok.width:		70
+Pixmap*extEditor_popup*ok.leftAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*ok.leftPosition:		4
+Pixmap*extEditor_popup*ok.bottomAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*ok.bottomPosition:	95
+Pixmap*extEditor_popup*cancel.width:		70
+Pixmap*extEditor_popup*cancel.leftAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*cancel.leftPosition:	36
+Pixmap*extEditor_popup*cancel.bottomAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*cancel.bottomPosition:	95
+Pixmap*extEditor_popup*remove.width:		70
+Pixmap*extEditor_popup*remove.rightAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*remove.rightPosition:	96
+Pixmap*extEditor_popup*remove.bottomAttachment:	ATTACH_POSITION
+Pixmap*extEditor_popup*remove.bottomPosition:	95
+
+
+
+
+
