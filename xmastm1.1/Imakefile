@@ -56,10 +56,10 @@ OBJS=	main.o xerror.o compat.o usage.o error.o crmainw.o alncolor.o\
 SUBDIRS= ElecDisp
 PROGRAMS= Xmtds xmastm
 
-ComplexProgramTarget(xmastm)
+ComplexProgramTargetNoMan(xmastm)
 ForceSubdirs($(SUBDIRS))
 DependSubdirs($(SUBDIRS))
-InstallAppDefaults (XMastm.ad)
+InstallAppDefaults (XMastm)
 
 
 main.o:	Xmastm.ad.h Xmastm.ad.sgi.h
