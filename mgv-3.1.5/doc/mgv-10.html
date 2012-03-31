@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The Options Menu</TITLE>
+ <LINK HREF="mgv-11.html" REL=next>
+ <LINK HREF="mgv-9.html" REL=previous>
+ <LINK HREF="mgv.html#toc10" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-11.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-9.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc10"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="option-menu"></A> <A NAME="s10">10. The Options Menu</A></H2>
+
+<P>The <EM>Options</EM> menu is effectively a dumping ground for menu items
+that don't belong in any of the other menus; the following items have
+been abandoned here:
+<DL>
+<DT><B>Enable Anti-aliasing (Ctrl+A)
+<A NAME="options-antialias"></A> </B><DD><P>Enable or disable anti-aliasing within Ghostscript.
+Your copy of Ghostscript must support the <B>x11alpha</B> device if you want
+to use anti-aliasing.
+Note that anti-aliasing can make some <B>PostScript</B> files look worse (see
+<A HREF="mgv-22.html#caveats-antialias">Caveats and Bugs</A>).
+<P>
+<DT><B>Enable Magic Scrolling (Alt+G)
+<A NAME="options-magicscrolling"></A> </B><DD><P>Enable or disable <EM>magic</EM> scrolling.  When magic scrolling is
+enabled, attempting to scroll down at the bottom of a page
+(or scroll up at the top of a page) will move you to the next
+(or previous) page. The 
+<A HREF="mgv-19.html#appres-magicResistance">magicResistance</A> resource controls the number of attempts
+you have to make before magic scrolling takes effect.
+<P>
+<DT><B>Enable Smooth Scrolling (Alt+L)
+<A NAME="options-smoothscrolling"></A> </B><DD><P>Enable or disable <EM>smooth</EM> scrolling.  When smooth scrolling is
+enabled, scrolling with the 
+<A HREF="mgv-20.html#action-mgvScroll">mgvScroll</A> action (i.e. with the arrow keys but not the
+little buttons on the scrollbars) will scroll the screen a couple
+pixels at a time with an update after each movement; this will give
+the scrolling a smoother appearance than the normal scrolling.
+When smooth scrolling is disabled, normal scrolling is performed.
+The 
+<A HREF="mgv-19.html#appres-smoothScrolling">smoothScrolling</A> resource
+controls the initial state of smooth scrolling and the
+<A HREF="mgv-19.html#appres-smoothness">smoothness</A> resource controls
+how smooth the scrolling will be.  If you're interested in the
+scrolling, you might want to look at the 
+<A HREF="mgv-19.html#appres-scrollPercentage">scrollPercentage</A> resource as well.
+<P>
+<DT><B>Enable Smart Sizing (Alt+Z)
+<A NAME="options-smartsizing"></A> </B><DD><P>Enable or disable <EM>smart sizing</EM>.  The documentation for the
+<A HREF="mgv-19.html#appres-smartSizing">smartSizing</A> resource covers
+the smart sizing features and their limitations.  Note that
+smart sizing places upper limits on the main window size whereas
+<A HREF="mgv-4.html#page-autosize">automatic sizing</A> places lower
+limits on the main window size.
+<P>
+<DT><B>Color Palette
+<A NAME="options-palette"></A> </B><DD><P>This sub-menu allows you to choose the color palette used for
+rendering files.
+You can choose from <EM>Monochrome</EM>, <EM>Grayscale</EM>, and <EM>Color</EM>
+palettes.
+Palette changes are not propagated to existing zoom windows but the
+new palette will be used by new zoom windows.
+</DL>
+<P>
+<P>
+<HR>
+<A HREF="mgv-11.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-9.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc10"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

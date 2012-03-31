@@ -1,0 +1,38 @@
+/* XPM */
+static char *filePrint_i_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    24    24        7            1",
+/* colors */
+". s None",
+"# c #e7e7e7",
+"a c #c3c3c3",
+"b c #000000",
+"c c #4d4d4d",
+"d c #757575",
+"e c #a6a6a6",
+/* pixels */
+"........................",
+"........................",
+"........................",
+".......#########a.......",
+".......###a#a#a#a.......",
+".......####a#a##a.......",
+".......#########a.......",
+".......#########abbcdb..",
+".......#aaaaaaaaabcdb...",
+"......aa#a#a#a#abcdb....",
+".....da#a#a#a#aacbb.....",
+"...ccdddccccccccccbbc...",
+"..ceeccecddcccddcbbcc...",
+"..cccccceeeecdccbbcbc...",
+"..ccdcccccccccccbbbccb..",
+"..ccddddddddddddbbbcbb..",
+"..ccddcdcdcdcdddbbcbb...",
+"..ccdcdcdcdcdccdbbbb....",
+"...cccccccccccddbbb.....",
+"........ccccbbbbbb......",
+"........................",
+"........................",
+"........................",
+"........................"
+};

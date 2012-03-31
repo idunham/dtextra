@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The Interface to Ghostscript</TITLE>
+ <LINK HREF="mgv-31.html" REL=next>
+ <LINK HREF="mgv-29.html" REL=previous>
+ <LINK HREF="mgv.html#toc30" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-31.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-29.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc30"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="gs-interface"></A> <A NAME="s30">30. The Interface to Ghostscript</A></H2>
+
+<P>
+<H2><A NAME="ss30.1">30.1 The GHOSTVIEW Environment Variable</A>
+</H2>
+
+<P>When the <B>GHOSTVIEW</B> environment variable is set, ghostscript draws on
+an existing drawable rather than creating its own window; ghostscript
+will draw in either a window or a pixmap depending on the contents
+of this variable.
+<P>The general form of the <B>GHOSTVIEW</B> variable is
+<PRE>
+        window-id [pixmap-id]
+</PRE>
+
+where <B>window-id</B> is the identifier of the destination window
+(<CODE>XtWindow(ghostview_widget)</CODE> for example) and the optional
+<B>pixmap-id</B> value is the identifier for a pixmap to draw into; both values
+are of type <B>XID</B> (32-bit unsigned integer).
+If only a window is specified, ghostscript will draw into that window but
+if the pixmap is also specified, all drawing will be done on the pixmap.
+In both cases the window is used to determine the colormap, screen, and
+visual to use; if the destination is a window, then the height and width will
+be retrieved from the window, otherwise, the dimensions will be those of the
+pixmap.
+All remaining information is retrieved from the <B>GHOSTVIEW</B> property on the
+window (when drawing is done to a pixmap, this property is deleted when read).
+Any events that ghostscript wishes to send will be directed at the window
+specified in the <B>GHOSTVIEW</B> environment variable.
+<P>
+<P>
+<H2><A NAME="gv-win-prop"></A> <A NAME="ss30.2">30.2 The GHOSTVIEW Property</A>
+</H2>
+
+<P>The <B>GHOSTVIEW</B> property is of type <B>STRING</B> and should have the
+form
+<PRE>
+        bpixmap orient llx lly urx ury xdpi ydpi [left bottom top right]
+</PRE>
+
+and a <B>scanf(3)</B> format of
+<PRE>
+        %d %d %d %d %d %d %f %f %d %d %d %d
+</PRE>
+
+The parameters are:
+<DL>
+<DT><B>bpixmap</B><DD><P>Pixmap id of the backing pixmap for the window.
+If no pixmap is to be used, this parameter should be zero and this
+parameter must be zero when the destination is a pixmap rather than
+a window.
+<P>
+<DT><B>orient</B><DD><P>This should be a number representing the page orientation.
+The value is the clockwise rotation of the paper in degrees;
+only 0, 90, 180, and 270 are permitted 
+<P>
+<DT><B>llx, lly, urx, ury</B><DD><P>The bounding box of the drawable in <B>PostScript</B> points in the default user
+coordinate system.
+<P>
+<DT><B>xdpi, ydpi</B><DD><P>These values specify the horizontal and vertical resolution of the
+destination.
+Even though these values may be computed from other parameters, they
+are specified to avoid round-off errors.
+<P>
+<DT><B>left, bottom, top, right</B><DD><P>These optional parameters specify the margins around the window in
+<B>PostScript</B> points; the margins extend the imageable area beyond the
+boundaries of the window.
+This is primarily used for popup zoom windows.
+Some <B>PostScript</B> programs position themselves based on the imageable area
+so these values are useful at times.
+Any unspecified margins are assumed to be zero.
+</DL>
+<P>
+<P>
+<H2><A NAME="ss30.3">30.3 Events from Ghostscript</A>
+</H2>
+
+<P>If the final destination is a pixmap, the client will get a property notify
+event when ghostscript reads the <B>GHOSTVIEW</B> property causing it to be
+deleted.
+<P>Ghostscript sends events to the window where it read the <B>GHOSTVIEW</B> property;
+these events are of type <B>ClientMessage</B> and the <B>message_type</B> is
+set to either <B>PAGE</B> or <B>DONE</B>.
+The first long data value specifies the window which is to be used when
+sending replies to ghostscript; the second long data value specifies the
+primary drawable which is:
+<UL>
+<LI>the pixmap if ghostscript is drawing into a pixmap which was specified
+in the <B>GHOSTVIEW</B> environment variable</LI>
+<LI>the destination window if the window does not have a backing pixmap</LI>
+<LI>the backing pixmap of the destination window if it has one.</LI>
+</UL>
+
+This field is necessary to distinguish multiple ghostscripts rendering to
+separate pixmaps when the <B>GHOSTVIEW</B> property was placed on the same
+window.
+The <B>PAGE</B> message indicates that a page has been completed;
+ghostscript will wait until it receives a <CODE>ClientMessage</CODE> whose
+<CODE>message_type</CODE> is <B>NEXT</B> before continuing.
+The <B>DONE</B> message indicates that ghostscript has finished processing.
+<P>
+<P>
+<HR>
+<A HREF="mgv-31.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-29.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc30"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

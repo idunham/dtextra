@@ -1,0 +1,111 @@
+#!/bin/bash
+##
+## release
+##	release generator for mgv.
+##
+## Copyright (C) 1998 Eric A. Howe
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+##
+##   Authors:	Eric A. Howe (mu@trends.net)
+##
+# (#)$Mu: tools/release 1.13 1998/09/07 03:16:55 $
+#
+startdir=$(pwd)
+
+echo "---------------> Extracting version..."
+cvstag=$(egrep AM_INIT_AUTOMAKE configure.in \
+	| sed -e 's/AM_INIT_AUTOMAKE(.*,  *\(.*\))/\1/' -e 's/^/mgv-/' \
+	| tr '.' '_' \
+)
+cvsdir=$(echo $cvstag | tr '_' '.')
+
+echo "---------------> cvstag =" $cvstag
+echo "---------------> cvsdir =" $cvsdir
+
+echo "---------------> Cleaning up old junk..."
+rm -rf .junk/${cvsdir}
+mkdirhier .junk; cd .junk
+
+echo "---------------> Exporting..."
+cvs -Q export -r "$cvstag" -d "$cvsdir" mgv
+cd $cvsdir
+
+echo "---------------> Killing .nodist..."
+rm -rf .nodist
+
+echo "---------------> Dependency updates..."
+tools/mudep
+(cd wlib; ../tools/mudep)
+
+echo "---------------> go automake go!"
+automake -i
+
+echo "---------------> go autoconf go!"
+aclocal
+autoconf
+
+echo "---------------> Configuring..."
+./configure --enable-maintainer --quiet
+
+echo "---------------> Generating documentation..."
+cd doc
+	make -j 5 mgv.html mgv.ps mgv-a4.ps
+cd ..
+
+echo "---------------> Packing up PostScript files..."
+cd doc
+	mv mgv.ps ${startdir}/${cvsdir}.ps
+	mv mgv-a4.ps ${startdir}/${cvsdir}-a4.ps
+	gzip -9 ${startdir}/${cvsdir}.ps &
+	gzip -9 ${startdir}/${cvsdir}-a4.ps &
+cd ..
+
+echo "---------------> Packing up SGI icons"
+cd lib
+	tar cvf - mgv.icon* | gzip -9 > ${startdir}/${cvsdir}-sgi-icons.tar.gz
+	rm -f mgv.icon*
+cd ..
+
+echo "---------------> Build some things"
+make res.m4 MGv.ad mgv.man _switch_help.c
+
+echo "---------------> doing distclean..."
+make distclean >/dev/null
+rm -f res.m4 mgv.lsm mgv.man.in
+
+echo "---------------> rebuilding config things..."
+automake -i && aclocal && autoconf
+touch $(find . -name Makefile.in -print)
+
+echo "---------------> Packing up the dist..."
+cd ..
+tar cf - ${cvsdir} > ${startdir}/${cvsdir}.tar
+rm -rf ${cvsdir}
+cd $startdir
+gzip -9 ${cvsdir}.tar &
+
+echo "---------------> waiting..."
+wait
+tarsize=$(stat -c -o s ${cvsdir}.tar.gz)
+pssize=$(stat -c -o s ${cvsdir}.ps.gz)
+psa4size=$(stat -c -o s ${cvsdir}-a4.ps.gz)
+sgisize=$(stat -c -o s ${cvsdir}-sgi-icons.tar.gz)
+
+echo "---------------> All done"
+echo "---------------> 	${pssize}	${cvsdir}.ps.gz"
+echo "---------------> 	${psa4size}	${cvsdir}-a4.ps.gz"
+echo "---------------> 	${tarsize}	${cvsdir}.tar.gz"
+echo "---------------> 	${sgisize}	${cvsdir}-sgi-icons.tar.gz"

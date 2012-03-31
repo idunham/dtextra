@@ -1,0 +1,3471 @@
+<!--
+  == mgv.sg
+  ==	Main documentation for MGv (SGML for the sgml-tools package)
+  ==
+  == Copyright (C) 1996  Eric A. Howe
+  ==
+  == This program is free software; you can redistribute it and/or modify
+  == it under the terms of the GNU General Public License as published by
+  == the Free Software Foundation; either version 2 of the License, or
+  == (at your option) any later version.
+  ==
+  == This program is distributed in the hope that it will be useful,
+  == but WITHOUT ANY WARRANTY; without even the implied warranty of
+  == MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  == GNU General Public License for more details.
+  ==
+  == You should have received a copy of the GNU General Public License
+  == along with this program; if not, write to the Free Software
+  == Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  ==
+  ==   Authors:	Matthew D. Francey
+  ==		Eric A. Howe (mu@trends.net)
+  -->
+<!-- $Mu: mgv/doc/mgv.sgml-in 1.322.2.2.2.1.2.1.2.2.2.1 1998/09/28 09:46:46 $ -->
+<!--
+  == Any words surrounded in _'s are "variables" that will get
+  == evaluated by the preprocessor (tools/sgmlpp); the <date>
+  == will also be cleaned up by the preprocessor.  I'm using
+  == m4 for some preprocessing since it is pretty easy to deal
+  == with.
+  -->
+<!doctype linuxdoc system
+[
+<!entity VERSION "3.1.5">
+<!entity EMAIL "<tt/mu@trends.net/">
+<!entity HOMEPAGE "<url name='homepage' url='http://www.trends.net/&tilde;mu'>">
+<!entity mgv "<bf/mgv/">
+<!entity ps "<bf/PostScript/">
+
+<!entity AndrewSmith "<url name='Andrew 0. Smith' url='http://www.insync.net/&tilde;aos'>">
+<!entity AndyPolyakov "<url name='Andy Polyakov' url='http://fy.chalmers.se/&tilde;appro'>">
+<!entity BrianDowling "<url name='Brian Dowling' url='http://www.simplicity.net/&tilde;brian'>">
+<!entity BrianHandy "<url name='Brian Handy' url='http://lambic.physics.montana.edu/&tilde;handy'>">
+<!entity CarlBenker "Carl Benker">
+<!entity ChristopherYoder "<url name='Christopher Yoder' url='http://www.ionet.net/&tilde;cyoder'>">
+<!entity DavidGreen "David Green">
+<!entity DmitriKulginov "<url name='Dmitri Kulginov' url='http://www.fy.chalmers.se/&tilde;kulginov'>">
+<!entity ErikLuijten "<url name='Erik Luijten' url='http://www.cond-mat.physik.uni-mainz.de/&tilde;luijten'>">
+<!entity FerozeKhan "Feroze Khan">
+<!entity GuenterSteinbach "Guenter Steinbach">
+<!entity HansVahlenkamp "<url name='Hans Vahlenkamp' url='http://www.gfdl.gov/&tilde;hnv'>">
+<!entity JeanJacquesMoulis "<url name='Jean-Jacques Moulis' url='http://www.dtr.isy.liu.se/dtr/staff/jj'>">
+<!entity KarlStorck "<url name='Karl Storck' url='http://www.mvs.ikp.liu.se/staff/karl/karl.html'>">
+<!entity LukaszDutkiewicz "<url name='Lukasz Dutkiewicz' url='http://www.if.uj.edu.pl/&tilde;ldutkiew'>">
+<!entity MartyLeisner "Marty Leisner">
+<!entity StephenVeit "Stephen R. Veit">
+<!entity ThanhMa "<url name='Thanh Ma' url='mailto:tma@encore.com'>">
+
+<!entity % fmthtml "IGNORE">
+<!entity % fmttex  "IGNORE">
+]>
+<article>
+
+<title>mgv &VERSION;: A Motif PostScript Viewer
+<author>Eric A. Howe (&EMAIL;)
+<date>1998/09/28
+<abstract>
+&mgv; is a &ps; viewer with a Motif user interface.
+&mgv; is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but <bf/WITHOUT ANY WARRANTY/; without even the implied warranty of
+<bf/MERCHANTABILITY/ or <bf/FITNESS FOR A PARTICULAR PURPOSE/.  See the
+<ref id="GPL" name="GNU General Public License">
+for more details.
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+</abstract>
+
+
+<toc>
+<![ %fmttex; [ <lof> ]]>
+
+
+<!--========================================================================-->
+<sect>Introduction<p>
+&mgv; is a Motif based viewer for &ps; files which uses Ghostscript as the
+underlying &ps; rendering engine.  Limitted PDF support is also supplied.
+
+<!--========================================================================-->
+<sect1>Running mgv<p>
+Executing &mgv; is very simple:
+<verb>
+	mgv [switches] [file.ps [...]]
+</verb>
+If you mention multiple files on the command line, &mgv; will attempt to
+open each file in its own window so be careful with
+&dquot;<tt>mgv *.ps</tt>&dquot;.
+If no initial file is specified, &mgv; will try and read from the standard
+input if it looks like there is something there; see the
+<ref name="Reading From The Standard Input" id="stdin"> section for details.
+The available switches are detailed in the <ref name="Command Line Switches"
+id="switches"> section.
+You can also use the <em/-help/ switch for a compact list of available
+switches or the <em/-longhelp/ switch for a more verbose list.
+
+
+<!--========================================================================-->
+<sect>The Main Window<p>
+<figure>
+	<eps file="mainwindow">
+	<img src="mainwindow.gif">
+	<![ %fmttex; [ <caption>Main Window</caption> ]]>
+</figure>
+<p>The main &mgv; window consists of a menu bar, a tool bar, a page selection
+list, a status line, and the main viewing area.  Everything in the main
+window except the viewing area can be shown or hidden via the
+<ref id=view-menu name="View"> menu.
+
+The menu bar is across the top of the &mgv; window; nothing exciting here.
+Note that if the menu bar is hidden, you can still activate it using any
+of the standard keyboard short cuts (such as <bf/F10/); the visual effect
+may be a little strange but this functionality is quite useful.
+
+The scrolled list along the left side contains the page numbers (if any)
+for the current document, selecting an entry in this list will display
+the selected page.
+Marked pages will appear in a different font as specified in the
+<bf/fontList/ resource for the list; the <bf/fontList/ for the list
+should contain two fonts named <bf/MARKED/ for marked pages and
+<bf/UNMARKED/ for unmarked pages.
+Shift-button1 will toggle the marked status of a page in the page list (see
+<ref id="marking-pages" name="The Mark Menu"> for more information
+on marking pages).
+If the <tt/&percnt;&percnt;Page/ comments in the current document
+contain page labels, then the page list can display the labels
+along with the raw page numbers; you can toggle between page numbers
+and labels and just page numbers using the <ref name="Page" id="menu-page">
+menu.
+
+Along the bottom of the &mgv; window there is a status line which
+displays the name of the current document, the creation date (if
+available), and the current cursor position.
+If the document contains a <tt/&percnt;&percnt;Title/ comment,
+then that will be used as the name, otherwise, the name of the file
+is used.
+The status line also contains a <ref id="magstep-set" name="magstep">
+display and a button for changing the magstep.  When you press this
+button, the button will turn into a text field; type in your desired
+magstep and press <bf/Enter/ to activate it.  This button has the same
+effect as using the <ref id="magstep-set" name="Set..."> entry on
+the <em/Magstep/ menu.
+
+The rest of the &mgv; window is the actual viewing area.
+Mouse button one will activate the zooming reticule when you are in
+this area (see <ref id="zooming" name="Zooming">) and mouse button
+two will activate panning.
+
+Inside the viewing area and page list, the cursor keys will scroll the main
+window.
+
+
+<!--========================================================================-->
+<sect>The File Menu<p>
+The File menu contains the following items:
+<descrip>
+<tag>Open (Ctrl+O)<label id="file-open"></tag>
+	<figure>
+		<eps file="file-open">
+		<img src="file-open.gif">
+		<![ %fmttex; [ <caption>File Open Dialog</caption> ]]>
+	</figure>
+	<p>This button will open a new file.
+	A file selector will be popped up for you to chose a file to open.
+	The file selector will have an extra <em/Browse/ toggle button; when
+	this toggle is activated, the file selector will not automatically
+	pop down when a file has been selected.
+	If the <em/New Window/ toggle is on when you select a file, a new
+	&mgv; window will be created with your chosen file; otherwise,
+	the new file replaces the current file.
+	When you open a file, all of the zoom windows attached to the old
+	file will be removed from the screen.
+	If the selected file appears to compressed (i.e. has an extension
+	of <bf/Z/, <bf/z/, <bf/gz/, or <bf/bz2/ and starts with one of the
+	correct magic numbers), &mgv; will attempt to decompress it using the
+	command specified in the <ref name="gunzip" id="appres-gunzip">,
+	<ref name="bunzip" id="appres-bunzip">, or <ref name="decompress"
+	id="appres-decompress"> resources.
+<p><tag>Reopen (Ctrl+R)<label id="file-reopen"></tag>
+	This button re-opens the current file.  The current page number
+	will be retained if possible.  If you have explicitly requested
+	a page orientation (i.e. you pushed one of the radio buttons in
+	the <ref name="Orientation" id="orientation-menu"> menu)
+	then that orientation will remain in effect.
+	This is equivalent to choosing the current file through
+	the <em/Open/ menu entry, reselecting the current page, and
+	possibly resetting the orientation.
+
+	You cannot re-open files that came from the standard input.
+<p><tag>Save (Ctrl+S)<label id="file-save"></tag>
+	<figure>
+		<eps file="file-save">
+		<img src="file-save.gif">
+		<![ %fmttex; [ <caption>File Save Dialog</caption> ]]>
+	</figure>
+	<p>Activating this entry will prompt you for a file name and write
+	the current document, all or only the marked pages, to disk.
+	The file selector will have two extra toggle buttons:
+	if the <em/Save Marked Pages Only/ toggle is set, only the
+	currently marked pages will be written; otherwise, the entire
+	document will be written; if the <em/Unmark Pages After Saving/
+	toggle is set, all pages will be unmarked after saving.
+
+	If you select a file that already exists, you will be asked if you
+	want to overwrite it (the confirmation dialog is modeless so you
+	can type in a different name without responding to the confirmation
+	request and the <em/right thing/ will be done).
+
+	If the specified file name ends with <em/.Z/ then it will be
+	compressed, if it ends with <em/.gz/ then it will be gzipped, if
+	it ends with <em/.bz2/ then it will be bzip2ed; the
+	<ref name="compress" id="appres-compress">, <ref name="gzip"
+	id="appres-gzip">, and <ref name="bzip" id="appres-bzip"> resources
+	are used to determine what command should be used for compression.
+	The <em/File Save/ dialog can be made <ref name="sticky"
+	id="sticky-dialogs">.
+<p><tag>Print (Ctrl+P)<label id="file-print"></tag>
+	This will bring up a dialog box which allows you to print
+	the whole file or just the marked pages (if any); the print
+	dialog is explained in <ref id="printing" name="Printing">.
+<p><tag>Info (Ctrl+I)<label id="file-info"></tag>
+	This will bring up the <ref name="Document Information" id="doc-info">
+	dialog.
+<p><tag>Close (Ctrl+D)<label id="file-close"></tag>
+	Close the current window; if there is only one viewing window,
+	then this is equivalent to <em/Exit/.
+<p><tag>Exit (Ctrl+C)<label id="file-exit"></tag>
+	Exit &mgv;.  If you have more than one viewing window and the
+	<bf/confirmExit/ resource is <bf/True/, you will be asked
+	for confirmation.
+	Note that all of &mgv;'s child processes--including HTML
+	browsers--will be terminated (via <bf/SIGTERM/) when &mgv;
+	exits (if you don't like this, the <ref name="killChildrenAtExit"
+	id="appres-killChildrenAtExit"> resource can be used stop it).
+</descrip>
+
+<sect1>The Document Information Dialog<label id="doc-info"><p>
+<figure>
+	<eps file="file-info">
+	<img src="file-info.gif">
+	<![ %fmttex; [ <caption>The Document Information Dialog</caption> ]]>
+</figure>
+<p>The <em/Document Information/ dialog contains the following information
+about the document:
+<itemize>
+<item><bf/Document Title:/
+	The document title as specified in the
+	&dquot;<tt/&percnt;&percnt;Title/&dquot; comment.
+<item><bf/Creation Date:/
+	The document's creation date as specified in the
+	&dquot;<tt/&percnt;&percnt;CreationDate/&dquot comment.
+<item><bf/For:/
+	The person who created the document as specified in the
+	&dquot;<tt/&percnt;&percnt;For/&dquot comment.  This value
+	is normally used by print spoolers to generate a banner page.
+<item><bf/Document Creator:/
+	The document's creator as specified in the
+	&dquot;<tt/&percnt;&percnt;Creator/&dquot comment.
+	This value will normally be the name of the program that
+	created the document.
+<item><bf/Default Media:/
+	The default page media for the document.  Individual pages
+	can have a different media than the rest of the document
+	but this appears to be rare.
+<item><bf/Number Of Pages:/
+	The number of pages in the document.
+<item><bf/Document Type:/
+	The document type.  This value will be &dquot;PostScript&dquot;
+	or &dquot;Encapsulated PostScript&dquot;.
+</itemize>
+Some of the information will not be available with some documents.
+If the document is not DSC compliant, then none of the information will
+be available.
+
+<!--========================================================================-->
+<sect>The Page Menu<label id="menu-page"><p>
+The Page menu contains various page movement controls.
+<descrip>
+<tag/Next (PageDown), Previous (PageUp)<label id="page-nextprev">/
+	Display the next or previous page.
+<p><tag/Center (Alt+C)<label id="page-center">/
+	Enable or disable page centering.
+<p><tag/Redisplay (Alt+R)<label id="page-redisplay">/
+	Redisplay the current page.
+<p><tag/Show Page Labels (Alt+B), Show Page Numbers (Alt+N)<label id="show-labelsnums">/
+	These toggles control what is displayed in the page list.  The
+	<em/Page Numbers/ are just absolute position numbers; the
+	<em/Page Labels/ are arbitrary strings which were assigned by the
+	application which generated the &ps; file.  The labels will often
+	match up with the table of contents (if there is one) of the document.
+	For example, the page numbers may be <em/1, 2, 3, 4, 5, 6/ but
+	the labels might be <em/0, i, 1, 2, 3, 4/.
+
+	Page labels will appear in parentheses.
+
+	Turning off both page labels and page numbers will remove the
+	page list from the screen; if you bring the page list back using
+	the <ref name="View" id="view-menu"> menu and both labels and
+	numbers are deactivated, the page numbers will be turned on to make
+	sure there is something to show.
+<p><tag/Automatic Sizing<label id="page-autosize">/
+	This sub-menu offers the following radio buttons for controlling
+	automatic window sizing:
+	<p><descrip>
+	<tag/Size (Ctrl+E)/
+		Try and keep the main window large enough to display the
+		entire page.
+	<p><tag/Height (Ctrl+H)/
+		Try and keep the main window tall enough to display an
+		entire page height.
+	<p><tag/Width (Ctrl+W)/
+		Try and keep the main window wide enough to display an
+		entire page.
+	<p><tag/None (Ctrl+N)/
+		Leave the window size alone.
+	</descrip>
+
+	If your window manager doesn't limit the size of windows (some won't
+	let you resize a window to exceed the screen size), then you can
+	try and use the <ref name="smartSizing" id="appres-smartSizing">
+	resource to limit the resizing.
+
+	Whether or not any of this sizing stuff works is really up to
+	your window manager (which is not required to honor out humble
+	requests) but most window managers will grant our wishes (within
+	limits).
+</descrip>
+
+
+<!--========================================================================-->
+<sect>The View Menu<label id="view-menu"><p>
+The <em/View/ menu supplies buttons for hiding/showing various parts
+of the &mgv; user interface; for convenience, the entries in the window
+menu are duplicated in the <ref name="popup" id="popup-menu"> menu.
+The following items are available:
+<descrip>
+<tag>Hide Log (Ctrl+L)<label id="view-hidelog"></tag>
+	This hides or shows the Ghostscript <ref name="message log"
+	id="gs-log">.
+<p><tag>Hide Page List (Ctrl+G)<label id="view-hidelist"></tag>
+	This hides or shows the page list.  If you have deactivated both
+	page labels and page numbers from the <ref name="Page" id="menu-page">
+	menu, un-hiding the page list will turn on page numbers so it has
+	something to display.
+<p><tag>Hide Status Line (Ctrl+T)<label id="view-hidestatus"></tag>
+	This hides or shows the status line.
+<p><tag>Hide Menu Bar (Ctrl+B)<label id="view-hidemenu"></tag>
+	This hides or shows the menu bar.  Note that the menu bar
+	and the accelerator keys are still active even when the menu
+	bar is hidden--hiding the menu bar only places it underneath
+	the main viewing window (this is sneaky but it works just fine).
+<p><tag>Hide Tool Bar (Alt+T)<label id="view-hidetoolbar"></tag>
+	Hide or show the tool bar.
+<p><tag>Close All Zooms (Ctrl+Z)<label id="view-closezoom"></tag>
+	This will close all of the existing zoom windows.
+</descrip>
+
+
+<!--========================================================================-->
+<sect>The Mark Menu<label id="marking-pages"><p>
+This Mark menu contains the various page marking commands.
+<descrip>
+<tag>Mark/Unmark(Ctrl+M)<label id="mark-mark"></tag>
+	Toggle the marked state of the current page.  If the current page
+	is marked, it will become unmarked; if the current page is unmarked,
+	it will be marked.
+	Marked pages will appear in a different font in the page list.
+<p><tag/Mark All (Alt+M), Unmark All (Alt+U)<label id="mark-all">/
+	Mark or unmark all of the pages.
+<p><tag/Mark Even Pages (Alt+E), Mark Odd Pages (Alt+D)<label id="mark-evenodd">/
+	Mark the even/odd numbered pages.
+<p><tag/Invert Marked Pages (Alt+I)<label id="mark-invert">/
+	Mark the un-marked pages and un-mark the marked pages (i.e. toggle
+	the marked status of each page).
+</descrip>
+
+
+<!--========================================================================-->
+<sect>The Magstep Menu<label id="menu-magstep"><p>
+The Magstep menu controls the document magnification.  The default magstep,
+zero, implies no magnification (i.e. the on-screen image should be the same
+size as the paper version).
+Positive magsteps increase the magnification by a factor of 1.2 at each step
+and negative magsteps decrease the magnification by a factor of 1.2 at each
+step.
+The factor of 1.2 is the same factor used by Ghostview (upon which &mgv; is
+based) and Ghostview borrowed the factor from TeX:  if 1.2 is good enough for Donald Knuth,
+then it is certainly good enough for me.
+<p>
+The following entries are provided on the menu:
+<descrip>
+<tag/Decrease (Alt+-), Increase (Alt++)<label id="magstep-incdec">/
+	Decrease or increase the magstep factor.
+<p><tag/-5, -4, -3, -2, -1, Normal (Alt+0), +1, +2, +3, +4, +5<label id="magstep-numbers">/
+	Set the magstep to the specified number; <em/normal/ means zero
+	magnification.  The radio buttons are provided for convenient
+	access to commonly used magsteps.  If none of the radio buttons
+	are toggled on, then you have a magstep outside their range.
+<p><tag/Set...<label id="magstep-set">/
+	This pops up a simple dialog which allows you to set a specific
+	magstep value.  The <em/Set Magstep/ dialog can be made
+	<ref name="sticky" id="sticky-dialogs">.
+</descrip>
+
+The current magstep is displayed in, and can be changed from, the status line.
+
+If the magstep is above +5 or below -5, then no radio button will be on but
+the status line will still show the correct value.
+
+<bf/Warning:/  High magsteps can be pretty hard on your machine:  <em/caveat
+emptor/.  If you want to put an upper limit on the magstep, a simple
+modification to <tt>magstep.c:mgv_ui_magnify()</tt> is all that is needed
+(just don't make it less than 5 or you'll probably confuse the program).
+
+
+<!--========================================================================-->
+<sect>The Orientation Menu<label id="orientation-menu"><p>
+The <em/Orientation/ menu allows you to select the page orientation of
+your document.  You may choose <em/Portrait/, <em/Landscape/,
+<em/Upside-down/, or <em/Seascape/ as your orientation.
+
+<em/Portrait/ is the <em/natural/ orientation for a given media; in most
+cases, the short sides will be at the top and bottom.
+
+<em/Landscape/ is a clockwise rotation of 90 degrees.
+Some &ps; producers get things backwards and rotate counter-clockwise
+so you might have to use the <em/Seascape/ orientation instead.
+
+<em/Upside-down/ is a rotation of 180 degrees.
+Note that this is not a reflection so <em/Upside-down/ may be misleading.
+
+<em/Seascape/ is a clockwise rotation of 270 degrees.
+Some &ps; documents that claim to be landscape have actually been
+rotated by 90 degrees <em/counter-clockwise/ so you might have to use
+this orientation to get a landscape document to appear right-side-up.
+
+If you explicitly force an orientation, &mgv; will preserve it if you
+reopen the current document.
+
+
+<!--========================================================================-->
+<sect>The Media Menu<label id="media-menu"><p>
+The <em/Media/ menu allows you to select different paper sizes; if the
+paper size can be determined from the &ps; file, then that paper size
+will be selected by default, otherwise, the value of the <bf/defaultPageMedia/
+resource (see <ref id="app-resources" name="Application Resources">) will be
+used.
+
+&mgv; understands the standard media from Adobe's PPD (sizes are listed
+in points):  10x14 (720x1008), A3 (842x1190), A4 (595x842), A5 (420x595),
+B4 (729x1032), B5 (516x729), Executive (540x720), Folio (612x936),
+Ledger (1224x792), Legal (612x1008), Letter (612x792), Quarto (610x780),
+Statement (396x612), and Tabloid (792x1224)
+<em/Letter/ is the standard North American paper size, <em/A4/ is the
+standard paper size in Europe (and probably the rest of the world).  One
+inch is approximately 72 points, one centimeter is approximately 28.3 points.
+<em/Letter/ and <em/Letter Small/ are the same size, <em/A4/ and <em/A4 Small/
+are the same size.
+
+
+<!--========================================================================-->
+<sect>The Options Menu<label id="option-menu"><p>
+The <em/Options/ menu is effectively a dumping ground for menu items
+that don't belong in any of the other menus; the following items have
+been abandoned here:
+<descrip>
+<tag>Enable Anti-aliasing (Ctrl+A)<label id="options-antialias"></tag>
+	Enable or disable anti-aliasing within Ghostscript.
+	Your copy of Ghostscript must support the <bf/x11alpha/ device if you want
+	to use anti-aliasing.
+	Note that anti-aliasing can make some &ps; files look worse (see
+	<ref name="Caveats and Bugs" id="caveats-antialias">).
+<p><tag>Enable Magic Scrolling (Alt+G)<label id="options-magicscrolling"></tag>
+	Enable or disable <em/magic/ scrolling.  When magic scrolling is
+	enabled, attempting to scroll down at the bottom of a page
+	(or scroll up at the top of a page) will move you to the next
+	(or previous) page. The <ref name="magicResistance"
+	id="appres-magicResistance"> resource controls the number of attempts
+	you have to make before magic scrolling takes effect.
+<p><tag>Enable Smooth Scrolling (Alt+L)<label id="options-smoothscrolling"></tag>
+	Enable or disable <em/smooth/ scrolling.  When smooth scrolling is
+	enabled, scrolling with the <ref name="mgvScroll"
+	id="action-mgvScroll"> action (i.e. with the arrow keys but not the
+	little buttons on the scrollbars) will scroll the screen a couple
+	pixels at a time with an update after each movement; this will give
+	the scrolling a smoother appearance than the normal scrolling.
+	When smooth scrolling is disabled, normal scrolling is performed.
+	The <ref name="smoothScrolling" id="appres-smoothScrolling"> resource
+	controls the initial state of smooth scrolling and the
+	<ref name="smoothness" id="appres-smoothness"> resource controls
+	how smooth the scrolling will be.  If you're interested in the
+	scrolling, you might want to look at the <ref name="scrollPercentage"
+	id="appres-scrollPercentage"> resource as well.
+<p><tag>Enable Smart Sizing (Alt+Z)<label id="options-smartsizing"></tag>
+	Enable or disable <em/smart sizing/.  The documentation for the
+	<ref name="smartSizing" id="appres-smartSizing"> resource covers
+	the smart sizing features and their limitations.  Note that
+	smart sizing places upper limits on the main window size whereas
+	<ref name="automatic sizing" id="page-autosize"> places lower
+	limits on the main window size.
+<p><tag>Color Palette<label id="options-palette"></tag>
+	This sub-menu allows you to choose the color palette used for
+	rendering files.
+	You can choose from <em/Monochrome/, <em/Grayscale/, and <em/Color/
+	palettes.
+	Palette changes are not propagated to existing zoom windows but the
+	new palette will be used by new zoom windows.
+</descrip>
+
+
+<!--========================================================================-->
+<sect>The Help Menu<p>
+The <em/Help/ menu provides access to the on-line help system via the
+following entries:
+<descrip>
+<tag/Contents/<label id="help-contents">
+	This entry will launch an HTML browser, set via the <bf/helpBrowser/
+	resource (see <ref id="app-resources" name="Application Resources">),
+	with the contents page.
+<p><tag/On Context (F1)/<label id="help-context">
+	This entry will change the mouse cursor to a question mark; if you
+	click on a widget, an HTML browser will be launched with the 
+	help entry for that widget.
+	If the widget doesn't have any help text, the bell will be rung and
+	no browser will get launched.
+<p><tag/On Application Resources/<label id="help-appres">
+	This entry will launch an HTML browser, set via the <bf/helpBrowser/
+	resource, with the <ref id="app-resources" name="Application Resources">
+	section.
+<p><tag/On Command Line/<label id="help-cmdline">
+	This entry will launch an HTML browser, set via the <bf/helpBrowser/
+	resource (see <ref id="app-resources" name="Application Resources">),
+	with the <ref id="switches" name="Command Line Switches"> section.
+<p><tag/About/<label id="help-about">
+	This will pop-up a dialog box with the &mgv; version, operating
+	system, etc...
+	If you encounter a bug, the information in this dialog may be
+	useful to the author.
+</descrip>
+If you are using Netscape/remote or libhelp for on-line help,
+then &mgv; will attempt to maintain a connection with the browser so that
+only one instance of the browser will be required.  If you are using plain
+HTML, then &mgv; will launch a separate browser for each help request.
+Note that when &mgv; exits, it will attempt to kill (via <bf/SIGTERM/)
+any browsers that it has launched (this can be changed by setting the
+<ref name="killChildrenAtExit" id="appres-killChildrenAtExit"> resource
+to <bf/False/), browsers that &mgv; has just borrowed will not be affected
+by this.
+
+
+<!--========================================================================-->
+<sect1>About Dialog<label id="help-aboutdlg"><p>
+<figure>
+	<eps file="help-about">
+	<img src="help-about.gif">
+	<![ %fmttex; [ <caption>The About Box</caption> ]]>
+</figure>
+<p>The <em/About/ dialog contains the program name, a copyright statement,
+author contact information, a
+<em/Build Options/ button, and a <em/Dismiss/ button.
+The <em/Dismiss/ button will remove the about box from the screen; if
+the <em/Build Options/ dialog is also visible, it will be removed as well.
+Activating the <em/Build Options/ button will pop up the <em/Build Options/
+dialog (see <ref id="help-bldopts" name="Build Options Dialog">).
+
+<!--========================================================================-->
+<sect1>Build Options Dialog<label id="help-bldopts"><p>
+<figure>
+	<eps file="help-bldopts">
+	<img src="help-bldopts.gif">
+	<![ %fmttex; [ <caption>Build Settings Dialog</caption> ]]>
+</figure>
+<p>The <em/Build Options/ dialog contains various flags and program names
+used to compile the program;.
+The entries are as follows:
+<p><descrip>
+<tag/version/
+	The program version.
+<p><tag/compile/
+	The command used to compile source files, this command will include
+	various macro definitions, includes paths, and sundry other compiler
+	flags.
+<p><tag/ldflags/
+	Extra flags used to link the program.
+<p><tag/libs/
+	The libraries which the program was linked against.
+<p><tag/uname/
+	This line will contain the operating system name, release number,
+	version, and machine type as specified by the operating system.
+<p><tag/bindir/
+	The binary installation directory.
+<p><tag/datadir/
+	The library installation directory.  Help files should be in
+	the <tt/help/ subdirectory of <bf/datadir/.
+<p><tag/build date/
+	The data and time when the program was linked.
+</descrip>
+If you find a bug, the information in this dialog may be useful to the
+maintainer.  You can also get this information using the <em/-version/
+command line switch.
+
+
+<!--========================================================================-->
+<sect>The Popup Menu<label id="popup-menu"><p>
+A popup menu is available anywhere in the main window by pressing mouse
+button three; this menu contains the entries in the <ref name="View"
+id="view-menu"> menu with the following additions:
+<descrip>
+<tag/Back (Alt+Left)/<label id="popup-back">
+	Go to the previous page in the page history list; the previous
+	page is the page you were at before the current page.
+<p><tag/Forward (Alt+Right)/<label id="popup-forward">
+	Go forward in the page history list.
+</descrip>
+The <em/Forward/ and <em/Back/ commands behave like <em/Forward/ and
+<em/Back/ in most web browsers; the only difference is that the page
+history list is initialized to a list of all the pages in the current
+document.  There is currently no way to view the page history list, if
+you really want such a feature send a request to the &mgv; author.
+
+
+<!--========================================================================-->
+<sect>The Tool Bar<label id="toolbar"><p>
+<p>The &mgv; tool bar provides convenient access to various functions which
+are available via the menus.  The functions available from the tool bar are
+currently hard wired, there is no way add or remove buttons without chaning
+the &mgv; source code.  However, various visual aspects of the tool bar
+can be configured through the <ref name="resource database"
+id="app-res.toolbar">.
+
+Users can change the icons used in the tool bar by setting the
+<ref name="toolBarIcon" id="appres-toolBarIcon"> resource on the tool bar
+buttons.  If a tool bar icon cannot be found, the built-in default images
+(Dobbs heads) will be used and a warning message will be printed to the
+standard error stream.
+
+
+<!--========================================================================-->
+<sect>Printing<label id="printing"><p>
+<figure>
+	<eps file="file-print">
+	<img src="file-print.gif">
+	<![ %fmttex; [ <caption>Print Dialog</caption> ]]>
+</figure>
+<p>&mgv; has the ability to print an entire document or just selected pages.
+Printing is accessed through the <em/Print/ button in the <em/File/ menu
+which pops up a <em/Print/ dialog.  You can try and print a PDF file but
+don't expect it to work unless your print spooler knows what to do with
+PDF files.
+
+The <em/Print/ dialog contains the following controls:
+<itemize>
+<item>
+	A text field for specifying the print spooling command to use.
+	The command should specify the printer to use and arguments
+	to make it read from the standard input.
+<item>
+	A <em/Print Marked Pages Only/ toggle button.
+	If this toggle is set, only the marked pages will be sent to the
+	print spooler.
+	This toggle is only active if there are marked pages.
+<item>
+	An <em/Unmark Pages After Printing/ toggle button.  If this toggle
+	is set, the marked pages will be unmarked after the marked pages
+	have been submitted to the print spooler.
+	This toggle is only active if there are marked pages.
+<item>
+	A <em/Print/ button.  Pressing this button will submit the
+	requested pages to the print spooler and pop down the <em/Print/
+	dialog.
+	Any output from the print spooler will be displayed in a message
+	box.
+<item>
+	A <em/Help/ button for requesting help.
+<item>
+	A <em/Dismiss/ button for popping down the <em/Print/ dialog.
+</itemize>
+The default print command is taken from the <ref name="printCommand"
+id="appres-printCommand"> application resource.
+If you do not specify the <bf/printCommand/ resource,
+&mgv; will attempt to choose sensible values; the manual entry for
+the <ref name="printCommand" id="appres-printCommand"> resource discusses
+the guessing procedure, the <bf/printCommand/ resource entry also lists
+the restrictions on the print command.
+The <em/Print/ dialog can be made <ref name="sticky"
+id="sticky-dialogs">.
+
+If the current document does not contain DSC comments, then you will
+not be able to mark individual pages and hence, you will only be able
+to print the entire document.
+
+If your print spooler prints any status messages, a message box containing
+the messages will be popped up.
+
+
+<!--========================================================================-->
+<sect>Zooming<label id="zooming"><p>
+<figure>
+	<eps file="main-zoom">
+	<img src="main-zoom.gif">
+	<![ %fmttex; [ <caption>Zoom Window</caption> ]]>
+</figure>
+<p>If you wish to magnify a section of the displayed image, you can either
+magnify the entire image using the <ref name="Magstep Menu" id="menu-magstep">
+or zoom in on a specific region using mouse button one.  Pressing mouse
+button one and dragging will mark out the selected area; when the button
+is released, a menu will popup with several zoom factors to choose from.
+Of course you can zoom in on a zoom if you wish.
+
+Note that resizing a zoom dialog stretches the area rather than expanding it.
+
+
+<!--========================================================================-->
+<sect>Reading From The Standard Input<label id="stdin"><p>
+If you run &mgv; without a file name or with a file name of &dquot;<tt/-/&dquot;
+then one of two things will happen:
+<itemize>
+<item>If the standard input is a TTY, then &mgv; will just start up without
+	a file.
+<item>If the standard input is not a TTY, then &mgv; will attempt to read
+	&ps; from the standard input.
+</itemize>
+This means that running &mgv; like this:
+<verb>
+	&dollar; mgv
+</verb>
+will just start an instance of &mgv; without a file;
+if you run &mgv; like this:
+<verb>
+	&dollar; mgv somefile.ps
+</verb>
+then &mgv; will open <tt/somefile.ps/ as the initial file;
+if you run &mgv; like this:
+<verb>
+	&dollar; mgv < somefile.ps
+	&dollar; mgv - < somefile.ps
+	&dollar; cat somefile.ps | mgv
+	&dollar; cat somefile.ps | mgv -
+</verb>
+then &mgv; will end up reading <tt/somefile.ps/ from the standard input.
+If you have asked &mgv; to copy files from the standard input using the
+<ref name="copyStdin" id="appres-copyStdin"> resource, then &mgv; will
+copy the standard input to a temporary file and work from the temporary
+file. Note that if a file is read from standard input and not copied,
+you will only be able to move to the next page: you won't be able to
+jump to an arbitrary page and you won't be able to move backwards.
+
+<!--========================================================================-->
+<sect>Sticky Dialogs<label id="sticky-dialogs"><p>
+Some of the dialogs in &mgv; can be configured to require explicit user
+action to dismiss them; generally, the dialogs will dismiss themselves
+after you press the <em/OK/ or <em/Apply/ button but some users dislike
+this behavior.  If you prefer to keep dialogs up until you explicitly
+dismiss them (via <em/Cancel/ or <em/Dismiss/ buttons), then you can
+use the <bf/wlAutoDismiss/ resource to keep the dialogs up (note that all
+of the dialogs in &mgv; are modeless so keeping the dialogs up will not
+interfere with normal application usage).
+
+You can make all of the sticky-enabled dialogs sticky by setting the
+<bf/wlAutoDismiss/ resource to <bf/False/ with something like this:
+<verb>
+	mgv*wlAutoDismiss: False
+</verb>
+in your local resource file (probably
+&dquot;<tt>&tilde;/.Xresources</tt>&dquot;) or from the command line:
+<verb>
+	mgv -xrm 'mgv*wlAutoDismiss: False'
+</verb>
+
+The following dialogs can be made sticky:
+<itemize>
+<item><ref name="File Save" id="file-save">
+	(&dquot;<tt>mgv*fileSave.wlAutoDismiss: False</tt>&dquot;)
+<item><ref name="Set Magstep" id="magstep-set">
+	(&dquot;<tt>mgv*magstepDialog.wlAutoDismiss: False</tt>&dquot;)
+<item><ref name="Print" id="printing">
+	(&dquot;<tt>mgv*printDialog.wlAutoDismiss: False</tt>&dquot;)
+</itemize>
+The <ref name="File Open" id="file-open"> dialog offers similar functionality
+through its <em/Browse/ toggle.
+
+<!--========================================================================-->
+<sect>The Ghostscript Message Log<label id="gs-log"><p>
+<figure>
+	<eps file="gs-log">
+	<img src="gs-log.gif">
+	<![ %fmttex; [ <caption>Ghostscript Message Log</caption> ]]>
+</figure>
+<p>All messages from Ghostscript are stored in a log dialog.
+By default this dialog is not visible but may be viewed at any time using
+the <em/Hide Log/ entry in the <ref id="view-menu" name="View Menu">.
+The <ref name="hideLog" id="appres-hideLog"> application resource may be
+used to alter the default behavior for all instances of &mgv; and the
+<bf/-log/ and <bf/-nolog/ command-line switches (see <ref id="switches"
+name="Command Line Switches">) may be used to alter the default behavior
+for a single execution.  The message log is also used to display errors
+from the Ghostscript interpreter.  If there is an error, the log will
+automatically pop up.
+
+The log dialog consists of the following widgets:
+<itemize>
+<item>
+	A Scrolled text region for displaying the messages.  The text widget
+	is editable so you are free to add notes if you find a bug in
+	&mgv;, Ghostscript, or someone's &ps; program.
+<item>
+	A <em/Hide/ button for popping down the log until an error occurs or
+	you explicitly request its presence again.
+<item>
+	A <em/Save/ button for saving the current contents of the log to
+	a file.  This button will activate a standard file selector to ask
+	for the filename.
+<item>
+	A <em/Clear/ button for emptying the log.
+<item>
+	A <em/Help/ button for requesting help on the log dialog.
+</itemize>
+
+
+<!--========================================================================-->
+<sect>Application Resources<label id="app-resources"><p>
+The following sections detail the &mgv; application resources.
+Each resource name is followed by its type and the resource class name
+in parentheses.  All resource settings should have the form:
+<verb>
+	mgv*resourceName: value
+</verb>
+to make sure the resource gets to the proper widget.
+
+<sect1>Help Resources<label id="app-res.help"><p>
+The following resource control various aspects of the on-line help
+system:
+<descrip>
+<tag>helpBrowser String (HelpBrowser)<label id="appres-helpBrowser"></tag>
+	This resource specifies the HTML browser to use for on-line help.
+	The HTML files used by <bf/wlib/ are quite generic so
+	any HTML browser should work.
+	Note that the browser will be given a <em/-display display/ argument
+	before the actual URL so the browser that you use should understand
+	this standard <bf/X/ option.
+
+	The <bf/helpType/ resource should agree with your chosen browser.
+<p><tag>helpPrefix String (HelpPrefix)<label id="appres-helpPrefix"></tag>
+	The help prefix serves as the root of the HTML documentation tree.
+	If the help files are installed locally, then this will be the full
+	path (including the trailing slash) to the directory containing the
+	help files.
+	If you are accessing the help files through an HTTP server, then this
+	resource should have the form
+	<bf>http://hostname/path/to/help/files/</>.  If you are using
+	a <bf/helpType/ of <bf/libhelp/, then the help files must
+	be accessible from the file system.
+<p><tag>helpType String (HelpType)<label id="appres-helpType"></tag>
+	This resource specifies your preferred on-line help format.
+	The following types are known:
+	<p><descrip>
+	<tag/html/
+		Plain old HTML with no communication with the browser.
+		This help method will launch a separate browser for
+		each help request.
+	<p><tag/html-remote, netscape, remote/
+		HTML with Netscape's <bf/-remote/ protocol.
+	<p><tag/libhelp/
+		The libhelp help system.  If you wish to use libhelp for
+		online help then you should make sure that your
+		<bf/LIBHELPPATH/ environment variable contains a path
+		to the libhelp images; the application will add its own
+		entries to <bf/LIBHELPPATH/ based on the <bf/helpPrefix/
+		resource so you should make sure that <bf/helpPrefix/
+		is correctly set.
+		See
+		<url url="http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp"
+		name="http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp">
+		for more information about libhelp.  This is the lightest
+		weight help system currently supported so I recommend that
+		you use it if possible.
+	</descrip>
+	<p>All help methods except <bf/html/ will attempt to maintain a
+	connection to the help browser used so that only one instance of
+	the help browser will be used.
+	Not all help methods are supported on all platforms but the
+	three HTML methods should always be available (assuming the
+	availability of browsers).
+	If you supply an unknown help type a warning message will be printed
+	on standard error and <bf/html/ will be used.
+
+	The <bf/helpBrowser/ resource should agree with your chosen help
+	type.
+</descrip>
+
+<sect1>Rendering Resources<label id="app-res.rendering"><p>
+The following resources control the actual &ps; rendering process and
+supply various rendering defaults.  Most of these resources are converted
+to switches for the child Ghostscript that does all of the real work.
+<descrip>
+<tag>antialias Boolean (Antialias)<label id="appres-antialias"></tag>
+	If this resource is <bf/true/ then &ps; files will be anti-aliased
+	to improve image quality (at the expense of performance).  Your
+	Ghostscript must support the <bf/x11alpha/ device or anti-aliasing won't
+	work.  If anti-aliasing is enable, then the <bf/x11alpha/ device is
+	used and Ghostscript will be run with the <em/-dNOPLATFONTS/ switch; if
+	anti-aliasing is disabled, then the <bf/x11/ device will be used.
+	The default value is <bf/true/.
+<p><tag>antialiasEPS Boolean (AntialiasEPS)<label id="appres-antialiasEPS"></tag>
+	Anti-aliasing graphic images (which seems to be what most EPS
+	files contain) will often produce a poorer quality display
+	and significantly increase the rendering time.
+	If you find yourself disabling anti-aliasing by hand whenever
+	you open an EPS file, then this resource is for you.
+	If you disable anti-aliasing globally, then this resource
+	is irrelevant.
+	If you enable anti-aliasing globally, then this resource is only
+	relevant if its value is <bf/False/; in this case, anti-aliasing
+	will automatically be disabled when you load an EPS file and, of
+	course, reset to the previous state when you load a non-EPS file.
+	The default value is <bf/True/ which means that EPS files will
+	be treated like any other &ps; file so that anti-aliasing of
+	EPS files will be controlled by the <bf/antialias/ resource
+	of the Ghostview widget.
+<p><tag>arguments String (Arguments)<label id="appres-arguments"></tag>
+	This resource is used to supply extra command-line switches
+	to Ghostscript.  This resource is useful for passing <em/-I/ switches
+	to Ghostscript when your library files are not where Ghostscript
+	thinks they are.  The default value is empty.
+<p><tag>defaultPageMedia String (DefaultPageMedia)<label id="appres-defaultPageMedia"></tag>
+	This resource sets the media for documents that do not specify
+	one with a <tt/&percnt;&percnt;BoundingBox/ or
+	<tt/&percnt;&percnt;PageMedia/ comment.
+	All of the values in the <ref name="Media Menu" id="media-menu">
+	are valid values for this resource and the values are case
+	insensitive.  The default is <bf/Letter/.
+<p><tag>gsLocale String (GsLocale)<label id="appres-gsLocale"></tag>
+	This resource supplies the locale used when writing the <bf/GHOSTVIEW/
+	window property.  In order to support multiple locales, &mgv; calls
+	<bf/XtSetLanguageProc()/ and this might put you into a non POSIX
+	locale; using a non-POSIX locale can alter the decimal separator
+	so that commas are used where Ghostscript expects periods.  By default,
+	&mgv; temporarily forces a POSIX locale while building the the
+	property string but your copy of Ghostscript may be expecting something
+	else.  If Ghostscript is having problems parsing the <bf/GHOSTVIEW/
+	property, then you should try adjusting this resource.
+<p><tag>interpreter String (Interpreter)<label id="appres-interpreter"></tag>
+	Specify where your Ghostscript lives.  If you don't specify a particular
+	Ghostscript, &mgv; will use the first one that shows up in your
+	<bf/PATH/ environment variable.
+<p><tag>magstep Integer (Magstep)<label id="appres-magstep"></tag>
+	This resource specifies the initial <ref name="magstep"
+	id="menu-magstep">.  The default value is zero.
+</descrip>
+
+<sect1>Display Resources<label id="app-res.display"><p>
+The following resources control which parts of the &mgv; user interface
+will be displayed at start up:
+<descrip>
+<tag>hideLog Boolean (HideLog)<label id="appres-hideLog"></tag>
+	If this resource is <bf/True/ then the Ghostscript message log will be
+	hidden by default.
+	Any errors from Ghostscript will force the log to be displayed.
+	Messages from Ghostscript will be logged even if the log is hidden.
+	The default value is <bf/True/.
+	Note that the log does not exist until there is something to put
+	in it.
+<p><tag>hideMenuBar Boolean (HideMenuBar)<label id="appres-hideMenuBar"></tag>
+	This resource controls the initial state of the menu bar; if set
+	to <bf/True/, the menu bar will be hidden at start up and the
+	menu bar will be visible at start up if this resource is <bf/False/.
+	The default value is <bf/False/.
+<p><tag>hidePageList Boolean (HidePageList)<label id="appres-hidePageList"></tag>
+	When this resource is <bf/False/, the page list will be visible at
+	start up and the page list will be hidden if this resource is set
+	to <bf/True/.
+	The default value is <bf/False/.
+<p><tag>hideStatusLine Boolean (HideStatusLine)<label id="appres-hideStatusLine"></tag>
+	If this resource is <bf/True/, the status line will be hidden at
+	start up; if this resource is <bf/False/, the status line will be
+	visible at start up.
+	The default value is <bf/False/.
+<p><tag>hideToolBar Boolean (HideToolBar)<label id="appres-hideToolBar"></tag>
+	If this resource is <bf/True/, the tool bar will be hidden at
+	start up; if this resource is <bf/False/, the tool bar will be
+	visible at start up.
+	The default value is <bf/False/.
+<p><tag>showLabels Boolean (ShowLabels)<label id="appres-showLabels"></tag>
+	If this resource is <bf/True/ then the page labels, if any, will be
+	displayed in the page list; if <bf/showPageNumbers/ is also <bf/True/
+	then both will be displayed.
+	The default value is <bf/False/.
+<p><tag>showPageNumbers Boolean (ShowPageNumbers)<label id="appres-showPageNumbers"></tag>
+	If this resource is <bf/True/ then the page numbers, if any, will be
+	displayed in the pagelist; if <bf/showLabels/ is also <bf/True/
+	then both will be displayed.
+	The default value is <bf/True/.
+</descrip>
+
+<sect1>Colormap Resources<label id="app-res.colormap"><p>
+The following resources control such things as private color maps and
+non-default visuals.  If you're running out of colors, there may be some
+help for you here.
+<descrip>
+<tag>wlDepth Integer (WlDepth)<label id="appres-wlDepth"></tag>
+	Specify a non-default color depth.
+<p><tag>wlUsePrivateColormap Boolean (WlUsePrivateColormap)<label id="appres-wlUsePrivateColormap"></tag>
+	Install a private colormap if <bf/true/, otherwise use the default
+	colormap.  If you specify a non-default visual or depth, you will get
+	a private colormap whether you ask for one or not.
+<p><tag>wlVisualClass WlVisualClass (WlVisualClass)<label id="appres-wlVisualClass"></tag>
+	Specify a non-default visual by visual class.  The value of this
+	resource can be any of the following strings (case insensitive):
+
+	<descrip>
+	<tag/StaticGray/
+		This visual yields a hardware defined read-only grayscale
+		palette, the colors cannot be changed to suit the application's
+		needs.
+	<p><tag/StaticColor/
+		This visual yields a hardware defined read-only color
+		palette, the colors cannot be changed to suit the application's
+		needs.
+	<p><tag/PseudoColor/
+		This visual yields an indexed read/write palette, the colors
+		may be modified to suit an application's needs.
+		This is the most common visual on eight bit color displays.
+	<p><tag/GrayScale, GreyScale/
+		This visual yields an indexed read/write palette where the
+		red, green, and blue components of each color are equal.
+	<p><tag/TrueColor/
+		This visual yields a hardware defined, non-indexed,
+		read-only palette.
+	<p><tag/DirectColor/
+		This visual is a high-performance visual where the red,
+		green, and blue color components are separately indexed.
+		The palette is read/write.
+	</descrip>
+	<p>Not all visual classes are available with all servers, the
+	<bf/xdpyinfo/ command will tell you which visuals are available.
+	If you don't know what any of the descriptions mean, you should
+	experiment to find the visual which you like best and bug the
+	author (&EMAIL;) to clarify the documentation.  If you aren't
+	having any problems with your colormaps, then you should probably
+	just use the defaults and leave these resources alone.
+
+	You might want to set the <bf/wlDepth/ resource as well.
+<p><tag>wlVisualID String (WlVisualID)<label id="appres-wlVisualID"></tag>
+	Specify a non-default visual by visual id.
+	This resource takes precedence over the <bf/wlDepth/ and
+	<bf/wlVisualClass/ resources.  This resource is available in
+	case the visual chosen by the <bf/wlDepth/ and <bf/wlVisualClass/
+	resources is not the one you want--you should only use
+	this resource if <bf/wlDepth/ and <bf/wlVisualClass/ are not giving
+	the visual you want.
+</descrip>
+The final visual, depth, and colormap are chosen as follows:
+<enum>
+<item>
+	If the <bf/wlVisualID/ is set and it contains a valid visual,
+	then we use that.
+<item>
+	If <bf/wlDepth/ and <bf/wlVisualClass/ are set, then we try and
+	find a visual with the desired depth and class.  If this fails,
+	the defaults are used.  If only <bf/wlDepth/ is set, then we use
+	the first available visual which supports that depth.
+<item>
+	If <bf/wlVisualClass/ is set but <bf/wlDepth/ is not, we use the
+	visual of the specified class which has the largest depth.
+<item>
+	If all else fails (or nothing special is requested), then the
+	defaults supplied by Xt are used.
+</enum>
+If <bf/wlUsePrivateColormap/ is <bf/true/ or the visual requires a private
+colormap, then a private colormap is used.  Normally you can just specify the
+<bf/wlVisualClass/ and <bf/wlDepth/ (after looking at the output of
+<bf/xdpyinfo/(1) first) and you'll get what you want, if that doesn't work,
+just specify the visual ID in <bf/wlVisualID/.
+
+<sect1>Scrolling Resources<label id="app-res.scrolling"><p>
+The following resource affect various aspects of scrolling in &mgv;:
+<descrip>
+<tag>center String (Center)<label id="appres-center"></tag>
+	When this resource is <bf/True/, pages will be centered when
+	displayed.  The default value is <bf/False/.  You can also
+	enable or disable page centering at run-time with the
+	<ref name="Center" id="page-center"> menu entry.
+<p><tag>magicResistance Integer (MagicResistance)<label id="appres-magicResistance"></tag>
+	This resource specifies the number of consecutive attempts to scroll
+	beyond the page boundaries that are needed before magic scrolling
+	takes effect.  This resource has no effect if magic scrolling is
+	not enabled.  The absolute value of this resource is used.  If you
+	want no resistance at all (i.e. magic happens as soon as you try
+	to exceed the page boundary), use a value of zero.
+	The default value is <bf/2/ (i.e. the second attempt succeeds).
+
+	The documentation for the <ref name="mgvScroll" id="action-mgvScroll">
+	contains some more notes about scrolling in general.
+<p><tag>magicScrolling Boolean (MagicScrolling)<label id="appres-magicScrolling"></tag>
+	When this resource is <bf/True/, &mgv; will move to the next page
+	if you try and scroll down at the bottom of a page and move to the
+	previous page if you try and scroll up at the top of a page.
+	You can change this behavior at run-time via the
+	<ref name="Option" id="option-menu"> menu.
+	The default value is <bf/True/.
+<p><tag>resetScrollBars ResetScrollBars (ResetScrollBars)<label id="appres-resetScrollBars"></tag>
+	This resource controls the resetting of the horizontal and vertical
+	scrollbars in the main window when you change pages; the possible
+	values are
+	<itemize>
+	<item><bf/both, all/: reset both the horizontal and vertical
+		scrollbars.  The value <bf/true/ is an alias for <bf/both/
+		in the interests of backwards compatibility.
+	<item><bf/none/: don't reset either scrollbar.  The value <bf/false/
+		is an alias for <bf/none/ in the interests of backwards
+		compatibility.
+	<item><bf/horizontal/: reset the horizontal scrollbar.
+	<item><bf/vertical/: reset the vertical scrollbar.
+	</itemize>
+	All of these values are case-insensitive.
+	When this resource is used, the chosen scrollbars will be moved
+	back to their home positions (the top or left edge) when you change
+	pages.
+	Note that changing the orientation or media type will always reset both
+	scrollbars.  The default value is <bf/both/.
+<p><tag>scrollPercentage Percentage (ScrollPercentage)<label id="appres-scrollPercentage"></tag>
+	This resource controls how far the page will move when you scroll
+	with the <ref name="mgvScroll" id="action-mgvScroll"> action (i.e.
+	the keyboard but not the little buttons on the scrollbars).  A
+	value of <bf/100&percnt;/ will scroll a whole window height/width
+	while a value of <bf/90&percnt;/ (the default) will leave a little
+	bit of overlap for context.  If the value you specify has a trailing
+	percent sign (&dquot;<em/&percnt;/&dquot;), then it will be
+	interpreted as a percentage (i.e. the value will be divided by 100),
+	otherwise, the value will be considered a raw floating point value.
+	For example:  <em/75&percnt;/, <em/.75/, and <em/7.5e-1/ all represent
+	the same value.
+<p><tag>smoothScrolling Boolean (SmoothScrolling)<label id="appres-smoothScrolling"></tag>
+	This resource controls the smooth scrolling in the main viewing
+	window.  When smooth scrolling is enabled, scrolling with the
+	<ref name="mgvScroll" id="action-mgvScroll"> action (i.e. with the
+	arrow keys but not the little buttons on the scrollbars) will scroll
+	the screen a couple pixels at a time with an update after each
+	movement; this will give the scrolling a smoother appearance than the
+	normal scrolling.  When smooth scrolling is disabled, the normal
+	scrolling is performed.  Smooth scrolling makes it much easier to
+	keep track of where you are on the page but it is slower:
+	<em/caveat emptor/.  Smooth scrolling can be turned on and off at
+	run time from the <ref name="Options" id="options-smoothscrolling">
+	menu.  Smooth scrolling is enabled by default.
+<p><tag>smoothness Integer (Smoothness)<label id="appres-smoothness"></tag>
+	This resource controls how smooth smooth scrolling will be;
+	the normal increment (see the <bf/scrollPercentage/ resource)
+	is divided by
+	the value of this resource to determine how many pixels to
+	scroll between screen updates.
+	Larger values will yield smoother scrolling but will take more
+	time.
+	Values between 20 and 30 tend give fairly good results
+	(this is dependent on how fast your machine and X server are).
+	The default value is <bf/25/.
+</descrip>
+
+<sect1>Sizing Resources<label id="app-res.sizing"><p>
+The following resources control how &mgv; resizes the main window to
+accomodate the page size of a &ps; file.
+<descrip>
+<tag>autoHeight Boolean (AutoHeight)<label id="appres-autoHeight"></tag>
+	If the this resource is <bf/True/ then &mgv; will attempt
+	to make the main window tall enough to display an entire page;
+	your window manager may refuse the request but &mgv; will try
+	anyway.  This resource is <bf/False/ by default.
+<p><tag>autoWidth Boolean (AutoWidth)<label id="appres-autoWidth"></tag>
+	If the this resource is <bf/True/ then &mgv; will attempt
+	to make the main window wide enough to display an entire page;
+	your window manager may refuse the request but &mgv; will try
+	anyway.  This resource is <bf/True/ by default.
+<p><tag>smartSizing Boolean (SmartSizing)<label id="appres-smartSizing"></tag>
+	This resource controls how smart the <ref name="automatic sizing"
+	id="page-autosize"> will be.  If this resource is <bf/True/, then
+	&mgv; will attempt to keep the window smaller than the screen during
+	automatic resizing; if <bf/False/, &mgv; will leave this task to
+	your window manager.
+	The default is <bf/False/ since this stuff is really your window
+	manager's problem.
+
+	You should only need to use the <bf/smartSizing/ resource if your
+	window manager allows windows to exceed the screen size.  If you
+	need to use this resource, you should set the <ref id="appres-wmWidth"
+	name="wmWidth and wmHeight"> resources since there is no sane way
+	to get determine how large the window manager decorations are.
+<p><tag>wmHeight Integer (WmHeight)<label id="appres-wmHeight"></tag>
+	This resource specifies the height (top and bottom combined) of the
+	window manager decorations.  You will only need to care about
+	this resource if you need to use the <ref name="smartSizing"
+	id="appres-smartSizing"> resource.  The default value of
+	<bf/30/ is most likely incorrect for your system; the easiest
+	way of finding the correct value is to run
+	&dquot;<tt>xwininfo</tt>&dquot; and
+	&dquot;<tt>xwininfo -frame</tt>&dquot; and use the difference between
+	the reported <bf/Height/ values.
+<p><tag>wmWidth Integer (WmWidth)<label id="appres-wmWidth"></tag>
+	This resource specifies the width (both sides combined) of the
+	window manager decorations.  You will only need to care about
+	this resource if you need to use the <ref name="smartSizing"
+	id="appres-smartSizing"> resource.  The default value of
+	<bf/12/ is most likely incorrect for your system; the easiest
+	way of finding the correct value is to run
+	&dquot;<tt>xwininfo</tt>&dquot; and
+	&dquot <tt>xwininfo -frame</tt>&dquot; and use the difference between
+	the reported <bf/Width/ values.
+</descrip>
+
+<sect1>Splash Screen and Icon Resources<label id="app-res.splash"><p>
+The following resources control the &mgv; splash screen and window manager
+icon.
+<descrip>
+<tag>wlInstallIcon Boolean (WlInstallIcon)<label id="appres-wlInstallIcon"></tag>
+	This resource tells the application to install or not install its own
+	built-in icon when it runs.  If you have your own cool icon that
+	matches your personal desktop better than the built-in icon you can
+	set this resource to <bf/false/ and tell your window manager to use
+	your preferred icon.  This resource is <bf/true/ by default.
+<p><tag>wlSplashBitmap String (WlSplashBitmap)<label id="appres-wlSplashBitmap"></tag>
+	The full path to your desired splash screen as an XBM file.
+<p><tag>wlSplashPixmap String (WlSplashPixmap)<label id="appres-wlSplashPixmap"></tag>
+	The full path to your desired splash screen as an XPM file.  If the
+	file doesn't exist or cannot be loaded, then the bitmap will be tried.
+<p><tag>wlShowSplashScreen Boolean (WlShowSplashScreen)<label id="appres-wlShowSplashScreen"></tag>
+	If this resource is <bf/True/, the splash screen will be shown; if
+	this resource is <bf/False/, the splash screen will not be shown.
+	The internal default is <bf/False/ but the application defaults file
+	will probably specify <bf/True/.
+<p><tag>wlUseColorIcon Boolean (WlUseColorIcon)<label id="appres-wlUseColorIcon"></tag>
+	Use or don't use a color icon.  If the color icon is not available
+	(due to a lack of Xpm support), then the monochrome icon will be
+	used.  The default value for this resource is <bf/true/.
+<p><tag>wlUseMonoSplash Boolean (WlUseMonoSplash)<label id="appres-wlUseMonoSplash"></tag>
+	If this resource is <bf/True/, then the application will show the
+	monochrome splash screen without even trying to show the color
+	one.  Normally, the application will try the color splash screen
+	(as specified by the <ref name="wlSplashPixmap"
+	id="appres-wlSplashPixmap"> resource) and then try the monochrome
+	splash screen (as specified by the <ref name="wlSplashBitmap"
+	id="appres-wlSplashBitmap"> resource) if that doesn't work.
+	The default value is <bf/False/.
+</descrip>
+
+<sect1>Tool Bar Resources<label id="app-res.toolbar"><p>
+The following resources control various aspects of the &mgv; toolbar.
+<descrip>
+<tag>buttonMarginExtra Dimension (ButtonMarginExtra)<label id="appres-buttonMarginExtra"></tag>
+	Margin setting for tool bar buttons.  The default value is <bf/1/.
+<p><tag>buttonShadowThickness Dimension (ButtonShadowThickness)<label id="appres-buttonShadowThickness"></tag>
+	The shadow thickness for tool bar buttons.  The default value is
+	<bf/1/.
+<p><tag>flattenButtons Boolean (FlattenButtons)<label id="appres-flattenButtons"></tag>
+	If this resource is <bf/True/, the toolbar buttons will appear flat
+	until the mouse passes over them, when the mouse enters one of the
+	buttons, it will <em/pop up/ (i.e. its shadow will be drawn).  If
+	this resource is <bf/False/, the toolbar buttons will look and act
+	like every other button.  The default value is <bf/True/.
+<p><tag>groupSpacing Dimension (GroupSpacing)<label id="appres-groupSpacing"></tag>
+	The amount of space between groups of buttons (see <ref name="newGroup"
+	id="appres-newGroup">).  The default value is <bf/10/ pixels.
+<p><tag>showToolTips Boolean (ShowToolTips)<label id="appres-showToolTips"></tag>
+	If this resource is <bf/True/, then tool tips will be shown for the
+	toolbar buttons, otherwise, tooltips will not be shown.
+	The default value is <bf/True/.
+<p><tag>tipBackground Color (TipBackground)<label id="appres-tipBackground"></tag>
+	The background color for tool tips.  The default value is <bf/yellow/.
+<p><tag>tipBorderWidth Dimension (TipBorderWidth)<label id="appres-tipBorderWidth"></tag>
+	The border width for tool bar buttons.  The default value is
+	<bf/1/.
+<p><tag>tipDelay Integer (TipDelay)<label id="appres-tipDelay"></tag>
+	The delay before showing a tool tip.  When the mouse cursor enters
+	a tool bar button, &mgv; will wait <bf/tipDelay/ milliseconds before
+	showing the tool tip.  The default value is <bf/1000/ (one second).
+<p><tag>tipDistance Dimension (TipDistance)<label id="appres-tipDistance"></tag>
+	The distance, in pixels, between a tool bar button and its tool tip.
+	The default value is <bf/10/ pixels.
+<p><tag>tipFontList FontList (TipFontList)<label id="appres-tipFontList"></tag>
+	The font list to use when drawing tool tips.  The default is the
+	standard Motif default font list.
+<p><tag>tipForeground Color (TipForeground)<label id="appres-tipForeground"></tag>
+	The foreground color for tool tips.  The default is <bf/black/.
+<p><tag>tipPosition TipPosition (TipPosition)<label id="appres-tipPosition"></tag>
+	The position, relative to the button, where tool tips will be drawn.
+	This resource may have one of the following values:
+	<itemize>
+	<item><bf/bottom-left/
+	<item><bf/bottom-right/
+	<item><bf/top-left/
+	<item><bf/top-right/
+	</itemize>
+	The values may be specified with a <bf/tip-/, <bf/wltip-/,
+	<bf/xwltip-/, or <bf/xmtip-/ prefix and underscores may be used
+	instead of hyphens.  The default value is <bf/bottom-left/.
+<p><tag>useColorIcons Boolean (UseColorIcons)<label id="appres-useColorIcons"></tag>
+	If this resource is <bf/True/ then &mgv; will attempt to use color
+	icons in the toolbar, if <bf/False/ then monochrome images will be
+	used.  If your copy of &mgv; was compiled without XPM support then
+	you will get monochrome toolbar icons even if this resource is
+	<bf/True/.  The default value is <bf/True/.
+</descrip>
+
+The following resources can be set on the tool bar buttons:
+<descrip>
+<tag>newGroup Boolean (NewGroup)<label id="appres-newGroup"></tag>
+	Mark a button as the start of a new group of buttons.  Button
+	groups are separated by <ref name="groupSpacing"
+	id="appres-groupSpacing"> extra space.  The default value is
+	<bf/False/.
+<p><tag>toolBarIcon String (ToolBarIcon)<label id="appres-toolBarIcon"></tag>
+	The name of the icon to use for this button.  This resource specifies
+	a name which is used to construct file names or a value in an internal
+	icon table.  If the name begins with <bf/INTERNAL::/ then the list
+	of compiled-in icons is used to find the icon, otherwise, the name
+	should specify a full path to your desired icon without the 
+	<tt/.xpm/ or <tt/.xbm/ extension:  the extension will be appended
+	by &mgv;.  The insensitive icon image file should have a <bf/-i/
+	suffix; for example:  if the image name is <tt/someIcon/, then the
+	sensitive pixmap would be <tt/someIcon.xpm/ and the insensitive
+	pixmap would be <tt/someIcon-i.xpm/.
+	Color icons should be in XPM format, monochrome icons in XBM format.
+	For color icons, you can use the <em/None/ and <em/none/ color
+	symbols to indicate transparency (the GIMP, at least, uses these
+	symbols in transparent XPM files).
+<p><tag>toolTip String (ToolTip)<label id="appres-toolTip"></tag>
+	The tool tip to display for this button.  The default value is
+	an empty string.
+</descrip>
+
+<sect1>Miscellaneous Resources<label id="app-res.misc"><p>
+The following list contains resources which don't fit in any of the
+other categories:
+<descrip>
+<tag>applicationVersion String (ApplicationVersion)<label id="appres-applicationVersion"></tag>
+	This resource holds the application version number.  &mgv; uses
+	the value of this resource to check the version of the application
+	defaults files that gets used.  If the incorrect version is found,
+	&mgv; will warn you to expect strange behavior.  If this occurs,
+	then you have the wrong version of the application defaults installed
+	somewhere and you should remove or replace it.
+	<quote><bf>
+		You should never alter the value of this resource.
+	</bf></quote>
+<p><tag>bunzip String (Bunzip)<label id="appres-bunzip"></tag>
+	This resource contains the command (including arguments) that
+	will be used to decompress bzip2ed files; the command must
+	read from the standard input and write to the standard output.
+	By default this resource is set to <bf/&dquot;bunzip2&dquot;/.
+<p><tag>bzip String (Bzip)<label id="appres-bzip"></tag>
+	This resource contains the command (including arguments) that
+	will be used to compress files with bzip2; the command
+	must read from the standard input and write to the standard output.
+	This resource defaults to <bf/&dquot;bzip -9&dquot;/.
+<p><tag>compress String (Compress)<label id="appres-compress"></tag>
+	This resource contains the command (including arguments) that
+	will be used to compress files with compress; the command
+	must read from the standard input and write to the standard output.
+	This resource defaults to <bf/&dquot;compress&dquot;/.
+<p><tag>confirmExit Boolean (ConfirmExit)<label id="appres-confirmExit"></tag>
+	If this resource is <bf/True/ and you have multiple top level
+	viewing windows when you issue an exit request (through the
+	<em/Exit/ entry in the <em/File/ menu), you will be prompted to
+	confirm that you really meant it; note that this resource only has
+	an effect when you have more than one viewing window.
+	The default is <bf/True/.
+<p><tag>copyStdin Boolean (CopyStdin)<label id="appres-copyStdin"></tag>
+	This resource controls whether or not &ps; files read from the
+	standard input are copied to temporary files.  If you don't copy
+	the standard input then you won't get page navigation; however,
+	if the file you're reading from the standard input is quite large
+	you may wish to give up page navigation to avoid running out of
+	temporary file space.  This resource is <bf/True/ by default.
+<p><tag>decompress String (Decompress)<label id="appres-decompress"></tag>
+	This resource contains the command (including arguments) that
+	will be used to decompress compressed files; the command must
+	read from the standard input and write to the standard output.
+	By default this resource is set to <bf/&dquot;gzip --stdout
+	--decompress&dquot;/.
+<p><tag>gunzip String (Gunzip)<label id="appres-gunzip"></tag>
+	This resource contains the command (including arguments) that
+	will be used to decompress gzipped files; the command must
+	read from the standard input and write to the standard output.
+	By default this resource is set to <bf/&dquot;gzip --stdout
+	--decompress&dquot;/.
+<p><tag>gzip String (Gzip)<label id="appres-gzip"></tag>
+	This resource contains the command (including arguments) that
+	will be used to compress files with gzip; the command
+	must read from the standard input and write to the standard output.
+	This resource defaults to <bf/&dquot;gzip -9&dquot;/.
+<p><tag>killChildrenAtExit Boolean (KillChildrenAtExit)<label id="appres-killChildrenAtExit"></tag>
+	When this resource is <bf/True/, all child processes (which for now
+	are just the HTML browsers) will be killed, using <bf/SIGTERM/,
+	when &mgv; exits; if this resource is <bf/False/, then the children
+	will be left alone.  Note that Ghostscript children will always be
+	killed.
+	By default this resource is <bf/True/.
+<p><tag>printCommand String (PrintCommand)<label id="appres-printCommand"></tag>
+	The command for your printer spooler.
+	If you don't specify this resource, &mgv; will attempt to determine
+	it automatically by looking for <bf/lp/ in your <bf/PATH/ environment
+	variable and if <bf/lp/ cannot be found, it will search for <bf/lpr/.
+	The <bf/printCommand/ does not understand shell quoting, the command
+	will be broken into arguments at white space boundaries; if you really
+	need to supply quoted arguments to your print command, then you'll
+	have to write a shell script wrapper.
+	The <ref name="print dialog" id="printing"> allows you to change
+	the print command.
+<p><tag>reticuleForeground Color (ReticuleForeground)<label id="appres-reticuleForeground"></tag>
+	This resource specifies the foreground color for the zoom selection
+	reticule; the reticule is drawn in <bf/xor/ mode so it should always
+	be visible.
+	The default value is <bf/red/.
+<p><tag>reticuleLineWidth Integer (ReticuleLineWidth)<label id="appres-reticuleLineWidth"></tag>
+	This resource specifies the width of the lines used to draw the zoom
+	selection reticule.
+	The default value is <bf/2/.
+<p><tag>tempDir String (TempDir)<label id="appres-tempDir"></tag>
+	This resource specifies where temporary files should be stored.
+	If this resource is not specified, &mgv; will use the directory
+	specified in first available source from the following list:
+	<itemize>
+	<item>	the <bf/TMPDIR/ environment variable
+	<item>	the <bf/TEMPDIR/ environment variable
+	<item>	the standard temporary directory for your system
+		(<bf/P_tmpdir/ in <tt/stdio.h/ or
+		&dquot;<tt>/usr/tmp</tt>&dquot; if there is no <bf/P_tmpdir/).
+	<item>	<tt>/tmp/</>.
+	</itemize>
+	For convenience, &mgv; will create its own directory under the
+	specified directory.
+<p><tag>wlUseEditRes Boolean (WlUseEditRes)<label id="appres-wlUseEditRes"></tag>
+	This resource controls whether support for the editres protocol
+	will be installed in application shell widgets.  If <bf/wlUseEditRes/
+	is <bf/true/, then the editres protocol will be support; otherwise,
+	editres will not be supported.
+	On system that don't support editres at all, this resource will
+	do nothing. The default value is <bf/true/.
+</descrip>
+
+
+<!--========================================================================-->
+<sect1>The Application Defaults File<p>
+By default the &mgv; application defaults file is installed in the &mgv;
+library directory for future reference--the application defaults is not
+needed since the entire application defaults file is compiled into &mgv;
+as fallback resources.  However, you may, if you wish, install the
+application defaults file in the normal location (probably
+<tt>/usr/lib/X11/app-defaults</tt> or <tt>/usr/X11/lib/X11/app-defaults</tt>)
+and everything should work just fine until the next &mgv; upgrade.
+
+I stopped installing the application defaults file in the app-defaults
+directory to avoid version conflicts:  an incorrect application defaults
+file can seriously break &mgv;.  &mgv; will detect an out-of-date application
+defaults file and warn you about it.
+
+
+<!--========================================================================-->
+<sect>Actions<p>
+The following actions are defined by &mgv;:
+<descrip>
+<tag>mgvMark()<label id="action-mgvMark"></tag>
+	Toggle the marked status of a page; this action is only valid in
+	the main page list.  This action takes no arguments.  This action
+	is bound to <bf/Shift-Button1/ by default.
+<p><tag>mgvPan(<em/command/)<label id="action-mgvPan"></tag>
+	This action scrolls the main viewing window in two dimensions.
+	The argument should be <bf/begin/, <bf/pan/, or <bf/end/;
+	<bf/begin/ starts the panning, <bf/pan/ causes the window to
+	scroll, and <bf/end/ stops the panning.  These commands are bound
+	to <bf/Btn2Down/, <bf/Btn2Motion/, and <bf/Btn2Up/ (respectively)
+	by default.
+<p><tag>mgvScroll(<em/direction/ &lsqb;, <em/magical/ &lsqb;, <em/force/ &rsqb; &rsqb;)<label id="action-mgvScroll"></tag>
+	This action scrolls the main viewing window; the action has
+	one, two, or three arguments.
+	The first argument should be the scrolling direction (<bf/up/,
+	<bf/down/, <bf/left/, or <bf/right/), the second (optional)
+	argument should be <bf/magical/ or non-existent--the scrolling
+	will be <ref id="options-magicscrolling" name="magical"> if the
+	second argument is <bf/magical/.  If you specify the
+	second argument, you can also specify the third argument
+	which indicates how many scrolling attempts this should count
+	for; the absolute value of this parameter is used so the sign
+	of <em/force/ makes no difference; a value of zero is considered
+	to be one (which is also the default value).
+	<p>
+	You can use the third argument to attach different levels of
+	<em/magicalness/ to different keys.  For example, if your
+	<bf/magicResistance/ is <bf/3/ and you add these bindings:
+	<verb>
+	<Key>space:		mgvScroll(down, magical, 3)
+	<Key>osfBackSpace:	mgvScroll(up,   magical, 3)
+	</verb>
+	then the spacebar will always scroll down magically and the
+	backspace key will always scroll up magically.
+
+	This action will scroll smoothly if smooth scrolling is
+	enabled.
+<p><tag>mgvZoom(<em/command/)<label id="action-mgvZoom"></tag>
+	Begin, extend, or end a zoom reticule.  This action takes one
+	argument which must be one of:  <bf/begin/ (begin a new zoom reticule
+	at the current mouse position), <bf/end/ (end the current zoom
+	reticule at the current mouse position), or <bf/extend/ (extend the
+	current zoom reticule).
+<p><tag>wlHelpContext()<label id="action-wlHelpContext"></tag>
+	This action activates the context sensitive help system; the
+	cursor will turn into a question mark so you can select the
+	widget you want help with.  This action is normally bound to
+	the <bf/osfHelp/ virtual key (which is generally <bf/F1/).
+</descrip>
+All arguments are case insensitive.  Arguments in (square) brackets are
+optional.
+
+
+<!--========================================================================-->
+<sect>Command Line Switches<label id="switches"><p>
+The command line switches for &mgv; generally set application resources;
+see <ref id="app-resources" name="Application Resources"> for descriptions
+of the various resources.
+
+<sect1>Help Switches<label id="switches.help"><p>
+<descrip>
+<tag/-browser htmlbrowser/
+	Specify the HTML browser to use for the on-line help; this switch
+	sets the <ref name="helpBrowser" id="appres-helpBrowser"> resource.
+<p><tag/-help, --help, -H, -?/
+	Display a short summary of the available command line switches.
+<p><tag/-helptype type/
+	Specify the help type for on-line help.  This switch sets the
+	<ref name="helpType" id="appres-helpType"> resource to <bf/type/.
+<p><tag/-longhelp/
+	Display a summary, with explanations, of the available command line
+	switches.
+<p><tag/-prefix pfx/
+	Specify the location of the files for the on-line help; this
+	switch sets the <ref name="helpPrefix" id="appres-helpPrefix">
+	resource.
+<p><tag/-version, --version/
+	Display lots of version and build information about &mgv;.
+	The displayed information is the same as that in 
+	the <ref id="help-bldopts" name="Build Options Dialog">.
+</descrip>
+
+<sect1>Rendering Switches<label id="switches.rendering"><p>
+<descrip>
+<tag/-aliaseps, -noaliaseps/
+	Anti-aliasing graphic images will often make the images look worse
+	and increase the rendering time significantly; hence, these switches
+	are offered to give you finer control over when anti-aliasing is
+	used.  These switches set the <ref name="antialiasEPS"
+	id="appres-antialiasEPS"> application resource.
+<p><tag/-antialias, -noantialias/
+	Enable or disable anti-aliasing within Ghostscript; by default,
+	anti-aliasing is enabled.
+	If anti-aliasing is enable, then the <bf/x11alpha/
+	device is used and Ghostscript will be run with the <em/-dNOPLATFONTS/
+	switch; if anti-aliasing is disabled, then the <bf/x11/ device
+	will be used.
+	This switch sets the <ref name="antialias" id="appres-antialias">
+	resource for Ghostview widgets.
+<p><tag/-arguments args/
+	Specify additional arguments for Ghostscript; this switch sets the
+	<ref name="arguments" id="appres-arguments"> resource.
+<p><tag/-color, -grayscale, -greyscale, -monochrome/
+	Force color/grayscale/monochrome display; these switches do not
+	have anything to do with the visual, depth, or colormap that
+	&mgv; uses, you will want to use the <em/-visual/, <em/-visualid/,
+	<em/-depth/, and <em/-privatecm/ switches for that.
+	These switches set the <bf/palette/ resource.
+<p><tag/-dpi n, -resolution n/
+	Specify the overall resolution; these switches set the <bf/Resolution/
+	resource.
+<p><tag/-gslocale locale/
+	Force the <bf/GHOSTVIEW/ window property to be written according
+	to <em/locale/.
+	This switch sets the <ref name="gsLocale" id="appres-gsLocale">
+	resource.
+<p><tag/-interpreter interp/
+	Use <bf/interp/ as the &ps; interpreter.  This switch is useful
+	if you want to use an interpreter that is not in your PATH or
+	is not the first <bf/gs/ is your PATH.
+	This switch sets the <ref name="interpreter" id="appres-interpreter">
+	resource.
+<p><tag/-magstep m/
+	Set the initial magstep to <em/m/; this switch sets the
+	<ref name="magstep" id="appres-magstep"> resource.
+<p><tag/-media media, -paper media/
+	Specify the default page media; this switch sets the
+	<ref name="defaultPageMedia" id="appres-defaultPageMedia"> resource.
+<p><tag/-portrait, -landscape, -seascape, -upsidedown/
+	Specify the initial page orientation.
+<p><tag/-quiet, -noquiet/
+	Use or don't use <em/-dQUIET/ with Ghostscript; this switch sets the
+	<bf/quiet/ resource.
+	The <em/-dQUIET/ switch tells Ghostscript to suppresses the normal
+	startup messages.
+<p><tag/-safer, -nosafer/
+	Use or don't use <em/-dSAFER/ with Ghostscript; this switch sets the
+	<bf/safer/ resource.
+	When run with the <em/-dSAFER/ switch, Ghostscript disables the
+	<bf/deletefile/ and <bf/renamefile/ operators and can only
+	open files with read-only access.
+<p><tag/-xdpi n, -ypdi n/
+	Specify the horizontal and vertical resolutions; these switches
+	set the <bf/xdpi/ and <bf/ydpi/ resources.
+</descrip>
+
+<sect1>Display Switches<label id="switches.display"><p>
+<descrip>
+<tag/-labels, -nolabels/
+	Show or don't show the page labels in the page list; this switch
+	sets the <ref name="showLabels" id="appres-showLabels"> resource.
+<p><tag/-log, -nolog/
+	Show or hide the Ghostscript log on start-up; this switch sets the
+	<ref name="hideLog" id="appres-hideLog"> resource.
+<p><tag/-menubar, -nomenubar/
+	Show or hide the menu bar at start up; this switch sets the
+	<ref name="hideMenuBar" id="appres-hideMenuBar"> resource.
+<p><tag/-pagelist, -nopagelist/
+	Show or hide the page list at start up; this switch sets the
+	<ref name="hidePageList" id="appres-hidePageList"> resource.
+<p><tag/-pgnums, -nopgnums/
+	Show or don't show the page numbers in the page list; this resource
+	sets the <ref name="showPageNumbers" id="appres-showPageNumbers">
+	resource.
+<p><tag/-status, -nostatus/
+	Show or hide the status line at start up; this switch sets the
+	<ref name="hideStatusLine" id="appres-hideStatusLine"> resource.
+<p><tag/-toolbar, -notoolbar/
+	Show or hide the tool bar at start up; this switch sets the
+	<ref name="hideToolBar" id="appres-hideToolBar"> resource.
+</descrip>
+
+<sect1>Colormap Switches<label id="switches.colormap"><p>
+<descrip>
+<tag/-depth n/
+	Specify a non-default color depth.  This switch sets the
+	<ref name="wlDepth" id="appres-wlDepth"> resource.
+<p><tag/-install, -noinstall, -privatecm, -noprivatecm/
+	Install or don't install a private colormap.  Non-default visual
+	and/or depth settings may cause this switch to be ignored.
+	This switch sets the <ref name="wlUsePrivateColormap"
+	id="appres-wlUsePrivateColormap"> resource.
+<p><tag/-visual visualClass/
+	Specify a non-default visual.  This switch sets the
+	<ref name="wlVisualClass" id="appres-wlVisualClass"> resource.
+<p><tag/-visualid visualID/
+	Specify a non-default visual by visual id (see <bf/xdpyinfo/ for
+	a list of visual ids).  This switch sets the
+	<ref name="wlVisualID" id="appres-wlVisualID"> resource.
+</descrip>
+
+<sect1>Scrolling Switches<label id="switches.scrolling"><p>
+<descrip>
+<tag/-center, -nocenter/
+	Enable or disable automatic page centering.
+	This switch sets the <ref name="center" id="appres-center"> resource.
+<p><tag/-magicresistance n/
+	Specify the number of attempts to scroll beyond the page boundaries
+	before magical scrolling takes effect; this switch sets the
+	<ref name="magicResistance" id="appres-magicResistance">
+	resource.
+<p><tag/-magicscroll, -nomagicscroll/
+	Allow or disallow <em/magical/ scrolling; this switch sets the
+	<ref name="magicScrolling" id="appres-magicScrolling"> resource.
+<p><tag/-resetboth/
+	Reset both the horizontal and vertical scrollbars when you move
+	to a new page.
+	This switch sets the <ref name="resetScrollBars"
+	id="appres-resetScrollBars"> resource to <bf/both/.
+<p><tag/-resethor/
+	Reset the horizontal scrollbar when you move to a new page.
+	This switch sets the <ref name="resetScrollBars"
+	id="appres-resetScrollBars"> resource to <bf/horizontal/.
+<p><tag/-resetnone/
+	Don't reset either scrollbar when you move to a new page.
+	This switch sets the <ref name="resetScrollBars"
+	id="appres-resetScrollBars"> resource to <bf/none/.
+<p><tag/-resetver/
+	Reset the vertical scrollbar when you move to a new page.
+	This switch sets the <ref name="resetScrollBars"
+	id="appres-resetScrollBars"> resource to <bf/vertical/.
+<p><tag/-scrollpercent percentage/
+	Scroll the screen by <em/percentage/ of the window size when
+	scrolling with the keyboard.  This switch sets the
+	<ref name="scrollPercentage" id="appres-scrollPercentage"> resource.
+<p><tag/-smooth, -nosmooth/
+	Enable or disable smooth scrolling.  This switch sets the
+	<ref name="smoothScrolling" id="appres-smoothScrolling">
+	resource.
+<p><tag/-smoothness n/
+	Specify how smooth smooth scrolling should be.  This switch sets
+	the <ref name="smoothness" id="appres-smoothness"> resource to
+	<bf/n/.
+</descrip>
+
+<sect1>Sizing Switches<label id="switches.sizing"><p>
+<descrip>
+<tag/-autoheight, -noautoheight/
+	Attempt to make the main window tall enough to accommodate a whole
+	page.  This switch sets the <ref name="autoHeight"
+	id="appres-autoHeight"> resource.
+<p><tag/-autowidth, -noautowidth/
+	Attempt to make the main window wide enough to accommodate a whole
+	page.  This switch sets the <ref name="autoWidth"
+	id="appres-autoWidth"> resource.
+<p><tag/-smartsizing, -nosmartsizing/
+	Enable or disable smart sizing.  This switch sets the
+	<ref name="smartSizing" id="appres-smartSizing"> resource.
+<p><tag/-wmwidth width, -wmheight height/
+	Set the total width or height of the window manager decorations.
+	These switches set the <ref name="wmWidth" id="appres-wmWidth">
+	and <ref name="wmHeight" id="appres-wmHeight"> resources.
+</descrip>
+
+<sect1>Splash Screen and Icon Switches<label id="switches.splash"><p>
+<descrip>
+<tag/-coloricon, -monoicon, -nocoloricon/
+	Use or don't use a color icon (if available).  These switches set
+	the <ref name="wlUseColorIcon" id="appres-wlUseColorIcon"> resource.
+<p><tag/-installicon, -noicon/
+	Install or don't install an icon when the application starts up.
+	These switches set the <ref name="wlInstallIcon"
+	id="appres-wlInstallIcon"> resource.
+<p><tag/-monosplash, -colorsplash/
+	Use the monochrome or the color splash screen.
+	These switches set the <ref name="wlUseMonoSplash"
+	id="appres-wlUseMonoSplash"> resource.
+<p><tag/-splash, -nosplash/
+	Show or don't show the splash screen.
+<p><tag/-splashxbm filename/
+	Specify the splash screen XBM file.  This switch sets the
+	<ref name="wlSplashBitmap" id="appres-wlSplashBitmap">
+	resource.
+<p><tag/-splashxpm filename/
+	Specify the splash screen XPM file.  This switch sets the
+	<ref name="wlSplashPixmap" id="appres-wlSplashPixmap">
+	resource.
+</descrip>
+
+<sect1>Tool Bar Switches<label id="switches.toolbar"><p>
+<descrip>
+<tag/-colortoolbar, -monotoolbar/
+	Use color or monochrome icons in the tool bar.  These switches set
+	the <ref name="useColorIcons" id="appres-useColorIcons"> resource.
+<p><tag/-flatten, -noflatten/
+	Flatten or don't flatten the tool bar buttons.
+	These switches set the <ref name="flattenButtons"
+	id="appres-flattenButtons"> resource.
+<p><tag/-tooltips, -notooltips/
+	Show or don't show tool tips for the tool bar buttons.
+	These switches set the <ref name="showToolTips"
+	id="appres-showToolTips"> resource.
+</descrip>
+
+<sect1>Miscellaneous Switches<label id="switches.misc"><p>
+<descrip>
+<tag/-bzip cmd, -bunzip cmd/
+	Specify the command to compress or decompress bzip2ed files;
+	the commands should read from the standard input and write to
+	the standard output.
+	These switches set the <ref name="bzip" id="appres-bzip"> and
+	<ref name="bunzip" id="appres-bunzip"> resources.
+<p><tag/-compress cmd, -decompress cmd/
+	Specify the command to compress or decompress compressed files;
+	the commands should read from the standard input and write to
+	the standard output.
+	These switches set the <ref name="compress" id="appres-compress"> and
+	<ref name="decompress" id="appres-decompress"> resources.
+<p><tag/-confirmexit, -noconfirmexit/
+	Require or don't require user confirmation when attempting to
+	exit the application with more than one top level viewing window.
+	These switches set the <ref name="confirmExit" id="appres-confirmExit">
+	resource.
+<p><tag/-copystdin, -nocopystdin/
+	Copy or don't copy files from the standard input to a temporary file.
+	These switches set the <ref name="copyStdin" id="appres-copyStdin">
+	resource.
+<p><tag/-editres, -noeditres/
+	Install or don't install support for editres.  This switch sets
+	the <ref name="wlUseEditRes" id="appres-wlUseEditRes"> resource.
+<p><tag/-gunzip cmd/
+	Specify the command to compress or decompress gzipped files;
+	the commands should read from the standard input and write to
+	the standard output.
+	These switches set the <ref name="gzip" id="appres-gzip"> and
+	<ref name="gunzip" id="appres-gunzip"> resources.
+<p><tag/-killkids, -nokillkids/
+	Kill or don't kill child processes when &mgv; exits; this switch
+	sets the <ref name="killChildrenAtExit" id="appres-killChildrenAtExit">
+	resource.
+<p><tag/-printcommand cmd/
+	Use <em/cmd/ as the default printer command; this switch
+	sets the <ref name="printCommand" id="appres-printCommand"> resource.
+<p><tag/-temp dir/
+	Specify the temporary directory; this switch sets the
+	<ref name="tempDir" id="appres-tempDir"> resource.
+<p><tag/-zoomfg color, -reticulefg color/
+	Specify the zoom reticule color; these switches set the
+	<ref name="reticuleForeground" id="appres-reticuleForeground">
+	resource.
+<p><tag/-zoomwidth n, -reticulewidth n/
+	Specify the zoom reticule width; these switches set the
+	<ref name="reticuleLineWidth" id="appres-reticuleLineWidth">
+	resource.
+</descrip>
+
+
+<!--========================================================================-->
+<sect>Caveats and Bugs<label id="caveats"><p>
+<sect1>Switches Pages Too Fast<p>
+I have had bug reports about crashes when you change pages too fast.  I
+have been able to reproduce the problem but I had to hold the <em/PageDown/
+key down to trigger the bug.  I think I know what's going on but I'm still
+thinking about the best way to fix the problem.  Since the bug only manifests
+itself under extreme circumstances and since I've only had one bug report
+about this, I'm not going to try and rush a fix out.  In the mean time,
+you can avoid the problem by not holding the <em/PageDown/ or <em/PageUp/
+keys down, use the page list instead.  My apologies if this causes anyone
+grief.
+
+<sect1>Modal Dialogs<p>
+&mgv; has no modal dialogs (even the <em/overwrite confirmation/ dialog
+in <em>File/Save...</em> is modeless); modal dialogs are evil.  This really
+means that dialogs don't stop you from doing other things in the application:
+you don't have to back out of a dialog to change something and bring the
+dialog back--you just go and change things without leaving your current
+dialog.
+For people that have lived too long under the tyranny of modal dialogs
+this may be confusing.
+
+<sect1>Anti-aliasing<label id="caveats-antialias"><p>
+The anti-aliasing support in newer versions of Ghostscript (version 3.33 GNU and
+higher) is a mixed blessing.
+For text documents, especially those produced by <bf/dvips/ from TeX DVI
+documents, the readability advantages are wonderful and easily overshadow
+the performance penalties (which aren't that noticeable with text anyway);
+however, anti-aliasing delivers a noticeable performance penalty on graphics
+and can actually make the images look worse, anti-aliasing can also seriously
+degrade any document which uses a lot of colors when viewed on an eight-bit
+display.
+If you find this happening to you, try using the <bf/antialiasEPS/ resource
+(or the <em/-aliaseps/ and <em/-noaliaseps/ switches) to change the 
+anti-aliasing of EPS files.
+
+<sect1>Non-DSC and PDF Documents<p>
+If the document does not begin with <tt/&percnt;!PS-Adobe-/, it does not
+claim conformance to the document structuring convention; the functionality
+of &mgv; is severely limited when dealing with non-DSC conformant
+documents--about all you can do is move to the next page.
+Also, zooming in a non-DSC document will always display the first page.
+Since I haven't implemented a PDF parser, PDF files are effectively
+treated as non-DSC documents so that &mgv; is quite limited when viewing
+PDF files (xpdf or Adobe's Acroread are much better for PDF files).
+
+<sect1>Broken Windows PostScript Drivers<p>
+Some &ps; documents produced by the MS-Windows &ps; drivers will cause
+erroneous warnings about a lack of virtual memory.
+When trying to view such documents, you will only get a page telling you
+that you don't have enough memory in your printer and some steps (which will
+probably be useless if you don't have the original document) to correct the
+problem.
+A simple hack to fix this problem is to find a line that looks like
+<verb>
+	30000 VM?
+</verb>
+and remove it.
+The following perl filter should fix such documents:
+<verb>
+	perl -pe 's/^(\d+\s+VM\?\r?)$/% \1/'
+</verb>
+Thanks to Bart Robinson (<tt/lomew@cs.utah.edu/) in comp.lang.postscript
+for this advice.
+
+Windows printer drivers for &ps; also tend to produce incorrect DSC comments.
+The Windows PostScript driver builds the <bf/NTPSOct94/ dictionary which
+contains various functions; the required <tt/NTPSOct94 begin/ command appears
+between the <tt/&percnt;&percnt;EndSetup/ comment and the first
+<tt/&percnt;&percnt;Page/ comment so that neither &mgv; or Ghostview will pass
+<tt/NTPSOct94 begin/ to Ghostscript.  The simplest solution is to change
+<verb>
+	%%EndSetup
+	NTPSOct94 begin
+	%%Page: 1 1
+</verb>
+to
+<verb>
+	NTPSOct94 begin
+	%%EndSetup
+	%%Page: 1 1
+</verb>
+in the offending document (this is will leave your &ps; file <em/less/
+broken rather than fixed).
+A better solution--which the NT &ps; driver should probably be
+doing--is to remove the offending &dquot;<tt/NTPSOct94 begin/&dquot;
+command and add &dquot;<tt/NTPSOct94 begin/&dquot; at the beginning of
+each page and add an &dquot;<tt/end/&dquot; at the end of each page.
+The following perl script should perform this transformation on its standard
+input and print the fixed file to its standard output:
+<verb>
+	#!/usr/local/bin/perl
+	$first_page = 1;
+	$bogus      = "";
+	while($line = <STDIN>) {
+		##
+		## Skip NT's brain damage (at least a little teeny tiny
+		## part of it)
+		##
+		if($line =~ /^NTPSOct9[45] begin/) {
+			$bogus = $line;
+			next;
+		}
+
+		##
+		## Insert appropriate begin/end pairs
+		##
+		if($first_page && $line =~ /%%Page:/) {
+			print $line, $bogus;
+			$first_page = 0;
+		}
+		elsif($line =~ /%%Page:/) {
+			print "end\n", $line, $bogus;
+		}
+		elsif($line =~ /%%Trailer/) {
+			print "end\n$line";
+			# next line is the "end" that we want to kill
+			$line = <STDIN>;
+		}
+		else {
+			print $line;
+		}
+	}
+	exit(0);
+</verb>
+The same problem occurs with the <bf/NTPSOct95/ version of the &ps; driver
+but the above script should deal with that one too.
+
+<sect1>DSC Parsing Problems<p>
+The current DSC parser doesn't like Mac files (which use a single carriage
+return as end-of-line); if you want to view such files, change the
+carriage returns to line feeds with something like this:
+<verb>
+	perl -pe 's/\r/\n/g' < mac-file > unix-file
+</verb>
+and try again.  I could attempt to fix the DSC parser but I'd rather not
+touch it until I have time to build a cleaner one.
+
+Files with a PageOrder of <bf/Special/ will confuse the DSC parser--pages
+will be lost or out of order.  If you have to deal with such files, you'll
+have to use another viewer until I can rewrite the DSC parser.
+
+<sect1>Application Defaults Version Problems<p>
+The application defaults file specifies a significant portion of &mgv;'s
+behavior; hence, an incorrect application defaults file can cause many
+problems.  If &mgv; warns you about an incorrect version number, you
+should fix it--setting the <ref name="applicationVersion"
+id="appres-applicationVersion"> will not fix the problem, it will only
+make the warning go away.
+
+The correct version of the application defaults file should be installed
+in the same place as the documentation (look for a file called <tt>MGv</tt>)
+so you can fix the problem by running &mgv; like this:
+<verb>
+	XENVIRONMENT=/path/to/mgv/library/files/MGv mgv
+</verb>
+until the local administrator can fix the problem by removing the old
+application defaults file.  This problem should only be encountered by
+people that started with &mgv; version 1.x.
+
+<sect1>Non-Default Visuals on Irix 5.3<p>
+I have had reports of problems with non-default visuals under Irix 5.3
+when the root window has depth eight.  Everything works fine with Irix 6.2/6.4
+and other systems.  Private colormaps do work with Irix 5.3 so all is not
+lost.  As near as I can tell, this is a bug somewhere in SGI's Motif libraries
+and I don't know how to work around the problem.
+
+<!--========================================================================-->
+<sect1>Reporting Bugs<p>
+If you find any bugs in &mgv; please send a bug report to &EMAIL;
+which includes the following information:
+<itemize>
+<item>&mgv; version number
+<item>operating system name and release number
+<item>Motif and X versions
+<item>Ghostscript version
+<item>clear and concise instructions to reproduce the bug (include sample
+	&ps; files if possible)
+<item>anything else that may be relevant
+</itemize>
+The information in the build options dialog
+(see <ref id="help-bldopts" name="Build Options Dialog">) may be useful
+as well.  If you can fix the bug, a patch would be appreciated but please
+bear in mind that the author is somewhat fanatical about maintaining a
+consistent coding/naming style in the code so patches may be reformatted
+and/or torn apart before they get into the code.
+
+I will try and respond to all bug reports quickly (where <em/quickly/ is a
+function of how detailed the report is and how easy it is for me to
+reproduce) but don't be surprised if it takes me a few days to respond.
+
+
+<!--========================================================================-->
+<sect>Mathoms<p>
+This section is a dumping ground for things that don't belong anywhere else
+(<em/mathom/ is a Hobbit term:  a mathom is something that no one knows
+what to do with but they don't want to throw it away).
+
+<sect1>Enlightening mgv<p>
+If you're into the
+<url url="http://www.enlightenment.org" name="enlightened"> look, then you
+should make sure you don't try and specify a <bf/backgroundPixmap/ for the
+main scrolled window.  Resource settings like this:
+<verb>
+	MGv*view*backgroundPixmap:        XmUNSPECIFIED_PIXMAP
+	MGv*backgroundPixmap:             /full/path/to/tile.xpm
+	MGv*foreground:                   fg
+	MGv*background:                   bg
+	MGv*XmText.backgroundPixmap:      XmUNSPECIFIED_PIXMAP
+	MGv*XmTextField.backgroundPixmap: XmUNSPECIFIED_PIXMAP
+	MGv*XmList.backgroundPixmap:      XmUNSPECIFIED_PIXMAP
+</verb>
+should give you the enlightened look (text and list widgets look pretty
+crappy with background pixmaps so there's no point in even trying).
+If you try and specify a
+<bf/backgroundPixmap/ for <bf/view/, you will probably get an X protocol
+error at startup.  For best results, <bf/fg/ should contrast with the whole
+tiling pixmap (smooth pixmaps work best) and <bf/bg/ should be a solid color
+that is close the pixmap colors.  Better results can be had if you're willing
+to set up different pixmaps for the various types of widgets; if you come
+up with anything really cool, let me know.  If you're wondering what this
+stuff looks like, my &HOMEPAGE; has a couple of screen shots.
+
+If you don't have Motif 2.0.1+ then the <bf/backgroundPixmap/ resource might
+not work (it does work with Netscape 4.X/Linux and that uses Motif 1.2.X).
+I have tried this stuff with Irix and CDE (Motif 1.2.5) without success:
+&mgv; died on Irix and ignored the pixmap under CDE.  I think the problem
+could be fixed by adding a String to Pixmap type converter that understood
+XPM files but that will have to wait.  Most LessTif libraries supply a
+String to Pixmap type converter that understands XPM files so LessTif users
+should be able use fancy tiling as well.
+
+<sect1>Using mgv With Netscape<p>
+If you want to use &mgv; as the &ps; viewer with Netscape you just have
+to set the <bf>application/postscript</bf> MIME handler to
+&dquot;mgv &percnt;s&dquot;.  The MIME handlers can be configured in
+the big <em/Preferences/ dialog for Netscape 4 or in the <em/Helpers/
+tab of the <em/General Preferences/ dialog in Netscape 3.
+
+This is the original reason that I changed the saving behavior of &mgv;:
+in version one you could only save marked pages, now you can save whatever
+you want.
+
+<sect1>Using mgv With CDE<p>
+If you want to use &mgv; in the CDE desktop, the following article from
+comp.unix.cde may be of interest:
+<verb>
+Article 1968 of comp.unix.cde:
+From: Larry Gardner <lkg@atl.hp.com>
+Newsgroups: comp.unix.cde
+Subject: Re: Registering new file types
+Date: Wed, 25 Jun 1997 10:11:39 -0400
+Organization: Hewlett Packard TIS/SEM/IES
+Lines: 109
+Message-ID: <33B1271B.3BC4@atl.hp.com>
+References: <5oojdv$823@bioko.ifi.unizh.ch>
+NNTP-Posting-Host: wscoe2.atl.hp.com
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 3.01 (X11; I; HP-UX B.10.00 9000/747)
+To: Dimitrios Tombros <tombros@ifi.unizh.ch>
+Xref: news.lglobal.com comp.unix.cde:1968
+
+Dimitrios Tombros wrote:
+> 
+> Is it possible to register new file types with CDE for a specific
+> user so that when clicking on these types from the file manager
+> the respective application is started?
+> 
+> Any help will be appreciated; if this is a FAQ then please point me
+> to the FAQ location.
+> 
+> --
+> 
+> ----------------------------------------------------------------------
+> Dimitrios Tombros                   Database Technology Research Group
+> e-mail: tombros@ifi.unizh.ch               Computer Science Department
+> http://www.ifi.unizh.ch/staff/tombros.html        University of Zurich
+
+Here's an example for the postscript file type that will use ghostscript
+and ghostview to print/view postscript files.
+
+HTH
+
+Larry
+
+ghostview.dt
+
+################################################################################
+#
+# File:         ghostview.dt
+# RCS:          $ Header: ghostview.dt,v 1.0 97/06/04 16:39:57 lkg Exp $
+# Description:  CDE generic action for application execution.
+# Author:       TIS/SEM/IES WS-COE Team.
+# Created:      Wed Jun  4 16:39:27 EDT 1997
+# Modified:
+# Language:     CDE 1.0 Actions
+#
+################################################################################
+#
+# Initialize Variables
+#
+################################################################################
+
+set GHOSTVIEW=/opt/gnu/bin/X11/ghostview
+
+################## END OF VARIABLE INITIALIZATION
+##############################
+
+ACTION GhostView
+{
+    ARG_COUNT   0
+    ICON        gv
+    TYPE        COMMAND
+    WINDOW_TYPE NO_STDIO
+    EXEC_STRING $GHOSTVIEW
+    DESCRIPTION Ghostview postscript viewer.
+}
+
+ACTION GhostView
+{
+    ARG_COUNT   *
+    ARG_TYPE    POSTSCRIPT
+    ICON        gv
+    TYPE        COMMAND
+    WINDOW_TYPE NO_STDIO
+    EXEC_STRING $GHOSTVIEW %(File)Arg_1%
+    DESCRIPTION Ghostview postscript viewer.
+}
+
+ACTION gsPrint
+{
+    TYPE        COMMAND
+    WINDOW_TYPE NO_STDIO
+    EXEC_STRING sh -c '/opt/gnu/bin/gs -q -sDEVICE=ljet4 -r300 -dNOPAUSE \
+                       -sOutputFile=- \
+                       %(File)Arg_1"Postscript File To Print:"% \
+                       %(File)Args% | lp -s -oraw'
+    DESCRIPTION The gsPrint action formats its arguments \
+                using the 'gs' command and prints them to \
+                the default printer using 'lp'.
+}
+
+DATA_ATTRIBUTES POSTSCRIPT
+{
+    ICON        Dtps
+    ACTIONS     Open,Print
+    DESCRIPTION This is a postscript file.
+}
+DATA_CRITERIA POSTSCRIPT1
+{
+    DATA_ATTRIBUTES_NAME POSTSCRIPT
+    MODE                 !d
+    NAME_PATTERN         *.[Pp][Ss]
+}
+
+ACTION Open
+{
+    ARG_TYPE    POSTSCRIPT
+    TYPE        MAP
+    MAP_ACTION  GhostView
+    DESCRIPTION This action opens the postscript file type.
+}
+
+ACTION Print
+{
+    ARG_TYPE    POSTSCRIPT
+    TYPE        MAP
+    MAP_ACTION  gsPrint
+    DESCRIPTION This action prints the postscript file type.
+}
+</verb>
+This would probably work with &mgv; if you change &dquot;ghostview&dquot;
+to &dquot;mgv&dquot; all over the place.  You'll have to make your own icons
+though (<tt>lib/icon.xpm</tt> would be a good starting place but it
+is the wrong size).  I can't really help you with this so you're on
+your own (of course, I'd be interested in any results).
+
+<sect1>Splash Screen<p>
+Here's the &ps; program from the splash screen for the curious:
+<verb>
+	%!PS-Adobe-3.0
+	%%Title: MGv
+	%%Pages: (atend)
+	%%Orientation: Portrait
+	%%DocumentMedia: Letter 612 792 0 () ()
+	%%PageOrder: Ascend
+	%%Creator: $\mu$
+	%%EndComments
+	%%BeginProlog
+	/SF {
+		findfont exch dup
+		type /arraytype eq {makefont} {scalefont} ifelse
+		setfont
+	} def
+	/MGv {
+		72 /Helvetica-Bold-Oblique SF
+		50 700 moveto (MGv) show showpage
+	} def
+	%%EndProlog
+	%%Page: 1 1
+	MGv
+	%%Trailer
+	%%EOF
+</verb>
+
+<sect1>Binaries<p>
+I stopped making Linux binaries because LessTif is good enough for &mgv;
+these days.
+
+Binaries for HP-UX are available from the
+<url url="http://hpux.cae.wisc.edu" name="HP-UX Porting and Archive Center">
+(okay, I admit, I submitted the request for this).
+
+Binaries for FreeBSD are available from the porting section of the
+<url url="http://www.freebsd.org" name="FreeBSD Homepage"> (I didn't
+submit the request for this, someone else did).
+
+If anyone knows where people can get binaries for other platforms, RPM
+packages, or Debian packages, please let me know so that I can add links
+to the &mgv; web page.
+
+
+<!--========================================================================-->
+<sect>References<p>
+The following sources may of interest:
+<itemize>
+<item>
+	The man page for Ghostscript (&dquot;<tt/man gs/&dquot;).
+<item>
+	<em/&ps; Language Reference Manual, Second Edition/
+	published by Addison-Wesley (ISBN: 0-201-18127-4).
+<item>
+	<em/The Joy of Coffee/ by Corby Kummer, published by
+	Chapters Publishing Ltd. (ISBN:  1-881527-53-0).
+<item>
+	<em/&ps; Language Document Structuring Conventions Specification/,
+	available from the Adobe FTP site as <tt/5001.DSC_Spec.ps/.
+<item>
+	<em/&ps; Language Program Design/ published by
+	Addison-Wesley (ISBN: 0-201-14396-8).
+</itemize>
+
+
+<!--========================================================================-->
+<sect>Availability<p>
+The latest release of &mgv; will be available at my &HOMEPAGE; (any beta
+versions will be here as well).
+New releases will be announced in the comp.windows.x.announce newsgroup.
+
+The latest release of Ghostscript is available from
+<url url="ftp://prep.ai.mit.edu/pub/gnu" name="the GNU home site">
+and
+<url url="ftp://ftp.cs.wisc.edu/ghost/aladdin" name="the GhostScript archives">.
+
+
+<!--========================================================================-->
+<sect>Acknowledgements<p>
+&mgv; is based on Ghostview by Tim Theisen (<tt/tim@cs.wisc.edu/) with some
+ideas from Ghostview-VMS by Johannes Plass
+(<tt/plass@dipmza.physik.uni-mainz.de/).
+I'd also like to thank L. Peter Deutsch, president of Aladdin Enterprises,
+(<tt/ghost@aladdin.com/) for Ghostscript (without which, &mgv; would not be possible).
+
+None of this would be possible without Linux and the FSF.
+I currently develop &mgv; using LessTif.
+
+The conversion to GNU autoconf probably would have been much harder
+if I couldn't borrow code and ideas from the <url name="DDD"
+url="http://www.cs.tu-bs.de/softech/ddd"> and <url name="LessTif"
+url="http://www.lesstif.org"> configure scripts.
+
+The following people have offered helpful advice and patches:
+<itemize>
+<item>&AndyPolyakov
+<item>&BrianDowling;
+<item>&BrianHandy;
+<item>&ChristopherYoder;
+<item>&DavidGreen;
+<item>&DmitriKulginov;
+<item>&ErikLuijten;
+<item>&HansVahlenkamp;
+<item>&KarlStorck;
+<item>&LukaszDutkiewicz;
+<item>&ThanhMa;
+</itemize>
+My apologies if I have left anyone out.  I'd also like to thank
+&BrianHandy; and &FerozeKhan; for checking the autoconf configuration
+on various platforms that I don't have access to.
+
+The <bf/WlAppShell/ widget (which is used to provide easy support for
+non-default depths and visuals) is based on the <bf/AppPlus/ shell
+by John L. Cwikla; the <bf/AppPlus/ widget comes with the following
+copyright:
+<verb>
+	Copyright 1994,1995 John L. Cwikla
+
+	Permission to use, copy, modify, distribute, and sell this software
+	and its documentation for any purpose is hereby granted without fee,
+	provided that the above copyright notice appears in all copies and that
+	both that copyright notice and this permission notice appear in
+	supporting documentation, and that the name of John L. Cwikla or
+	Wolfram Research, Inc not be used in advertising or publicity
+	pertaining to distribution of the software without specific, written
+	prior permission.  John L. Cwikla and Wolfram Research, Inc make no
+	representations about the suitability of this software for any
+	purpose.  It is provided "as is" without express or implied warranty.
+
+	John L. Cwikla and Wolfram Research, Inc disclaim all warranties with
+	regard to this software, including all implied warranties of
+	merchantability and fitness, in no event shall John L. Cwikla or
+	Wolfram Research, Inc be liable for any special, indirect or
+	consequential damages or any damages whatsoever resulting from loss of
+	use, data or profits, whether in an action of contract, negligence or
+	other tortious action, arising out of or in connection with the use or
+	performance of this software.
+
+	Author:
+		John L. Cwikla
+		X Programmer
+		Wolfram Research Inc.
+
+		cwikla@wri.com
+</verb>
+
+
+<!--========================================================================-->
+<appendix>
+<!--========================================================================-->
+
+
+<!--========================================================================-->
+<sect>Installing and Porting<label id="installation"><p>
+GNU autoconf is used to handle the configuration, compilation, and
+installation of &mgv; so the standard
+<verb>
+	./configure
+	make
+	make install
+</verb>
+should work.
+
+<p>The <tt/configure/ script will disable debug information and enable
+optimization by default but this can be changed with the following switches:
+<descrip>
+<tag/--enable-debug, --disable-debug/
+	Enable or disable debugging, debugging is disabled by default.
+	The default debug switch it <em/-g/ but you can change it by
+	setting the <bf/DEBUGFLAG/ environment variable before running
+	<tt/configure/.
+<p><tag/--enable-optimize, --disable-optimize/
+	Enable or disable optimization, optimization is enabled by default.
+	The default optimization switch is <em/-O2/ but you can change it
+	by setting the <bf/OPTFLAG/ environment variable before running
+	<tt/configure/.
+</descrip>
+If optimization is requested but debugging is not requested, the final
+executable will be stripped by passing the <em/-s/ switch to the linker,
+if you need to use a different stripping switch, set the <bf/STRIPFLAG/
+environment variable before running <tt/configure/.
+
+<p>If the <tt/configure/ script is having trouble finding X on your
+system then you may have to specify the header and library paths explicitly
+with one or more of the following switches:
+<descrip>
+<tag>--x-includes=<em/DIR/, --x-libraries=<em/DIR/</tag>
+	Specify the location of the X11 headers and libraries.
+<p><tag>--motif-includes=<em/DIR/, --motif-libraries=<em/DIR/</tag>
+	Specify the location of the Motif headers and libraries.
+<p><tag>--xpm-includes=<em/DIR/, --xpm-libraries=<em/DIR/</tag>
+	Specify the location of the XPM headers and libraries.  If you don't
+	want to use XPM even though you have it, you can disable XPM with
+	<em/--without-xpm/.
+</descrip>
+
+I assume ANSI and POSIX support, if your system doesn't have an ANSI
+C compiler and POSIX libraries then you're out of luck.  I'm not willing
+to give up this assumption, trying to support non-POSIX systems is more
+trouble than I care to think about.
+
+If you have installed any of the 1.x versions of &mgv; you should delete
+the old application defaults file (probably
+<tt>/usr/X11/lib/app-defaults/MGv</tt> or something similar) before running
+&mgv;; if you don't, &mgv; will warn you about it and the user interface
+will be really screwed up.  If you have just compiled a new version of
+&mgv; and you haven't installed it yet, you can set the <bf/XENVIRONMENT/
+environment variable to temporarily fix the version problem:
+<verb>
+	XENVIRONMENT=MGv ./mgv
+</verb>
+However, you really should delete the old application defaults file anyway:
+none of the &mgv; versions need it, the whole application defaults file has
+always been compiled in as default resources.
+
+I have had success reports on the following systems:
+<itemize>
+<item>RedHat 5.1 Linux with LessTif 0.86
+<item>Linux/libc5 with Mootif
+<item>Sun Solaris 2.6 with gcc
+<item>FreeBSD 2.2.7-STABLE
+<item>HP-UX 9.05 with gcc
+<item>SGI Irix 6.2
+</itemize>
+
+
+<!--========================================================================-->
+<sect>History<p>
+<sect1>mgv 3.1.5: September 1998<p>
+<itemize>
+<item>Fixed the <em/mark even/ and <em/mark odd/ toolbar buttons.
+</itemize>
+
+<sect1>mgv 3.1.4: September 1998<p>
+<itemize>
+<item>Fixed an auto sizing bug.  Telling &mgv; to automatically resize both
+	the width and height of the main window could cause X protocol errors
+	and/or bizarre window sizes (okay, I admit it, I'm just trying to
+	get a version number closer to <bf/pi/:  I have TeX-envy).
+</itemize>
+
+<sect1>mgv 3.1.3: September 1998<p>
+<itemize>
+<item>Added a simple work-around for a LessTif accelerator problem.
+	Menu accelerators were going away as soon as you brought up a dialog
+	box.  This little work-around isn't needed unless you're using
+	LessTif.
+</itemize>
+
+<sect1>mgv 3.1.2: September 1998<p>
+<itemize>
+<item>Netscape HTML help got broken in 3.1.0, I converted some fixed sized
+	buffers to dynamically sized buffers and neglected to remove some
+	<tt/memset/ calls.
+</itemize>
+
+<sect1>mgv 3.1.1: September 1998<p>
+<itemize>
+<item>Fixed a memory corruption bug, thanks to &StephenVeit; for reporting
+	the bug and a fix for it.
+<item>Fixed up the XPM include logic.
+</itemize>
+
+<sect1>mgv 3.1.0: September 1998<p>
+<itemize>
+<item>Finally added a tool bar, you can change the images used but there
+	is currently no way to change the entries without hacking the
+	source.
+<item>Switched to autoconf for configuration and compiling and there was
+	much rejoicing.  The autoconf/automake files for DDD and LessTif
+	were invaluable.  This change means that library files (help files,
+	icons, splash screens, etc...) will usually end up in
+	<tt>/usr/local/share</tt> because autoconf likes it that way; the
+	new library directory will contain a subdirectory for each &mgv;
+	version installed.
+<item>Removed the <em/LessTif Problems/ section of the manual, I don't know
+	of any problems anymore.
+<item>Added some simple hooks for <tt/malloc/ debugging via dmalloc
+	(<tt>ftp://ftp.letters.com/src/dmalloc/dmalloc.tar.gz</tt>).
+	If for some reason you want to enable dmalloc, make sure you
+	configure dmalloc to allow freeing <tt/NULL/ pointers:  ANSI
+	guarantees that <tt/free(0)/ will work and I assume ANSI all
+	over the place.
+<item>Removed all instance of <bf/popen/(3) from the source, this function
+	has a history of compile problems so it went away.
+</itemize>
+
+<sect1>mgv 3.0.2: August 1998<p>
+<itemize>
+<item>Fixed an install problem in the lib directory, the makefile had an
+	incorrect source path.  Seems that my QA is lacking in some areas.
+</itemize>
+
+<sect1>mgv 3.0.1: August 1998<p>
+<itemize>
+<item>Added the version number to the library directory.  Thanks to
+	&MartyLeisner; for the suggestion.
+<item>Fixed up a couple of compiler warnings.
+</itemize>
+
+<sect1>mgv 3.0.0: August 1998<p>
+<itemize>
+<item>Added panning as yet another scrolling option in the main viewing
+	window.  This lets you drag the viewing window around with mouse
+	button two.
+<item>Disabled editres support on everything but Linux and FreeBSD.
+	Editres and the Xmu library were just causing build problems
+	so they went away; I know it works on Linux and FreeBSD (as far
+	as I know, XFree86 always comes with a fully functional Xmu) so
+	I've left it enabled there.
+<item>Fixed a window sizing bug with EPS and non-DSC files; automatic
+	window sizing didn't do anything in these cases but now it works
+	as expected.  Thanks to &ErikLuijten; for pointing out the
+	problem.
+<item>Renamed the <em>Window</em> menu to <em>View</em> and moved it over
+	the the third entry from the left in the menu bar.
+<item>Removed the (deprecated in version 2.1) <bf/printer/ resource,
+	the printer name is now officially part of the <bf/printCommand/
+	resource.
+<item>Updated my sgml-tools to 1.0.6, some minor document hackery was
+	needed for this.
+<item>Fixed a Lesstif/Motif incompatibility with the file selection
+	widget.  I was setting the <bf/dirMask/ resource on file
+	selection widgets to get a specific file name filter but Lesstif
+	wants me to use <bf/pattern/ instead.  Another reading of the
+	Motif documentation has convinced me that <bf/pattern/ is the
+	right one anyway.
+<item>Dropped support for the (ancient) Mosaic/CCI help support.  If anyone
+	actually uses this I'll consider putting it back but I don't think
+	it is worth the compile trouble.
+<item>Removed a LessTif ifdef in <tt>wlib/create.c</tt>, gadgets seem to
+	be working fine now.
+<item>Changed the <em/Center/ entry in the <em/Page/ menu to a toggle button;
+	page centering now stays around when you change pages.  The
+	<em/-center/ and <em/-nocenter/ switches and the <em/center/ resource
+	were also added.
+<item>Fixed a bad memory free when reporting unknown switches.  I was freeing
+	an incremented pointer, how embarrassing.  Thanks to
+	&GuenterSteinbach; for reporting this problem.
+<item>Added <em/-?/ and <em/-H/ as aliases for <em/-help/.
+<item>Added some notes about binary distributions.
+</itemize>
+I wanted to get a tool bar into this release but some bugs came up and I
+wanted to get fixes for them out.  This means that there will probably be
+another small release soon with a tool bar.
+
+<sect1>mgv 2.4.3: May 1998<p>
+<itemize>
+<item>Added <bf/make/, <bf/bindir/, and <bf/libdir/ to the version
+	information which appears in the <em/Build Options/ dialog and
+	the <em/-version/ output.
+<item>Fixed an ambiguous <em/if/ statement in <tt/dsc.c/.  Thanks to
+	&MartyLeisner; for the fix.
+<item>Moved the <tt/INSTALL/ file to the top directory where it should
+	be.  Thanks to &MartyLeisner; for telling me about this
+	brain damage.
+<item>Two radio buttons in the <em/Magstep/ menu could be turned on
+	if you specified a non-default initial magstep.  This problem
+	was just cosmetic but a bug is a bug.  Thanks to &ErikLuijten;
+	for pointing out this problem.
+</itemize>
+
+<sect1>mgv 2.4.2: April 1998<p>
+<itemize>
+<item>Removed the <bf/SGI/, <bf/CDE/, and <bf/Xnt/ stubs in the help system.
+	I never had a chance to implement any of these and I no longer have
+	access to an SGI or CDE system so I've removed the stubs.
+<item>Removed all traces of Xmu from the Ghostview widget.  Many people
+	seem to have old versions of libXmu or they don't have Xmu at all
+	so Xmu had to go.
+<item>Turned off editres support on AIX by default.
+</itemize>
+
+<sect1>mgv 2.4.1: April 1998<p>
+<itemize>
+<item>The <tt>wlib/resource.c</tt> file wasn't supposed to exist in 2.4
+	but I neglected to delete a CVS tag so it was there.  This caused
+	some build problems because <tt>wlib/wlib/wlib.h</tt> didn't have
+	the necessary prototypes for <tt>wlib/resource.c</tt>.  I have
+	now properly killed <tt>wlib/resource.c</tt>.
+<item>Added some missing <bf/null/ checks to some of the resource handling.
+	The problem (a segfault) would only show up if &mgv; couldn't find
+	one of the standard print commands in your <bf/PATH/ environment
+	variable.
+<item>&AndrewSmith; informed me that Solaris's cc prefers <em/-xO2/
+	instead of the usual <em/-O2/ to get level two optimizations
+	so I fixed the &dquot;<tt>make/sys.solaris-cc.mk</tt>&dquot;
+	makefile.
+</itemize>
+
+<sect1>mgv 2.4: March 1998<p>
+<itemize>
+<item>Added the <bf/wlInstallIcon/ resource to control whether or not &mgv;
+	installs its own icon when it runs.  If you want to use a different
+	icon, then you can just set this resource to <bf/false/ and tell
+	your window manager to use your icon.  Thanks to &HansVahlenkamp;
+	for this suggestion.  SGI users can use one of the <tt/mgv.icon*/
+	files as their icon if they wish (the images are pretty cheesy,
+	if anyone wants to donate a better one, please do).
+<item>Made editres support configurable at run-time (via resources and
+	switches) or compile-time.  I have had reports that that HP-UX
+	10.20 doesn't come with editres support so I added a standard
+	work-around.  HP-UX 10.20 users (and others without editres)
+	should set <tt/mk-editres/ to <bf/no/ in the appropriate
+	<tt>make/sys.*.mk</tt> file before compiling.
+<item>One more little makefile hack for FreeBSD.  Thanks to &BrianHandy;
+	for the patch.
+<item>Added the <em/Back/ and <em/Forward/ entries to the popup menu.
+	These additions were based on a suggestion from &ErikLuijten;.
+<item>Added the ability to read a &ps; file from the standard input.
+	You can save the standard input to a temporary file (this gives you
+	full page navigation) or just read it as it comes in.
+	Thanks to &DavidGreen; for this suggestion.
+<item>Increased the optimization level to <tt/-O2/ on all platforms.
+	I don't think this will cause any problems.
+<item>Finally fixed the <em/current page not visible in the page list/
+	bug.  You used to be able to move the selected item in the page
+	list out of the visible range (i.e. if you're page list had room
+	for ten items and you moved to page eleven with PageDown, the
+	eleven in the page list wouldn't be visible).
+<item>Added support for compressing, gzipping, and bzip2ing saved files.
+	This was a quick and simple addition so I added it even though it
+	has dubious utility.
+<item>Merged the <em>Mark&verbar;Mark Current Page</em> and
+	<em>Mark&verbar;Unmark Current Page</em> menu items.  The new
+	entry (<em>Mark&verbar;Mark/Unmark</em>) toggles the state of the
+	current page.
+<item>Changed the behavior of the <em>Mark&verbar;Mark Even Pages</em> and
+	<em>Mark&verbar;Mark Odd Pages</em> menu items so that they no
+	longer unmark any pages.  <em>Mark Even</em> used to mark the
+	even pages and unmark the odd pages, now it just marks the even
+	pages and leaves the odd pages alone.  Similarly, the
+	<em>Mark Odd</em> command no longer unmarks the even pages.
+<item>Some minor hacks for RedHat 5.0 systems.  There are still some
+	outstanding linking problems (no surprises here) with commercial
+	Motif libraries; LessTif should work though.
+<item>Added &dquot;<tt/-W/&dquot; to the compiler warning flags for all
+	gcc setups.  This gives even more warnings the &dquot;<tt/-Wall
+	-Werror -ansi -pedantic -Wmissing-prototypes/&dquot and this
+	is good.
+<item>Disabled gadgets when compiling with LessTif.  I only use gadgets
+	to allow people to use funky background pixmaps with Motif 2.0+
+	so disabling gadgets really doesn't hurt anything (disabling
+	gadgets was a simple, clean, isolated hack to <tt>wlib/create.c</tt>
+	so it doesn't hurt me either).
+<item>Updated the <em/LessTif Problems/ section again.
+<item>Fixed the error message when you try to open a non-existent file;
+	&mgv; was using <tt/EPERM/ instead of <tt/errno/ so the message
+	wasn't always accurate.
+<item>Loosened up the DSC checks.  As long as the &ps; document begins with
+	&dquot;<tt/&percnt;!/&dquot; we'll scan for the structure comments.
+	DSC documents are supposed to start with
+	&dquot;<tt/&percnt;!PS-Adobe-/&dquot; and a version number but
+	there are some naughty &ps; files out there.
+<item>Fixed a couple of typos in <tt>wlib/wlib/dirtysocks.h</tt> that
+	were causing problems on Sun machines with Sun's compiler.
+	Thanks go to &JeanJacquesMoulis; for letting me know about
+	the problem.
+<item>Added a warning message about unknown switches.  &mgv; used to
+	try to open unknown switches as &ps; files but now it ignores
+	such things.  As a side effect you'll have to do one of the standard
+	Unix tricks (end the switches with &dquot;<tt/--/&dquot; or use
+	&dquot;<tt>./-blah</tt>&dquot;) to open files which begin with
+	a hyphen from the command line.
+	Thanks to &DavidGreen; for this suggestion.
+<item>I've changed ISPs once again so all references to <tt/echo-on.net/
+	have been converted to the new and improved <tt/trends.net/.
+<item>Added the <em/Document Info/ dialog.
+<item>Added the splash screen.  If you don't like my artwork, you're free
+	to use your own by replacing the <tt/splash.xpm/ and/or
+	<tt/splash.xbm/ files in the final library directory.  If you
+	don't like splash screens at all, use the <bf/-nosplash/ switch
+	or set the &dquot;mgv*wlShowSplashScreen&dquot; resource
+	to <bf/False/.
+<item>Added support for <em/sticky/ dialogs.  Some people don't like it
+	when dialogs popdown just because you've hit <em/OK/ (or equivalent).
+	See the <bf/autoDismiss/ resource and the <em/Sticky Dialogs/ section
+	for more information.  This only affects the <em/File Save/,
+	<em/Print/, and <em/Set Magstep/ dialogs.  This functionality
+	is based on a suggestion from &CarlBenker;.
+</itemize>
+
+<sect1>mgv 2.3.1: February 1998<p>
+<itemize>
+<item>Modified the makefiles to know about and use <tt/ranlib/ if necessary.
+	As far as I know, only FreeBSD (version 2.X at least) needs
+	<tt/ranlib/.  This change also has the bonus side effect of allowing
+	&dquot;<tt/make -j/&dquot; to be used in the <tt/wlib/ directory
+	(this may not matter to you but it is a big win on my K6-200);
+	the only disadvantage is a slight increase in disk space when you're
+	compiling.
+</itemize>
+
+<sect1>mgv 2.3: February 1998<p>
+<itemize>
+<item>Added a work-around for a bug in Motif 1.2.3.  If you moved one of the
+	main scrollbars out of the default position and left it out of the
+	default position, a File|Close would cause a segmentation fault
+	deep inside Motif.  The problem was that &mgv; was trying to move the
+	scrollbars in a widget that was in the process of dying, newer versions
+	of Motif don't mind this but 1.2.3 was missing a check for this state.
+	Some versions of Motif 1.2.5 also appear to have this problem.
+<item>Updated the <em/LessTif Problems/ section;
+	&mgv; and LessTif; almost get along perfectly now.
+<item>Added the <bf/gunzip/ and <bf/bunzip/ resources.  These resources
+	replace the <bf/decompress/ resource but <bf/decompress/ remains
+	as an alias for <bf/gunzip/.  These changes were made so that &mgv;
+	could deal with bzip2ed files, bzip2 is much slower than gzip but
+	offers better compression on many files.  You can get bzip2 from
+	the <url url="http://www.muraroa.demon.co.uk" name="bzip2 homepage">
+	or the <url url="http://www.digistar.com/bzip2/index.html"
+	name="bzip2 US mirror">; you can also get bzip2 anywhere that you
+	can get <url url="http://www.gimp.org" name="the Gimp">.
+<item>The <bf/resetScrollBars/ resource has been expanded to offer control
+	over the horizontal and vertical scrollbars separately; this just
+	means that you can have only the vertical scrollbar reset on page
+	changes if you want.  The old boolean values, <bf/true/ and <bf/false/,
+	have been retained as aliases.  Thanks to &DmitriKulginov; for
+	this feature.
+<item>Page list updates (during <em/Mark All/ and <em/Show Page Labels/ for
+	example) should be much faster now.
+<item>Added <tt/-D_XOPEN_SOURCE_EXTENDED/ to the compiler flags for AIX.
+	I hear that AIX 4.3 needs this rather than <tt/-D_XOPEN_SOURCE/
+	so I'll try it out with both defined and hope for the best (will
+	the madness of <tt/-D_POSIX_SOURCE/, <tt/-D_XOPEN_SOURCE/,
+	<tt/-D_BSD_SOURCE/, etc... ever end?).  Thanks to
+	&LukaszDutkiewicz; for telling me about this new piece of
+	vendor/standards brilliance.
+</itemize>
+
+<sect1>mgv 2.2.1: December 1997<p>
+<itemize>
+<item>Fixed a buffer overflow problem in the printing.  The bug was a really
+	dumb mistake, sorry for the brain damage.
+</itemize>
+
+<sect1>mgv 2.2: November 1997<p>
+<itemize>
+<item>Added support for non-default color depths, non-default visuals, and
+	private color maps.  This didn't have that much impact on the
+	application but it is a cool enough increase in functionality to
+	warrant an increase in the minor version number rather than just
+	the patch level.  Thanks to &HansVahlenkamp; for hassling me
+	about this lacking feature (okay, <em/hassling/ is probably a little
+	strong).
+<item>Fixed a bug in zoom window destruction.  If you zoomed on a zoom and
+	killed the first zoom before the zoomed zoom, you used to get death
+	but now you don't.
+<item>Fixed the menu accelerators to avoid duplication; the following
+	accelerators were changed:
+	<itemize>
+	<item>The <em/Magstep/ menu is now activated with <bf/Alt+T/ instead
+		of <bf/Alt+G/.
+	<item>The <em/Options/ menu is now activated with <bf/Alt+S/ instead
+		of <bf/Alt+O/ (this was taken).
+	<item>The <em/Set/ entry in the <em/Magstep/ menu no longer has
+		an accelerator, I couldn't think of anything sensible
+		that wasn't already taken by something that gets more use.
+	<item>The <em/Enable Smooth Scrolling/ entry in the <em/Options/
+		menu is now activated with <bf/Alt+L/ instead of the old
+		<bf/Alt+O/.
+	</itemize>
+	If anyone doesn't like this, you can change them through the
+	resource database to whatever you want.
+<item>Fixed up the code that deals with (depth one) bitmaps for icons.  The
+	old code was causing a BadMatch error on some systems because a copy
+	was attempted from a depth one Pixmap to a Window with a different
+	depth.
+<item>Added the <bf/wlUseColorIcon/ resource so you can tell &mgv; to use or
+	not use a color icon at run-time.
+<item>Fixed the spelling of Matthew's name in various places (I thought
+	there was only one &dquot;t&dquot;).
+<item>Added a couple of minor (and harmless) changes to the resources for
+	LessTif.  These changes don't affect Motif versions of &mgv;.
+<item>Added some notes on the Ghostview widget resources to the
+	<em/Application Resources/ section of the manual.  I was sure
+	the resources were already listed but I was wrong.
+<item>Added the <em/-portrait/, <em/-landscape/, <em/-seascape/, and
+	<em/-upsidedown/ switches to control the initial page orientation.
+<item>Extended the FreeBSD 2.2.2 support to deal with FreeBSD 3 with
+	Motif 1.2.
+</itemize>
+
+<sect1>mgv 2.1: October 1997<p>
+<itemize>
+<item>Reversed the order of History list.
+<item>Removed the <em/Printer Name/ text field from the print dialog.  The
+	print command now holds both the command to use and the printer name.
+	The resources (<bf/printer/ and <bf/printCommand/ are still separate,
+	you can forget about <bf/printer/ and put it all in <bf/printCommand/
+	if you want).
+<item>Fixed the <em/GhostviewSendPS/ prototype.
+	The old prototype had a <tt>long</tt> where it should have had
+	an <tt>off_t</tt>.  Apparently HP-UX 10.20's <tt>off_t</tt> isn't a
+	<tt>long</tt> like it is on all the other machines (otherwise the
+	compilers would have complained long ago).  This was reported and
+	fixed by &KarlStorck;.
+<item>Small fixes to the makefiles and dirtysocks.h for Solaris 2.6/Intel.
+	Thanks to &ThanhMa; for the patch.
+<item>I've changed ISPs once again (I'm on my third one this year), lglobal.com
+	just got swallowed by echo-on.net so I've updated everything for this.
+	I think it is time I forked out the cash for a virtual host somewhere.
+<item>Some minor hacks were added to allow &mgv; and LessTif to get along
+	a little better.  There are still a number of problems with using
+	LessTif but most things work.  I've only tested
+	things with the lesstif-current from 1997-10-02 so the current
+	release might still be broken.  You might also want to check
+	my &HOMEPAGE; for any updates on &mgv; and LessTif.
+<item>
+	A preliminary port to FreeBSD 2.2.2 was supplied by
+	&ChristopherYoder;.  The initial attempt was done with LessTif 
+	so I don't know how well this works yet (I don't expect any
+	problems).
+</itemize>
+
+<sect1>mgv 2.0.2: August 1997<p>
+<itemize>
+<item>
+	Always scroll the scrolled window back to the top when closing
+	a file.  Sometimes the scrolled window would get confused about
+	where its child was when opening a new file; this only appears
+	to happen if you are scrolled down near the bottom and then you
+	open a new file in the same window.  The confusion only happens
+	with some files (the exact conditions are unknown but this
+	scrolling-back-to-the-top trick makes the problem go away).
+</itemize>
+
+<sect1>mgv 2.0.1: August 1997<p>
+<itemize>
+<item>
+	Fixed an auto-sizing bug.  Any auto-sizing will now take effect
+	if you hide the page list, menubar, or status line.
+<item>
+	Trying to open a non-existent file from the command line will
+	now produce a warning message.  Doing
+	&dquot;<tt>mgv not-there.ps</tt>&dquot; used to just give an
+	empty window.
+</itemize>
+
+<sect1>mgv 2.0: August 1997<p>
+<itemize>
+<item>
+	Help system extended to deal with Netscape's remote protocol
+	and Mosaic's CCI protocol.
+	CDE help, and SGI help are still coming.
+	The <bf/helpSuffix/ resource has been replaced with <bf/helpType/.
+<item>
+	Added palette changing menu items.
+<item>
+	Changed the float resources in the Ghostview widget to integers to
+	avoid alignment problems on the DEC Alpha (unaligned access).
+<item>
+	Freeing unallocated memory bugs in Ghostview.c fixed (some resources
+	were getting copied by SetValues() and freed by Destroy() but not
+	copied by Initialize()).  These bugs were caused by some modifications
+	that I made to the Ghostview widget.  All of the String resources for
+	the Ghostview widget are now copied as God intended them to be.
+<item>
+	You can now save a document without marking pages.
+<item>
+	Fixed two orientation bugs so that you no longer get forced back to
+	the first page when changing orientation and changing the orientation
+	from the menus will always work (in some cases, mgv would switch to
+	the orientation in the document when you tried to change orientations).
+<item>
+	Added a ghost to the icon (hey, this is reason enough to upgrade
+	isn't it?).
+<item>
+	Added the <bf/mgvMark/ action to the page list to make marking pages
+	easier (maybe).
+<item>
+	Cleaned up the keyboard handling in the main viewing window so
+	that the cursor keys do the <em/right thing/; the new <bf/mgvScroll/
+	action was added to facilitate this.
+<item>
+	Support for multiple top level windows added.
+<item>
+	On-the-fly decompression of compressed files added.
+<item>
+	All dialogs now make use of the <bf/defaultButton/ and
+	<bf/cancelButton/ resources for better compliance with the Motif
+	Style Guide.  The zooming is now attached to mouse button one
+	(used to be button two but Motif wants button two for drag-and-drop
+	operations).  If you want the old bindings back you just have to
+	change the <bf/baseTranslations/ for the Ghostview widget to:
+	<verb>
+	MGv*Ghostview.baseTranslations:	#replace         \n\
+		<Key>osfHelp:	wlHelpContext()          \n\
+		<Message>:	gvMessage()              \n\
+		!<Btn2Down>:	mgvZoom(begin)           \n\
+		!<Btn2Motion>:	mgvZoom(extend)          \n\
+		!<Btn2Up>:	mgvZoom(end)             \n\
+		!<Btn1Down>:	mgvZoom(begin)           \n\
+		!<Btn1Motion>:	mgvZoom(extend)          \n\
+		!<Btn1Up>:	mgvZoom(end)             \n\
+		<EnterWindow>:	gvNotify(0)              \n\
+		<LeaveWindow>:	gvNotify(0)              \n\
+		<MotionNotify>:	gvNotify(0)              \n\
+		<Key>osfUp:	mgvScroll(up,	magical) \n\
+		<Key>osfDown:	mgvScroll(down,	magical) \n\
+		<Key>osfLeft:	mgvScroll(left)          \n\
+		<Key>osfRight:	mgvScroll(right)
+	</verb>
+	These bindings will give you zooming with either button one
+	or button two.
+<item>
+	Added the <em/magic/ scrolling based on a suggestion and patch
+	from &BrianDowling;. This introduced the <bf/magicScrolling/ and
+	<bf/magicResistance/ resources.
+<item>
+	Modified the magstep menu based on a suggestion and patch from
+	&BrianDowling;.  The old magstep menu let you choose from -5
+	through +5, the new one lets you increase and decrease it as desired.
+<item>
+	Added the <em/Auto Size/, <em/Auto Height/, and <em/Auto Width/
+	buttons to the <em/Page/ menu; the <bf/autoHeight/ and <bf/autoWidth/
+	application resources were also added. Thanks go to &BrianDowling;
+	for suggesting this.
+<item>
+	Added MP-RAS support to the makefiles.
+<item>
+	Added some screen shots to the documentation.
+<item>
+	The <em/Reopen/ command will now try and reset the page number.
+<item>
+	Added support for libhelp online help (see
+	<url url="http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp"
+	name="http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp">
+	for the libhelp sources).
+<item>
+	Added smooth scrolling options.
+<item>
+	Added the <bf/magstep/ resource and the <bf/-magstep/ switch to
+	make setting the initial magstep easier. &AndyPolyakov; pointed out
+	this feature that got lost between Ghostview and &mgv;.
+<item>
+	Put the quick access -5 through +5 magstep entries back on the
+	<em/Magstep/ menu (a user thought all the clicking and typing
+	and screen re-drawing was inconvenient and since I agreed, I put
+	the radio buttons back).  &ErikLuijten; liked the old -5 through
+	+5 options so they came back.
+<item>
+	Made explicit page orientations persist through reopens.  Credit
+	for this behavior belongs to &ErikLuijten;.
+<item>
+	Hacked the new auto sizing stuff to, optionally, stay within
+	the screen dimensions.  I think mwm does this for us but mwm
+	is an evil window manager (if you like mwm, go ahead and disagree
+	with me, or kill me, or not).  Since there is no sane way to
+	determine how large the window manager decorations are, the
+	<bf/wmWidth/ and <bf/wmHeight/ resources were added so you can
+	tell &mgv; how big they are (you may notice that Ghostview uses pretty
+	much the same hack).  Added the <em/-smartsizing/, <em/-wmwidth/,
+	and <em/-wmheight/ switches to control these settings from the
+	command line.  I also added the <em/Enable Smart Sizing/ button
+	to the <em/Options/ menu.  This stuff was based on a suggestion
+	from &AndyPolyakov;.
+<item>
+	Added the <bf/applicationVersion/ resource to help detect app-defaults
+	files with the wrong version.  I also expanded the installation
+	documentation to cover this situation.  This stuff was added based
+	on problems experienced by &ErikLuijten;. After adding this, I
+	moved it to wlib since it was too useful to duplicate in my other
+	(as yet unpublished) projects.
+<item>
+	The <em/Close All Zooms/ entry in the <em/Window/ menu is now
+	only sensitive if there are zoom windows.
+<item>
+	Change the default dirMask of the file-open dialog to <tt/*.*ps*/
+	(it was <tt/*.ps/ and then <tt/*.ps*/ to get gzipped/compressed
+	files) to try and pick up <tt/.eps/ files too.
+<item>
+	Converted the menu bar widget tree to the standard (and highly
+	idiotic, nonsensical, brain damaged, ...) Motif way.  This
+	allows &mgv; to work better with Motif 2.0.0 and perhaps some
+	other old versions of Motif (Motif 1.2.2 on AIX 3.2.5 is one of
+	them).
+<item>
+	Keyboard scrolling (the mgvScroll() action) cleaned up.  I added
+	the <bf/scrollPercentage/ resource to let users decide how much
+	of the screen should be scrolled (the default of <bf/90&percnt;/
+	yields a little bit of overlap for context).  This little change
+	should make scrolling (including the smooth kind) nicer.
+<item>
+	Fixed Mosaic-cci help.  This got broken sometime (I don't
+	know when since I almost never use this).  The CCI stuff was
+	trying to get a hostname out of
+	&dquot;<tt>file:///path/to/x/blah.html</tt>&dquot; without
+	realizing that <tt>file://</tt> means localhost.
+<item>
+	Lots of internal changes that shouldn't be visible to the user.
+</itemize>
+
+<sect1>mgv 1.0: September 1996<p>
+<itemize>
+<item>
+	First release.
+</itemize>
+
+<!--========================================================================-->
+<sect>Wish List<p>
+This is an unordered list of things that I'm thinking about doing with &mgv;.
+<itemize>
+<item>
+	Resizing a zoom window should expand the zoomed area rather than
+	stretching it; effectively, this would allow you to alter the
+	zoom reticule after the zoom has popped up.
+	The <bf/GHOSTVIEW/ window property
+	(see <ref name="The GHOSTVIEW Property" id="gv-win-prop">) has
+	four optional values that may be of assistance here.
+<item>
+	The wlib library needs a simple resource persistence interface.
+	This should be pretty easy once I have <em/whatever/ to String
+	type converters for the various resources.  Any hacking towards
+	this end might also yield a reasonable way to build <em/Options/
+	dialogs for modifying the application resources.
+<item>
+	The <bf/mgvScroll/ action should have a percentage argument (with
+	the <bf/scrollPercentage/ resource as a default).
+</itemize>
+
+
+<!--========================================================================-->
+<sect>The Interface to Ghostscript<label id="gs-interface"><p>
+<!--========================================================================-->
+<sect1>The GHOSTVIEW Environment Variable<p>
+When the <bf/GHOSTVIEW/ environment variable is set, ghostscript draws on
+an existing drawable rather than creating its own window; ghostscript
+will draw in either a window or a pixmap depending on the contents
+of this variable.
+
+The general form of the <bf/GHOSTVIEW/ variable is
+<verb>
+	window-id [pixmap-id]
+</verb>
+where <bf/window-id/ is the identifier of the destination window
+(<tt/XtWindow(ghostview_widget)/ for example) and the optional
+<bf/pixmap-id/ value is the identifier for a pixmap to draw into; both values
+are of type <bf/XID/ (32-bit unsigned integer).
+If only a window is specified, ghostscript will draw into that window but
+if the pixmap is also specified, all drawing will be done on the pixmap.
+In both cases the window is used to determine the colormap, screen, and
+visual to use; if the destination is a window, then the height and width will
+be retrieved from the window, otherwise, the dimensions will be those of the
+pixmap.
+All remaining information is retrieved from the <bf/GHOSTVIEW/ property on the
+window (when drawing is done to a pixmap, this property is deleted when read).
+Any events that ghostscript wishes to send will be directed at the window
+specified in the <bf/GHOSTVIEW/ environment variable.
+
+
+<!--========================================================================-->
+<sect1>The GHOSTVIEW Property<label id="gv-win-prop"><p>
+The <bf/GHOSTVIEW/ property is of type <bf/STRING/ and should have the
+form
+<verb>
+	bpixmap orient llx lly urx ury xdpi ydpi [left bottom top right]
+</verb>
+and a <bf/scanf(3)/ format of
+<verb>
+	%d %d %d %d %d %d %f %f %d %d %d %d
+</verb>
+The parameters are:
+<descrip>
+<tag/bpixmap/
+	Pixmap id of the backing pixmap for the window.
+	If no pixmap is to be used, this parameter should be zero and this
+	parameter must be zero when the destination is a pixmap rather than
+	a window.
+<p><tag/orient/
+	This should be a number representing the page orientation.
+	The value is the clockwise rotation of the paper in degrees;
+	only 0, 90, 180, and 270 are permitted 
+<p><tag/llx, lly, urx, ury/
+	The bounding box of the drawable in &ps; points in the default user
+	coordinate system.
+<p><tag/xdpi, ydpi/
+	These values specify the horizontal and vertical resolution of the
+	destination.
+	Even though these values may be computed from other parameters, they
+	are specified to avoid round-off errors.
+<p><tag/left, bottom, top, right/
+	These optional parameters specify the margins around the window in
+	&ps; points; the margins extend the imageable area beyond the
+	boundaries of the window.
+	This is primarily used for popup zoom windows.
+	Some &ps; programs position themselves based on the imageable area
+	so these values are useful at times.
+	Any unspecified margins are assumed to be zero.
+</descrip>
+
+
+<!--========================================================================-->
+<sect1>Events from Ghostscript<p>
+If the final destination is a pixmap, the client will get a property notify
+event when ghostscript reads the <bf/GHOSTVIEW/ property causing it to be
+deleted.
+
+Ghostscript sends events to the window where it read the <bf/GHOSTVIEW/ property;
+these events are of type <bf/ClientMessage/ and the <bf/message_type/ is
+set to either <bf/PAGE/ or <bf/DONE/.
+The first long data value specifies the window which is to be used when
+sending replies to ghostscript; the second long data value specifies the
+primary drawable which is:
+<itemize>
+<item>the pixmap if ghostscript is drawing into a pixmap which was specified
+	in the <bf/GHOSTVIEW/ environment variable
+<item>the destination window if the window does not have a backing pixmap
+<item>the backing pixmap of the destination window if it has one.
+</itemize>
+This field is necessary to distinguish multiple ghostscripts rendering to
+separate pixmaps when the <bf/GHOSTVIEW/ property was placed on the same
+window.
+The <bf/PAGE/ message indicates that a page has been completed;
+ghostscript will wait until it receives a <tt/ClientMessage/ whose
+<tt/message_type/ is <bf/NEXT/ before continuing.
+The <bf/DONE/ message indicates that ghostscript has finished processing.
+
+
+<!--========================================================================-->
+<sect>GNU General Public License<label id="GPL"><p>
+<verb>
+		    GNU GENERAL PUBLIC LICENSE
+		       Version 2, June 1991
+
+ Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+                          675 Mass Ave, Cambridge, MA 02139, USA
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+			    Preamble
+
+  The licenses for most software are designed to take away your
+freedom to share and change it.  By contrast, the GNU General Public
+License is intended to guarantee your freedom to share and change free
+software--to make sure the software is free for all its users.  This
+General Public License applies to most of the Free Software
+Foundation's software and to any other program whose authors commit to
+using it.  (Some other Free Software Foundation software is covered by
+the GNU Library General Public License instead.)  You can apply it to
+your programs, too.
+
+  When we speak of free software, we are referring to freedom, not
+price.  Our General Public Licenses are designed to make sure that you
+have the freedom to distribute copies of free software (and charge for
+this service if you wish), that you receive source code or can get it
+if you want it, that you can change the software or use pieces of it
+in new free programs; and that you know you can do these things.
+
+  To protect your rights, we need to make restrictions that forbid
+anyone to deny you these rights or to ask you to surrender the rights.
+These restrictions translate to certain responsibilities for you if you
+distribute copies of the software, or if you modify it.
+
+  For example, if you distribute copies of such a program, whether
+gratis or for a fee, you must give the recipients all the rights that
+you have.  You must make sure that they, too, receive or can get the
+source code.  And you must show them these terms so they know their
+rights.
+
+  We protect your rights with two steps: (1) copyright the software, and
+(2) offer you this license which gives you legal permission to copy,
+distribute and/or modify the software.
+
+  Also, for each author's protection and ours, we want to make certain
+that everyone understands that there is no warranty for this free
+software.  If the software is modified by someone else and passed on, we
+want its recipients to know that what they have is not the original, so
+that any problems introduced by others will not reflect on the original
+authors' reputations.
+
+  Finally, any free program is threatened constantly by software
+patents.  We wish to avoid the danger that redistributors of a free
+program will individually obtain patent licenses, in effect making the
+program proprietary.  To prevent this, we have made it clear that any
+patent must be licensed for everyone's free use or not licensed at all.
+
+  The precise terms and conditions for copying, distribution and
+modification follow.
+
+		    GNU GENERAL PUBLIC LICENSE
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+  0. This License applies to any program or other work which contains
+a notice placed by the copyright holder saying it may be distributed
+under the terms of this General Public License.  The "Program", below,
+refers to any such program or work, and a "work based on the Program"
+means either the Program or any derivative work under copyright law:
+that is to say, a work containing the Program or a portion of it,
+either verbatim or with modifications and/or translated into another
+language.  (Hereinafter, translation is included without limitation in
+the term "modification".)  Each licensee is addressed as "you".
+
+Activities other than copying, distribution and modification are not
+covered by this License; they are outside its scope.  The act of
+running the Program is not restricted, and the output from the Program
+is covered only if its contents constitute a work based on the
+Program (independent of having been made by running the Program).
+Whether that is true depends on what the Program does.
+
+  1. You may copy and distribute verbatim copies of the Program's
+source code as you receive it, in any medium, provided that you
+conspicuously and appropriately publish on each copy an appropriate
+copyright notice and disclaimer of warranty; keep intact all the
+notices that refer to this License and to the absence of any warranty;
+and give any other recipients of the Program a copy of this License
+along with the Program.
+
+You may charge a fee for the physical act of transferring a copy, and
+you may at your option offer warranty protection in exchange for a fee.
+
+  2. You may modify your copy or copies of the Program or any portion
+of it, thus forming a work based on the Program, and copy and
+distribute such modifications or work under the terms of Section 1
+above, provided that you also meet all of these conditions:
+
+    a) You must cause the modified files to carry prominent notices
+    stating that you changed the files and the date of any change.
+
+    b) You must cause any work that you distribute or publish, that in
+    whole or in part contains or is derived from the Program or any
+    part thereof, to be licensed as a whole at no charge to all third
+    parties under the terms of this License.
+
+    c) If the modified program normally reads commands interactively
+    when run, you must cause it, when started running for such
+    interactive use in the most ordinary way, to print or display an
+    announcement including an appropriate copyright notice and a
+    notice that there is no warranty (or else, saying that you provide
+    a warranty) and that users may redistribute the program under
+    these conditions, and telling the user how to view a copy of this
+    License.  (Exception: if the Program itself is interactive but
+    does not normally print such an announcement, your work based on
+    the Program is not required to print an announcement.)
+
+These requirements apply to the modified work as a whole.  If
+identifiable sections of that work are not derived from the Program,
+and can be reasonably considered independent and separate works in
+themselves, then this License, and its terms, do not apply to those
+sections when you distribute them as separate works.  But when you
+distribute the same sections as part of a whole which is a work based
+on the Program, the distribution of the whole must be on the terms of
+this License, whose permissions for other licensees extend to the
+entire whole, and thus to each and every part regardless of who wrote it.
+
+Thus, it is not the intent of this section to claim rights or contest
+your rights to work written entirely by you; rather, the intent is to
+exercise the right to control the distribution of derivative or
+collective works based on the Program.
+
+In addition, mere aggregation of another work not based on the Program
+with the Program (or with a work based on the Program) on a volume of
+a storage or distribution medium does not bring the other work under
+the scope of this License.
+
+  3. You may copy and distribute the Program (or a work based on it,
+under Section 2) in object code or executable form under the terms of
+Sections 1 and 2 above provided that you also do one of the following:
+
+    a) Accompany it with the complete corresponding machine-readable
+    source code, which must be distributed under the terms of Sections
+    1 and 2 above on a medium customarily used for software interchange; or,
+
+    b) Accompany it with a written offer, valid for at least three
+    years, to give any third party, for a charge no more than your
+    cost of physically performing source distribution, a complete
+    machine-readable copy of the corresponding source code, to be
+    distributed under the terms of Sections 1 and 2 above on a medium
+    customarily used for software interchange; or,
+
+    c) Accompany it with the information you received as to the offer
+    to distribute corresponding source code.  (This alternative is
+    allowed only for noncommercial distribution and only if you
+    received the program in object code or executable form with such
+    an offer, in accord with Subsection b above.)
+
+The source code for a work means the preferred form of the work for
+making modifications to it.  For an executable work, complete source
+code means all the source code for all modules it contains, plus any
+associated interface definition files, plus the scripts used to
+control compilation and installation of the executable.  However, as a
+special exception, the source code distributed need not include
+anything that is normally distributed (in either source or binary
+form) with the major components (compiler, kernel, and so on) of the
+operating system on which the executable runs, unless that component
+itself accompanies the executable.
+
+If distribution of executable or object code is made by offering
+access to copy from a designated place, then offering equivalent
+access to copy the source code from the same place counts as
+distribution of the source code, even though third parties are not
+compelled to copy the source along with the object code.
+
+  4. You may not copy, modify, sublicense, or distribute the Program
+except as expressly provided under this License.  Any attempt
+otherwise to copy, modify, sublicense or distribute the Program is
+void, and will automatically terminate your rights under this License.
+However, parties who have received copies, or rights, from you under
+this License will not have their licenses terminated so long as such
+parties remain in full compliance.
+
+  5. You are not required to accept this License, since you have not
+signed it.  However, nothing else grants you permission to modify or
+distribute the Program or its derivative works.  These actions are
+prohibited by law if you do not accept this License.  Therefore, by
+modifying or distributing the Program (or any work based on the
+Program), you indicate your acceptance of this License to do so, and
+all its terms and conditions for copying, distributing or modifying
+the Program or works based on it.
+
+  6. Each time you redistribute the Program (or any work based on the
+Program), the recipient automatically receives a license from the
+original licensor to copy, distribute or modify the Program subject to
+these terms and conditions.  You may not impose any further
+restrictions on the recipients' exercise of the rights granted herein.
+You are not responsible for enforcing compliance by third parties to
+this License.
+
+  7. If, as a consequence of a court judgment or allegation of patent
+infringement or for any other reason (not limited to patent issues),
+conditions are imposed on you (whether by court order, agreement or
+otherwise) that contradict the conditions of this License, they do not
+excuse you from the conditions of this License.  If you cannot
+distribute so as to satisfy simultaneously your obligations under this
+License and any other pertinent obligations, then as a consequence you
+may not distribute the Program at all.  For example, if a patent
+license would not permit royalty-free redistribution of the Program by
+all those who receive copies directly or indirectly through you, then
+the only way you could satisfy both it and this License would be to
+refrain entirely from distribution of the Program.
+
+If any portion of this section is held invalid or unenforceable under
+any particular circumstance, the balance of the section is intended to
+apply and the section as a whole is intended to apply in other
+circumstances.
+
+It is not the purpose of this section to induce you to infringe any
+patents or other property right claims or to contest validity of any
+such claims; this section has the sole purpose of protecting the
+integrity of the free software distribution system, which is
+implemented by public license practices.  Many people have made
+generous contributions to the wide range of software distributed
+through that system in reliance on consistent application of that
+system; it is up to the author/donor to decide if he or she is willing
+to distribute software through any other system and a licensee cannot
+impose that choice.
+
+This section is intended to make thoroughly clear what is believed to
+be a consequence of the rest of this License.
+
+  8. If the distribution and/or use of the Program is restricted in
+certain countries either by patents or by copyrighted interfaces, the
+original copyright holder who places the Program under this License
+may add an explicit geographical distribution limitation excluding
+those countries, so that distribution is permitted only in or among
+countries not thus excluded.  In such case, this License incorporates
+the limitation as if written in the body of this License.
+
+  9. The Free Software Foundation may publish revised and/or new versions
+of the General Public License from time to time.  Such new versions will
+be similar in spirit to the present version, but may differ in detail to
+address new problems or concerns.
+
+Each version is given a distinguishing version number.  If the Program
+specifies a version number of this License which applies to it and "any
+later version", you have the option of following the terms and conditions
+either of that version or of any later version published by the Free
+Software Foundation.  If the Program does not specify a version number of
+this License, you may choose any version ever published by the Free Software
+Foundation.
+
+  10. If you wish to incorporate parts of the Program into other free
+programs whose distribution conditions are different, write to the author
+to ask for permission.  For software which is copyrighted by the Free
+Software Foundation, write to the Free Software Foundation; we sometimes
+make exceptions for this.  Our decision will be guided by the two goals
+of preserving the free status of all derivatives of our free software and
+of promoting the sharing and reuse of software generally.
+
+			    NO WARRANTY
+
+  11. BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
+FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
+OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
+PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
+TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
+PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
+REPAIR OR CORRECTION.
+
+  12. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
+WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
+REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
+INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
+OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
+TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
+YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
+PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGES.
+
+		     END OF TERMS AND CONDITIONS
+
+	Appendix: How to Apply These Terms to Your New Programs
+
+  If you develop a new program, and you want it to be of the greatest
+possible use to the public, the best way to achieve this is to make it
+free software which everyone can redistribute and change under these terms.
+
+  To do so, attach the following notices to the program.  It is safest
+to attach them to the start of each source file to most effectively
+convey the exclusion of warranty; and each file should have at least
+the "copyright" line and a pointer to where the full notice is found.
+
+    <one line to give the program's name and a brief idea of what it does.>
+    Copyright (C) 19yy  <name of author>
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+Also add information on how to contact you by electronic and paper mail.
+
+If the program is interactive, make it output a short notice like this
+when it starts in an interactive mode:
+
+    Gnomovision version 69, Copyright (C) 19yy name of author
+    Gnomovision comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; type `show c' for details.
+
+The hypothetical commands `show w' and `show c' should show the appropriate
+parts of the General Public License.  Of course, the commands you use may
+be called something other than `show w' and `show c'; they could even be
+mouse-clicks or menu items--whatever suits your program.
+
+You should also get your employer (if you work as a programmer) or your
+school, if any, to sign a "copyright disclaimer" for the program, if
+necessary.  Here is a sample; alter the names:
+
+  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+  `Gnomovision' (which makes passes at compilers) written by James Hacker.
+
+  <signature of Ty Coon>, 1 April 1989
+  Ty Coon, President of Vice
+
+This General Public License does not permit incorporating your program into
+proprietary programs.  If your program is a subroutine library, you may
+consider it more useful to permit linking proprietary applications with the
+library.  If this is what you want to do, use the GNU Library General
+Public License instead of this License.
+</verb>
+
+
+<sect1>Philosophy<p>
+<quote>
+Give me slack, or give me food, or kill me, or not.
+</quote>
+
+
+</article>

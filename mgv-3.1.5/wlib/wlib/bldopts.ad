@@ -1,0 +1,40 @@
+! @(#)$Mu: wlib/wlib/bldopts.ad 1.19 1998/08/27 02:58:21 $
+!#
+!# bldopts.ad - application defaults for the wlib standard build options box
+!#
+m4_dnl
+m4_dnl Build options dialog.  You should set the following resources in your
+m4_dnl application defaults file:
+m4_dnl
+m4_dnl	*bldoptsDialog_popup.title
+m4_dnl	*bldoptsDialog.helpChapter
+m4_dnl	*bldoptsDialog.helpSection
+m4_dnl
+m4_dnl __CLS__ should be substituted with your application's class name.
+m4_dnl
+__CLS__*bldoptsDialog.wlDefaultButton:		*dismiss
+__CLS__*bldoptsDialog.wlCancelButton:		*dismiss
+
+__CLS__*bldoptsDialog.dismiss.labelString:	Dismiss
+__CLS__*bldoptsDialog.dismiss.bottomAttachment:	attach_form
+__CLS__*bldoptsDialog.dismiss.leftAttachment:	attach_form
+__CLS__*bldoptsDialog.dismiss.rightAttachment:	attach_form
+
+__CLS__*bldoptsDialog.sep.rightAttachment:	attach_form
+__CLS__*bldoptsDialog.sep.rightOffset:		0
+__CLS__*bldoptsDialog.sep.leftAttachment:	attach_form
+__CLS__*bldoptsDialog.sep.leftOffset:		0
+__CLS__*bldoptsDialog.sep.bottomAttachment:	attach_widget
+__CLS__*bldoptsDialog.sep.bottomWidget:		dismiss
+
+__CLS__*bldoptsDialog.textSW.topAttachment:		attach_form
+__CLS__*bldoptsDialog.textSW.leftAttachment:		attach_form
+__CLS__*bldoptsDialog.textSW.rightAttachment:		attach_form
+__CLS__*bldoptsDialog.textSW.bottomAttachment:		attach_widget
+__CLS__*bldoptsDialog.textSW.bottomWidget:		sep
+
+__CLS__*bldoptsDialog.textSW.text*rows:		8
+__CLS__*bldoptsDialog.textSW.text*columns:	70
+__CLS__*bldoptsDialog.textSW.text*editable:	False
+__CLS__*bldoptsDialog.textSW.text*editMode:	multi_line_edit
+__CLS__*bldoptsDialog.textSW.text*fontList:	-*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1

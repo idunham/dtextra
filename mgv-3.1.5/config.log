@@ -1,0 +1,103 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:573: checking for a BSD compatible install
+configure:626: checking whether build environment is sane
+configure:683: checking whether make sets ${MAKE}
+configure:729: checking for working aclocal
+configure:742: checking for working autoconf
+configure:755: checking for working automake
+configure:768: checking for working autoheader
+configure:781: checking for working makeinfo
+configure:839: checking for gcc
+configure:916: checking whether the C compiler (gcc -O2  -s ) works
+configure:930: gcc -o conftest -O2   -s  conftest.c  1>&5
+configure:950: checking whether the C compiler (gcc -O2  -s ) is a cross-compiler
+configure:955: checking whether we are using GNU C
+configure:964: gcc -E conftest.c
+configure:979: checking whether gcc accepts -g
+configure:1009: checking for ranlib
+configure:1036: checking for POSIXized ISC
+configure:1075: checking if we need _POSIX_SOURCE for sigaction
+configure:1084: gcc -c -O2   conftest.c 1>&5
+configure:1116: checking if malloc debugging is wanted
+configure:1147: checking how to run the C preprocessor
+configure:1168: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1212: checking for X
+configure:1279: gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:1355: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c -lXt  1>&5
+configure:1526: checking for dnet_ntoa in -ldnet
+configure:1545: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c -ldnet   1>&5
+/usr/bin/ld: cannot find -ldnet
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1534 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dnet_ntoa();
+
+int main() {
+dnet_ntoa()
+; return 0; }
+configure:1567: checking for dnet_ntoa in -ldnet_stub
+configure:1586: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c -ldnet_stub   1>&5
+/usr/bin/ld: cannot find -ldnet_stub
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1575 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dnet_ntoa();
+
+int main() {
+dnet_ntoa()
+; return 0; }
+configure:1615: checking for gethostbyname
+configure:1643: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c  1>&5
+configure:1713: checking for connect
+configure:1741: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c  1>&5
+configure:1805: checking for remove
+configure:1833: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c  1>&5
+configure:1897: checking for shmat
+configure:1925: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c  1>&5
+configure:1998: checking for IceConnectionNumber in -lICE
+configure:2017: gcc -o conftest -O2  -D_POSIX_SOURCE  -s  conftest.c -lICE   1>&5
+configure:2058: checking for Motif
+configure:2086: gcc -c  -O2  -D_POSIX_SOURCE   conftest.c 1>&5
+configure:2165: gcc -o conftest  -O2  -D_POSIX_SOURCE    -s  conftest.c  -lSM -lICE -lXm -lXt -lX11   1>&5
+configure:2271: checking for Xpm
+configure:2302: gcc -c  -O2  -D_POSIX_SOURCE   conftest.c 1>&5
+configure:2379: gcc -o conftest  -O2  -D_POSIX_SOURCE    -s  conftest.c  -lSM -lICE -lXpm -lXt -lX11   1>&5
+configure:2461: checking for XOpenDisplay in -lX11
+configure:2480: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lX11  -lSM -lICE   1>&5
+configure:2512: checking for XShapeQueryVersion in -lXext
+configure:2531: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lXext  -lSM -lICE -lX11   1>&5
+configure:2555: checking for XtToolkitInitialize in -lXt
+configure:2574: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lXt  -lSM -lICE -lX11   1>&5
+configure:2604: checking for XpmCreatePixmapFromXpmImage in -lXpm
+configure:2623: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lXpm  -lSM -lICE -lX11   1>&5
+configure:2656: checking for X11/xpm.h
+configure:2666: gcc -E   conftest.c >/dev/null 2>conftest.out
+configure:2697: checking for XmRepTypeInstallTearOffModelConverter in -lXm
+configure:2716: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lXm  -lSM -lICE -lXpm -lXext -lXt -lXext -lX11   1>&5
+configure:2754: checking for get_help in -lhelp
+configure:2773: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lhelp  -lSM -lICE -lXm -lButtFace -lhtmlw -lXmu -lXpm -lXext -lXt -lXext -lX11   1>&5
+/usr/bin/ld: cannot find -lhelp
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 2762 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char get_help();
+
+int main() {
+get_help()
+; return 0; }
+configure:2805: checking for _XEditResCheckMessages in -lXmu
+configure:2824: gcc -o conftest -O2  -D_POSIX_SOURCE    -s   conftest.c -lXmu  -lSM -lICE -lXext -lXt -lXext -lX11   1>&5

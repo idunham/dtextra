@@ -1,0 +1,9 @@
+This is mgv, a Motif based PostScript viewer.  Mgv started out as a Motif
+rewrite of the venerable Ghostview 1.5 but more features have been added
+along the way.
+
+Mgv has a page on the web:
+
+	http://www.trends.net/~mu/mgv.html
+
+Mail suggestions and bug reports to mu@trends.net.

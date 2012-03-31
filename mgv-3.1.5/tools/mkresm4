@@ -1,0 +1,71 @@
+#!/usr/local/bin/perl -w
+# (#)$Mu: tools/mkresm4 1.3 1998/09/01 01:21:08 $
+##
+## mkresm4
+##	Generate a resoure substitution m4 script from an SGML file.
+##
+## Copyright (C) 1996  Eric A. Howe
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+##
+##   Authors:	Matthew D. Francey
+##		Eric A. Howe (mu@trends.net)
+##
+use strict;
+use Getopt::Long();
+use IO::File;
+use File::Basename qw(basename);
+
+sub parseargs() {
+	my $outfile = "-";
+	my $prefix  = "";
+	my $me      = basename($0);
+
+	$Getopt::Long::ignorecase = 0;
+	$Getopt::Long::autoabbrev = 1;
+	&Getopt::Long::GetOptions(
+		'output=s' => \$outfile,
+		'prefix=s' => \$prefix
+	);
+
+	die "$me : --prefix is required!\n" if(!$prefix);
+
+	return ($outfile, $prefix);
+}
+
+sub main() {
+	my ($out, $pfx) = parseargs();
+	my $fp;
+	my $line;
+
+	$fp = new IO::File(">$out") || die "cannot open $out: $!\n";
+	$fp->print("m4_define(\`__URL_CONTENTS__\',\`$pfx\')m4_dnl\n");
+
+	my $sect = 0;
+	while(defined($line = <>)) {
+		chop($line);
+		next if($line !~ /^<sect>/);
+		++$sect;
+		$line =~ s/^<sect>/__URL_/;
+		$line =~ s/(<.*)?$/__/;
+		$line =~ tr/ /_/;
+		$fp->print("m4_define(\`${line}\',\`$pfx-$sect\')m4_dnl\n");
+	}
+	undef $out;
+
+	return 0;
+}
+
+exit(main());

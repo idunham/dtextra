@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Mathoms</TITLE>
+ <LINK HREF="mgv-24.html" REL=next>
+ <LINK HREF="mgv-22.html" REL=previous>
+ <LINK HREF="mgv.html#toc23" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-24.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-22.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc23"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="s23">23. Mathoms</A></H2>
+
+<P>This section is a dumping ground for things that don't belong anywhere else
+(<EM>mathom</EM> is a Hobbit term:  a mathom is something that no one knows
+what to do with but they don't want to throw it away).
+<P>
+<H2><A NAME="ss23.1">23.1 Enlightening mgv</A>
+</H2>
+
+<P>If you're into the
+<A HREF="http://www.enlightenment.org">enlightened</A> look, then you
+should make sure you don't try and specify a <B>backgroundPixmap</B> for the
+main scrolled window.  Resource settings like this:
+<PRE>
+        MGv*view*backgroundPixmap:        XmUNSPECIFIED_PIXMAP
+        MGv*backgroundPixmap:             /full/path/to/tile.xpm
+        MGv*foreground:                   fg
+        MGv*background:                   bg
+        MGv*XmText.backgroundPixmap:      XmUNSPECIFIED_PIXMAP
+        MGv*XmTextField.backgroundPixmap: XmUNSPECIFIED_PIXMAP
+        MGv*XmList.backgroundPixmap:      XmUNSPECIFIED_PIXMAP
+</PRE>
+
+should give you the enlightened look (text and list widgets look pretty
+crappy with background pixmaps so there's no point in even trying).
+If you try and specify a
+<B>backgroundPixmap</B> for <B>view</B>, you will probably get an X protocol
+error at startup.  For best results, <B>fg</B> should contrast with the whole
+tiling pixmap (smooth pixmaps work best) and <B>bg</B> should be a solid color
+that is close the pixmap colors.  Better results can be had if you're willing
+to set up different pixmaps for the various types of widgets; if you come
+up with anything really cool, let me know.  If you're wondering what this
+stuff looks like, my 
+<A HREF="http://www.trends.net/~mu">homepage</A> has a couple of screen shots.
+<P>If you don't have Motif 2.0.1+ then the <B>backgroundPixmap</B> resource might
+not work (it does work with Netscape 4.X/Linux and that uses Motif 1.2.X).
+I have tried this stuff with Irix and CDE (Motif 1.2.5) without success:
+<B>mgv</B> died on Irix and ignored the pixmap under CDE.  I think the problem
+could be fixed by adding a String to Pixmap type converter that understood
+XPM files but that will have to wait.  Most LessTif libraries supply a
+String to Pixmap type converter that understands XPM files so LessTif users
+should be able use fancy tiling as well.
+<P>
+<H2><A NAME="ss23.2">23.2 Using mgv With Netscape</A>
+</H2>
+
+<P>If you want to use <B>mgv</B> as the <B>PostScript</B> viewer with Netscape you just have
+to set the <B>application/postscript</B> MIME handler to
+&quot;mgv %s&quot;.  The MIME handlers can be configured in
+the big <EM>Preferences</EM> dialog for Netscape 4 or in the <EM>Helpers</EM>
+tab of the <EM>General Preferences</EM> dialog in Netscape 3.
+<P>This is the original reason that I changed the saving behavior of <B>mgv</B>:
+in version one you could only save marked pages, now you can save whatever
+you want.
+<P>
+<H2><A NAME="ss23.3">23.3 Using mgv With CDE</A>
+</H2>
+
+<P>If you want to use <B>mgv</B> in the CDE desktop, the following article from
+comp.unix.cde may be of interest:
+<PRE>
+Article 1968 of comp.unix.cde:
+From: Larry Gardner &lt;lkg@atl.hp.com>
+Newsgroups: comp.unix.cde
+Subject: Re: Registering new file types
+Date: Wed, 25 Jun 1997 10:11:39 -0400
+Organization: Hewlett Packard TIS/SEM/IES
+Lines: 109
+Message-ID: &lt;33B1271B.3BC4@atl.hp.com>
+References: &lt;5oojdv$823@bioko.ifi.unizh.ch>
+NNTP-Posting-Host: wscoe2.atl.hp.com
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 3.01 (X11; I; HP-UX B.10.00 9000/747)
+To: Dimitrios Tombros &lt;tombros@ifi.unizh.ch>
+Xref: news.lglobal.com comp.unix.cde:1968
+
+Dimitrios Tombros wrote:
+> 
+> Is it possible to register new file types with CDE for a specific
+> user so that when clicking on these types from the file manager
+> the respective application is started?
+> 
+> Any help will be appreciated; if this is a FAQ then please point me
+> to the FAQ location.
+> 
+> --
+> 
+> ----------------------------------------------------------------------
+> Dimitrios Tombros                   Database Technology Research Group
+> e-mail: tombros@ifi.unizh.ch               Computer Science Department
+> http://www.ifi.unizh.ch/staff/tombros.html        University of Zurich
+
+Here's an example for the postscript file type that will use ghostscript
+and ghostview to print/view postscript files.
+
+HTH
+
+Larry
+
+ghostview.dt
+
+################################################################################
+#
+# File:         ghostview.dt
+# RCS:          $ Header: ghostview.dt,v 1.0 97/06/04 16:39:57 lkg Exp $
+# Description:  CDE generic action for application execution.
+# Author:       TIS/SEM/IES WS-COE Team.
+# Created:      Wed Jun  4 16:39:27 EDT 1997
+# Modified:
+# Language:     CDE 1.0 Actions
+#
+################################################################################
+#
+# Initialize Variables
+#
+################################################################################
+
+set GHOSTVIEW=/opt/gnu/bin/X11/ghostview
+
+################## END OF VARIABLE INITIALIZATION
+##############################
+
+ACTION GhostView
+{
+    ARG_COUNT   0
+    ICON        gv
+    TYPE        COMMAND
+    WINDOW_TYPE NO_STDIO
+    EXEC_STRING $GHOSTVIEW
+    DESCRIPTION Ghostview postscript viewer.
+}
+
+ACTION GhostView
+{
+    ARG_COUNT   *
+    ARG_TYPE    POSTSCRIPT
+    ICON        gv
+    TYPE        COMMAND
+    WINDOW_TYPE NO_STDIO
+    EXEC_STRING $GHOSTVIEW %(File)Arg_1%
+    DESCRIPTION Ghostview postscript viewer.
+}
+
+ACTION gsPrint
+{
+    TYPE        COMMAND
+    WINDOW_TYPE NO_STDIO
+    EXEC_STRING sh -c '/opt/gnu/bin/gs -q -sDEVICE=ljet4 -r300 -dNOPAUSE \
+                       -sOutputFile=- \
+                       %(File)Arg_1"Postscript File To Print:"% \
+                       %(File)Args% | lp -s -oraw'
+    DESCRIPTION The gsPrint action formats its arguments \
+                using the 'gs' command and prints them to \
+                the default printer using 'lp'.
+}
+
+DATA_ATTRIBUTES POSTSCRIPT
+{
+    ICON        Dtps
+    ACTIONS     Open,Print
+    DESCRIPTION This is a postscript file.
+}
+DATA_CRITERIA POSTSCRIPT1
+{
+    DATA_ATTRIBUTES_NAME POSTSCRIPT
+    MODE                 !d
+    NAME_PATTERN         *.[Pp][Ss]
+}
+
+ACTION Open
+{
+    ARG_TYPE    POSTSCRIPT
+    TYPE        MAP
+    MAP_ACTION  GhostView
+    DESCRIPTION This action opens the postscript file type.
+}
+
+ACTION Print
+{
+    ARG_TYPE    POSTSCRIPT
+    TYPE        MAP
+    MAP_ACTION  gsPrint
+    DESCRIPTION This action prints the postscript file type.
+}
+</PRE>
+
+This would probably work with <B>mgv</B> if you change &quot;ghostview&quot;
+to &quot;mgv&quot; all over the place.  You'll have to make your own icons
+though (<CODE>lib/icon.xpm</CODE> would be a good starting place but it
+is the wrong size).  I can't really help you with this so you're on
+your own (of course, I'd be interested in any results).
+<P>
+<H2><A NAME="ss23.4">23.4 Splash Screen</A>
+</H2>
+
+<P>Here's the <B>PostScript</B> program from the splash screen for the curious:
+<PRE>
+        %!PS-Adobe-3.0
+        %%Title: MGv
+        %%Pages: (atend)
+        %%Orientation: Portrait
+        %%DocumentMedia: Letter 612 792 0 () ()
+        %%PageOrder: Ascend
+        %%Creator: $\mu$
+        %%EndComments
+        %%BeginProlog
+        /SF {
+                findfont exch dup
+                type /arraytype eq {makefont} {scalefont} ifelse
+                setfont
+        } def
+        /MGv {
+                72 /Helvetica-Bold-Oblique SF
+                50 700 moveto (MGv) show showpage
+        } def
+        %%EndProlog
+        %%Page: 1 1
+        MGv
+        %%Trailer
+        %%EOF
+</PRE>
+<P>
+<H2><A NAME="ss23.5">23.5 Binaries</A>
+</H2>
+
+<P>I stopped making Linux binaries because LessTif is good enough for <B>mgv</B>
+these days.
+<P>Binaries for HP-UX are available from the
+<A HREF="http://hpux.cae.wisc.edu">HP-UX Porting and Archive Center</A>
+(okay, I admit, I submitted the request for this).
+<P>Binaries for FreeBSD are available from the porting section of the
+<A HREF="http://www.freebsd.org">FreeBSD Homepage</A> (I didn't
+submit the request for this, someone else did).
+<P>If anyone knows where people can get binaries for other platforms, RPM
+packages, or Debian packages, please let me know so that I can add links
+to the <B>mgv</B> web page.
+<P>
+<P>
+<HR>
+<A HREF="mgv-24.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-22.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc23"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

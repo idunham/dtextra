@@ -1,0 +1,648 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: History</TITLE>
+ <LINK HREF="mgv-29.html" REL=next>
+ <LINK HREF="mgv-27.html" REL=previous>
+ <LINK HREF="mgv.html#toc28" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-29.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-27.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc28"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="s28">28. History</A></H2>
+
+<P>
+<H2><A NAME="ss28.1">28.1 mgv 3.1.5: September 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Fixed the <EM>mark even</EM> and <EM>mark odd</EM> toolbar buttons.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.2">28.2 mgv 3.1.4: September 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Fixed an auto sizing bug.  Telling <B>mgv</B> to automatically resize both
+the width and height of the main window could cause X protocol errors
+and/or bizarre window sizes (okay, I admit it, I'm just trying to
+get a version number closer to <B>pi</B>:  I have TeX-envy).</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.3">28.3 mgv 3.1.3: September 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added a simple work-around for a LessTif accelerator problem.
+Menu accelerators were going away as soon as you brought up a dialog
+box.  This little work-around isn't needed unless you're using
+LessTif.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.4">28.4 mgv 3.1.2: September 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Netscape HTML help got broken in 3.1.0, I converted some fixed sized
+buffers to dynamically sized buffers and neglected to remove some
+<CODE>memset</CODE> calls.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.5">28.5 mgv 3.1.1: September 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Fixed a memory corruption bug, thanks to Stephen R. Veit for reporting
+the bug and a fix for it.</LI>
+<LI>Fixed up the XPM include logic.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.6">28.6 mgv 3.1.0: September 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Finally added a tool bar, you can change the images used but there
+is currently no way to change the entries without hacking the
+source.</LI>
+<LI>Switched to autoconf for configuration and compiling and there was
+much rejoicing.  The autoconf/automake files for DDD and LessTif
+were invaluable.  This change means that library files (help files,
+icons, splash screens, etc...) will usually end up in
+<CODE>/usr/local/share</CODE> because autoconf likes it that way; the
+new library directory will contain a subdirectory for each <B>mgv</B>
+version installed.</LI>
+<LI>Removed the <EM>LessTif Problems</EM> section of the manual, I don't know
+of any problems anymore.</LI>
+<LI>Added some simple hooks for <CODE>malloc</CODE> debugging via dmalloc
+(<CODE>ftp://ftp.letters.com/src/dmalloc/dmalloc.tar.gz</CODE>).
+If for some reason you want to enable dmalloc, make sure you
+configure dmalloc to allow freeing <CODE>NULL</CODE> pointers:  ANSI
+guarantees that <CODE>free(0)</CODE> will work and I assume ANSI all
+over the place.</LI>
+<LI>Removed all instance of <B>popen</B>(3) from the source, this function
+has a history of compile problems so it went away.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.7">28.7 mgv 3.0.2: August 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Fixed an install problem in the lib directory, the makefile had an
+incorrect source path.  Seems that my QA is lacking in some areas.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.8">28.8 mgv 3.0.1: August 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added the version number to the library directory.  Thanks to
+Marty Leisner for the suggestion.</LI>
+<LI>Fixed up a couple of compiler warnings.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.9">28.9 mgv 3.0.0: August 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added panning as yet another scrolling option in the main viewing
+window.  This lets you drag the viewing window around with mouse
+button two.</LI>
+<LI>Disabled editres support on everything but Linux and FreeBSD.
+Editres and the Xmu library were just causing build problems
+so they went away; I know it works on Linux and FreeBSD (as far
+as I know, XFree86 always comes with a fully functional Xmu) so
+I've left it enabled there.</LI>
+<LI>Fixed a window sizing bug with EPS and non-DSC files; automatic
+window sizing didn't do anything in these cases but now it works
+as expected.  Thanks to 
+<A HREF="http://www.cond-mat.physik.uni-mainz.de/~luijten">Erik Luijten</A> for pointing out the
+problem.</LI>
+<LI>Renamed the <EM>Window</EM> menu to <EM>View</EM> and moved it over
+the the third entry from the left in the menu bar.</LI>
+<LI>Removed the (deprecated in version 2.1) <B>printer</B> resource,
+the printer name is now officially part of the <B>printCommand</B>
+resource.</LI>
+<LI>Updated my sgml-tools to 1.0.6, some minor document hackery was
+needed for this.</LI>
+<LI>Fixed a Lesstif/Motif incompatibility with the file selection
+widget.  I was setting the <B>dirMask</B> resource on file
+selection widgets to get a specific file name filter but Lesstif
+wants me to use <B>pattern</B> instead.  Another reading of the
+Motif documentation has convinced me that <B>pattern</B> is the
+right one anyway.</LI>
+<LI>Dropped support for the (ancient) Mosaic/CCI help support.  If anyone
+actually uses this I'll consider putting it back but I don't think
+it is worth the compile trouble.</LI>
+<LI>Removed a LessTif ifdef in <CODE>wlib/create.c</CODE>, gadgets seem to
+be working fine now.</LI>
+<LI>Changed the <EM>Center</EM> entry in the <EM>Page</EM> menu to a toggle button;
+page centering now stays around when you change pages.  The
+<EM>-center</EM> and <EM>-nocenter</EM> switches and the <EM>center</EM> resource
+were also added.</LI>
+<LI>Fixed a bad memory free when reporting unknown switches.  I was freeing
+an incremented pointer, how embarrassing.  Thanks to
+Guenter Steinbach for reporting this problem.</LI>
+<LI>Added <EM>-?</EM> and <EM>-H</EM> as aliases for <EM>-help</EM>.</LI>
+<LI>Added some notes about binary distributions.</LI>
+</UL>
+
+I wanted to get a tool bar into this release but some bugs came up and I
+wanted to get fixes for them out.  This means that there will probably be
+another small release soon with a tool bar.
+<P>
+<H2><A NAME="ss28.10">28.10 mgv 2.4.3: May 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added <B>make</B>, <B>bindir</B>, and <B>libdir</B> to the version
+information which appears in the <EM>Build Options</EM> dialog and
+the <EM>-version</EM> output.</LI>
+<LI>Fixed an ambiguous <EM>if</EM> statement in <CODE>dsc.c</CODE>.  Thanks to
+Marty Leisner for the fix.</LI>
+<LI>Moved the <CODE>INSTALL</CODE> file to the top directory where it should
+be.  Thanks to Marty Leisner for telling me about this
+brain damage.</LI>
+<LI>Two radio buttons in the <EM>Magstep</EM> menu could be turned on
+if you specified a non-default initial magstep.  This problem
+was just cosmetic but a bug is a bug.  Thanks to 
+<A HREF="http://www.cond-mat.physik.uni-mainz.de/~luijten">Erik Luijten</A>
+for pointing out this problem.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.11">28.11 mgv 2.4.2: April 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Removed the <B>SGI</B>, <B>CDE</B>, and <B>Xnt</B> stubs in the help system.
+I never had a chance to implement any of these and I no longer have
+access to an SGI or CDE system so I've removed the stubs.</LI>
+<LI>Removed all traces of Xmu from the Ghostview widget.  Many people
+seem to have old versions of libXmu or they don't have Xmu at all
+so Xmu had to go.</LI>
+<LI>Turned off editres support on AIX by default.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.12">28.12 mgv 2.4.1: April 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>The <CODE>wlib/resource.c</CODE> file wasn't supposed to exist in 2.4
+but I neglected to delete a CVS tag so it was there.  This caused
+some build problems because <CODE>wlib/wlib/wlib.h</CODE> didn't have
+the necessary prototypes for <CODE>wlib/resource.c</CODE>.  I have
+now properly killed <CODE>wlib/resource.c</CODE>.</LI>
+<LI>Added some missing <B>null</B> checks to some of the resource handling.
+The problem (a segfault) would only show up if <B>mgv</B> couldn't find
+one of the standard print commands in your <B>PATH</B> environment
+variable.</LI>
+<LI>
+<A HREF="http://www.insync.net/~aos">Andrew 0. Smith</A> informed me that Solaris's cc prefers <EM>-xO2</EM>
+instead of the usual <EM>-O2</EM> to get level two optimizations
+so I fixed the &quot;<CODE>make/sys.solaris-cc.mk</CODE>&quot;
+makefile.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.13">28.13 mgv 2.4: March 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added the <B>wlInstallIcon</B> resource to control whether or not <B>mgv</B>
+installs its own icon when it runs.  If you want to use a different
+icon, then you can just set this resource to <B>false</B> and tell
+your window manager to use your icon.  Thanks to 
+<A HREF="http://www.gfdl.gov/~hnv">Hans Vahlenkamp</A>
+for this suggestion.  SGI users can use one of the <CODE>mgv.icon*</CODE>
+files as their icon if they wish (the images are pretty cheesy,
+if anyone wants to donate a better one, please do).</LI>
+<LI>Made editres support configurable at run-time (via resources and
+switches) or compile-time.  I have had reports that that HP-UX
+10.20 doesn't come with editres support so I added a standard
+work-around.  HP-UX 10.20 users (and others without editres)
+should set <CODE>mk-editres</CODE> to <B>no</B> in the appropriate
+<CODE>make/sys.*.mk</CODE> file before compiling.</LI>
+<LI>One more little makefile hack for FreeBSD.  Thanks to 
+<A HREF="http://lambic.physics.montana.edu/~handy">Brian Handy</A>
+for the patch.</LI>
+<LI>Added the <EM>Back</EM> and <EM>Forward</EM> entries to the popup menu.
+These additions were based on a suggestion from 
+<A HREF="http://www.cond-mat.physik.uni-mainz.de/~luijten">Erik Luijten</A>.</LI>
+<LI>Added the ability to read a <B>PostScript</B> file from the standard input.
+You can save the standard input to a temporary file (this gives you
+full page navigation) or just read it as it comes in.
+Thanks to David Green for this suggestion.</LI>
+<LI>Increased the optimization level to <CODE>-O2</CODE> on all platforms.
+I don't think this will cause any problems.</LI>
+<LI>Finally fixed the <EM>current page not visible in the page list</EM>
+bug.  You used to be able to move the selected item in the page
+list out of the visible range (i.e. if you're page list had room
+for ten items and you moved to page eleven with PageDown, the
+eleven in the page list wouldn't be visible).</LI>
+<LI>Added support for compressing, gzipping, and bzip2ing saved files.
+This was a quick and simple addition so I added it even though it
+has dubious utility.</LI>
+<LI>Merged the <EM>Mark|Mark Current Page</EM> and
+<EM>Mark|Unmark Current Page</EM> menu items.  The new
+entry (<EM>Mark|Mark/Unmark</EM>) toggles the state of the
+current page.</LI>
+<LI>Changed the behavior of the <EM>Mark|Mark Even Pages</EM> and
+<EM>Mark|Mark Odd Pages</EM> menu items so that they no
+longer unmark any pages.  <EM>Mark Even</EM> used to mark the
+even pages and unmark the odd pages, now it just marks the even
+pages and leaves the odd pages alone.  Similarly, the
+<EM>Mark Odd</EM> command no longer unmarks the even pages.</LI>
+<LI>Some minor hacks for RedHat 5.0 systems.  There are still some
+outstanding linking problems (no surprises here) with commercial
+Motif libraries; LessTif should work though.</LI>
+<LI>Added &quot;<CODE>-W</CODE>&quot; to the compiler warning flags for all
+gcc setups.  This gives even more warnings the &quot;<CODE>-Wall
+-Werror -ansi -pedantic -Wmissing-prototypes</CODE>&quot; and this
+is good.</LI>
+<LI>Disabled gadgets when compiling with LessTif.  I only use gadgets
+to allow people to use funky background pixmaps with Motif 2.0+
+so disabling gadgets really doesn't hurt anything (disabling
+gadgets was a simple, clean, isolated hack to <CODE>wlib/create.c</CODE>
+so it doesn't hurt me either).</LI>
+<LI>Updated the <EM>LessTif Problems</EM> section again.</LI>
+<LI>Fixed the error message when you try to open a non-existent file;
+<B>mgv</B> was using <CODE>EPERM</CODE> instead of <CODE>errno</CODE> so the message
+wasn't always accurate.</LI>
+<LI>Loosened up the DSC checks.  As long as the <B>PostScript</B> document begins with
+&quot;<CODE>%!</CODE>&quot; we'll scan for the structure comments.
+DSC documents are supposed to start with
+&quot;<CODE>%!PS-Adobe-</CODE>&quot; and a version number but
+there are some naughty <B>PostScript</B> files out there.</LI>
+<LI>Fixed a couple of typos in <CODE>wlib/wlib/dirtysocks.h</CODE> that
+were causing problems on Sun machines with Sun's compiler.
+Thanks go to 
+<A HREF="http://www.dtr.isy.liu.se/dtr/staff/jj">Jean-Jacques Moulis</A> for letting me know about
+the problem.</LI>
+<LI>Added a warning message about unknown switches.  <B>mgv</B> used to
+try to open unknown switches as <B>PostScript</B> files but now it ignores
+such things.  As a side effect you'll have to do one of the standard
+Unix tricks (end the switches with &quot;<CODE>--</CODE>&quot; or use
+&quot;<CODE>./-blah</CODE>&quot;) to open files which begin with
+a hyphen from the command line.
+Thanks to David Green for this suggestion.</LI>
+<LI>I've changed ISPs once again so all references to <CODE>echo-on.net</CODE>
+have been converted to the new and improved <CODE>trends.net</CODE>.</LI>
+<LI>Added the <EM>Document Info</EM> dialog.</LI>
+<LI>Added the splash screen.  If you don't like my artwork, you're free
+to use your own by replacing the <CODE>splash.xpm</CODE> and/or
+<CODE>splash.xbm</CODE> files in the final library directory.  If you
+don't like splash screens at all, use the <B>-nosplash</B> switch
+or set the &quot;mgv*wlShowSplashScreen&quot; resource
+to <B>False</B>.</LI>
+<LI>Added support for <EM>sticky</EM> dialogs.  Some people don't like it
+when dialogs popdown just because you've hit <EM>OK</EM> (or equivalent).
+See the <B>autoDismiss</B> resource and the <EM>Sticky Dialogs</EM> section
+for more information.  This only affects the <EM>File Save</EM>,
+<EM>Print</EM>, and <EM>Set Magstep</EM> dialogs.  This functionality
+is based on a suggestion from Carl Benker.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.14">28.14 mgv 2.3.1: February 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Modified the makefiles to know about and use <CODE>ranlib</CODE> if necessary.
+As far as I know, only FreeBSD (version 2.X at least) needs
+<CODE>ranlib</CODE>.  This change also has the bonus side effect of allowing
+&quot;<CODE>make -j</CODE>&quot; to be used in the <CODE>wlib</CODE> directory
+(this may not matter to you but it is a big win on my K6-200);
+the only disadvantage is a slight increase in disk space when you're
+compiling.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.15">28.15 mgv 2.3: February 1998</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added a work-around for a bug in Motif 1.2.3.  If you moved one of the
+main scrollbars out of the default position and left it out of the
+default position, a File|Close would cause a segmentation fault
+deep inside Motif.  The problem was that <B>mgv</B> was trying to move the
+scrollbars in a widget that was in the process of dying, newer versions
+of Motif don't mind this but 1.2.3 was missing a check for this state.
+Some versions of Motif 1.2.5 also appear to have this problem.</LI>
+<LI>Updated the <EM>LessTif Problems</EM> section;
+<B>mgv</B> and LessTif; almost get along perfectly now.</LI>
+<LI>Added the <B>gunzip</B> and <B>bunzip</B> resources.  These resources
+replace the <B>decompress</B> resource but <B>decompress</B> remains
+as an alias for <B>gunzip</B>.  These changes were made so that <B>mgv</B>
+could deal with bzip2ed files, bzip2 is much slower than gzip but
+offers better compression on many files.  You can get bzip2 from
+the 
+<A HREF="http://www.muraroa.demon.co.uk">bzip2 homepage</A>
+or the 
+<A HREF="http://www.digistar.com/bzip2/index.html">bzip2 US mirror</A>; you can also get bzip2 anywhere that you
+can get 
+<A HREF="http://www.gimp.org">the Gimp</A>.</LI>
+<LI>The <B>resetScrollBars</B> resource has been expanded to offer control
+over the horizontal and vertical scrollbars separately; this just
+means that you can have only the vertical scrollbar reset on page
+changes if you want.  The old boolean values, <B>true</B> and <B>false</B>,
+have been retained as aliases.  Thanks to 
+<A HREF="http://www.fy.chalmers.se/~kulginov">Dmitri Kulginov</A> for
+this feature.</LI>
+<LI>Page list updates (during <EM>Mark All</EM> and <EM>Show Page Labels</EM> for
+example) should be much faster now.</LI>
+<LI>Added <CODE>-D_XOPEN_SOURCE_EXTENDED</CODE> to the compiler flags for AIX.
+I hear that AIX 4.3 needs this rather than <CODE>-D_XOPEN_SOURCE</CODE>
+so I'll try it out with both defined and hope for the best (will
+the madness of <CODE>-D_POSIX_SOURCE</CODE>, <CODE>-D_XOPEN_SOURCE</CODE>,
+<CODE>-D_BSD_SOURCE</CODE>, etc... ever end?).  Thanks to
+<A HREF="http://www.if.uj.edu.pl/~ldutkiew">Lukasz Dutkiewicz</A> for telling me about this new piece of
+vendor/standards brilliance.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.16">28.16 mgv 2.2.1: December 1997</A>
+</H2>
+
+<P>
+<UL>
+<LI>Fixed a buffer overflow problem in the printing.  The bug was a really
+dumb mistake, sorry for the brain damage.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.17">28.17 mgv 2.2: November 1997</A>
+</H2>
+
+<P>
+<UL>
+<LI>Added support for non-default color depths, non-default visuals, and
+private color maps.  This didn't have that much impact on the
+application but it is a cool enough increase in functionality to
+warrant an increase in the minor version number rather than just
+the patch level.  Thanks to 
+<A HREF="http://www.gfdl.gov/~hnv">Hans Vahlenkamp</A> for hassling me
+about this lacking feature (okay, <EM>hassling</EM> is probably a little
+strong).</LI>
+<LI>Fixed a bug in zoom window destruction.  If you zoomed on a zoom and
+killed the first zoom before the zoomed zoom, you used to get death
+but now you don't.</LI>
+<LI>Fixed the menu accelerators to avoid duplication; the following
+accelerators were changed:
+<UL>
+<LI>The <EM>Magstep</EM> menu is now activated with <B>Alt+T</B> instead
+of <B>Alt+G</B>.</LI>
+<LI>The <EM>Options</EM> menu is now activated with <B>Alt+S</B> instead
+of <B>Alt+O</B> (this was taken).</LI>
+<LI>The <EM>Set</EM> entry in the <EM>Magstep</EM> menu no longer has
+an accelerator, I couldn't think of anything sensible
+that wasn't already taken by something that gets more use.</LI>
+<LI>The <EM>Enable Smooth Scrolling</EM> entry in the <EM>Options</EM>
+menu is now activated with <B>Alt+L</B> instead of the old
+<B>Alt+O</B>.</LI>
+</UL>
+
+If anyone doesn't like this, you can change them through the
+resource database to whatever you want.</LI>
+<LI>Fixed up the code that deals with (depth one) bitmaps for icons.  The
+old code was causing a BadMatch error on some systems because a copy
+was attempted from a depth one Pixmap to a Window with a different
+depth.</LI>
+<LI>Added the <B>wlUseColorIcon</B> resource so you can tell <B>mgv</B> to use or
+not use a color icon at run-time.</LI>
+<LI>Fixed the spelling of Matthew's name in various places (I thought
+there was only one &quot;t&quot;).</LI>
+<LI>Added a couple of minor (and harmless) changes to the resources for
+LessTif.  These changes don't affect Motif versions of <B>mgv</B>.</LI>
+<LI>Added some notes on the Ghostview widget resources to the
+<EM>Application Resources</EM> section of the manual.  I was sure
+the resources were already listed but I was wrong.</LI>
+<LI>Added the <EM>-portrait</EM>, <EM>-landscape</EM>, <EM>-seascape</EM>, and
+<EM>-upsidedown</EM> switches to control the initial page orientation.</LI>
+<LI>Extended the FreeBSD 2.2.2 support to deal with FreeBSD 3 with
+Motif 1.2.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.18">28.18 mgv 2.1: October 1997</A>
+</H2>
+
+<P>
+<UL>
+<LI>Reversed the order of History list.</LI>
+<LI>Removed the <EM>Printer Name</EM> text field from the print dialog.  The
+print command now holds both the command to use and the printer name.
+The resources (<B>printer</B> and <B>printCommand</B> are still separate,
+you can forget about <B>printer</B> and put it all in <B>printCommand</B>
+if you want).</LI>
+<LI>Fixed the <EM>GhostviewSendPS</EM> prototype.
+The old prototype had a <CODE>long</CODE> where it should have had
+an <CODE>off_t</CODE>.  Apparently HP-UX 10.20's <CODE>off_t</CODE> isn't a
+<CODE>long</CODE> like it is on all the other machines (otherwise the
+compilers would have complained long ago).  This was reported and
+fixed by 
+<A HREF="http://www.mvs.ikp.liu.se/staff/karl/karl.html">Karl Storck</A>.</LI>
+<LI>Small fixes to the makefiles and dirtysocks.h for Solaris 2.6/Intel.
+Thanks to 
+<A HREF="mailto:tma@encore.com">Thanh Ma</A> for the patch.</LI>
+<LI>I've changed ISPs once again (I'm on my third one this year), lglobal.com
+just got swallowed by echo-on.net so I've updated everything for this.
+I think it is time I forked out the cash for a virtual host somewhere.</LI>
+<LI>Some minor hacks were added to allow <B>mgv</B> and LessTif to get along
+a little better.  There are still a number of problems with using
+LessTif but most things work.  I've only tested
+things with the lesstif-current from 1997-10-02 so the current
+release might still be broken.  You might also want to check
+my 
+<A HREF="http://www.trends.net/~mu">homepage</A> for any updates on <B>mgv</B> and LessTif.</LI>
+<LI>A preliminary port to FreeBSD 2.2.2 was supplied by
+<A HREF="http://www.ionet.net/~cyoder">Christopher Yoder</A>.  The initial attempt was done with LessTif 
+so I don't know how well this works yet (I don't expect any
+problems).</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.19">28.19 mgv 2.0.2: August 1997</A>
+</H2>
+
+<P>
+<UL>
+<LI>Always scroll the scrolled window back to the top when closing
+a file.  Sometimes the scrolled window would get confused about
+where its child was when opening a new file; this only appears
+to happen if you are scrolled down near the bottom and then you
+open a new file in the same window.  The confusion only happens
+with some files (the exact conditions are unknown but this
+scrolling-back-to-the-top trick makes the problem go away).</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.20">28.20 mgv 2.0.1: August 1997</A>
+</H2>
+
+<P>
+<UL>
+<LI>Fixed an auto-sizing bug.  Any auto-sizing will now take effect
+if you hide the page list, menubar, or status line.</LI>
+<LI>Trying to open a non-existent file from the command line will
+now produce a warning message.  Doing
+&quot;<CODE>mgv not-there.ps</CODE>&quot; used to just give an
+empty window.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.21">28.21 mgv 2.0: August 1997</A>
+</H2>
+
+<P>
+<UL>
+<LI>Help system extended to deal with Netscape's remote protocol
+and Mosaic's CCI protocol.
+CDE help, and SGI help are still coming.
+The <B>helpSuffix</B> resource has been replaced with <B>helpType</B>.</LI>
+<LI>Added palette changing menu items.</LI>
+<LI>Changed the float resources in the Ghostview widget to integers to
+avoid alignment problems on the DEC Alpha (unaligned access).</LI>
+<LI>Freeing unallocated memory bugs in Ghostview.c fixed (some resources
+were getting copied by SetValues() and freed by Destroy() but not
+copied by Initialize()).  These bugs were caused by some modifications
+that I made to the Ghostview widget.  All of the String resources for
+the Ghostview widget are now copied as God intended them to be.</LI>
+<LI>You can now save a document without marking pages.</LI>
+<LI>Fixed two orientation bugs so that you no longer get forced back to
+the first page when changing orientation and changing the orientation
+from the menus will always work (in some cases, mgv would switch to
+the orientation in the document when you tried to change orientations).</LI>
+<LI>Added a ghost to the icon (hey, this is reason enough to upgrade
+isn't it?).</LI>
+<LI>Added the <B>mgvMark</B> action to the page list to make marking pages
+easier (maybe).</LI>
+<LI>Cleaned up the keyboard handling in the main viewing window so
+that the cursor keys do the <EM>right thing</EM>; the new <B>mgvScroll</B>
+action was added to facilitate this.</LI>
+<LI>Support for multiple top level windows added.</LI>
+<LI>On-the-fly decompression of compressed files added.</LI>
+<LI>All dialogs now make use of the <B>defaultButton</B> and
+<B>cancelButton</B> resources for better compliance with the Motif
+Style Guide.  The zooming is now attached to mouse button one
+(used to be button two but Motif wants button two for drag-and-drop
+operations).  If you want the old bindings back you just have to
+change the <B>baseTranslations</B> for the Ghostview widget to:
+<PRE>
+        MGv*Ghostview.baseTranslations: #replace         \n\
+                &lt;Key>osfHelp:        wlHelpContext()          \n\
+                &lt;Message>:   gvMessage()              \n\
+                !&lt;Btn2Down>: mgvZoom(begin)           \n\
+                !&lt;Btn2Motion>:       mgvZoom(extend)          \n\
+                !&lt;Btn2Up>:   mgvZoom(end)             \n\
+                !&lt;Btn1Down>: mgvZoom(begin)           \n\
+                !&lt;Btn1Motion>:       mgvZoom(extend)          \n\
+                !&lt;Btn1Up>:   mgvZoom(end)             \n\
+                &lt;EnterWindow>:       gvNotify(0)              \n\
+                &lt;LeaveWindow>:       gvNotify(0)              \n\
+                &lt;MotionNotify>:      gvNotify(0)              \n\
+                &lt;Key>osfUp:  mgvScroll(up,   magical) \n\
+                &lt;Key>osfDown:        mgvScroll(down, magical) \n\
+                &lt;Key>osfLeft:        mgvScroll(left)          \n\
+                &lt;Key>osfRight:       mgvScroll(right)
+        
+</PRE>
+
+These bindings will give you zooming with either button one
+or button two.</LI>
+<LI>Added the <EM>magic</EM> scrolling based on a suggestion and patch
+from 
+<A HREF="http://www.simplicity.net/~brian">Brian Dowling</A>. This introduced the <B>magicScrolling</B> and
+<B>magicResistance</B> resources.</LI>
+<LI>Modified the magstep menu based on a suggestion and patch from
+<A HREF="http://www.simplicity.net/~brian">Brian Dowling</A>.  The old magstep menu let you choose from -5
+through +5, the new one lets you increase and decrease it as desired.</LI>
+<LI>Added the <EM>Auto Size</EM>, <EM>Auto Height</EM>, and <EM>Auto Width</EM>
+buttons to the <EM>Page</EM> menu; the <B>autoHeight</B> and <B>autoWidth</B>
+application resources were also added. Thanks go to 
+<A HREF="http://www.simplicity.net/~brian">Brian Dowling</A>
+for suggesting this.</LI>
+<LI>Added MP-RAS support to the makefiles.</LI>
+<LI>Added some screen shots to the documentation.</LI>
+<LI>The <EM>Reopen</EM> command will now try and reset the page number.</LI>
+<LI>Added support for libhelp online help (see
+<A HREF="http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp">http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp</A>
+for the libhelp sources).</LI>
+<LI>Added smooth scrolling options.</LI>
+<LI>Added the <B>magstep</B> resource and the <B>-magstep</B> switch to
+make setting the initial magstep easier. 
+<A HREF="http://fy.chalmers.se/~appro">Andy Polyakov</A> pointed out
+this feature that got lost between Ghostview and <B>mgv</B>.</LI>
+<LI>Put the quick access -5 through +5 magstep entries back on the
+<EM>Magstep</EM> menu (a user thought all the clicking and typing
+and screen re-drawing was inconvenient and since I agreed, I put
+the radio buttons back).  
+<A HREF="http://www.cond-mat.physik.uni-mainz.de/~luijten">Erik Luijten</A> liked the old -5 through
++5 options so they came back.</LI>
+<LI>Made explicit page orientations persist through reopens.  Credit
+for this behavior belongs to 
+<A HREF="http://www.cond-mat.physik.uni-mainz.de/~luijten">Erik Luijten</A>.</LI>
+<LI>Hacked the new auto sizing stuff to, optionally, stay within
+the screen dimensions.  I think mwm does this for us but mwm
+is an evil window manager (if you like mwm, go ahead and disagree
+with me, or kill me, or not).  Since there is no sane way to
+determine how large the window manager decorations are, the
+<B>wmWidth</B> and <B>wmHeight</B> resources were added so you can
+tell <B>mgv</B> how big they are (you may notice that Ghostview uses pretty
+much the same hack).  Added the <EM>-smartsizing</EM>, <EM>-wmwidth</EM>,
+and <EM>-wmheight</EM> switches to control these settings from the
+command line.  I also added the <EM>Enable Smart Sizing</EM> button
+to the <EM>Options</EM> menu.  This stuff was based on a suggestion
+from 
+<A HREF="http://fy.chalmers.se/~appro">Andy Polyakov</A>.</LI>
+<LI>Added the <B>applicationVersion</B> resource to help detect app-defaults
+files with the wrong version.  I also expanded the installation
+documentation to cover this situation.  This stuff was added based
+on problems experienced by 
+<A HREF="http://www.cond-mat.physik.uni-mainz.de/~luijten">Erik Luijten</A>. After adding this, I
+moved it to wlib since it was too useful to duplicate in my other
+(as yet unpublished) projects.</LI>
+<LI>The <EM>Close All Zooms</EM> entry in the <EM>Window</EM> menu is now
+only sensitive if there are zoom windows.</LI>
+<LI>Change the default dirMask of the file-open dialog to <CODE>*.*ps*</CODE>
+(it was <CODE>*.ps</CODE> and then <CODE>*.ps*</CODE> to get gzipped/compressed
+files) to try and pick up <CODE>.eps</CODE> files too.</LI>
+<LI>Converted the menu bar widget tree to the standard (and highly
+idiotic, nonsensical, brain damaged, ...) Motif way.  This
+allows <B>mgv</B> to work better with Motif 2.0.0 and perhaps some
+other old versions of Motif (Motif 1.2.2 on AIX 3.2.5 is one of
+them).</LI>
+<LI>Keyboard scrolling (the mgvScroll() action) cleaned up.  I added
+the <B>scrollPercentage</B> resource to let users decide how much
+of the screen should be scrolled (the default of <B>90%</B>
+yields a little bit of overlap for context).  This little change
+should make scrolling (including the smooth kind) nicer.</LI>
+<LI>Fixed Mosaic-cci help.  This got broken sometime (I don't
+know when since I almost never use this).  The CCI stuff was
+trying to get a hostname out of
+&quot;<CODE>file:///path/to/x/blah.html</CODE>&quot; without
+realizing that <CODE>file://</CODE> means localhost.</LI>
+<LI>Lots of internal changes that shouldn't be visible to the user.</LI>
+</UL>
+<P>
+<H2><A NAME="ss28.22">28.22 mgv 1.0: September 1996</A>
+</H2>
+
+<P>
+<UL>
+<LI>First release.</LI>
+</UL>
+<P>
+<HR>
+<A HREF="mgv-29.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-27.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc28"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

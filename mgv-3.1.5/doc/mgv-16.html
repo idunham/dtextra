@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Reading From The Standard Input</TITLE>
+ <LINK HREF="mgv-17.html" REL=next>
+ <LINK HREF="mgv-15.html" REL=previous>
+ <LINK HREF="mgv.html#toc16" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-17.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-15.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc16"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="stdin"></A> <A NAME="s16">16. Reading From The Standard Input</A></H2>
+
+<P>If you run <B>mgv</B> without a file name or with a file name of &quot;<CODE>-</CODE>&quot;
+then one of two things will happen:
+<UL>
+<LI>If the standard input is a TTY, then <B>mgv</B> will just start up without
+a file.</LI>
+<LI>If the standard input is not a TTY, then <B>mgv</B> will attempt to read
+<B>PostScript</B> from the standard input.</LI>
+</UL>
+
+This means that running <B>mgv</B> like this:
+<PRE>
+        $ mgv
+</PRE>
+
+will just start an instance of <B>mgv</B> without a file;
+if you run <B>mgv</B> like this:
+<PRE>
+        $ mgv somefile.ps
+</PRE>
+
+then <B>mgv</B> will open <CODE>somefile.ps</CODE> as the initial file;
+if you run <B>mgv</B> like this:
+<PRE>
+        $ mgv &lt; somefile.ps
+        $ mgv - &lt; somefile.ps
+        $ cat somefile.ps | mgv
+        $ cat somefile.ps | mgv -
+</PRE>
+
+then <B>mgv</B> will end up reading <CODE>somefile.ps</CODE> from the standard input.
+If you have asked <B>mgv</B> to copy files from the standard input using the
+<A HREF="mgv-19.html#appres-copyStdin">copyStdin</A> resource, then <B>mgv</B> will
+copy the standard input to a temporary file and work from the temporary
+file. Note that if a file is read from standard input and not copied,
+you will only be able to move to the next page: you won't be able to
+jump to an arbitrary page and you won't be able to move backwards.
+<P>
+<HR>
+<A HREF="mgv-17.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-15.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc16"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

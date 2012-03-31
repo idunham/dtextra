@@ -1,0 +1,13 @@
+*.aux
+*.dvi
+*.eps
+*.html
+*.lof
+*.log
+*.ps
+*.sgml
+*.tex
+*.toc
+*.txt
+Makefile
+Makefile.in

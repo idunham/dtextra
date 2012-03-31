@@ -1,0 +1,65 @@
+#!/bin/sh
+# @(#)$Mu: tools/mkver 1.35 1998/08/19 03:51:11 $
+##
+## mkver
+##	A script for building an object file with various build defined
+##	values.
+##
+## Copyright (C) 1996  Eric A. Howe
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+##
+##   Authors:	Matthew D. Francey
+##		Eric A. Howe (mu@trends.net)
+##
+version=$1;	shift
+compile=$1;	shift
+ldflags=$1;	shift
+libs=$1;	shift
+bindir=$1;	shift
+libdir=$1;	shift
+date=`date`
+
+tag=`sed -e 's/^\$\Name://' -e 's/\$$//' < .tag |tr -d ' '`
+if [ X"$tag" = X ]; then
+	tag="(no-tag)"
+fi
+
+rcsid="\"\$MuVer: \
+	version='${version}'\
+	compile='${compile}'\
+	ldflags='${ldflags}'\
+	libs='${libs}'\
+	bindir='${bindir}'\
+	datadir='${libdir}'\
+	tag='${tag}'\
+	date='${date}'\
+ \$\""
+
+cat <<_STOP_DAMMIT_STOP_
+#if defined(NORCS)
+#	undef	NORCS
+#endif
+#include	<wlib/rcs.h>
+MU_ID(${rcsid})
+char *bld_verstring = "${version}";
+char *bld_compile   = "${compile}";
+char *bld_ldflags   = "${ldflags}";
+char *bld_libs      = "${libs}";
+char *bld_bindir    = "${bindir}";
+char *bld_datadir   = "${libdir}";
+char *bld_tag       = "${tag}";
+char *bld_date      = "${date}";
+_STOP_DAMMIT_STOP_

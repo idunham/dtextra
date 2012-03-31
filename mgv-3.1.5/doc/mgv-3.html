@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The File Menu</TITLE>
+ <LINK HREF="mgv-4.html" REL=next>
+ <LINK HREF="mgv-2.html" REL=previous>
+ <LINK HREF="mgv.html#toc3" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-4.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-2.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc3"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="s3">3. The File Menu</A></H2>
+
+<P>The File menu contains the following items:
+<DL>
+<DT><B>Open (Ctrl+O)
+<A NAME="file-open"></A> </B><DD><P>
+<FIGURE>
+<EPS FILE="file-open">
+<IMG SRC="file-open.gif">
+</FIGURE>
+<P>This button will open a new file.
+A file selector will be popped up for you to chose a file to open.
+The file selector will have an extra <EM>Browse</EM> toggle button; when
+this toggle is activated, the file selector will not automatically
+pop down when a file has been selected.
+If the <EM>New Window</EM> toggle is on when you select a file, a new
+<B>mgv</B> window will be created with your chosen file; otherwise,
+the new file replaces the current file.
+When you open a file, all of the zoom windows attached to the old
+file will be removed from the screen.
+If the selected file appears to compressed (i.e. has an extension
+of <B>Z</B>, <B>z</B>, <B>gz</B>, or <B>bz2</B> and starts with one of the
+correct magic numbers), <B>mgv</B> will attempt to decompress it using the
+command specified in the 
+<A HREF="mgv-19.html#appres-gunzip">gunzip</A>,
+<A HREF="mgv-19.html#appres-bunzip">bunzip</A>, or 
+<A HREF="mgv-19.html#appres-decompress">decompress</A> resources.
+<P>
+<DT><B>Reopen (Ctrl+R)
+<A NAME="file-reopen"></A> </B><DD><P>This button re-opens the current file.  The current page number
+will be retained if possible.  If you have explicitly requested
+a page orientation (i.e. you pushed one of the radio buttons in
+the 
+<A HREF="mgv-8.html#orientation-menu">Orientation</A> menu)
+then that orientation will remain in effect.
+This is equivalent to choosing the current file through
+the <EM>Open</EM> menu entry, reselecting the current page, and
+possibly resetting the orientation.
+<P>You cannot re-open files that came from the standard input.
+<P>
+<DT><B>Save (Ctrl+S)
+<A NAME="file-save"></A> </B><DD><P>
+<FIGURE>
+<EPS FILE="file-save">
+<IMG SRC="file-save.gif">
+</FIGURE>
+<P>Activating this entry will prompt you for a file name and write
+the current document, all or only the marked pages, to disk.
+The file selector will have two extra toggle buttons:
+if the <EM>Save Marked Pages Only</EM> toggle is set, only the
+currently marked pages will be written; otherwise, the entire
+document will be written; if the <EM>Unmark Pages After Saving</EM>
+toggle is set, all pages will be unmarked after saving.
+<P>If you select a file that already exists, you will be asked if you
+want to overwrite it (the confirmation dialog is modeless so you
+can type in a different name without responding to the confirmation
+request and the <EM>right thing</EM> will be done).
+<P>If the specified file name ends with <EM>.Z</EM> then it will be
+compressed, if it ends with <EM>.gz</EM> then it will be gzipped, if
+it ends with <EM>.bz2</EM> then it will be bzip2ed; the
+<A HREF="mgv-19.html#appres-compress">compress</A>, 
+<A HREF="mgv-19.html#appres-gzip">gzip</A>, and 
+<A HREF="mgv-19.html#appres-bzip">bzip</A> resources
+are used to determine what command should be used for compression.
+The <EM>File Save</EM> dialog can be made 
+<A HREF="mgv-17.html#sticky-dialogs">sticky</A>.
+<P>
+<DT><B>Print (Ctrl+P)
+<A NAME="file-print"></A> </B><DD><P>This will bring up a dialog box which allows you to print
+the whole file or just the marked pages (if any); the print
+dialog is explained in 
+<A HREF="mgv-14.html#printing">Printing</A>.
+<P>
+<DT><B>Info (Ctrl+I)
+<A NAME="file-info"></A> </B><DD><P>This will bring up the 
+<A HREF="#doc-info">Document Information</A>
+dialog.
+<P>
+<DT><B>Close (Ctrl+D)
+<A NAME="file-close"></A> </B><DD><P>Close the current window; if there is only one viewing window,
+then this is equivalent to <EM>Exit</EM>.
+<P>
+<DT><B>Exit (Ctrl+C)
+<A NAME="file-exit"></A> </B><DD><P>Exit <B>mgv</B>.  If you have more than one viewing window and the
+<B>confirmExit</B> resource is <B>True</B>, you will be asked
+for confirmation.
+Note that all of <B>mgv</B>'s child processes--including HTML
+browsers--will be terminated (via <B>SIGTERM</B>) when <B>mgv</B>
+exits (if you don't like this, the 
+<A HREF="mgv-19.html#appres-killChildrenAtExit">killChildrenAtExit</A> resource can be used stop it).
+</DL>
+<P>
+<H2><A NAME="doc-info"></A> <A NAME="ss3.1">3.1 The Document Information Dialog</A>
+</H2>
+
+<P>
+<FIGURE>
+<EPS FILE="file-info">
+<IMG SRC="file-info.gif">
+</FIGURE>
+<P>The <EM>Document Information</EM> dialog contains the following information
+about the document:
+<UL>
+<LI><B>Document Title:</B>
+The document title as specified in the
+&quot;<CODE>%%Title</CODE>&quot; comment.</LI>
+<LI><B>Creation Date:</B>
+The document's creation date as specified in the
+&quot;<CODE>%%CreationDate</CODE>&quot; comment.</LI>
+<LI><B>For:</B>
+The person who created the document as specified in the
+&quot;<CODE>%%For</CODE>&quot; comment.  This value
+is normally used by print spoolers to generate a banner page.</LI>
+<LI><B>Document Creator:</B>
+The document's creator as specified in the
+&quot;<CODE>%%Creator</CODE>&quot; comment.
+This value will normally be the name of the program that
+created the document.</LI>
+<LI><B>Default Media:</B>
+The default page media for the document.  Individual pages
+can have a different media than the rest of the document
+but this appears to be rare.</LI>
+<LI><B>Number Of Pages:</B>
+The number of pages in the document.</LI>
+<LI><B>Document Type:</B>
+The document type.  This value will be &quot;PostScript&quot;
+or &quot;Encapsulated PostScript&quot;.</LI>
+</UL>
+
+Some of the information will not be available with some documents.
+If the document is not DSC compliant, then none of the information will
+be available.
+<P>
+<HR>
+<A HREF="mgv-4.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-2.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc3"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

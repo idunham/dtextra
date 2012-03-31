@@ -1,0 +1,733 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Application Resources</TITLE>
+ <LINK HREF="mgv-20.html" REL=next>
+ <LINK HREF="mgv-18.html" REL=previous>
+ <LINK HREF="mgv.html#toc19" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-20.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-18.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc19"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="app-resources"></A> <A NAME="s19">19. Application Resources</A></H2>
+
+<P>The following sections detail the <B>mgv</B> application resources.
+Each resource name is followed by its type and the resource class name
+in parentheses.  All resource settings should have the form:
+<PRE>
+        mgv*resourceName: value
+</PRE>
+
+to make sure the resource gets to the proper widget.
+<P>
+<H2><A NAME="app-res.help"></A> <A NAME="ss19.1">19.1 Help Resources</A>
+</H2>
+
+<P>The following resource control various aspects of the on-line help
+system:
+<DL>
+<DT><B>helpBrowser String (HelpBrowser)
+<A NAME="appres-helpBrowser"></A> </B><DD><P>This resource specifies the HTML browser to use for on-line help.
+The HTML files used by <B>wlib</B> are quite generic so
+any HTML browser should work.
+Note that the browser will be given a <EM>-display display</EM> argument
+before the actual URL so the browser that you use should understand
+this standard <B>X</B> option.
+<P>The <B>helpType</B> resource should agree with your chosen browser.
+<P>
+<DT><B>helpPrefix String (HelpPrefix)
+<A NAME="appres-helpPrefix"></A> </B><DD><P>The help prefix serves as the root of the HTML documentation tree.
+If the help files are installed locally, then this will be the full
+path (including the trailing slash) to the directory containing the
+help files.
+If you are accessing the help files through an HTTP server, then this
+resource should have the form
+<B>http://hostname/path/to/help/files/</B>.  If you are using
+a <B>helpType</B> of <B>libhelp</B>, then the help files must
+be accessible from the file system.
+<P>
+<DT><B>helpType String (HelpType)
+<A NAME="appres-helpType"></A> </B><DD><P>This resource specifies your preferred on-line help format.
+The following types are known:
+<P>
+<DL>
+<DT><B>html</B><DD><P>Plain old HTML with no communication with the browser.
+This help method will launch a separate browser for
+each help request.
+<P>
+<DT><B>html-remote, netscape, remote</B><DD><P>HTML with Netscape's <B>-remote</B> protocol.
+<P>
+<DT><B>libhelp</B><DD><P>The libhelp help system.  If you wish to use libhelp for
+online help then you should make sure that your
+<B>LIBHELPPATH</B> environment variable contains a path
+to the libhelp images; the application will add its own
+entries to <B>LIBHELPPATH</B> based on the <B>helpPrefix</B>
+resource so you should make sure that <B>helpPrefix</B>
+is correctly set.
+See
+<A HREF="http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp">http://www.informatik.uni-stuttgart.de/ipvr/bv/personen/mache/libhelp</A>
+for more information about libhelp.  This is the lightest
+weight help system currently supported so I recommend that
+you use it if possible.
+</DL>
+<P>All help methods except <B>html</B> will attempt to maintain a
+connection to the help browser used so that only one instance of
+the help browser will be used.
+Not all help methods are supported on all platforms but the
+three HTML methods should always be available (assuming the
+availability of browsers).
+If you supply an unknown help type a warning message will be printed
+on standard error and <B>html</B> will be used.
+<P>The <B>helpBrowser</B> resource should agree with your chosen help
+type.
+</DL>
+<P>
+<H2><A NAME="app-res.rendering"></A> <A NAME="ss19.2">19.2 Rendering Resources</A>
+</H2>
+
+<P>The following resources control the actual <B>PostScript</B> rendering process and
+supply various rendering defaults.  Most of these resources are converted
+to switches for the child Ghostscript that does all of the real work.
+<DL>
+<DT><B>antialias Boolean (Antialias)
+<A NAME="appres-antialias"></A> </B><DD><P>If this resource is <B>true</B> then <B>PostScript</B> files will be anti-aliased
+to improve image quality (at the expense of performance).  Your
+Ghostscript must support the <B>x11alpha</B> device or anti-aliasing won't
+work.  If anti-aliasing is enable, then the <B>x11alpha</B> device is
+used and Ghostscript will be run with the <EM>-dNOPLATFONTS</EM> switch; if
+anti-aliasing is disabled, then the <B>x11</B> device will be used.
+The default value is <B>true</B>.
+<P>
+<DT><B>antialiasEPS Boolean (AntialiasEPS)
+<A NAME="appres-antialiasEPS"></A> </B><DD><P>Anti-aliasing graphic images (which seems to be what most EPS
+files contain) will often produce a poorer quality display
+and significantly increase the rendering time.
+If you find yourself disabling anti-aliasing by hand whenever
+you open an EPS file, then this resource is for you.
+If you disable anti-aliasing globally, then this resource
+is irrelevant.
+If you enable anti-aliasing globally, then this resource is only
+relevant if its value is <B>False</B>; in this case, anti-aliasing
+will automatically be disabled when you load an EPS file and, of
+course, reset to the previous state when you load a non-EPS file.
+The default value is <B>True</B> which means that EPS files will
+be treated like any other <B>PostScript</B> file so that anti-aliasing of
+EPS files will be controlled by the <B>antialias</B> resource
+of the Ghostview widget.
+<P>
+<DT><B>arguments String (Arguments)
+<A NAME="appres-arguments"></A> </B><DD><P>This resource is used to supply extra command-line switches
+to Ghostscript.  This resource is useful for passing <EM>-I</EM> switches
+to Ghostscript when your library files are not where Ghostscript
+thinks they are.  The default value is empty.
+<P>
+<DT><B>defaultPageMedia String (DefaultPageMedia)
+<A NAME="appres-defaultPageMedia"></A> </B><DD><P>This resource sets the media for documents that do not specify
+one with a <CODE>%%BoundingBox</CODE> or
+<CODE>%%PageMedia</CODE> comment.
+All of the values in the 
+<A HREF="mgv-9.html#media-menu">Media Menu</A>
+are valid values for this resource and the values are case
+insensitive.  The default is <B>Letter</B>.
+<P>
+<DT><B>gsLocale String (GsLocale)
+<A NAME="appres-gsLocale"></A> </B><DD><P>This resource supplies the locale used when writing the <B>GHOSTVIEW</B>
+window property.  In order to support multiple locales, <B>mgv</B> calls
+<B>XtSetLanguageProc()</B> and this might put you into a non POSIX
+locale; using a non-POSIX locale can alter the decimal separator
+so that commas are used where Ghostscript expects periods.  By default,
+<B>mgv</B> temporarily forces a POSIX locale while building the the
+property string but your copy of Ghostscript may be expecting something
+else.  If Ghostscript is having problems parsing the <B>GHOSTVIEW</B>
+property, then you should try adjusting this resource.
+<P>
+<DT><B>interpreter String (Interpreter)
+<A NAME="appres-interpreter"></A> </B><DD><P>Specify where your Ghostscript lives.  If you don't specify a particular
+Ghostscript, <B>mgv</B> will use the first one that shows up in your
+<B>PATH</B> environment variable.
+<P>
+<DT><B>magstep Integer (Magstep)
+<A NAME="appres-magstep"></A> </B><DD><P>This resource specifies the initial 
+<A HREF="mgv-7.html#menu-magstep">magstep</A>.  The default value is zero.
+</DL>
+<P>
+<H2><A NAME="app-res.display"></A> <A NAME="ss19.3">19.3 Display Resources</A>
+</H2>
+
+<P>The following resources control which parts of the <B>mgv</B> user interface
+will be displayed at start up:
+<DL>
+<DT><B>hideLog Boolean (HideLog)
+<A NAME="appres-hideLog"></A> </B><DD><P>If this resource is <B>True</B> then the Ghostscript message log will be
+hidden by default.
+Any errors from Ghostscript will force the log to be displayed.
+Messages from Ghostscript will be logged even if the log is hidden.
+The default value is <B>True</B>.
+Note that the log does not exist until there is something to put
+in it.
+<P>
+<DT><B>hideMenuBar Boolean (HideMenuBar)
+<A NAME="appres-hideMenuBar"></A> </B><DD><P>This resource controls the initial state of the menu bar; if set
+to <B>True</B>, the menu bar will be hidden at start up and the
+menu bar will be visible at start up if this resource is <B>False</B>.
+The default value is <B>False</B>.
+<P>
+<DT><B>hidePageList Boolean (HidePageList)
+<A NAME="appres-hidePageList"></A> </B><DD><P>When this resource is <B>False</B>, the page list will be visible at
+start up and the page list will be hidden if this resource is set
+to <B>True</B>.
+The default value is <B>False</B>.
+<P>
+<DT><B>hideStatusLine Boolean (HideStatusLine)
+<A NAME="appres-hideStatusLine"></A> </B><DD><P>If this resource is <B>True</B>, the status line will be hidden at
+start up; if this resource is <B>False</B>, the status line will be
+visible at start up.
+The default value is <B>False</B>.
+<P>
+<DT><B>hideToolBar Boolean (HideToolBar)
+<A NAME="appres-hideToolBar"></A> </B><DD><P>If this resource is <B>True</B>, the tool bar will be hidden at
+start up; if this resource is <B>False</B>, the tool bar will be
+visible at start up.
+The default value is <B>False</B>.
+<P>
+<DT><B>showLabels Boolean (ShowLabels)
+<A NAME="appres-showLabels"></A> </B><DD><P>If this resource is <B>True</B> then the page labels, if any, will be
+displayed in the page list; if <B>showPageNumbers</B> is also <B>True</B>
+then both will be displayed.
+The default value is <B>False</B>.
+<P>
+<DT><B>showPageNumbers Boolean (ShowPageNumbers)
+<A NAME="appres-showPageNumbers"></A> </B><DD><P>If this resource is <B>True</B> then the page numbers, if any, will be
+displayed in the pagelist; if <B>showLabels</B> is also <B>True</B>
+then both will be displayed.
+The default value is <B>True</B>.
+</DL>
+<P>
+<H2><A NAME="app-res.colormap"></A> <A NAME="ss19.4">19.4 Colormap Resources</A>
+</H2>
+
+<P>The following resources control such things as private color maps and
+non-default visuals.  If you're running out of colors, there may be some
+help for you here.
+<DL>
+<DT><B>wlDepth Integer (WlDepth)
+<A NAME="appres-wlDepth"></A> </B><DD><P>Specify a non-default color depth.
+<P>
+<DT><B>wlUsePrivateColormap Boolean (WlUsePrivateColormap)
+<A NAME="appres-wlUsePrivateColormap"></A> </B><DD><P>Install a private colormap if <B>true</B>, otherwise use the default
+colormap.  If you specify a non-default visual or depth, you will get
+a private colormap whether you ask for one or not.
+<P>
+<DT><B>wlVisualClass WlVisualClass (WlVisualClass)
+<A NAME="appres-wlVisualClass"></A> </B><DD><P>Specify a non-default visual by visual class.  The value of this
+resource can be any of the following strings (case insensitive):
+<P>
+<DL>
+<DT><B>StaticGray</B><DD><P>This visual yields a hardware defined read-only grayscale
+palette, the colors cannot be changed to suit the application's
+needs.
+<P>
+<DT><B>StaticColor</B><DD><P>This visual yields a hardware defined read-only color
+palette, the colors cannot be changed to suit the application's
+needs.
+<P>
+<DT><B>PseudoColor</B><DD><P>This visual yields an indexed read/write palette, the colors
+may be modified to suit an application's needs.
+This is the most common visual on eight bit color displays.
+<P>
+<DT><B>GrayScale, GreyScale</B><DD><P>This visual yields an indexed read/write palette where the
+red, green, and blue components of each color are equal.
+<P>
+<DT><B>TrueColor</B><DD><P>This visual yields a hardware defined, non-indexed,
+read-only palette.
+<P>
+<DT><B>DirectColor</B><DD><P>This visual is a high-performance visual where the red,
+green, and blue color components are separately indexed.
+The palette is read/write.
+</DL>
+<P>Not all visual classes are available with all servers, the
+<B>xdpyinfo</B> command will tell you which visuals are available.
+If you don't know what any of the descriptions mean, you should
+experiment to find the visual which you like best and bug the
+author (<CODE>mu@trends.net</CODE>) to clarify the documentation.  If you aren't
+having any problems with your colormaps, then you should probably
+just use the defaults and leave these resources alone.
+<P>You might want to set the <B>wlDepth</B> resource as well.
+<P>
+<DT><B>wlVisualID String (WlVisualID)
+<A NAME="appres-wlVisualID"></A> </B><DD><P>Specify a non-default visual by visual id.
+This resource takes precedence over the <B>wlDepth</B> and
+<B>wlVisualClass</B> resources.  This resource is available in
+case the visual chosen by the <B>wlDepth</B> and <B>wlVisualClass</B>
+resources is not the one you want--you should only use
+this resource if <B>wlDepth</B> and <B>wlVisualClass</B> are not giving
+the visual you want.
+</DL>
+
+The final visual, depth, and colormap are chosen as follows:
+<OL>
+<LI>If the <B>wlVisualID</B> is set and it contains a valid visual,
+then we use that.</LI>
+<LI>If <B>wlDepth</B> and <B>wlVisualClass</B> are set, then we try and
+find a visual with the desired depth and class.  If this fails,
+the defaults are used.  If only <B>wlDepth</B> is set, then we use
+the first available visual which supports that depth.</LI>
+<LI>If <B>wlVisualClass</B> is set but <B>wlDepth</B> is not, we use the
+visual of the specified class which has the largest depth.</LI>
+<LI>If all else fails (or nothing special is requested), then the
+defaults supplied by Xt are used.</LI>
+</OL>
+
+If <B>wlUsePrivateColormap</B> is <B>true</B> or the visual requires a private
+colormap, then a private colormap is used.  Normally you can just specify the
+<B>wlVisualClass</B> and <B>wlDepth</B> (after looking at the output of
+<B>xdpyinfo</B>(1) first) and you'll get what you want, if that doesn't work,
+just specify the visual ID in <B>wlVisualID</B>.
+<P>
+<H2><A NAME="app-res.scrolling"></A> <A NAME="ss19.5">19.5 Scrolling Resources</A>
+</H2>
+
+<P>The following resource affect various aspects of scrolling in <B>mgv</B>:
+<DL>
+<DT><B>center String (Center)
+<A NAME="appres-center"></A> </B><DD><P>When this resource is <B>True</B>, pages will be centered when
+displayed.  The default value is <B>False</B>.  You can also
+enable or disable page centering at run-time with the
+<A HREF="mgv-4.html#page-center">Center</A> menu entry.
+<P>
+<DT><B>magicResistance Integer (MagicResistance)
+<A NAME="appres-magicResistance"></A> </B><DD><P>This resource specifies the number of consecutive attempts to scroll
+beyond the page boundaries that are needed before magic scrolling
+takes effect.  This resource has no effect if magic scrolling is
+not enabled.  The absolute value of this resource is used.  If you
+want no resistance at all (i.e. magic happens as soon as you try
+to exceed the page boundary), use a value of zero.
+The default value is <B>2</B> (i.e. the second attempt succeeds).
+<P>The documentation for the 
+<A HREF="mgv-20.html#action-mgvScroll">mgvScroll</A>
+contains some more notes about scrolling in general.
+<P>
+<DT><B>magicScrolling Boolean (MagicScrolling)
+<A NAME="appres-magicScrolling"></A> </B><DD><P>When this resource is <B>True</B>, <B>mgv</B> will move to the next page
+if you try and scroll down at the bottom of a page and move to the
+previous page if you try and scroll up at the top of a page.
+You can change this behavior at run-time via the
+<A HREF="mgv-10.html#option-menu">Option</A> menu.
+The default value is <B>True</B>.
+<P>
+<DT><B>resetScrollBars ResetScrollBars (ResetScrollBars)
+<A NAME="appres-resetScrollBars"></A> </B><DD><P>This resource controls the resetting of the horizontal and vertical
+scrollbars in the main window when you change pages; the possible
+values are
+<UL>
+<LI><B>both, all</B>: reset both the horizontal and vertical
+scrollbars.  The value <B>true</B> is an alias for <B>both</B>
+in the interests of backwards compatibility.</LI>
+<LI><B>none</B>: don't reset either scrollbar.  The value <B>false</B>
+is an alias for <B>none</B> in the interests of backwards
+compatibility.</LI>
+<LI><B>horizontal</B>: reset the horizontal scrollbar.</LI>
+<LI><B>vertical</B>: reset the vertical scrollbar.</LI>
+</UL>
+
+All of these values are case-insensitive.
+When this resource is used, the chosen scrollbars will be moved
+back to their home positions (the top or left edge) when you change
+pages.
+Note that changing the orientation or media type will always reset both
+scrollbars.  The default value is <B>both</B>.
+<P>
+<DT><B>scrollPercentage Percentage (ScrollPercentage)
+<A NAME="appres-scrollPercentage"></A> </B><DD><P>This resource controls how far the page will move when you scroll
+with the 
+<A HREF="mgv-20.html#action-mgvScroll">mgvScroll</A> action (i.e.
+the keyboard but not the little buttons on the scrollbars).  A
+value of <B>100%</B> will scroll a whole window height/width
+while a value of <B>90%</B> (the default) will leave a little
+bit of overlap for context.  If the value you specify has a trailing
+percent sign (&quot;<EM>%</EM>&quot;), then it will be
+interpreted as a percentage (i.e. the value will be divided by 100),
+otherwise, the value will be considered a raw floating point value.
+For example:  <EM>75%</EM>, <EM>.75</EM>, and <EM>7.5e-1</EM> all represent
+the same value.
+<P>
+<DT><B>smoothScrolling Boolean (SmoothScrolling)
+<A NAME="appres-smoothScrolling"></A> </B><DD><P>This resource controls the smooth scrolling in the main viewing
+window.  When smooth scrolling is enabled, scrolling with the
+<A HREF="mgv-20.html#action-mgvScroll">mgvScroll</A> action (i.e. with the
+arrow keys but not the little buttons on the scrollbars) will scroll
+the screen a couple pixels at a time with an update after each
+movement; this will give the scrolling a smoother appearance than the
+normal scrolling.  When smooth scrolling is disabled, the normal
+scrolling is performed.  Smooth scrolling makes it much easier to
+keep track of where you are on the page but it is slower:
+<EM>caveat emptor</EM>.  Smooth scrolling can be turned on and off at
+run time from the 
+<A HREF="mgv-10.html#options-smoothscrolling">Options</A>
+menu.  Smooth scrolling is enabled by default.
+<P>
+<DT><B>smoothness Integer (Smoothness)
+<A NAME="appres-smoothness"></A> </B><DD><P>This resource controls how smooth smooth scrolling will be;
+the normal increment (see the <B>scrollPercentage</B> resource)
+is divided by
+the value of this resource to determine how many pixels to
+scroll between screen updates.
+Larger values will yield smoother scrolling but will take more
+time.
+Values between 20 and 30 tend give fairly good results
+(this is dependent on how fast your machine and X server are).
+The default value is <B>25</B>.
+</DL>
+<P>
+<H2><A NAME="app-res.sizing"></A> <A NAME="ss19.6">19.6 Sizing Resources</A>
+</H2>
+
+<P>The following resources control how <B>mgv</B> resizes the main window to
+accomodate the page size of a <B>PostScript</B> file.
+<DL>
+<DT><B>autoHeight Boolean (AutoHeight)
+<A NAME="appres-autoHeight"></A> </B><DD><P>If the this resource is <B>True</B> then <B>mgv</B> will attempt
+to make the main window tall enough to display an entire page;
+your window manager may refuse the request but <B>mgv</B> will try
+anyway.  This resource is <B>False</B> by default.
+<P>
+<DT><B>autoWidth Boolean (AutoWidth)
+<A NAME="appres-autoWidth"></A> </B><DD><P>If the this resource is <B>True</B> then <B>mgv</B> will attempt
+to make the main window wide enough to display an entire page;
+your window manager may refuse the request but <B>mgv</B> will try
+anyway.  This resource is <B>True</B> by default.
+<P>
+<DT><B>smartSizing Boolean (SmartSizing)
+<A NAME="appres-smartSizing"></A> </B><DD><P>This resource controls how smart the 
+<A HREF="mgv-4.html#page-autosize">automatic sizing</A> will be.  If this resource is <B>True</B>, then
+<B>mgv</B> will attempt to keep the window smaller than the screen during
+automatic resizing; if <B>False</B>, <B>mgv</B> will leave this task to
+your window manager.
+The default is <B>False</B> since this stuff is really your window
+manager's problem.
+<P>You should only need to use the <B>smartSizing</B> resource if your
+window manager allows windows to exceed the screen size.  If you
+need to use this resource, you should set the 
+<A HREF="#appres-wmWidth">wmWidth and wmHeight</A> resources since there is no sane way
+to get determine how large the window manager decorations are.
+<P>
+<DT><B>wmHeight Integer (WmHeight)
+<A NAME="appres-wmHeight"></A> </B><DD><P>This resource specifies the height (top and bottom combined) of the
+window manager decorations.  You will only need to care about
+this resource if you need to use the 
+<A HREF="#appres-smartSizing">smartSizing</A> resource.  The default value of
+<B>30</B> is most likely incorrect for your system; the easiest
+way of finding the correct value is to run
+&quot;<CODE>xwininfo</CODE>&quot; and
+&quot;<CODE>xwininfo -frame</CODE>&quot; and use the difference between
+the reported <B>Height</B> values.
+<P>
+<DT><B>wmWidth Integer (WmWidth)
+<A NAME="appres-wmWidth"></A> </B><DD><P>This resource specifies the width (both sides combined) of the
+window manager decorations.  You will only need to care about
+this resource if you need to use the 
+<A HREF="#appres-smartSizing">smartSizing</A> resource.  The default value of
+<B>12</B> is most likely incorrect for your system; the easiest
+way of finding the correct value is to run
+&quot;<CODE>xwininfo</CODE>&quot; and
+&quot; <CODE>xwininfo -frame</CODE>&quot; and use the difference between
+the reported <B>Width</B> values.
+</DL>
+<P>
+<H2><A NAME="app-res.splash"></A> <A NAME="ss19.7">19.7 Splash Screen and Icon Resources</A>
+</H2>
+
+<P>The following resources control the <B>mgv</B> splash screen and window manager
+icon.
+<DL>
+<DT><B>wlInstallIcon Boolean (WlInstallIcon)
+<A NAME="appres-wlInstallIcon"></A> </B><DD><P>This resource tells the application to install or not install its own
+built-in icon when it runs.  If you have your own cool icon that
+matches your personal desktop better than the built-in icon you can
+set this resource to <B>false</B> and tell your window manager to use
+your preferred icon.  This resource is <B>true</B> by default.
+<P>
+<DT><B>wlSplashBitmap String (WlSplashBitmap)
+<A NAME="appres-wlSplashBitmap"></A> </B><DD><P>The full path to your desired splash screen as an XBM file.
+<P>
+<DT><B>wlSplashPixmap String (WlSplashPixmap)
+<A NAME="appres-wlSplashPixmap"></A> </B><DD><P>The full path to your desired splash screen as an XPM file.  If the
+file doesn't exist or cannot be loaded, then the bitmap will be tried.
+<P>
+<DT><B>wlShowSplashScreen Boolean (WlShowSplashScreen)
+<A NAME="appres-wlShowSplashScreen"></A> </B><DD><P>If this resource is <B>True</B>, the splash screen will be shown; if
+this resource is <B>False</B>, the splash screen will not be shown.
+The internal default is <B>False</B> but the application defaults file
+will probably specify <B>True</B>.
+<P>
+<DT><B>wlUseColorIcon Boolean (WlUseColorIcon)
+<A NAME="appres-wlUseColorIcon"></A> </B><DD><P>Use or don't use a color icon.  If the color icon is not available
+(due to a lack of Xpm support), then the monochrome icon will be
+used.  The default value for this resource is <B>true</B>.
+<P>
+<DT><B>wlUseMonoSplash Boolean (WlUseMonoSplash)
+<A NAME="appres-wlUseMonoSplash"></A> </B><DD><P>If this resource is <B>True</B>, then the application will show the
+monochrome splash screen without even trying to show the color
+one.  Normally, the application will try the color splash screen
+(as specified by the 
+<A HREF="#appres-wlSplashPixmap">wlSplashPixmap</A> resource) and then try the monochrome
+splash screen (as specified by the 
+<A HREF="#appres-wlSplashBitmap">wlSplashBitmap</A> resource) if that doesn't work.
+The default value is <B>False</B>.
+</DL>
+<P>
+<H2><A NAME="app-res.toolbar"></A> <A NAME="ss19.8">19.8 Tool Bar Resources</A>
+</H2>
+
+<P>The following resources control various aspects of the <B>mgv</B> toolbar.
+<DL>
+<DT><B>buttonMarginExtra Dimension (ButtonMarginExtra)
+<A NAME="appres-buttonMarginExtra"></A> </B><DD><P>Margin setting for tool bar buttons.  The default value is <B>1</B>.
+<P>
+<DT><B>buttonShadowThickness Dimension (ButtonShadowThickness)
+<A NAME="appres-buttonShadowThickness"></A> </B><DD><P>The shadow thickness for tool bar buttons.  The default value is
+<B>1</B>.
+<P>
+<DT><B>flattenButtons Boolean (FlattenButtons)
+<A NAME="appres-flattenButtons"></A> </B><DD><P>If this resource is <B>True</B>, the toolbar buttons will appear flat
+until the mouse passes over them, when the mouse enters one of the
+buttons, it will <EM>pop up</EM> (i.e. its shadow will be drawn).  If
+this resource is <B>False</B>, the toolbar buttons will look and act
+like every other button.  The default value is <B>True</B>.
+<P>
+<DT><B>groupSpacing Dimension (GroupSpacing)
+<A NAME="appres-groupSpacing"></A> </B><DD><P>The amount of space between groups of buttons (see 
+<A HREF="#appres-newGroup">newGroup</A>).  The default value is <B>10</B> pixels.
+<P>
+<DT><B>showToolTips Boolean (ShowToolTips)
+<A NAME="appres-showToolTips"></A> </B><DD><P>If this resource is <B>True</B>, then tool tips will be shown for the
+toolbar buttons, otherwise, tooltips will not be shown.
+The default value is <B>True</B>.
+<P>
+<DT><B>tipBackground Color (TipBackground)
+<A NAME="appres-tipBackground"></A> </B><DD><P>The background color for tool tips.  The default value is <B>yellow</B>.
+<P>
+<DT><B>tipBorderWidth Dimension (TipBorderWidth)
+<A NAME="appres-tipBorderWidth"></A> </B><DD><P>The border width for tool bar buttons.  The default value is
+<B>1</B>.
+<P>
+<DT><B>tipDelay Integer (TipDelay)
+<A NAME="appres-tipDelay"></A> </B><DD><P>The delay before showing a tool tip.  When the mouse cursor enters
+a tool bar button, <B>mgv</B> will wait <B>tipDelay</B> milliseconds before
+showing the tool tip.  The default value is <B>1000</B> (one second).
+<P>
+<DT><B>tipDistance Dimension (TipDistance)
+<A NAME="appres-tipDistance"></A> </B><DD><P>The distance, in pixels, between a tool bar button and its tool tip.
+The default value is <B>10</B> pixels.
+<P>
+<DT><B>tipFontList FontList (TipFontList)
+<A NAME="appres-tipFontList"></A> </B><DD><P>The font list to use when drawing tool tips.  The default is the
+standard Motif default font list.
+<P>
+<DT><B>tipForeground Color (TipForeground)
+<A NAME="appres-tipForeground"></A> </B><DD><P>The foreground color for tool tips.  The default is <B>black</B>.
+<P>
+<DT><B>tipPosition TipPosition (TipPosition)
+<A NAME="appres-tipPosition"></A> </B><DD><P>The position, relative to the button, where tool tips will be drawn.
+This resource may have one of the following values:
+<UL>
+<LI><B>bottom-left</B></LI>
+<LI><B>bottom-right</B></LI>
+<LI><B>top-left</B></LI>
+<LI><B>top-right</B></LI>
+</UL>
+
+The values may be specified with a <B>tip-</B>, <B>wltip-</B>,
+<B>xwltip-</B>, or <B>xmtip-</B> prefix and underscores may be used
+instead of hyphens.  The default value is <B>bottom-left</B>.
+<P>
+<DT><B>useColorIcons Boolean (UseColorIcons)
+<A NAME="appres-useColorIcons"></A> </B><DD><P>If this resource is <B>True</B> then <B>mgv</B> will attempt to use color
+icons in the toolbar, if <B>False</B> then monochrome images will be
+used.  If your copy of <B>mgv</B> was compiled without XPM support then
+you will get monochrome toolbar icons even if this resource is
+<B>True</B>.  The default value is <B>True</B>.
+</DL>
+<P>The following resources can be set on the tool bar buttons:
+<DL>
+<DT><B>newGroup Boolean (NewGroup)
+<A NAME="appres-newGroup"></A> </B><DD><P>Mark a button as the start of a new group of buttons.  Button
+groups are separated by 
+<A HREF="#appres-groupSpacing">groupSpacing</A> extra space.  The default value is
+<B>False</B>.
+<P>
+<DT><B>toolBarIcon String (ToolBarIcon)
+<A NAME="appres-toolBarIcon"></A> </B><DD><P>The name of the icon to use for this button.  This resource specifies
+a name which is used to construct file names or a value in an internal
+icon table.  If the name begins with <B>INTERNAL::</B> then the list
+of compiled-in icons is used to find the icon, otherwise, the name
+should specify a full path to your desired icon without the 
+<CODE>.xpm</CODE> or <CODE>.xbm</CODE> extension:  the extension will be appended
+by <B>mgv</B>.  The insensitive icon image file should have a <B>-i</B>
+suffix; for example:  if the image name is <CODE>someIcon</CODE>, then the
+sensitive pixmap would be <CODE>someIcon.xpm</CODE> and the insensitive
+pixmap would be <CODE>someIcon-i.xpm</CODE>.
+Color icons should be in XPM format, monochrome icons in XBM format.
+For color icons, you can use the <EM>None</EM> and <EM>none</EM> color
+symbols to indicate transparency (the GIMP, at least, uses these
+symbols in transparent XPM files).
+<P>
+<DT><B>toolTip String (ToolTip)
+<A NAME="appres-toolTip"></A> </B><DD><P>The tool tip to display for this button.  The default value is
+an empty string.
+</DL>
+<P>
+<H2><A NAME="app-res.misc"></A> <A NAME="ss19.9">19.9 Miscellaneous Resources</A>
+</H2>
+
+<P>The following list contains resources which don't fit in any of the
+other categories:
+<DL>
+<DT><B>applicationVersion String (ApplicationVersion)
+<A NAME="appres-applicationVersion"></A> </B><DD><P>This resource holds the application version number.  <B>mgv</B> uses
+the value of this resource to check the version of the application
+defaults files that gets used.  If the incorrect version is found,
+<B>mgv</B> will warn you to expect strange behavior.  If this occurs,
+then you have the wrong version of the application defaults installed
+somewhere and you should remove or replace it.
+<BLOCKQUOTE>
+<B>You should never alter the value of this resource.</B>
+</BLOCKQUOTE>
+<P>
+<DT><B>bunzip String (Bunzip)
+<A NAME="appres-bunzip"></A> </B><DD><P>This resource contains the command (including arguments) that
+will be used to decompress bzip2ed files; the command must
+read from the standard input and write to the standard output.
+By default this resource is set to <B>&quot;bunzip2&quot;</B>.
+<P>
+<DT><B>bzip String (Bzip)
+<A NAME="appres-bzip"></A> </B><DD><P>This resource contains the command (including arguments) that
+will be used to compress files with bzip2; the command
+must read from the standard input and write to the standard output.
+This resource defaults to <B>&quot;bzip -9&quot;</B>.
+<P>
+<DT><B>compress String (Compress)
+<A NAME="appres-compress"></A> </B><DD><P>This resource contains the command (including arguments) that
+will be used to compress files with compress; the command
+must read from the standard input and write to the standard output.
+This resource defaults to <B>&quot;compress&quot;</B>.
+<P>
+<DT><B>confirmExit Boolean (ConfirmExit)
+<A NAME="appres-confirmExit"></A> </B><DD><P>If this resource is <B>True</B> and you have multiple top level
+viewing windows when you issue an exit request (through the
+<EM>Exit</EM> entry in the <EM>File</EM> menu), you will be prompted to
+confirm that you really meant it; note that this resource only has
+an effect when you have more than one viewing window.
+The default is <B>True</B>.
+<P>
+<DT><B>copyStdin Boolean (CopyStdin)
+<A NAME="appres-copyStdin"></A> </B><DD><P>This resource controls whether or not <B>PostScript</B> files read from the
+standard input are copied to temporary files.  If you don't copy
+the standard input then you won't get page navigation; however,
+if the file you're reading from the standard input is quite large
+you may wish to give up page navigation to avoid running out of
+temporary file space.  This resource is <B>True</B> by default.
+<P>
+<DT><B>decompress String (Decompress)
+<A NAME="appres-decompress"></A> </B><DD><P>This resource contains the command (including arguments) that
+will be used to decompress compressed files; the command must
+read from the standard input and write to the standard output.
+By default this resource is set to <B>&quot;gzip --stdout
+--decompress&quot;</B>.
+<P>
+<DT><B>gunzip String (Gunzip)
+<A NAME="appres-gunzip"></A> </B><DD><P>This resource contains the command (including arguments) that
+will be used to decompress gzipped files; the command must
+read from the standard input and write to the standard output.
+By default this resource is set to <B>&quot;gzip --stdout
+--decompress&quot;</B>.
+<P>
+<DT><B>gzip String (Gzip)
+<A NAME="appres-gzip"></A> </B><DD><P>This resource contains the command (including arguments) that
+will be used to compress files with gzip; the command
+must read from the standard input and write to the standard output.
+This resource defaults to <B>&quot;gzip -9&quot;</B>.
+<P>
+<DT><B>killChildrenAtExit Boolean (KillChildrenAtExit)
+<A NAME="appres-killChildrenAtExit"></A> </B><DD><P>When this resource is <B>True</B>, all child processes (which for now
+are just the HTML browsers) will be killed, using <B>SIGTERM</B>,
+when <B>mgv</B> exits; if this resource is <B>False</B>, then the children
+will be left alone.  Note that Ghostscript children will always be
+killed.
+By default this resource is <B>True</B>.
+<P>
+<DT><B>printCommand String (PrintCommand)
+<A NAME="appres-printCommand"></A> </B><DD><P>The command for your printer spooler.
+If you don't specify this resource, <B>mgv</B> will attempt to determine
+it automatically by looking for <B>lp</B> in your <B>PATH</B> environment
+variable and if <B>lp</B> cannot be found, it will search for <B>lpr</B>.
+The <B>printCommand</B> does not understand shell quoting, the command
+will be broken into arguments at white space boundaries; if you really
+need to supply quoted arguments to your print command, then you'll
+have to write a shell script wrapper.
+The 
+<A HREF="mgv-14.html#printing">print dialog</A> allows you to change
+the print command.
+<P>
+<DT><B>reticuleForeground Color (ReticuleForeground)
+<A NAME="appres-reticuleForeground"></A> </B><DD><P>This resource specifies the foreground color for the zoom selection
+reticule; the reticule is drawn in <B>xor</B> mode so it should always
+be visible.
+The default value is <B>red</B>.
+<P>
+<DT><B>reticuleLineWidth Integer (ReticuleLineWidth)
+<A NAME="appres-reticuleLineWidth"></A> </B><DD><P>This resource specifies the width of the lines used to draw the zoom
+selection reticule.
+The default value is <B>2</B>.
+<P>
+<DT><B>tempDir String (TempDir)
+<A NAME="appres-tempDir"></A> </B><DD><P>This resource specifies where temporary files should be stored.
+If this resource is not specified, <B>mgv</B> will use the directory
+specified in first available source from the following list:
+<UL>
+<LI>    the <B>TMPDIR</B> environment variable</LI>
+<LI>    the <B>TEMPDIR</B> environment variable</LI>
+<LI>    the standard temporary directory for your system
+(<B>P_tmpdir</B> in <CODE>stdio.h</CODE> or
+&quot;<CODE>/usr/tmp</CODE>&quot; if there is no <B>P_tmpdir</B>).</LI>
+<LI>    <CODE>/tmp/</CODE>.</LI>
+</UL>
+
+For convenience, <B>mgv</B> will create its own directory under the
+specified directory.
+<P>
+<DT><B>wlUseEditRes Boolean (WlUseEditRes)
+<A NAME="appres-wlUseEditRes"></A> </B><DD><P>This resource controls whether support for the editres protocol
+will be installed in application shell widgets.  If <B>wlUseEditRes</B>
+is <B>true</B>, then the editres protocol will be support; otherwise,
+editres will not be supported.
+On system that don't support editres at all, this resource will
+do nothing. The default value is <B>true</B>.
+</DL>
+<P>
+<P>
+<H2><A NAME="ss19.10">19.10 The Application Defaults File</A>
+</H2>
+
+<P>By default the <B>mgv</B> application defaults file is installed in the <B>mgv</B>
+library directory for future reference--the application defaults is not
+needed since the entire application defaults file is compiled into <B>mgv</B>
+as fallback resources.  However, you may, if you wish, install the
+application defaults file in the normal location (probably
+<CODE>/usr/lib/X11/app-defaults</CODE> or <CODE>/usr/X11/lib/X11/app-defaults</CODE>)
+and everything should work just fine until the next <B>mgv</B> upgrade.
+<P>I stopped installing the application defaults file in the app-defaults
+directory to avoid version conflicts:  an incorrect application defaults
+file can seriously break <B>mgv</B>.  <B>mgv</B> will detect an out-of-date application
+defaults file and warn you about it.
+<P>
+<P>
+<HR>
+<A HREF="mgv-20.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-18.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc19"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

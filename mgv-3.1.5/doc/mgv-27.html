@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Installing and Porting</TITLE>
+ <LINK HREF="mgv-28.html" REL=next>
+ <LINK HREF="mgv-26.html" REL=previous>
+ <LINK HREF="mgv.html#toc27" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-28.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-26.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc27"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="installation"></A> <A NAME="s27">27. Installing and Porting</A></H2>
+
+<P>GNU autoconf is used to handle the configuration, compilation, and
+installation of <B>mgv</B> so the standard
+<PRE>
+        ./configure
+        make
+        make install
+</PRE>
+
+should work.
+<P>
+<P>The <CODE>configure</CODE> script will disable debug information and enable
+optimization by default but this can be changed with the following switches:
+<DL>
+<DT><B>--enable-debug, --disable-debug</B><DD><P>Enable or disable debugging, debugging is disabled by default.
+The default debug switch it <EM>-g</EM> but you can change it by
+setting the <B>DEBUGFLAG</B> environment variable before running
+<CODE>configure</CODE>.
+<P>
+<DT><B>--enable-optimize, --disable-optimize</B><DD><P>Enable or disable optimization, optimization is enabled by default.
+The default optimization switch is <EM>-O2</EM> but you can change it
+by setting the <B>OPTFLAG</B> environment variable before running
+<CODE>configure</CODE>.
+</DL>
+
+If optimization is requested but debugging is not requested, the final
+executable will be stripped by passing the <EM>-s</EM> switch to the linker,
+if you need to use a different stripping switch, set the <B>STRIPFLAG</B>
+environment variable before running <CODE>configure</CODE>.
+<P>
+<P>If the <CODE>configure</CODE> script is having trouble finding X on your
+system then you may have to specify the header and library paths explicitly
+with one or more of the following switches:
+<DL>
+<DT><B>--x-includes=<EM>DIR</EM>, --x-libraries=<EM>DIR</EM></B><DD><P>Specify the location of the X11 headers and libraries.
+<P>
+<DT><B>--motif-includes=<EM>DIR</EM>, --motif-libraries=<EM>DIR</EM></B><DD><P>Specify the location of the Motif headers and libraries.
+<P>
+<DT><B>--xpm-includes=<EM>DIR</EM>, --xpm-libraries=<EM>DIR</EM></B><DD><P>Specify the location of the XPM headers and libraries.  If you don't
+want to use XPM even though you have it, you can disable XPM with
+<EM>--without-xpm</EM>.
+</DL>
+<P>I assume ANSI and POSIX support, if your system doesn't have an ANSI
+C compiler and POSIX libraries then you're out of luck.  I'm not willing
+to give up this assumption, trying to support non-POSIX systems is more
+trouble than I care to think about.
+<P>If you have installed any of the 1.x versions of <B>mgv</B> you should delete
+the old application defaults file (probably
+<CODE>/usr/X11/lib/app-defaults/MGv</CODE> or something similar) before running
+<B>mgv</B>; if you don't, <B>mgv</B> will warn you about it and the user interface
+will be really screwed up.  If you have just compiled a new version of
+<B>mgv</B> and you haven't installed it yet, you can set the <B>XENVIRONMENT</B>
+environment variable to temporarily fix the version problem:
+<PRE>
+        XENVIRONMENT=MGv ./mgv
+</PRE>
+
+However, you really should delete the old application defaults file anyway:
+none of the <B>mgv</B> versions need it, the whole application defaults file has
+always been compiled in as default resources.
+<P>I have had success reports on the following systems:
+<UL>
+<LI>RedHat 5.1 Linux with LessTif 0.86</LI>
+<LI>Linux/libc5 with Mootif</LI>
+<LI>Sun Solaris 2.6 with gcc</LI>
+<LI>FreeBSD 2.2.7-STABLE</LI>
+<LI>HP-UX 9.05 with gcc</LI>
+<LI>SGI Irix 6.2</LI>
+</UL>
+<P>
+<P>
+<HR>
+<A HREF="mgv-28.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-26.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc27"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Introduction</TITLE>
+ <LINK HREF="mgv-2.html" REL=next>
+
+ <LINK HREF="mgv.html#toc1" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-2.html"><IMG SRC="next.gif" ALT="Next"></A>
+<IMG SRC="prev.gif" ALT="Previous">
+<A HREF="mgv.html#toc1"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="s1">1. Introduction</A></H2>
+
+<P><B>mgv</B> is a Motif based viewer for <B>PostScript</B> files which uses Ghostscript as the
+underlying <B>PostScript</B> rendering engine.  Limitted PDF support is also supplied.
+<P>
+<H2><A NAME="ss1.1">1.1 Running mgv</A>
+</H2>
+
+<P>Executing <B>mgv</B> is very simple:
+<PRE>
+        mgv [switches] [file.ps [...]]
+</PRE>
+
+If you mention multiple files on the command line, <B>mgv</B> will attempt to
+open each file in its own window so be careful with
+&quot;<CODE>mgv *.ps</CODE>&quot;.
+If no initial file is specified, <B>mgv</B> will try and read from the standard
+input if it looks like there is something there; see the
+<A HREF="mgv-16.html#stdin">Reading From The Standard Input</A> section for details.
+The available switches are detailed in the 
+<A HREF="mgv-21.html#switches">Command Line Switches</A> section.
+You can also use the <EM>-help</EM> switch for a compact list of available
+switches or the <EM>-longhelp</EM> switch for a more verbose list.
+<P>
+<P>
+<HR>
+<A HREF="mgv-2.html"><IMG SRC="next.gif" ALT="Next"></A>
+<IMG SRC="prev.gif" ALT="Previous">
+<A HREF="mgv.html#toc1"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

@@ -1,0 +1,210 @@
+dnl
+dnl configure.in
+dnl	autoconf input file for mgv.
+dnl
+dnl Copyright (C) 1998 Eric A. Howe
+dnl
+dnl This program is free software; you can redistribute it and/or modify
+dnl it under the terms of the GNU General Public License as published by
+dnl the Free Software Foundation; either version 2 of the License, or
+dnl (at your option) any later version.
+dnl
+dnl This program is distributed in the hope that it will be useful,
+dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+dnl GNU General Public License for more details.
+dnl
+dnl You should have received a copy of the GNU General Public License
+dnl along with this program; if not, write to the Free Software
+dnl Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+dnl
+dnl   Authors:	Eric A. Howe (mu@trends.net)
+dnl
+dnl Much of the X checking was borrowed from DDD.
+dnl
+
+dnl
+dnl Process this file with autoconf to produce a configure script.
+dnl
+AC_INIT(mgv.c)
+AC_CONFIG_AUX_DIR(tools)
+AM_INIT_AUTOMAKE(mgv, 3.1.5)
+
+dnl
+dnl This is a trick to get my CVS ident string into configure.
+dnl
+AC_OUTPUT_COMMANDS([# @(#)$Mu: mgv/configure.in 1.25.2.1.2.1.2.1.2.1.2.1 1998/09/28 09:46:33 $])
+
+dnl ==========================================================================
+dnl Check debug/optimization things right away or AC_PROG_CC will cause
+dnl us grief.
+dnl ==========================================================================
+DEBUGFLAG=${DEBUGFLAG:--g}
+AC_ARG_ENABLE(debug,
+[  --enable-debug          turn on debugging [default=no]], [
+if test "x${enable_debug}" != "xyes"; then
+	DEBUGFLAG=""
+fi
+], [
+	DEBUGFLAG=""
+])
+if test "x${DEBUGFLAG}" != "x"; then
+	CFLAGS="$DEBUGFLAG $CFLAGS"
+fi
+
+OPTFLAG=${OPTFLAG:--O2}
+AC_ARG_ENABLE(optimize,
+[  --enable-optimize       turn on optimization [default=yes]],
+if test "x$enable_optimize" = "xno"; then
+	OPTFLAG=""
+fi)
+if test "x${OPTFLAG}" != "x"; then
+	CFLAGS="$OPTFLAG $CFLAGS"
+fi
+
+if test "x${OPTFLAG}" != "x"; then
+	if test "x${DEBUGFLAG}" = "x"; then
+		LDFLAGS="${STRIPFLAG:--s} $LDFLAGS"
+	fi
+fi
+
+dnl ==========================================================================
+dnl Checks for programs.
+dnl ==========================================================================
+
+AC_PROG_CC
+AC_PROG_RANLIB
+AC_ISC_POSIX
+
+dnl ==========================================================================
+dnl Makefile things.
+dnl ==========================================================================
+
+AC_ARG_ENABLE(maintainer,
+[  --enable-maintainer     enable maintainer rules [default=no]])
+AM_CONDITIONAL(MU_MAINTAINER, test x$enable_maintainer = xyes)
+
+AC_MSG_CHECKING(if we need _POSIX_SOURCE for sigaction)
+AC_TRY_COMPILE([#include <signal.h>], [struct sigaction x;],
+	use_posix_source=yes,
+	use_posix_source=no)
+AC_MSG_RESULT($use_posix_source)
+if test "$use_posix_source" = yes; then
+	##
+	## We have to change CFLAGS here because we want _POSIX_SOURCE
+	## to be used for other tests. The putenv thing is a major hack
+	## but I can't see any other way to get it work.
+	##
+	CFLAGS="$CFLAGS -D_POSIX_SOURCE"
+	AC_DEFINE(HAVE_PUTENV, 0)
+else
+	AC_DEFINE(HAVE_PUTENV, 1)
+fi
+
+dnl ==========================================================================
+dnl Compiler flags and such.
+dnl ==========================================================================
+
+MGV_WITH_DMALLOC
+
+dnl ==========================================================================
+dnl Checks for libraries.
+dnl ==========================================================================
+AC_PATH_XTRA
+ICE_FIND_MOTIF
+ICE_FIND_XPM
+LIBS="$LIBS $X_EXTRA_LIBS"
+CFLAGS="$CFLAGS $X_CFLAGS"
+CPPFLAGS="$CPPFLAGS $X_CFLAGS"
+LDFLAGS="$LDFLAGS $X_LIBS"
+
+dnl ==========================================================================
+dnl Check for X11.
+dnl ==========================================================================
+X11_LIBS=""
+AC_CHECK_LIB(X11, XOpenDisplay, X11_LIBS="-lX11",,${X_PRE_LIBS})
+if test "$X11_LIBS" = ""; then
+AC_MSG_ERROR([The X11 library '-lX11' could not be found.
+		Please use the configure options '--x-includes=DIR'
+		and '--x-libraries=DIR' to specify the X location.
+		See the 'config.log' file for further diagnostics.])
+fi
+AC_SUBST(X_LIBS)
+AC_SUBST(X11_LIBS)
+AC_SUBST(X_PRE_LIBS)
+
+dnl ==========================================================================
+dnl Check for Xext, Xpm usually needs the shape extensions.
+dnl We don't crap out if we can't find it though.
+dnl ==========================================================================
+XEXT_LIBS=""
+AC_CHECK_LIB(Xext, XShapeQueryVersion, XEXT_LIBS="-lXext",,
+	${X_PRE_LIBS} ${X11_LIBS})
+AC_SUBST(XEXT_LIBS)
+
+dnl ==========================================================================
+dnl Check for Xt
+dnl ==========================================================================
+XT_LIBS=""
+AC_CHECK_LIB(Xt, XtToolkitInitialize, XT_LIBS="-lXt",,
+	${X_PRE_LIBS} ${X11_LIBS})
+if test "$XT_LIBS" = ""; then
+AC_MSG_ERROR([The X toolkit library '-lXt' could not be found.
+		Please use the configure iptions '--x-includes=DIR'
+		and '--x-libraries=DIR' to specify the X location.
+		See the 'config.log' file for further diagnostics.])
+fi
+AC_SUBST(XT_LIBS)
+
+dnl ==========================================================================
+dnl Check for Xpm
+dnl ==========================================================================
+XPM_LIBS=""
+AC_CHECK_LIB(Xpm, XpmCreatePixmapFromXpmImage,
+	XPM_LIBS="-lXpm"
+	AC_DEFINE(HAVE_XPM, 1), AC_DEFINE(HAVE_XPM, 0),
+	${X_PRE_LIBS} ${X11_LIBS})
+if test "$XPM_LIBS" != ""; then
+AC_CHECK_HEADERS(X11/xpm.h)
+fi 
+AC_SUBST(XPM_LIBS)
+
+dnl ==========================================================================
+dnl Check for Motif
+dnl I couldn't resist using the most hideously named function in the Motif
+dnl API in this test, sorry if I've frightened anyone.
+dnl ==========================================================================
+XM_LIBS=""
+AC_CHECK_LIB(Xm, XmRepTypeInstallTearOffModelConverter,
+	XM_LIBS="-lXm"
+	AC_DEFINE(HAVE_MOTIF, 1), AC_DEFINE(HAVE_MOTIF, 0),
+	${X_PRE_LIBS} ${XPM_LIBS} ${XEXT_LIBS} ${XT_LIBS} ${XEXT_LIBS} ${X11_LIBS})
+if test "$XM_LIBS" = ""; then
+AC_MSG_ERROR([The Motif library '-lXm' could not be found.
+		Please use the configure options '--with-motif-includes=DIR'
+		and '--with-motif-libraries=DIR' to specify the Xm location.
+		See the 'config.log' file for further diagnostics.])
+fi
+AC_SUBST(XM_LIBS)
+
+dnl ==========================================================================
+dnl Check for libhelp.
+dnl ==========================================================================
+LIBHELP_LIBS=""
+AC_CHECK_LIB(help, get_help,
+	LIBHELP_LIBS="-lhelp -lButtFace -lhtmlw -lXmu"
+	AC_DEFINE(HAVE_LIBHELP, 1), AC_DEFINE(HAVE_LIBHELP, 0),
+	${X_PRE_LIBS} ${XM_LIBS} -lButtFace -lhtmlw -lXmu ${XPM_LIBS} ${XEXT_LIBS} ${XT_LIBS} ${XEXT_LIBS} ${X11_LIBS})
+AC_SUBST(LIBHELP_LIBS)
+
+dnl ==========================================================================
+dnl Check for editres.
+dnl ==========================================================================
+EDITRES_LIBS=""
+AC_CHECK_LIB(Xmu, _XEditResCheckMessages,
+	EDITRES_LIBS="-lXmu"
+	AC_DEFINE(HAVE_EDITRES, 1), AC_DEFINE(HAVE_EDITRES, 0),
+	${X_PRE_LIBS} ${XEXT_LIBS} ${XT_LIBS} ${XEXT_LIBS} ${X11_LIBS})
+AC_SUBST(EDITRES_LIBS)
+
+AC_OUTPUT([Makefile doc/Makefile wlib/Makefile lib/Makefile lib/toolbar/Makefile])

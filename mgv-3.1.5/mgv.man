@@ -1,0 +1,424 @@
+.\" @(#)$Mu: mgv/mgv.man.in 1.6 1998/08/16 10:08:24 $
+.\"
+.\" mgv.man
+.\"	Man page for mgv.
+.\"
+.\" Copyright (C) 1996  Eric A. Howe
+.\"
+.\" This program is free software; you can redistribute it and/or modify
+.\" it under the terms of the GNU General Public License as published by
+.\" the Free Software Foundation; either version 2 of the License, or
+.\" (at your option) any later version.
+.\"
+.\" This program is distributed in the hope that it will be useful,
+.\" but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\" MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\" GNU General Public License for more details.
+.\"
+.\" You should have received a copy of the GNU General Public License
+.\" along with this program; if not, write to the Free Software
+.\" Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+.\"
+.\"  Authors:	Matthew D. Francey
+.\"		Eric A. Howe (mu@trends.net)
+.\"
+.TH MGV 1 "July 1997"
+.\"----------------------------------------------------------------------------
+.SH NAME
+mgv \- Motif interface for ghostscript, version __VERSION__.
+.\"----------------------------------------------------------------------------
+.SH SYNOPSIS
+.B mgv
+.RI [ "--help" ]
+.RI [ "--version" ]
+.RI [ "-?" ]
+.RI [ "-H" ]
+.RI [ "-[no]aliaseps" ]
+.RI [ "-[no]antialias" ]
+.RI [ "-[no]autoheight" ]
+.RI [ "-[no]autowidth" ]
+.RI [ "-[no]center" ]
+.RI [ "-[no]confirmexit" ]
+.RI [ "-[no]copystdin" ]
+.RI [ "-[no]editres" ]
+.RI [ "-[no]flatten" ]
+.RI [ "-[no]install" ]
+.RI [ "-[no]killkids" ]
+.RI [ "-[no]labels" ]
+.RI [ "-[no]log" ]
+.RI [ "-[no]magicscroll" ]
+.RI [ "-[no]menubar" ]
+.RI [ "-[no]pagelist" ]
+.RI [ "-[no]pgnums" ]
+.RI [ "-[no]quiet" ]
+.RI [ "-[no]safer" ]
+.RI [ "-[no]smartsizing" ]
+.RI [ "-[no]smooth" ]
+.RI [ "-[no]splash" ]
+.RI [ "-[no]status" ]
+.RI [ "-[no]toolbar" ]
+.RI [ "-[no]tooltips" ]
+.RI [ "-arguments args" ]
+.RI [ "-browser htmlbrowser" ]
+.RI [ "-bunzip cmd" ]
+.RI [ "-bzip cmd" ]
+.RI [ "-color" ]
+.RI [ "-coloricon" ]
+.RI [ "-colorsplash" ]
+.RI [ "-colortoolbar" ]
+.RI [ "-compress cmd" ]
+.RI [ "-decompress cmd" ]
+.RI [ "-depth n" ]
+.RI [ "-dpi n" ]
+.RI [ "-grayscale" ]
+.RI [ "-greyscale" ]
+.RI [ "-gslocale locale" ]
+.RI [ "-gunzip cmd" ]
+.RI [ "-help" ]
+.RI [ "-helptype type" ]
+.RI [ "-installicon" ]
+.RI [ "-interpreter interp" ]
+.RI [ "-landscape" ]
+.RI [ "-longhelp" ]
+.RI [ "-magicresistance n" ]
+.RI [ "-magstep m" ]
+.RI [ "-media media" ]
+.RI [ "-monochrome" ]
+.RI [ "-monoicon" ]
+.RI [ "-monosplash" ]
+.RI [ "-monotoolbar" ]
+.RI [ "-nocoloricon" ]
+.RI [ "-noicon" ]
+.RI [ "-paper media" ]
+.RI [ "-portrait" ]
+.RI [ "-prefix pfx" ]
+.RI [ "-printcommand cmd" ]
+.RI [ "-resetboth" ]
+.RI [ "-resethor" ]
+.RI [ "-resetnone" ]
+.RI [ "-resetver" ]
+.RI [ "-resolution n" ]
+.RI [ "-reticulefg color" ]
+.RI [ "-reticulewidth n" ]
+.RI [ "-scrollpercent percentage" ]
+.RI [ "-seascape" ]
+.RI [ "-smoothness n" ]
+.RI [ "-splashxbm filename" ]
+.RI [ "-splashxpm filename" ]
+.RI [ "-temp dir" ]
+.RI [ "-upsidedown" ]
+.RI [ "-version" ]
+.RI [ "-visual visualClass" ]
+.RI [ "-visualid visualID" ]
+.RI [ "-wmheight height" ]
+.RI [ "-wmwidth width" ]
+.RI [ "-xdpi n" ]
+.RI [ "-ypdi n" ]
+.RI [ "-zoomfg color" ]
+.RI [ "-zoomwidth n" ]
+.RI [ "toolkit options" ]
+.RI [ file ]
+.\"----------------------------------------------------------------------------
+.SH DESCRIPTION
+This man page is intended as a quick reference for the command line switches;
+the real documentation is available as mgv.html in __DATADIR__/help.
+PostScript versions of the manual may also be available in __DATADIR__/help.
+.\"----------------------------------------------------------------------------
+.SH OPTIONS
+.TP
+.I "-aliaseps, -noaliaseps"
+Anti-aliasing graphic images will often make the images look
+worse and increase the rendering time significantly; hence,
+these switches are offered to give you finer control over when
+anti-aliasing is used.  These switches set the \fBantialiasEPS\fR
+application resource.
+.TP
+.I "-antialias, -noantialias"
+Enable or disable anti-aliasing within Ghostscript; by default,
+anti-aliasing is enabled.  If anti-aliasing is enable, then the
+x11alpha device is used and Ghostscript will be run with the
+-dNOPLATFONTS switch; if anti-aliasing is disabled, then the x11
+device will be used.  This switch sets the \fBantialias\fR
+resource for Ghostview widgets.
+.TP
+.I "-arguments args"
+Specify additional arguments for Ghostscript; this switch sets
+the \fBarguments\fR resource.
+.TP
+.I "-autoheight, -noautoheight"
+Attempt to make the main window tall enough to accommodate a
+whole page.  This switch sets the \fBautoHeight\fR resource.
+.TP
+.I "-autowidth, -noautowidth"
+Attempt to make the main window wide enough to accommodate a
+whole page.  This switch sets the \fBautoWidth\fR resource.
+.TP
+.I "-browser htmlbrowser"
+Specify the HTML browser to use for the on-line help; this
+switch sets the \fBhelpBrowser\fR resource.
+.TP
+.I "-bzip cmd, -bunzip cmd"
+Specify the command to compress or decompress bzip2ed files; the
+commands should read from the standard input and write to the
+standard output.  These switches set the \fBbzip\fR and \fBbunzip\fR
+resources.
+.TP
+.I "-center, -nocenter"
+Enable or disable automatic page centering.  This switch sets
+the \fBcenter\fR resource.
+.TP
+.I "-color, -grayscale, -greyscale, -monochrome"
+Force color/grayscale/monochrome display; these switches do not
+have anything to do with the visual, depth, or colormap that mgv
+uses, you will want to use the -visual, -visualid, -depth, and
+-privatecm switches for that.  These switches set the palette
+resource.
+.TP
+.I "-coloricon, -monoicon, -nocoloricon"
+Use or don't use a color icon (if available).  These switches
+set the \fBwlUseColorIcon\fR resource.
+.TP
+.I "-colortoolbar, -monotoolbar"
+Use color or monochrome icons in the tool bar.  These switches
+set the \fBuseColorIcons\fR resource.
+.TP
+.I "-compress cmd, -decompress cmd"
+Specify the command to compress or decompress compressed files;
+the commands should read from the standard input and write to
+the standard output.  These switches set the \fBcompress\fR and
+\fBdecompress\fR resources.
+.TP
+.I "-confirmexit, -noconfirmexit"
+Require or don't require user confirmation when attempting to
+exit the application with more than one top level viewing
+window.  These switches set the \fBconfirmExit\fR resource.
+.TP
+.I "-copystdin, -nocopystdin"
+Copy or don't copy files from the standard input to a temporary
+file.  These switches set the \fBcopyStdin\fR resource.
+.TP
+.I "-depth n"
+Specify a non-default color depth.  This switch sets the
+\fBwlDepth\fR resource.
+.TP
+.I "-dpi n, -resolution n"
+Specify the overall resolution; these switches set the
+Resolution resource.
+.TP
+.I "-editres, -noeditres"
+Install or don't install support for editres.  This switch sets
+the \fBwlUseEditRes\fR resource.
+.TP
+.I "-flatten, -noflatten"
+Flatten or don't flatten the tool bar buttons.  These switches
+set the \fBflattenButtons\fR resource.
+.TP
+.I "-gslocale locale"
+Force the GHOSTVIEW window property to be written according to
+locale.  This switch sets the \fBgsLocale\fR resource.
+.TP
+.I "-gunzip cmd"
+Specify the command to compress or decompress gzipped files; the
+commands should read from the standard input and write to the
+standard output.  These switches set the \fBgzip\fR and \fBgunzip\fR
+resources.
+.TP
+.I "-help, --help, -H, -?"
+Display a short summary of the available command line switches.
+.TP
+.I "-helptype type"
+Specify the help type for on-line help.  This switch sets the
+\fBhelpType\fR resource to type.
+.TP
+.I "-install, -noinstall, -privatecm, -noprivatecm"
+Install or don't install a private colormap.  Non-default visual
+and/or depth settings may cause this switch to be ignored.  This
+switch sets the \fBwlUsePrivateColormap\fR resource.
+.TP
+.I "-installicon, -noicon"
+Install or don't install an icon when the application starts up.
+These switches set the \fBwlInstallIcon\fR resource.
+.TP
+.I "-interpreter interp"
+Use interp as the PostScript interpreter.  This switch is useful
+if you want to use an interpreter that is not in your PATH or is
+not the first gs is your PATH.  This switch sets the
+\fBinterpreter\fR resource.
+.TP
+.I "-killkids, -nokillkids"
+Kill or don't kill child processes when mgv exits; this switch
+sets the \fBkillChildrenAtExit\fR resource.
+.TP
+.I "-labels, -nolabels"
+Show or don't show the page labels in the page list; this switch
+sets the \fBshowLabels\fR resource.
+.TP
+.I "-log, -nolog"
+Show or hide the Ghostscript log on start-up; this switch sets
+the \fBhideLog\fR resource.
+.TP
+.I "-longhelp"
+Display a summary, with explanations, of the available command
+line switches.
+.TP
+.I "-magicresistance n"
+Specify the number of attempts to scroll beyond the page
+boundaries before magical scrolling takes effect; this switch
+sets the \fBmagicResistance\fR resource.
+.TP
+.I "-magicscroll, -nomagicscroll"
+Allow or disallow magical scrolling; this switch sets the
+\fBmagicScrolling\fR resource.
+.TP
+.I "-magstep m"
+Set the initial magstep to m; this switch sets the \fBmagstep\fR
+resource.
+.TP
+.I "-media media, -paper media"
+Specify the default page media; this switch sets the
+\fBdefaultPageMedia\fR resource.
+.TP
+.I "-menubar, -nomenubar"
+Show or hide the menu bar at start up; this switch sets the
+\fBhideMenuBar\fR resource.
+.TP
+.I "-monosplash, -colorsplash"
+Use the monochrome or the color splash screen.  These switches
+set the \fBwlUseMonoSplash\fR resource.
+.TP
+.I "-pagelist, -nopagelist"
+Show or hide the page list at start up; this switch sets the
+\fBhidePageList\fR resource.
+.TP
+.I "-pgnums, -nopgnums"
+Show or don't show the page numbers in the page list; this
+resource sets the \fBshowPageNumbers\fR resource.
+.TP
+.I "-portrait, -landscape, -seascape, -upsidedown"
+Specify the initial page orientation.
+.TP
+.I "-prefix pfx"
+Specify the location of the files for the on-line help; this
+switch sets the \fBhelpPrefix\fR resource.
+.TP
+.I "-printcommand cmd"
+Use cmd as the default printer command; this switch sets the
+\fBprintCommand\fR resource.
+.TP
+.I "-quiet, -noquiet"
+Use or don't use -dQUIET with Ghostscript; this switch sets the
+quiet resource.  The -dQUIET switch tells Ghostscript to
+suppresses the normal startup messages.
+.TP
+.I "-resetboth"
+Reset both the horizontal and vertical scrollbars when you move
+to a new page.  This switch sets the \fBresetScrollBars\fR
+resource to both.
+.TP
+.I "-resethor"
+Reset the horizontal scrollbar when you move to a new page.
+This switch sets the \fBresetScrollBars\fR resource to horizontal.
+.TP
+.I "-resetnone"
+Don't reset either scrollbar when you move to a new page.  This
+switch sets the \fBresetScrollBars\fR resource to none.
+.TP
+.I "-resetver"
+Reset the vertical scrollbar when you move to a new page.  This
+switch sets the \fBresetScrollBars\fR resource to vertical.
+.TP
+.I "-safer, -nosafer"
+Use or don't use -dSAFER with Ghostscript; this switch sets the
+safer resource.  When run with the -dSAFER switch, Ghostscript
+disables the deletefile and renamefile operators and can only
+open files with read-only access.
+.TP
+.I "-scrollpercent percentage"
+Scroll the screen by percentage of the window size when
+scrolling with the keyboard.  This switch sets the
+\fBscrollPercentage\fR resource.
+.TP
+.I "-smartsizing, -nosmartsizing"
+Enable or disable smart sizing.  This switch sets the
+\fBsmartSizing\fR resource.
+.TP
+.I "-smooth, -nosmooth"
+Enable or disable smooth scrolling.  This switch sets the
+\fBsmoothScrolling\fR resource.
+.TP
+.I "-smoothness n"
+Specify how smooth smooth scrolling should be.  This switch sets
+the \fBsmoothness\fR resource to n.
+.TP
+.I "-splash, -nosplash"
+Show or don't show the splash screen.
+.TP
+.I "-splashxbm filename"
+Specify the splash screen XBM file.  This switch sets the
+\fBwlSplashBitmap\fR resource.
+.TP
+.I "-splashxpm filename"
+Specify the splash screen XPM file.  This switch sets the
+\fBwlSplashPixmap\fR resource.
+.TP
+.I "-status, -nostatus"
+Show or hide the status line at start up; this switch sets the
+\fBhideStatusLine\fR resource.
+.TP
+.I "-temp dir"
+Specify the temporary directory; this switch sets the
+\fBtempDir\fR resource.
+.TP
+.I "-toolbar, -notoolbar"
+Show or hide the tool bar at start up; this switch sets the
+\fBhideToolBar\fR resource.
+.TP
+.I "-tooltips, -notooltips"
+Show or don't show tool tips for the tool bar buttons.  These
+switches set the \fBshowToolTips\fR resource.
+.TP
+.I "-version, --version"
+Display lots of version and build information about mgv.  The
+displayed information is the same as that in the \fBBuild Options
+Dialog\fR.
+.TP
+.I "-visual visualClass"
+Specify a non-default visual.  This switch sets the
+\fBwlVisualClass\fR resource.
+.TP
+.I "-visualid visualID"
+Specify a non-default visual by visual id (see xdpyinfo for a
+list of visual ids).  This switch sets the \fBwlVisualID\fR
+resource.
+.TP
+.I "-wmwidth width, -wmheight height"
+Set the total width or height of the window manager decorations.
+These switches set the \fBwmWidth\fR and \fBwmHeight\fR resources.
+.TP
+.I "-xdpi n, -ypdi n"
+Specify the horizontal and vertical resolutions; these switches
+set the xdpi and ydpi resources.
+.TP
+.I "-zoomfg color, -reticulefg color"
+Specify the zoom reticule color; these switches set the
+\fBreticuleForeground\fR resource.
+.TP
+.I "-zoomwidth n, -reticulewidth n"
+Specify the zoom reticule width; these switches set the
+\fBreticuleLineWidth\fR resource.
+.TP
+.I file
+The PostScript file to display.
+.\"----------------------------------------------------------------------------
+.SH "SEE ALSO"
+\fBgs\fR(1).
+.\"----------------------------------------------------------------------------
+.SH BUGS
+Bug reports should be sent to Eric A. Howe (mu@trends.net).
+.\"----------------------------------------------------------------------------
+.SH AUTHOR(S)
+Eric A. Howe (mu@trends.net) and Matthew D. Francey.
+Eric A. Howe (mu@trends.net) is the maintainer.
+Based on Ghostview 1.5 by Tim Theisen (tim@cs.wisc.edu) with some
+ideas from Ghostview-VMS 2.3 by Johannes Plass
+(plass@dipmza.physik.uni-mainz.de).

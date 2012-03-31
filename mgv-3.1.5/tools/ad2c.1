@@ -1,0 +1,79 @@
+.\" @(#)$Mu: tools/ad2c.1 1.5 1998/03/28 20:55:27 $
+.TH ad2c 1 "April 1996"
+.\"----------------------------------------------------------------------------
+.SH NAME
+ad2c \- convert resource files to C declarations
+.\"----------------------------------------------------------------------------
+.SH SYNOPSIS
+.B ad2c
+.RB [ "-a arrayname" ]
+.RB [ files ]
+.\"----------------------------------------------------------------------------
+.SH DESCRIPTION
+.B ad2c
+converts X resource files into C declarations, appropriate for
+inclusion as fallback resources.  The output is a
+.B NULL
+terminated
+array of
+.BR "char *" .
+The program itself is a wrapper around a
+.BR sed (1)
+script which is effectively a finite state machine, escaping quotes
+and backslashes (and newlines where necessary), and adding quotes and
+commas as needed for array initialization.
+.PP
+.B ad2c
+reads from the given
+.B files
+(or
+.B stdin
+if none are given) and writes
+the C array to
+.BR stdout .
+.\"----------------------------------------------------------------------------
+.SH OPTIONS
+.TP
+.B -a arrayname
+Name the produced array
+.B arrayname
+instead of the default
+.BR fallbacks .
+.TP
+.B files
+Input application defaults files; the default is to read from
+.BR stdin .
+.\"----------------------------------------------------------------------------
+.SH "RETURN VALUE"
+.B ad2c
+returns as for
+.BR sed (1)
+.\"----------------------------------------------------------------------------
+.SH "SEE ALSO"
+.BR sed (1)
+.\"----------------------------------------------------------------------------
+.SH DISCLAIMER
+This software is provided as is with no warranty expressed or implied.
+I hope you find it useful, but I won't be held responsable for
+any damage that may occur from reading, compiling, installing or
+using it.
+.PP
+You are free to use any part of this code for other purposes. It
+would be nice if you could keep my name on some part of whatever the
+final product is.
+.\"----------------------------------------------------------------------------
+.SH AUTHORS
+.LP
+George Ferguson, ferguson@cs.rochester.edu.
+.LP
+Man page by Joseph Beckenbach, jerbil@ultra.com. Usage section added
+by George Ferguson. Example corrected by Tim Theisen, tim@cs.wisc.edu.
+Example further corrected by David Wojtowicz, davidw@vista.atmos.uiuc.edu.
+.LP
+Modified to work with Gnu and IBM sed by Charles Hannum,
+mycroft@gnu.ai.mit.edu.
+.LP
+The
+.I -a
+switch was added by Eric Howe, mu@trends.net, as was the production of an
+actual NULL terminated array.

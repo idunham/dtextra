@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Printing</TITLE>
+ <LINK HREF="mgv-15.html" REL=next>
+ <LINK HREF="mgv-13.html" REL=previous>
+ <LINK HREF="mgv.html#toc14" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-15.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-13.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc14"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="printing"></A> <A NAME="s14">14. Printing</A></H2>
+
+<P>
+<FIGURE>
+<EPS FILE="file-print">
+<IMG SRC="file-print.gif">
+</FIGURE>
+<P><B>mgv</B> has the ability to print an entire document or just selected pages.
+Printing is accessed through the <EM>Print</EM> button in the <EM>File</EM> menu
+which pops up a <EM>Print</EM> dialog.  You can try and print a PDF file but
+don't expect it to work unless your print spooler knows what to do with
+PDF files.
+<P>The <EM>Print</EM> dialog contains the following controls:
+<UL>
+<LI>A text field for specifying the print spooling command to use.
+The command should specify the printer to use and arguments
+to make it read from the standard input.</LI>
+<LI>A <EM>Print Marked Pages Only</EM> toggle button.
+If this toggle is set, only the marked pages will be sent to the
+print spooler.
+This toggle is only active if there are marked pages.</LI>
+<LI>An <EM>Unmark Pages After Printing</EM> toggle button.  If this toggle
+is set, the marked pages will be unmarked after the marked pages
+have been submitted to the print spooler.
+This toggle is only active if there are marked pages.</LI>
+<LI>A <EM>Print</EM> button.  Pressing this button will submit the
+requested pages to the print spooler and pop down the <EM>Print</EM>
+dialog.
+Any output from the print spooler will be displayed in a message
+box.</LI>
+<LI>A <EM>Help</EM> button for requesting help.</LI>
+<LI>A <EM>Dismiss</EM> button for popping down the <EM>Print</EM> dialog.</LI>
+</UL>
+
+The default print command is taken from the 
+<A HREF="mgv-19.html#appres-printCommand">printCommand</A> application resource.
+If you do not specify the <B>printCommand</B> resource,
+<B>mgv</B> will attempt to choose sensible values; the manual entry for
+the 
+<A HREF="mgv-19.html#appres-printCommand">printCommand</A> resource discusses
+the guessing procedure, the <B>printCommand</B> resource entry also lists
+the restrictions on the print command.
+The <EM>Print</EM> dialog can be made 
+<A HREF="mgv-17.html#sticky-dialogs">sticky</A>.
+<P>If the current document does not contain DSC comments, then you will
+not be able to mark individual pages and hence, you will only be able
+to print the entire document.
+<P>If your print spooler prints any status messages, a message box containing
+the messages will be popped up.
+<P>
+<P>
+<HR>
+<A HREF="mgv-15.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-13.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc14"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

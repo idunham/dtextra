@@ -1,0 +1,34 @@
+#!/bin/bash
+cfgflags="--with-dmalloc --enable-maintainer --prefix=/u/mu/tmp/MGV"
+
+if [ $# -ge 1 -a x"$1" = 'x--lesstif' ]; then
+	cfgdebug="--disable-optimized --enable-debug"
+	cfgmincl="--with-motif-includes=/u/mu/src/open/lesstif/include"
+	cfgmlib="--with-motif-libraries=/u/mu/src/open/lesstif/lib"
+elif [ $# -ge 1 -a x"$1" = 'x--debug' ]; then
+	cfgdebug="--disable-optimized --enable-debug"
+	cfgmincl=
+	cfgmlib=
+else
+	cfgdebug="--enable-optimized --disable-debug"
+	cfgmincl=
+	cfgmlib=
+fi
+make maintainer-clean >/dev/null
+
+tools/mudep
+tools/mudep wlib
+
+automake -i
+aclocal
+autoconf
+
+##
+## Can't put these things into CFLAGS because that will interfere with
+## configure's little tests.
+##
+export X_CFLAGS='-ansi -pedantic -W -Wall -Werror -Wmissing-prototypes'
+cfgflags="$cfgflags $cfgdebug $cfgmincl $cfgmlib"
+./configure $cfgflags
+
+make

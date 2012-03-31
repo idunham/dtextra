@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Command Line Switches</TITLE>
+ <LINK HREF="mgv-22.html" REL=next>
+ <LINK HREF="mgv-20.html" REL=previous>
+ <LINK HREF="mgv.html#toc21" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-22.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-20.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc21"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="switches"></A> <A NAME="s21">21. Command Line Switches</A></H2>
+
+<P>The command line switches for <B>mgv</B> generally set application resources;
+see 
+<A HREF="mgv-19.html#app-resources">Application Resources</A> for descriptions
+of the various resources.
+<P>
+<H2><A NAME="switches.help"></A> <A NAME="ss21.1">21.1 Help Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-browser htmlbrowser</B><DD><P>Specify the HTML browser to use for the on-line help; this switch
+sets the 
+<A HREF="mgv-19.html#appres-helpBrowser">helpBrowser</A> resource.
+<P>
+<DT><B>-help, --help, -H, -?</B><DD><P>Display a short summary of the available command line switches.
+<P>
+<DT><B>-helptype type</B><DD><P>Specify the help type for on-line help.  This switch sets the
+<A HREF="mgv-19.html#appres-helpType">helpType</A> resource to <B>type</B>.
+<P>
+<DT><B>-longhelp</B><DD><P>Display a summary, with explanations, of the available command line
+switches.
+<P>
+<DT><B>-prefix pfx</B><DD><P>Specify the location of the files for the on-line help; this
+switch sets the 
+<A HREF="mgv-19.html#appres-helpPrefix">helpPrefix</A>
+resource.
+<P>
+<DT><B>-version, --version</B><DD><P>Display lots of version and build information about <B>mgv</B>.
+The displayed information is the same as that in 
+the 
+<A HREF="mgv-11.html#help-bldopts">Build Options Dialog</A>.
+</DL>
+<P>
+<H2><A NAME="switches.rendering"></A> <A NAME="ss21.2">21.2 Rendering Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-aliaseps, -noaliaseps</B><DD><P>Anti-aliasing graphic images will often make the images look worse
+and increase the rendering time significantly; hence, these switches
+are offered to give you finer control over when anti-aliasing is
+used.  These switches set the 
+<A HREF="mgv-19.html#appres-antialiasEPS">antialiasEPS</A> application resource.
+<P>
+<DT><B>-antialias, -noantialias</B><DD><P>Enable or disable anti-aliasing within Ghostscript; by default,
+anti-aliasing is enabled.
+If anti-aliasing is enable, then the <B>x11alpha</B>
+device is used and Ghostscript will be run with the <EM>-dNOPLATFONTS</EM>
+switch; if anti-aliasing is disabled, then the <B>x11</B> device
+will be used.
+This switch sets the 
+<A HREF="mgv-19.html#appres-antialias">antialias</A>
+resource for Ghostview widgets.
+<P>
+<DT><B>-arguments args</B><DD><P>Specify additional arguments for Ghostscript; this switch sets the
+<A HREF="mgv-19.html#appres-arguments">arguments</A> resource.
+<P>
+<DT><B>-color, -grayscale, -greyscale, -monochrome</B><DD><P>Force color/grayscale/monochrome display; these switches do not
+have anything to do with the visual, depth, or colormap that
+<B>mgv</B> uses, you will want to use the <EM>-visual</EM>, <EM>-visualid</EM>,
+<EM>-depth</EM>, and <EM>-privatecm</EM> switches for that.
+These switches set the <B>palette</B> resource.
+<P>
+<DT><B>-dpi n, -resolution n</B><DD><P>Specify the overall resolution; these switches set the <B>Resolution</B>
+resource.
+<P>
+<DT><B>-gslocale locale</B><DD><P>Force the <B>GHOSTVIEW</B> window property to be written according
+to <EM>locale</EM>.
+This switch sets the 
+<A HREF="mgv-19.html#appres-gsLocale">gsLocale</A>
+resource.
+<P>
+<DT><B>-interpreter interp</B><DD><P>Use <B>interp</B> as the <B>PostScript</B> interpreter.  This switch is useful
+if you want to use an interpreter that is not in your PATH or
+is not the first <B>gs</B> is your PATH.
+This switch sets the 
+<A HREF="mgv-19.html#appres-interpreter">interpreter</A>
+resource.
+<P>
+<DT><B>-magstep m</B><DD><P>Set the initial magstep to <EM>m</EM>; this switch sets the
+<A HREF="mgv-19.html#appres-magstep">magstep</A> resource.
+<P>
+<DT><B>-media media, -paper media</B><DD><P>Specify the default page media; this switch sets the
+<A HREF="mgv-19.html#appres-defaultPageMedia">defaultPageMedia</A> resource.
+<P>
+<DT><B>-portrait, -landscape, -seascape, -upsidedown</B><DD><P>Specify the initial page orientation.
+<P>
+<DT><B>-quiet, -noquiet</B><DD><P>Use or don't use <EM>-dQUIET</EM> with Ghostscript; this switch sets the
+<B>quiet</B> resource.
+The <EM>-dQUIET</EM> switch tells Ghostscript to suppresses the normal
+startup messages.
+<P>
+<DT><B>-safer, -nosafer</B><DD><P>Use or don't use <EM>-dSAFER</EM> with Ghostscript; this switch sets the
+<B>safer</B> resource.
+When run with the <EM>-dSAFER</EM> switch, Ghostscript disables the
+<B>deletefile</B> and <B>renamefile</B> operators and can only
+open files with read-only access.
+<P>
+<DT><B>-xdpi n, -ypdi n</B><DD><P>Specify the horizontal and vertical resolutions; these switches
+set the <B>xdpi</B> and <B>ydpi</B> resources.
+</DL>
+<P>
+<H2><A NAME="switches.display"></A> <A NAME="ss21.3">21.3 Display Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-labels, -nolabels</B><DD><P>Show or don't show the page labels in the page list; this switch
+sets the 
+<A HREF="mgv-19.html#appres-showLabels">showLabels</A> resource.
+<P>
+<DT><B>-log, -nolog</B><DD><P>Show or hide the Ghostscript log on start-up; this switch sets the
+<A HREF="mgv-19.html#appres-hideLog">hideLog</A> resource.
+<P>
+<DT><B>-menubar, -nomenubar</B><DD><P>Show or hide the menu bar at start up; this switch sets the
+<A HREF="mgv-19.html#appres-hideMenuBar">hideMenuBar</A> resource.
+<P>
+<DT><B>-pagelist, -nopagelist</B><DD><P>Show or hide the page list at start up; this switch sets the
+<A HREF="mgv-19.html#appres-hidePageList">hidePageList</A> resource.
+<P>
+<DT><B>-pgnums, -nopgnums</B><DD><P>Show or don't show the page numbers in the page list; this resource
+sets the 
+<A HREF="mgv-19.html#appres-showPageNumbers">showPageNumbers</A>
+resource.
+<P>
+<DT><B>-status, -nostatus</B><DD><P>Show or hide the status line at start up; this switch sets the
+<A HREF="mgv-19.html#appres-hideStatusLine">hideStatusLine</A> resource.
+<P>
+<DT><B>-toolbar, -notoolbar</B><DD><P>Show or hide the tool bar at start up; this switch sets the
+<A HREF="mgv-19.html#appres-hideToolBar">hideToolBar</A> resource.
+</DL>
+<P>
+<H2><A NAME="switches.colormap"></A> <A NAME="ss21.4">21.4 Colormap Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-depth n</B><DD><P>Specify a non-default color depth.  This switch sets the
+<A HREF="mgv-19.html#appres-wlDepth">wlDepth</A> resource.
+<P>
+<DT><B>-install, -noinstall, -privatecm, -noprivatecm</B><DD><P>Install or don't install a private colormap.  Non-default visual
+and/or depth settings may cause this switch to be ignored.
+This switch sets the 
+<A HREF="mgv-19.html#appres-wlUsePrivateColormap">wlUsePrivateColormap</A> resource.
+<P>
+<DT><B>-visual visualClass</B><DD><P>Specify a non-default visual.  This switch sets the
+<A HREF="mgv-19.html#appres-wlVisualClass">wlVisualClass</A> resource.
+<P>
+<DT><B>-visualid visualID</B><DD><P>Specify a non-default visual by visual id (see <B>xdpyinfo</B> for
+a list of visual ids).  This switch sets the
+<A HREF="mgv-19.html#appres-wlVisualID">wlVisualID</A> resource.
+</DL>
+<P>
+<H2><A NAME="switches.scrolling"></A> <A NAME="ss21.5">21.5 Scrolling Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-center, -nocenter</B><DD><P>Enable or disable automatic page centering.
+This switch sets the 
+<A HREF="mgv-19.html#appres-center">center</A> resource.
+<P>
+<DT><B>-magicresistance n</B><DD><P>Specify the number of attempts to scroll beyond the page boundaries
+before magical scrolling takes effect; this switch sets the
+<A HREF="mgv-19.html#appres-magicResistance">magicResistance</A>
+resource.
+<P>
+<DT><B>-magicscroll, -nomagicscroll</B><DD><P>Allow or disallow <EM>magical</EM> scrolling; this switch sets the
+<A HREF="mgv-19.html#appres-magicScrolling">magicScrolling</A> resource.
+<P>
+<DT><B>-resetboth</B><DD><P>Reset both the horizontal and vertical scrollbars when you move
+to a new page.
+This switch sets the 
+<A HREF="mgv-19.html#appres-resetScrollBars">resetScrollBars</A> resource to <B>both</B>.
+<P>
+<DT><B>-resethor</B><DD><P>Reset the horizontal scrollbar when you move to a new page.
+This switch sets the 
+<A HREF="mgv-19.html#appres-resetScrollBars">resetScrollBars</A> resource to <B>horizontal</B>.
+<P>
+<DT><B>-resetnone</B><DD><P>Don't reset either scrollbar when you move to a new page.
+This switch sets the 
+<A HREF="mgv-19.html#appres-resetScrollBars">resetScrollBars</A> resource to <B>none</B>.
+<P>
+<DT><B>-resetver</B><DD><P>Reset the vertical scrollbar when you move to a new page.
+This switch sets the 
+<A HREF="mgv-19.html#appres-resetScrollBars">resetScrollBars</A> resource to <B>vertical</B>.
+<P>
+<DT><B>-scrollpercent percentage</B><DD><P>Scroll the screen by <EM>percentage</EM> of the window size when
+scrolling with the keyboard.  This switch sets the
+<A HREF="mgv-19.html#appres-scrollPercentage">scrollPercentage</A> resource.
+<P>
+<DT><B>-smooth, -nosmooth</B><DD><P>Enable or disable smooth scrolling.  This switch sets the
+<A HREF="mgv-19.html#appres-smoothScrolling">smoothScrolling</A>
+resource.
+<P>
+<DT><B>-smoothness n</B><DD><P>Specify how smooth smooth scrolling should be.  This switch sets
+the 
+<A HREF="mgv-19.html#appres-smoothness">smoothness</A> resource to
+<B>n</B>.
+</DL>
+<P>
+<H2><A NAME="switches.sizing"></A> <A NAME="ss21.6">21.6 Sizing Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-autoheight, -noautoheight</B><DD><P>Attempt to make the main window tall enough to accommodate a whole
+page.  This switch sets the 
+<A HREF="mgv-19.html#appres-autoHeight">autoHeight</A> resource.
+<P>
+<DT><B>-autowidth, -noautowidth</B><DD><P>Attempt to make the main window wide enough to accommodate a whole
+page.  This switch sets the 
+<A HREF="mgv-19.html#appres-autoWidth">autoWidth</A> resource.
+<P>
+<DT><B>-smartsizing, -nosmartsizing</B><DD><P>Enable or disable smart sizing.  This switch sets the
+<A HREF="mgv-19.html#appres-smartSizing">smartSizing</A> resource.
+<P>
+<DT><B>-wmwidth width, -wmheight height</B><DD><P>Set the total width or height of the window manager decorations.
+These switches set the 
+<A HREF="mgv-19.html#appres-wmWidth">wmWidth</A>
+and 
+<A HREF="mgv-19.html#appres-wmHeight">wmHeight</A> resources.
+</DL>
+<P>
+<H2><A NAME="switches.splash"></A> <A NAME="ss21.7">21.7 Splash Screen and Icon Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-coloricon, -monoicon, -nocoloricon</B><DD><P>Use or don't use a color icon (if available).  These switches set
+the 
+<A HREF="mgv-19.html#appres-wlUseColorIcon">wlUseColorIcon</A> resource.
+<P>
+<DT><B>-installicon, -noicon</B><DD><P>Install or don't install an icon when the application starts up.
+These switches set the 
+<A HREF="mgv-19.html#appres-wlInstallIcon">wlInstallIcon</A> resource.
+<P>
+<DT><B>-monosplash, -colorsplash</B><DD><P>Use the monochrome or the color splash screen.
+These switches set the 
+<A HREF="mgv-19.html#appres-wlUseMonoSplash">wlUseMonoSplash</A> resource.
+<P>
+<DT><B>-splash, -nosplash</B><DD><P>Show or don't show the splash screen.
+<P>
+<DT><B>-splashxbm filename</B><DD><P>Specify the splash screen XBM file.  This switch sets the
+<A HREF="mgv-19.html#appres-wlSplashBitmap">wlSplashBitmap</A>
+resource.
+<P>
+<DT><B>-splashxpm filename</B><DD><P>Specify the splash screen XPM file.  This switch sets the
+<A HREF="mgv-19.html#appres-wlSplashPixmap">wlSplashPixmap</A>
+resource.
+</DL>
+<P>
+<H2><A NAME="switches.toolbar"></A> <A NAME="ss21.8">21.8 Tool Bar Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-colortoolbar, -monotoolbar</B><DD><P>Use color or monochrome icons in the tool bar.  These switches set
+the 
+<A HREF="mgv-19.html#appres-useColorIcons">useColorIcons</A> resource.
+<P>
+<DT><B>-flatten, -noflatten</B><DD><P>Flatten or don't flatten the tool bar buttons.
+These switches set the 
+<A HREF="mgv-19.html#appres-flattenButtons">flattenButtons</A> resource.
+<P>
+<DT><B>-tooltips, -notooltips</B><DD><P>Show or don't show tool tips for the tool bar buttons.
+These switches set the 
+<A HREF="mgv-19.html#appres-showToolTips">showToolTips</A> resource.
+</DL>
+<P>
+<H2><A NAME="switches.misc"></A> <A NAME="ss21.9">21.9 Miscellaneous Switches</A>
+</H2>
+
+<P>
+<DL>
+<DT><B>-bzip cmd, -bunzip cmd</B><DD><P>Specify the command to compress or decompress bzip2ed files;
+the commands should read from the standard input and write to
+the standard output.
+These switches set the 
+<A HREF="mgv-19.html#appres-bzip">bzip</A> and
+<A HREF="mgv-19.html#appres-bunzip">bunzip</A> resources.
+<P>
+<DT><B>-compress cmd, -decompress cmd</B><DD><P>Specify the command to compress or decompress compressed files;
+the commands should read from the standard input and write to
+the standard output.
+These switches set the 
+<A HREF="mgv-19.html#appres-compress">compress</A> and
+<A HREF="mgv-19.html#appres-decompress">decompress</A> resources.
+<P>
+<DT><B>-confirmexit, -noconfirmexit</B><DD><P>Require or don't require user confirmation when attempting to
+exit the application with more than one top level viewing window.
+These switches set the 
+<A HREF="mgv-19.html#appres-confirmExit">confirmExit</A>
+resource.
+<P>
+<DT><B>-copystdin, -nocopystdin</B><DD><P>Copy or don't copy files from the standard input to a temporary file.
+These switches set the 
+<A HREF="mgv-19.html#appres-copyStdin">copyStdin</A>
+resource.
+<P>
+<DT><B>-editres, -noeditres</B><DD><P>Install or don't install support for editres.  This switch sets
+the 
+<A HREF="mgv-19.html#appres-wlUseEditRes">wlUseEditRes</A> resource.
+<P>
+<DT><B>-gunzip cmd</B><DD><P>Specify the command to compress or decompress gzipped files;
+the commands should read from the standard input and write to
+the standard output.
+These switches set the 
+<A HREF="mgv-19.html#appres-gzip">gzip</A> and
+<A HREF="mgv-19.html#appres-gunzip">gunzip</A> resources.
+<P>
+<DT><B>-killkids, -nokillkids</B><DD><P>Kill or don't kill child processes when <B>mgv</B> exits; this switch
+sets the 
+<A HREF="mgv-19.html#appres-killChildrenAtExit">killChildrenAtExit</A>
+resource.
+<P>
+<DT><B>-printcommand cmd</B><DD><P>Use <EM>cmd</EM> as the default printer command; this switch
+sets the 
+<A HREF="mgv-19.html#appres-printCommand">printCommand</A> resource.
+<P>
+<DT><B>-temp dir</B><DD><P>Specify the temporary directory; this switch sets the
+<A HREF="mgv-19.html#appres-tempDir">tempDir</A> resource.
+<P>
+<DT><B>-zoomfg color, -reticulefg color</B><DD><P>Specify the zoom reticule color; these switches set the
+<A HREF="mgv-19.html#appres-reticuleForeground">reticuleForeground</A>
+resource.
+<P>
+<DT><B>-zoomwidth n, -reticulewidth n</B><DD><P>Specify the zoom reticule width; these switches set the
+<A HREF="mgv-19.html#appres-reticuleLineWidth">reticuleLineWidth</A>
+resource.
+</DL>
+<P>
+<P>
+<HR>
+<A HREF="mgv-22.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-20.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc21"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

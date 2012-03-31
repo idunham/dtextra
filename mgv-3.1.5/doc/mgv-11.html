@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The Help Menu</TITLE>
+ <LINK HREF="mgv-12.html" REL=next>
+ <LINK HREF="mgv-10.html" REL=previous>
+ <LINK HREF="mgv.html#toc11" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-12.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-10.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc11"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="s11">11. The Help Menu</A></H2>
+
+<P>The <EM>Help</EM> menu provides access to the on-line help system via the
+following entries:
+<DL>
+<DT><B>Contents</B><DD><P>
+<A NAME="help-contents"></A> 
+This entry will launch an HTML browser, set via the <B>helpBrowser</B>
+resource (see 
+<A HREF="mgv-19.html#app-resources">Application Resources</A>),
+with the contents page.
+<P>
+<DT><B>On Context (F1)</B><DD><P>
+<A NAME="help-context"></A> 
+This entry will change the mouse cursor to a question mark; if you
+click on a widget, an HTML browser will be launched with the 
+help entry for that widget.
+If the widget doesn't have any help text, the bell will be rung and
+no browser will get launched.
+<P>
+<DT><B>On Application Resources</B><DD><P>
+<A NAME="help-appres"></A> 
+This entry will launch an HTML browser, set via the <B>helpBrowser</B>
+resource, with the 
+<A HREF="mgv-19.html#app-resources">Application Resources</A>
+section.
+<P>
+<DT><B>On Command Line</B><DD><P>
+<A NAME="help-cmdline"></A> 
+This entry will launch an HTML browser, set via the <B>helpBrowser</B>
+resource (see 
+<A HREF="mgv-19.html#app-resources">Application Resources</A>),
+with the 
+<A HREF="mgv-21.html#switches">Command Line Switches</A> section.
+<P>
+<DT><B>About</B><DD><P>
+<A NAME="help-about"></A> 
+This will pop-up a dialog box with the <B>mgv</B> version, operating
+system, etc...
+If you encounter a bug, the information in this dialog may be
+useful to the author.
+</DL>
+
+If you are using Netscape/remote or libhelp for on-line help,
+then <B>mgv</B> will attempt to maintain a connection with the browser so that
+only one instance of the browser will be required.  If you are using plain
+HTML, then <B>mgv</B> will launch a separate browser for each help request.
+Note that when <B>mgv</B> exits, it will attempt to kill (via <B>SIGTERM</B>)
+any browsers that it has launched (this can be changed by setting the
+<A HREF="mgv-19.html#appres-killChildrenAtExit">killChildrenAtExit</A> resource
+to <B>False</B>), browsers that <B>mgv</B> has just borrowed will not be affected
+by this.
+<P>
+<P>
+<H2><A NAME="help-aboutdlg"></A> <A NAME="ss11.1">11.1 About Dialog</A>
+</H2>
+
+<P>
+<FIGURE>
+<EPS FILE="help-about">
+<IMG SRC="help-about.gif">
+</FIGURE>
+<P>The <EM>About</EM> dialog contains the program name, a copyright statement,
+author contact information, a
+<EM>Build Options</EM> button, and a <EM>Dismiss</EM> button.
+The <EM>Dismiss</EM> button will remove the about box from the screen; if
+the <EM>Build Options</EM> dialog is also visible, it will be removed as well.
+Activating the <EM>Build Options</EM> button will pop up the <EM>Build Options</EM>
+dialog (see 
+<A HREF="#help-bldopts">Build Options Dialog</A>).
+<P>
+<H2><A NAME="help-bldopts"></A> <A NAME="ss11.2">11.2 Build Options Dialog</A>
+</H2>
+
+<P>
+<FIGURE>
+<EPS FILE="help-bldopts">
+<IMG SRC="help-bldopts.gif">
+</FIGURE>
+<P>The <EM>Build Options</EM> dialog contains various flags and program names
+used to compile the program;.
+The entries are as follows:
+<P>
+<DL>
+<DT><B>version</B><DD><P>The program version.
+<P>
+<DT><B>compile</B><DD><P>The command used to compile source files, this command will include
+various macro definitions, includes paths, and sundry other compiler
+flags.
+<P>
+<DT><B>ldflags</B><DD><P>Extra flags used to link the program.
+<P>
+<DT><B>libs</B><DD><P>The libraries which the program was linked against.
+<P>
+<DT><B>uname</B><DD><P>This line will contain the operating system name, release number,
+version, and machine type as specified by the operating system.
+<P>
+<DT><B>bindir</B><DD><P>The binary installation directory.
+<P>
+<DT><B>datadir</B><DD><P>The library installation directory.  Help files should be in
+the <CODE>help</CODE> subdirectory of <B>datadir</B>.
+<P>
+<DT><B>build date</B><DD><P>The data and time when the program was linked.
+</DL>
+
+If you find a bug, the information in this dialog may be useful to the
+maintainer.  You can also get this information using the <EM>-version</EM>
+command line switch.
+<P>
+<P>
+<HR>
+<A HREF="mgv-12.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-10.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc11"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

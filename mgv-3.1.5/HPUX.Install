@@ -1,0 +1,72 @@
+Package name:     mgv
+Version number:   3.1.5
+Original author:  Eric A. Howe <mu@trends.net>
+Original URL:     http://www.ayamura.org/installer/ftpsites2.html
+HP-UX URL:        http://hpux.connect.org.uk/hppd/cgi-bin/search?package=&term=mgv-
+Dependencies:     xpm
+Install tree:     /opt/mgv
+Report bugs to:   stephie@connect.org.uk
+Tested on:        HP 9000/780/C160 running HP-UX 11.00
+C compiler used:  Version A.11.01.02
+Purpose:
+A Motif Interface to Ghostscript. MGv is essentially a Motif version of the
+Ghostview PostScript viewer; in fact, the Ghostview widget and the DSC parser
+in MGv are the same as the ones in Ghostview (with minor tweaks). The two
+programs are almost identical in terms of features but MGv has nicer zooming
+Date archived:    Wed  1 Mar 2000
+
+-------------------------------------------------------------------------------
+
+System:
+======
+	HP-UX maree B.10.20 A 9000/715 
+URL:
+====
+
+	http://www.ayamura.org/installer/ftpsites2.html
+
+HP Porting Changes:
+===================
+  Configuration Files changed
+  ----------------------------
+
+  We'v got away from the Gmake hassle :)
+
+  Imakefile/Makefile
+    - wrote a quickie Imakefile plus a Makefile for wlib.
+    - I didn't do an "IHaveSubdirs" because we havn't got a
+      "toplevel" dir (in the Imake sense).
+
+  MGv.ad
+    - Defined Version as 2.4.3
+    - Use @@LIBDIR@@ to locate your mgv html docs (if used).
+
+  mkver.c 
+   - Created it by hand with a few dummy string defs.
+
+  Ghostview.c.     
+   - set XtRString, "/opt/gs-5.10/bin/gs"
+
+   NB You need to reset this if not using the HP distribuion of gs-5.10
+
+
+Building:
+=========
+
+  "xmkmf" to re-generate the top Makefile (not wlib) 
+
+  Run "make" in the top level dir.
+
+  Use "make -n install" to check the defaults, then "make install"
+
+
+Installed:
+==========
+ By
+ --     [steff@csc.liv.ac.uk]
+ On
+ --	[Fri 17 Jul 1998]
+ 
+ 
+       HPUX Porting and Archive Centre, Connect, Liverpool University.
+  __/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/

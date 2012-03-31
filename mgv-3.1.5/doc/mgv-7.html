@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The Magstep Menu</TITLE>
+ <LINK HREF="mgv-8.html" REL=next>
+ <LINK HREF="mgv-6.html" REL=previous>
+ <LINK HREF="mgv.html#toc7" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-8.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-6.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc7"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="menu-magstep"></A> <A NAME="s7">7. The Magstep Menu</A></H2>
+
+<P>The Magstep menu controls the document magnification.  The default magstep,
+zero, implies no magnification (i.e. the on-screen image should be the same
+size as the paper version).
+Positive magsteps increase the magnification by a factor of 1.2 at each step
+and negative magsteps decrease the magnification by a factor of 1.2 at each
+step.
+The factor of 1.2 is the same factor used by Ghostview (upon which <B>mgv</B> is
+based) and Ghostview borrowed the factor from TeX:  if 1.2 is good enough for Donald Knuth,
+then it is certainly good enough for me.
+<P>The following entries are provided on the menu:
+<DL>
+<DT><B>Decrease (Alt+-), Increase (Alt++)
+<A NAME="magstep-incdec"></A> </B><DD><P>Decrease or increase the magstep factor.
+<P>
+<DT><B>-5, -4, -3, -2, -1, Normal (Alt+0), +1, +2, +3, +4, +5
+<A NAME="magstep-numbers"></A> </B><DD><P>Set the magstep to the specified number; <EM>normal</EM> means zero
+magnification.  The radio buttons are provided for convenient
+access to commonly used magsteps.  If none of the radio buttons
+are toggled on, then you have a magstep outside their range.
+<P>
+<DT><B>Set...
+<A NAME="magstep-set"></A> </B><DD><P>This pops up a simple dialog which allows you to set a specific
+magstep value.  The <EM>Set Magstep</EM> dialog can be made
+<A HREF="mgv-17.html#sticky-dialogs">sticky</A>.
+</DL>
+<P>The current magstep is displayed in, and can be changed from, the status line.
+<P>If the magstep is above +5 or below -5, then no radio button will be on but
+the status line will still show the correct value.
+<P><B>Warning:</B>  High magsteps can be pretty hard on your machine:  <EM>caveat
+emptor</EM>.  If you want to put an upper limit on the magstep, a simple
+modification to <CODE>magstep.c:mgv_ui_magnify()</CODE> is all that is needed
+(just don't make it less than 5 or you'll probably confuse the program).
+<P>
+<P>
+<HR>
+<A HREF="mgv-8.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-6.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc7"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

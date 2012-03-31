@@ -1,0 +1,36 @@
+/* XPM */
+static char *pageNext_i_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    24    24        5            1",
+/* colors */
+". s None",
+"# c #000000",
+"a c #4c4c4c",
+"b c #747474",
+"c c #a7a7a7",
+/* pixels */
+"............#...........",
+"...........#c#..........",
+"..........#cbc#.........",
+"..........#bcbc#........",
+".........#bcbcbc#.......",
+".........#cbcbcbc#......",
+".........#bcbcbcbc#.....",
+".........#cbcbcbcbc#....",
+"...#######bbbbbcbcbc#...",
+"..#ccccccccbbbbbbbcbc#..",
+".#cbbbbbbbbabbbbbbbcbc#.",
+"#cbbbbbbbbbabbbbbbbbcbc#",
+"#aababababaabbbbbbbbabc#",
+".#aabababababbbbbbbaba#.",
+"..#aaaaaaaabbbbbbbaba#..",
+"...#######bbbbbababa#...",
+".........#cbabababa#....",
+".........#babababa#.....",
+".........#cbababa#......",
+".........#bababa#.......",
+"..........#aaba#........",
+"..........#aba#.........",
+"...........#a#..........",
+"............#..........."
+};

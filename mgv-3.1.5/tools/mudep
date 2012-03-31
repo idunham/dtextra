@@ -1,0 +1,117 @@
+#!/usr/bin/perl -w
+##
+## mudep
+##	Simple local dependency generator for Makefile.am files.
+##
+## Copyright (C) 1998 Eric A. Howe
+##
+## This program is free software; you can redistribute it and/or modify
+## it under the terms of the GNU General Public License as published by
+## the Free Software Foundation; either version 2 of the License, or
+## (at your option) any later version.
+##
+## This program is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with this program; if not, write to the Free Software
+## Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+##
+##   Authors:	Eric A. Howe (mu@trends.net)
+##
+# (#)$Mu: tools/mudep 1.6 1998/09/05 06:28:37 $
+#
+use strict;
+use IO::File;
+
+my %deps = ( );
+
+sub insert($$) {
+	my $obj   = shift;
+	my $stuff = shift;
+	my $x;
+
+	##
+	## My makedepend uses relative paths for local things and absolute
+	## paths for non-local things.  Hopefully, this is standard.
+	##
+	my @parts = grep {
+		m:^/: ? 0 : 1
+	} split(/\s+/, $stuff);
+
+	if(!defined($deps{$obj})) {
+		$deps{$obj} = [ ];
+	}
+
+	foreach $x (@parts) {
+		$x =~ s:^\./::;
+		push(@{$deps{$obj}}, $x);
+	}
+}
+
+sub main() {
+	my $incls = "";
+	my $line;
+	my $obj;
+	my $x;
+
+	chdir($ARGV[0]) if($#ARGV >= 0);
+
+	##
+	## We start copying Makefile.am before trying to figure out the
+	## deps because we want to extract the INCLUDES value for
+	## makedepend.
+	##
+	my $amin  = new IO::File("< Makefile.am");
+	my $amout = new IO::File("> Makefile.am.temp");
+	while(defined($line = $amin->getline())) {
+		$amout->print($line);
+		if($line =~ /^\s*INCLUDES\s*=\s*(.*)$/) {
+			$incls = $1;
+		}
+		last if($line =~ /^##\s*--STUPID-MARKER--\s*$/);
+	}
+	undef $amin;
+
+	my $md = new IO::File("makedepend -f- $incls *.c 2>/dev/null |");
+	while(defined($line = $md->getline())) {
+		next if($line =~ /^\s*#/);	# comments
+		next if($line =~ /^\s*$/);	# blank lines
+		next if($line =~ /^_/);		# generated source files
+		chop($line);
+
+		($obj, $x) = split(/:\s*/, $line, 2);
+		insert($obj, $x);
+	}
+	undef $md;
+
+	##
+	## Sort both keys and the value arrays so that nothing will
+	## change (at least as far as CVS is concerned) if nothing has
+	## really changed.
+	##
+	foreach $x (sort keys %deps) {
+		my $slen = length($x) + 1;
+		my $len  = $slen;
+		my $dep;
+		$amout->print("$x:");
+		foreach $dep (sort @{$deps{$x}}) {
+			my $dlen = length($dep) + 1;
+			if($len + $dlen >= 80) {
+				$len = $slen + $dlen;
+				$amout->print("\n$x:");
+			}
+			else {
+				$len += $dlen;
+			}
+			$amout->print(" $dep");
+		}
+		$amout->print("\n");
+	}
+
+	rename("Makefile.am.temp", "Makefile.am");
+}
+
+exit(main());

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The Ghostscript Message Log</TITLE>
+ <LINK HREF="mgv-19.html" REL=next>
+ <LINK HREF="mgv-17.html" REL=previous>
+ <LINK HREF="mgv.html#toc18" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-19.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-17.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc18"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="gs-log"></A> <A NAME="s18">18. The Ghostscript Message Log</A></H2>
+
+<P>
+<FIGURE>
+<EPS FILE="gs-log">
+<IMG SRC="gs-log.gif">
+</FIGURE>
+<P>All messages from Ghostscript are stored in a log dialog.
+By default this dialog is not visible but may be viewed at any time using
+the <EM>Hide Log</EM> entry in the 
+<A HREF="mgv-5.html#view-menu">View Menu</A>.
+The 
+<A HREF="mgv-19.html#appres-hideLog">hideLog</A> application resource may be
+used to alter the default behavior for all instances of <B>mgv</B> and the
+<B>-log</B> and <B>-nolog</B> command-line switches (see 
+<A HREF="mgv-21.html#switches">Command Line Switches</A>) may be used to alter the default behavior
+for a single execution.  The message log is also used to display errors
+from the Ghostscript interpreter.  If there is an error, the log will
+automatically pop up.
+<P>The log dialog consists of the following widgets:
+<UL>
+<LI>A Scrolled text region for displaying the messages.  The text widget
+is editable so you are free to add notes if you find a bug in
+<B>mgv</B>, Ghostscript, or someone's <B>PostScript</B> program.</LI>
+<LI>A <EM>Hide</EM> button for popping down the log until an error occurs or
+you explicitly request its presence again.</LI>
+<LI>A <EM>Save</EM> button for saving the current contents of the log to
+a file.  This button will activate a standard file selector to ask
+for the filename.</LI>
+<LI>A <EM>Clear</EM> button for emptying the log.</LI>
+<LI>A <EM>Help</EM> button for requesting help on the log dialog.</LI>
+</UL>
+<P>
+<P>
+<HR>
+<A HREF="mgv-19.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-17.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc18"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

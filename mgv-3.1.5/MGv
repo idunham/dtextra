@@ -1,0 +1,1547 @@
+! @(#)$Mu: mgv/MGv.ad.in 1.77 1998/08/29 00:07:50 $
+!#
+!# MGv.ad - application defaults for mgv
+!#
+
+!##
+!## Application Resources
+!##
+!## You should read the "Application Resources" section of the manual
+!## before fiddling with these resources.
+!##
+!## Check the bottom of this file for translations and font/margin settings.
+!##
+
+MGv*antialiasEPS:	True
+MGv*center:		False
+MGv*confirmExit:	True
+MGv*copyStdin:		True
+MGv*decompress:		gzip --stdout --decompress
+MGv*gunzip:		gzip --stdout --decompress
+MGv*bunzip:		bunzip2
+MGv*compress:		compress
+MGv*gzip:		gzip -9
+MGv*bzip:		bzip2 -9
+MGv*killChildrenAtExit:	True
+MGv*reticuleForeground:	red
+MGv*reticuleLineWidth:	2
+
+!#
+!# Toolbar configurables.
+!#
+!MGv*mainWindow.toolBar.buttonMarginExtra:
+!MGv*mainWindow.toolBar.buttonShadowThickness:
+!MGv*mainWindow.toolBar.flattenButtons:
+!MGv*mainWindow.toolBar.groupSpacing:
+!MGv*mainWindow.toolBar.marginHeight:
+!MGv*mainWindow.toolBar.marginWidth:
+!MGv*mainWindow.toolBar.showToolTips:
+!MGv*mainWindow.toolBar.spacing:
+!MGv*mainWindow.toolBar.tipBackground:
+!MGv*mainWindow.toolBar.tipDelay:
+!MGv*mainWindow.toolBar.tipDistance:
+!MGv*mainWindow.toolBar.tipFontList:
+!MGv*mainWindow.toolBar.tipForeground:
+!MGv*mainWindow.toolBar.tipPosition:
+!MGv*mainWindow.toolBar.useColorIcons:
+MGv*mainWindow.toolBar.imagePath: /opt/mgv/share/mgv/3.1.5/toolbar
+MGv*mainWindow.toolBar.tipFontList: -*-helvetica-medium-r-normal--10-*-*-*-*-*-iso8859-1
+
+MGv*toolBar*fileOpen.newGroup:    true
+MGv*toolBar*fileOpen.toolBarIcon: INTERNAL::fileOpen
+MGv*toolBar*fileOpen.toolTip:     Open a new PostScript file
+MGv*toolBar*fileOpen.labelString:
+
+MGv*toolBar*filePrint.toolBarIcon: INTERNAL::filePrint
+MGv*toolBar*filePrint.toolTip:     Print the file
+MGv*toolBar*filePrint.labelString:
+
+MGv*toolBar*mark.newGroup:    true
+MGv*toolBar*mark.toolBarIcon: INTERNAL::mark
+MGv*toolBar*mark.toolTip:     (Un)Mark Page
+MGv*toolBar*mark.labelString:
+
+MGv*toolBar*markAll.toolBarIcon: INTERNAL::markAll
+MGv*toolBar*markAll.toolTip:     Mark All Pages
+MGv*toolBar*markAll.labelString:
+
+MGv*toolBar*markNone.toolBarIcon: INTERNAL::markNone
+MGv*toolBar*markNone.toolTip:     Unmark All Pages
+MGv*toolBar*markNone.labelString:
+
+MGv*toolBar*markEven.toolBarIcon: INTERNAL::markEven
+MGv*toolBar*markEven.toolTip:     Mark Even Pages
+MGv*toolBar*markEven.labelString:
+
+MGv*toolBar*markOdd.toolBarIcon: INTERNAL::markOdd
+MGv*toolBar*markOdd.toolTip:     Mark Odd Pages
+MGv*toolBar*markOdd.labelString:
+
+MGv*toolBar*magstepIncr.newGroup:    true
+MGv*toolBar*magstepIncr.toolBarIcon: INTERNAL::magstepIncr
+MGv*toolBar*magstepIncr.toolTip:     Increase Magstep
+MGv*toolBar*magstepIncr.labelString:
+
+MGv*toolBar*magstepDecr.toolBarIcon: INTERNAL::magstepDecr
+MGv*toolBar*magstepDecr.toolTip:     Decrease Magstep
+MGv*toolBar*magstepDecr.labelString:
+
+MGv*toolBar*helpContext.newGroup:    true
+MGv*toolBar*helpContext.toolBarIcon: INTERNAL::helpContext
+MGv*toolBar*helpContext.toolTip:     Context Help
+MGv*toolBar*helpContext.labelString:
+
+MGv*toolBar*pagePrev.newGroup:    True
+MGv*toolBar*pagePrev.toolBarIcon: INTERNAL::pagePrev
+MGv*toolBar*pagePrev.toolTip:     Previous Page
+MGv*toolBar*pagePrev.labelString:
+
+MGv*toolBar*pageNext.toolBarIcon: INTERNAL::pageNext
+MGv*toolBar*pageNext.toolTip:     Next Page
+MGv*toolBar*pageNext.labelString:
+
+!#
+!# General help settings.
+!#
+MGv*helpBrowser:	netscape
+MGv*helpType:		html-remote
+MGv*helpPrefix:		file:///opt/mgv/share/mgv/3.1.5/help/
+
+!#
+!# Set this to true if you want to use the built-in icons and false if you
+!# want to let your window manager use some other icon of your choosing.
+!#
+MGv*installIcon:	True
+
+!#
+!# Set this to true if you want to use the built-in color icon and false
+!# if you want the monochrome icon.  If you didn't link againts libXpm,
+!# then you'll get the monochrome icon no matter what.
+!#
+MGv*useColorIcon:	True
+
+!#
+!# Splash screen settings.
+!# We try the pixmap first and then the bitmap.
+!# Feel free to replace the xpm and/or xbm files if you don't like
+!# mine.
+!#
+MGv*wlShowSplashScreen:	True
+MGv*wlSplashPixmap:	/opt/mgv/share/mgv/3.1.5/splash.xpm
+MGv*wlSplashBitmap:	/opt/mgv/share/mgv/3.1.5/splash.xbm
+
+!#
+!# Non-default visual/depth and colormap settings.
+!#
+!MGv*wlVisualClass:
+!MGv*wlVisualID:
+!MGv*wlDepth:
+!MGv*wlUsePrivateColormap:
+
+!#
+!# Editres support.  This resource won't do anything if the program
+!# was compiled without editres support for some reason.
+!#
+!MGv*wlUseEditRes:	True
+
+!#
+!# Various Initial UI Settings
+!#
+MGv*defaultPageMedia:	Letter
+MGv*hideLog:		True
+MGv*hideMenuBar:	False
+MGv*hidePageList:	False
+MGv*hideStatusLine:	False
+MGv*hideToolBar:	False
+MGv*magstep:		0
+MGv*showLabels:		False
+MGv*showPageNumbers:	True
+
+!#
+!# Scrolling Resources
+!#
+!# If you like smooth scrolling, set MGv*smoothScrolling to True and
+!# it will be on by default; you might want to fiddle with the
+!# smoothness resource to make smooth scolling less/more smooth.
+!#
+MGv*smoothScrolling:	True
+MGv*smoothness:		25
+MGv*scrollPercentage:	90%
+MGv*magicResistance:	2
+MGv*magicScrolling:	True
+MGv*resetScrollBars:	both
+
+!#
+!# Temporary Directory For Uncompressed Files
+!#
+!# You can probably leave the tempDir resource alone as well; the default
+!# value is determined by looking at the TMPDIR and TEMPDIR environment
+!# variables (in that order) and then defaulting to P_tmpdir from stdio.h
+!#
+!MGv*tempDir:		/tmp
+
+!#
+!# Printing Resources
+!#
+!# You probably won't need to set the printCommand resource unless
+!# you have a strange print spooler.  The default value is determined
+!# at run-time by looking for lp in /usr/bin, /bin, and /usr/local/bin
+!# and then lpr in /usr/bin, /bin, and /usr/local/bin; the first command
+!# found is used as the default.  The printer name is determined at run-time
+!# at run-time by checking the LPDEST and PRINTER environment variables,
+!# if neither is set, then "ps" is used as a default.  See the manual
+!# for more information on what you can put in this resource.
+!#
+!MGv*printCommand:	lp -d ps
+
+!#
+!# Smart/Automatic Sizing
+!#
+MGv*autoWidth:		True
+MGv*autoHeight:		False
+MGv*smartSizing:	False
+MGv*wmWidth:		14
+MGv*wmHeight:		32
+
+!#
+!# This resources was added due to various application defaults version
+!# problems.  You should not touch this value.
+!#
+MGv*applicationVersion:	3.1.5
+
+!#
+!# warnings, errors, etc...
+!#
+MGv*stringBadArgument:		%s: unknown argument '%s' to action.
+MGv*stringCantAllocPixmap:	backing pixmap could not be allocated.
+MGv*stringCantDecompress:	Cannot decompress
+MGv*stringCantHideMenu:		Menu bar won't let itself be hidden.
+MGv*stringCantOpen:		Could not open
+MGv*stringCantPrint:		Print command failed:
+MGv*stringError:		Error
+MGv*stringFileExists:		File exists, overwrite?
+MGv*stringInterpDone:		Interpreter done.
+MGv*stringInterpFailed:		GhostScript Interpreter failure.
+MGv*stringMessage:		Message
+MGv*stringNoCoordinates:	(?, ?)
+MGv*stringNoDate:		No Date
+MGv*stringNoFile:		No File
+MGv*stringNoPrintCommand:	No print command given.
+MGv*stringPageFinished:		Page finished.
+MGv*stringUnknownSwitch:	Unknown switch(es): %signoring.
+MGv*stringPS:			PostScript (PS)
+MGv*stringEPS:			Encapsulated PostScript (EPS)
+MGv*stringPDF:			Portable Document Format (PDF)
+MGv*stringUnknownType:		Unknown Document Type
+MGv*stringUnknownMedia:		Unknown Media
+MGv*stringUnknown:		Unknown message.
+
+MGv*stringCantBrowse:	Could not launch browser %s:  %s
+MGv*stringCantGetFile:	could not get file name from file selector
+MGv*stringEmptyLog:	This log has nothing to save
+MGv*stringNotSupported:	%s help not supported, using %s.
+MGv*stringUnknown:	Unknown message.
+MGv*stringBadVersion:	Incorrect application defaults version found:\n\
+			found '%s' but wanted '%s'.\n\
+			\n\
+			Check the "applicationVersion" resource\n\
+			documentation in the manual for help.
+
+!##############################################################################
+!# Unless you know what you're doing it would be best if
+!# you left most of the rest of the resources alone.  The "attachment"
+!# resources are the most dangerous; "accelerator" and "acceleratorText"
+!# resources are pretty safe.
+!##############################################################################
+
+!#
+!# IXI screwed up, they "enhanced" the Form widget, sigh.
+!#
+MGv*useIxiAdds:	NONE
+
+!#
+!# Force sanity for dialogs.
+!#
+MGV*XmDialogShell.deleteResponse:	unmap
+
+!#
+!# miscellaneous things that you should probably leave alone
+!#
+MGv*Ghostview.antialias:		True
+MGv*Ghostview.foreground:		black
+MGv*Ghostview.background:		white
+MGv*zoomMenu*tearOffModel:		tear_off_disabled
+
+!#
+!# menu bar
+!#
+MGv*menuBar.file.labelString:		File
+MGv*menuBar.file.mnemonic:		F
+MGv*menuBar.file.helpChapter:		mgv-3
+MGv*menuBar.page.labelString:		Page
+MGv*menuBar.page.mnemonic:		P
+MGv*menuBar.page.helpChapter:		mgv-4
+MGv*menuBar.view.labelString:		View
+MGv*menuBar.view.mnemonic:		V
+MGv*menuBar.view.helpChapter:		mgv-5
+MGv*menuBar.mark.labelString:		Mark
+MGv*menuBar.mark.mnemonic:		k
+MGv*menuBar.mark.helpChapter:		mgv-6
+MGv*menuBar.magstep.labelString:	Magstep
+MGv*menuBar.magstep.mnemonic:		t
+MGv*menuBar.magstep.helpChapter:	mgv-7
+MGv*menuBar.orientation.labelString:	Orientation
+MGv*menuBar.orientation.mnemonic:	O
+MGv*menuBar.orientation.helpChapter:	mgv-8
+MGv*menuBar.media.labelString:		Media
+MGv*menuBar.media.mnemonic:		a
+MGv*menuBar.media.helpChapter:		mgv-9
+MGv*menuBar.options.labelString:	Options
+MGv*menuBar.options.mnemonic:		s
+MGv*menuBar.options.helpChapter:	mgv-10
+MGv*menuBar.help.labelString:		Help
+MGv*menuBar.help.mnemonic:		H
+MGv*menuBar.help.helpChapter:		mgv-11
+
+!#
+!# File menu
+!#
+MGv*menuBar*file_pd*open.labelString:		Open...
+MGv*menuBar*file_pd*open.mnemonic:		O
+MGv*menuBar*file_pd*open.accelerator:		Ctrl<Key>O
+MGv*menuBar*file_pd*open.acceleratorText:	Ctrl+O
+MGv*file_pd*open.helpSection:			file-open
+MGv*file_pd*open.helpChapter:			mgv-3
+
+MGv*menuBar*file_pd*reopen.labelString:		Reopen
+MGv*menuBar*file_pd*reopen.mnemonic:		R
+MGv*menuBar*file_pd*reopen.accelerator:		Ctrl<Key>R
+MGv*menuBar*file_pd*reopen.acceleratorText:	Ctrl+R
+MGv*file_pd*reopen.helpSection:			file-reopen
+MGv*file_pd*reopen.helpChapter:			mgv-3
+
+MGv*menuBar*file_pd*save.labelString:		Save...
+MGv*menuBar*file_pd*save.mnemonic:		S
+MGv*menuBar*file_pd*save.accelerator:		Ctrl<Key>S
+MGv*menuBar*file_pd*save.acceleratorText:	Ctrl+S
+MGv*file_pd*save.helpSection:			file-save
+MGv*file_pd*save.helpChapter:			mgv-3
+
+MGv*menuBar*file_pd*print.labelString:		Print...
+MGv*menuBar*file_pd*print.mnemonic:		P
+MGv*menuBar*file_pd*print.accelerator:		Ctrl<Key>P
+MGv*menuBar*file_pd*print.acceleratorText:	Ctrl+P
+MGv*file_pd*print.helpSection:			file-print
+MGv*file_pd*print.helpChapter:			mgv-3
+
+MGv*menuBar*file_pd*info.labelString:		Info...
+MGv*menuBar*file_pd*info.mnemonic:		I
+MGv*menuBar*file_pd*info.accelerator:		Ctrl<Key>I
+MGv*menuBar*file_pd*info.acceleratorText:	Ctrl+I
+MGv*file_pd*info.helpSection:			file-info
+MGv*file_pd*info.helpChapter:			mgv-3
+
+MGv*menuBar*file_pd*close.labelString:		Close
+MGv*menuBar*file_pd*close.mnemonic:		C
+MGv*menuBar*file_pd*close.accelerator:		Ctrl<Key>D
+MGv*menuBar*file_pd*close.acceleratorText:	Ctrl+D
+MGv*file_pd*close.helpSection:			file-close
+MGv*file_pd*close.helpChapter:			mgv-3
+
+MGv*menuBar*file_pd*exit.labelString:		Exit
+MGv*menuBar*file_pd*exit.mnemonic:		x
+MGv*menuBar*file_pd*exit.accelerator:		Ctrl<Key>C
+MGv*menuBar*file_pd*exit.acceleratorText:	Ctrl+C
+MGv*file_pd*exit.helpSection:			file-exit
+MGv*file_pd*exit.helpChapter:			mgv-3
+
+!#
+!# exit confirmation
+!#
+MGv*reallyExit_popup.title:		MGv:  Really Exit?
+MGv*reallyExit.okLabelString:		Yes
+MGv*reallyExit.cancelLabelString:	No
+MGv*reallyExit.helpSection:		file-exit
+MGv*reallyExit.helpChapter:		mgv-3
+MGv*reallyExit.messageString:		You have multiple MGv windows;\n\
+					do you really want to exit?
+
+!#
+!# Page menu
+!#
+MGv*menuBar*page_pd*next.labelString:		Next
+MGv*menuBar*page_pd*next.mnemonic:		N
+MGv*menuBar*page_pd*next.accelerator:		<Key>Page_Down
+MGv*menuBar*page_pd*next.acceleratorText:	PageDown
+MGv*page_pd*next.helpSection:			page-nextprev
+MGv*page_pd*next.helpChapter:			mgv-4
+
+MGv*menuBar*page_pd*prev.labelString:		Previous
+MGv*menuBar*page_pd*prev.mnemonic:		P
+MGv*menuBar*page_pd*prev.accelerator:		<Key>Page_Up
+MGv*menuBar*page_pd*prev.acceleratorText:	PageUp
+MGv*page_pd*prev.helpSection:			page-nextprev
+MGv*page_pd*prev.helpChapter:			mgv-4
+
+MGv*menuBar*page_pd*center.labelString:		Center
+MGv*menuBar*page_pd*center.mnemonic:		C
+MGv*menuBar*page_pd*center.accelerator:		Alt<Key>C
+MGv*menuBar*page_pd*center.acceleratorText:	Alt+C
+MGv*page_pd*center.helpSection:			page-center
+MGv*page_pd*center.helpChapter:			mgv-4
+
+MGv*menuBar*page_pd*redisplay.labelString:	Redisplay
+MGv*menuBar*page_pd*redisplay.mnemonic:		R
+MGv*menuBar*page_pd*redisplay.accelerator:	Alt<Key>R
+MGv*menuBar*page_pd*redisplay.acceleratorText:	Alt+R
+MGv*page_pd*redisplay.helpSection:		page-redisplay
+MGv*page_pd*redisplay.helpChapter:		mgv-4
+
+MGv*menuBar*page_pd*showLabels.labelString:	Show Page Labels
+MGv*menuBar*page_pd*showLabels.mnemonic:	b
+MGv*menuBar*page_pd*showLabels.accelerator:	Alt<Key>B
+MGv*menuBar*page_pd*showLabels.acceleratorText:	Alt+B
+MGv*page_pd*showLabels.helpSection:		show-labelsnums
+MGv*page_pd*showLabels.helpChapter:		mgv-4
+
+MGv*menuBar*page_pd*showPgNums.labelString:	Show Page Numbers
+MGv*menuBar*page_pd*showPgNums.mnemonic:	N
+MGv*menuBar*page_pd*showPgNums.accelerator:	Alt<Key>N
+MGv*menuBar*page_pd*showPgNums.acceleratorText:	Alt+N
+MGv*page_pd*showPgNums.helpSection:		show-labelsnums
+MGv*page_pd*showPgNums.helpChapter:		mgv-4
+
+MGv*menuBar*size_pd.radioBehavior:		True
+MGv*menuBar*size_pd.helpChapter:		mgv-4
+MGv*menuBar*page_pd*size.labelString:		Automatic Sizing
+MGv*menuBar*page_pd*size.mnemonic:		A
+MGv*page_pd*size.helpChapter:			mgv-4
+MGv*page_pd*size.helpSection:			page-autosize
+
+MGv*menuBar*size_pd*size.labelString:		Size
+MGv*menuBar*size_pd*size.mnemonic:		S
+MGv*menuBar*size_pd*size.accelerator:		Ctrl<Key>E
+MGv*menuBar*size_pd*size.acceleratorText:	Ctrl+E
+MGv*size_pd*size.helpSection:			page-autosize
+MGv*size_pd*size.helpChapter:			mgv-4
+
+MGv*menuBar*size_pd*height.labelString:		Height
+MGv*menuBar*size_pd*height.mnemonic:		H
+MGv*menuBar*size_pd*height.accelerator:		Ctrl<Key>H
+MGv*menuBar*size_pd*height.acceleratorText:	Ctrl+H
+MGv*size_pd*height.helpSection:			page-autosize
+MGv*size_pd*height.helpChapter:			mgv-4
+
+MGv*menuBar*size_pd*width.labelString:		Width
+MGv*menuBar*size_pd*width.mnemonic:		W
+MGv*menuBar*size_pd*width.accelerator:		Ctrl<Key>W
+MGv*menuBar*size_pd*width.acceleratorText:	Ctrl+W
+MGv*size_pd*width.helpSection:			page-autosize
+MGv*size_pd*width.helpChapter:			mgv-4
+
+MGv*menuBar*size_pd*none.labelString:		None
+MGv*menuBar*size_pd*none.mnemonic:		N
+MGv*menuBar*size_pd*none.accelerator:		Ctrl<Key>N
+MGv*menuBar*size_pd*none.acceleratorText:	Ctrl+N
+MGv*size_pd*none.helpSection:			page-autosize
+MGv*size_pd*none.helpChapter:			mgv-4
+
+!#
+!# Mark menu
+!#
+MGv*menuBar*mark_pd*mark.labelString:		Mark/Unmark
+MGv*menuBar*mark_pd*mark.mnemonic:		M
+MGv*menuBar*mark_pd*mark.accelerator:		Ctrl<Key>M
+MGv*menuBar*mark_pd*mark.acceleratorText:	Ctrl+M
+MGv*mark_pd*mark.helpSection:			mark-mark
+MGv*mark_pd*mark.helpChapter:			mgv-6
+
+MGv*menuBar*mark_pd*markAll.labelString:	Mark All
+MGv*menuBar*mark_pd*markAll.mnemonic:		A
+MGv*menuBar*mark_pd*markAll.accelerator:	Alt<Key>M
+MGv*menuBar*mark_pd*markAll.acceleratorText:	Alt+M
+MGv*mark_pd*markAll.helpSection:		mark-all
+MGv*mark_pd*markAll.helpChapter:		mgv-6
+
+MGv*menuBar*mark_pd*markNone.labelString:	Unmark All
+MGv*menuBar*mark_pd*markNone.mnemonic:		U
+MGv*menuBar*mark_pd*markNone.accelerator:	Alt<Key>U
+MGv*menuBar*mark_pd*markNone.acceleratorText:	Alt+U
+MGv*mark_pd*markNone.helpSection:		mark-all
+MGv*mark_pd*markNone.helpChapter:		mgv-6
+
+MGv*menuBar*mark_pd*even.labelString:		Mark Even Pages
+MGv*menuBar*mark_pd*even.mnemonic:		E
+MGv*menuBar*mark_pd*even.accelerator:		Alt<Key>E
+MGv*menuBar*mark_pd*even.acceleratorText:	Alt+E
+MGv*mark_pd*even.helpSection:			mark-evenodd
+MGv*mark_pd*even.helpChapter:			mgv-6
+
+MGv*menuBar*mark_pd*odd.labelString:		Mark Odd Pages
+MGv*menuBar*mark_pd*odd.mnemonic:		O
+MGv*menuBar*mark_pd*odd.accelerator:		Alt<Key>D
+MGv*menuBar*mark_pd*odd.acceleratorText:	Alt+D
+MGv*mark_pd*odd.helpSection:			mark-evenodd
+MGv*mark_pd*odd.helpChapter:			mgv-6
+
+MGv*menuBar*mark_pd*invert.labelString:		Invert Marked Pages
+MGv*menuBar*mark_pd*invert.mnemonic:		I
+MGv*menuBar*mark_pd*invert.accelerator:		Alt<Key>I
+MGv*menuBar*mark_pd*invert.acceleratorText:	Alt+I
+MGv*mark_pd*invert.helpSection:			mark-invert
+MGv*mark_pd*invert.helpChapter:			mgv-6
+
+!#
+!# Magstep menu
+!#
+MGv*menuBar*magstep_pd.radioBehavior:	True
+
+MGv*menuBar*magstep_pd*decrease.labelString:		Decrease
+MGv*menuBar*magstep_pd*decrease.mnemonic:		D
+MGv*menuBar*magstep_pd*decrease.accelerator:		Alt<Key>minus
+MGv*menuBar*magstep_pd*decrease.acceleratorText:	Alt+-
+MGv*magstep_pd*decrease.helpSection:			magstep-incdec
+MGv*magstep_pd*decrease.helpChapter:			mgv-7
+
+MGv*menuBar*magstep_pd*-5.labelString:	-5
+MGv*magstep_pd*-5.helpSection:		magstep-numbers
+MGv*magstep_pd*-5.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*-4.labelString:	-4
+MGv*magstep_pd*-4.helpSection:		magstep-numbers
+MGv*magstep_pd*-4.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*-3.labelString:	-3
+MGv*magstep_pd*-3.helpSection:		magstep-numbers
+MGv*magstep_pd*-3.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*-2.labelString:	-2
+MGv*magstep_pd*-2.helpSection:		magstep-numbers
+MGv*magstep_pd*-2.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*-1.labelString:	-1
+MGv*magstep_pd*-1.helpSection:		magstep-numbers
+MGv*magstep_pd*-1.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*0.labelString:		Normal
+MGv*menuBar*magstep_pd*0.mnemonic:		N
+MGv*menuBar*magstep_pd*0.accelerator:		Alt<Key>0
+MGv*menuBar*magstep_pd*0.acceleratorText:	Alt+0
+MGv*magstep_pd*0.helpSection:			magstep-numbers
+MGv*magstep_pd*0.helpChapter:			mgv-7
+
+MGv*menuBar*magstep_pd*1.labelString:	+1
+MGv*magstep_pd*1.helpSection:		magstep-numbers
+MGv*magstep_pd*1.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*2.labelString:	+2
+MGv*magstep_pd*2.helpSection:		magstep-numbers
+MGv*magstep_pd*2.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*3.labelString:	+3
+MGv*magstep_pd*3.helpSection:		magstep-numbers
+MGv*magstep_pd*3.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*4.labelString:	+4
+MGv*magstep_pd*4.helpSection:		magstep-numbers
+MGv*magstep_pd*4.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*5.labelString:	+5
+MGv*magstep_pd*5.helpSection:		magstep-numbers
+MGv*magstep_pd*5.helpChapter:		mgv-7
+
+MGv*menuBar*magstep_pd*increase.labelString:		Increase
+MGv*menuBar*magstep_pd*increase.mnemonic:		I
+MGv*menuBar*magstep_pd*increase.accelerator:		Alt<Key>plus
+MGv*menuBar*magstep_pd*increase.acceleratorText:	Alt++
+MGv*magstep_pd*increase.helpSection:			magstep-incdec
+MGv*magstep_pd*increase.helpChapter:			mgv-7
+
+MGv*menuBar*magstep_pd*set.labelString:		Set...
+MGv*menuBar*magstep_pd*set.mnemonic:		S
+MGv*magstep_pd*set.helpSection:			magstep-set
+MGv*magstep_pd*set.helpChapter:			mgv-7
+
+!#
+!# Orientation menu
+!#
+MGv*menuBar*orientation_pd.radioBehavior:	True
+
+MGv*menuBar*orientation_pd*portrait.labelString:	Portrait
+MGv*menuBar*orientation_pd*portrait.mnemonic:		P
+MGv*orientation_pd*portrait.helpSection:		orient-portrait
+MGv*orientation_pd*portrait.helpChapter:		mgv-8
+
+MGv*menuBar*orientation_pd*landscape.labelString:	Landscape
+MGv*menuBar*orientation_pd*landscape.mnemonic:		L
+MGv*orientation_pd*landscape.helpSection:		orient-langscape
+MGv*orientation_pd*landscape.helpChapter:		mgv-8
+
+MGv*menuBar*orientation_pd*upsideDown.labelString:	Upside-down
+MGv*menuBar*orientation_pd*upsideDown.mnemonic:		U
+MGv*orientation_pd*upsideDown.helpSection:		orient-upsidedown
+MGv*orientation_pd*upsideDown.helpChapter:		mgv-8
+
+MGv*menuBar*orientation_pd*seascape.labelString:	Seascape
+MGv*menuBar*orientation_pd*seascape.mnemonic:		S
+MGv*orientation_pd*seascape.helpSection:		orient-seascape
+MGv*orientation_pd*seascape.helpChapter:		mgv-8
+
+!#
+!# Media menu
+!#
+MGv*menuBar*media_pd.radioBehavior:	True
+
+MGv*menuBar*media_pd*letter.labelString:	Letter
+MGv*menuBar*media_pd*letter.mnemonic:		L
+MGv*media_pd*letter.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*lettersmall.labelString:	Letter Small
+MGv*menuBar*media_pd*lettersmall.mnemonic:		m
+MGv*media_pd*lettersmall.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*tabloid.labelString:	Tabloid
+MGv*menuBar*media_pd*tabloid.mnemonic:		T
+MGv*media_pd*tabloid.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*ledger.labelString:	Ledger
+MGv*menuBar*media_pd*ledger.mnemonic:		d
+MGv*media_pd*ledger.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*legal.labelString:	Legal
+MGv*menuBar*media_pd*legal.mnemonic:	g
+MGv*media_pd*legal.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*statement.labelString:	Statement
+MGv*menuBar*media_pd*statement.mnemonic:		S
+MGv*media_pd*statement.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*executive.labelString:	Executive
+MGv*menuBar*media_pd*executive.mnemonic:		E
+MGv*media_pd*executive.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*a3.labelString:	A3
+MGv*media_pd*a3.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*a4.labelString:	A4
+MGv*media_pd*a4.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*a4small.labelString:	A4 Small
+MGv*media_pd*a4small.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*a5.labelString:	A5
+MGv*media_pd*a5.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*b4.labelString:	B4
+MGv*media_pd*b4.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*b5.labelString:	B5
+MGv*media_pd*b5.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*folio.labelString:	Folio
+MGv*menuBar*media_pd*folio.mnemonic:	F
+MGv*media_pd*folio.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*quarto.labelString:	Quarto
+MGv*menuBar*media_pd*quarto.mnemonic:		Q
+MGv*media_pd*quarto.helpChapter:		mgv-9
+
+MGv*menuBar*media_pd*10x14.labelString:	10x14
+MGv*media_pd*10x14.helpChapter:		mgv-9
+
+!#
+!# Options menu
+!
+MGv*menuBar*options_pd*antiAlias.labelString:		Enable Anti-aliasing
+MGv*menuBar*options_pd*antiAlias.mnemonic:		A
+MGv*menuBar*options_pd*antiAlias.accelerator:		Ctrl<Key>A
+MGv*menuBar*options_pd*antiAlias.acceleratorText:	Ctrl+A
+MGv*options_pd*antiAlias.helpSection:			options-antialias
+MGv*options_pd*antiAlias.helpChapter:			mgv-10
+
+MGv*menuBar*options_pd*magicScroll.labelString:		Enable Magic Scrolling
+MGv*menuBar*options_pd*magicScroll.mnemonic:		M
+MGv*menuBar*options_pd*magicScroll.accelerator:		Alt<Key>G
+MGv*menuBar*options_pd*magicScroll.acceleratorText:	Alt+G
+MGv*options_pd*magicScroll.helpSection:			options-magicscrolling
+MGv*options_pd*magicScroll.helpChapter:			mgv-10
+
+MGv*menuBar*options_pd*smoothScroll.labelString:	Enable Smooth Scrolling
+MGv*menuBar*options_pd*smoothScroll.mnemonic:		S
+MGv*menuBar*options_pd*smoothScroll.accelerator:	Alt<Key>L
+MGv*menuBar*options_pd*smoothScroll.acceleratorText:	Alt+L
+MGv*options_pd*smoothScroll.helpSection:		options-smoothscrolling
+MGv*options_pd*smoothScroll.helpChapter:		mgv-10
+
+MGv*menuBar*options_pd*smartSizing.labelString:		Enable Smart Sizing
+MGv*menuBar*options_pd*smartSizing.mnemonic:		z
+MGv*menuBar*options_pd*smartSizing.accelerator:		Alt<Key>Z
+MGv*menuBar*options_pd*smartSizing.acceleratorText:	Alt+Z
+MGv*options_pd*smartSizing.helpSection:			options-smartsizing
+MGv*options_pd*smartSizing.helpChapter:			mgv-10
+
+MGv*menuBar*palette_pd.radioBehavior:	True
+MGv*menuBar*palette_pd.helpChapter:	mgv-10
+MGv*menuBar*palette.labelString:	Color Palette
+MGv*menuBar*palette.mnemonic:		C
+MGv*options_pd*palette.helpChapter:	mgv-10
+MGv*options_pd*palette.helpSection:	options-palette
+
+MGv*menuBar*palette_pd*monochrome.labelString:	Monochrome
+MGv*menuBar*palette_pd*monochrome.mnemonic:	M
+MGv*palette_pd*monochrome.helpSection:			options-palette
+MGv*palette_pd*monochrome.helpChapter:			mgv-10
+
+MGv*menuBar*palette_pd*grayscale.labelString:	Grayscale
+MGv*menuBar*palette_pd*grayscale.mnemonic:	G
+MGv*palette_pd*grayscale.helpSection:		options-palette
+MGv*palette_pd*grayscale.helpChapter:		mgv-10
+
+MGv*menuBar*palette_pd*color.labelString:	Color
+MGv*menuBar*palette_pd*color.mnemonic:		C
+MGv*palette_pd*color.helpSection:		options-palette
+MGv*palette_pd*color.helpChapter:		mgv-10
+
+!#
+!# View menu (almost same as the popup menu except for the accelerators).
+!#
+MGv*menuBar*view_pd*hideLog.labelString:	Hide Log
+MGv*menuBar*view_pd*hideLog.mnemonic:		L
+MGv*menuBar*view_pd*hideLog.accelerator:	Ctrl<Key>L
+MGv*menuBar*view_pd*hideLog.acceleratorText:	Ctrl+L
+MGv*view_pd*hideLog.helpSection:		view-hidelog
+MGv*view_pd*hideLog.helpChapter:		mgv-5
+
+MGv*menuBar*view_pd*hideList.labelString:	Hide Page List
+MGv*menuBar*view_pd*hideList.mnemonic:		P
+MGv*menuBar*view_pd*hideList.accelerator:	Ctrl<Key>G
+MGv*menuBar*view_pd*hideList.acceleratorText:	Ctrl+G
+MGv*view_pd*hideList.helpSection:		view-hidelist
+MGv*view_pd*hideList.helpChapter:		mgv-5
+
+MGv*menuBar*view_pd*hideStatus.labelString:	Hide Status Line
+MGv*menuBar*view_pd*hideStatus.mnemonic:	S
+MGv*menuBar*view_pd*hideStatus.accelerator:	Ctrl<Key>T
+MGv*menuBar*view_pd*hideStatus.acceleratorText:	Ctrl+T
+MGv*view_pd*hideStatus.helpSection:		view-hidestatus
+MGv*view_pd*hideStatus.helpChapter:		mgv-5
+
+MGv*menuBar*view_pd*hideMenu.labelString:	Hide Menu Bar
+MGv*menuBar*view_pd*hideMenu.mnemonic:		M
+MGv*menuBar*view_pd*hideMenu.accelerator:	Ctrl<Key>B
+MGv*menuBar*view_pd*hideMenu.acceleratorText:	Ctrl+B
+MGv*view_pd*hideMenu.helpSection:		view-hidemenu
+MGv*view_pd*hideMenu.helpChapter:		mgv-5
+
+MGv*menuBar*view_pd*hideToolBar.labelString:		Hide Tool Bar
+MGv*menuBar*view_pd*hideToolBar.mnemonic:		T
+MGv*menuBar*view_pd*hideToolBar.accelerator:		Alt<Key>T
+MGv*menuBar*view_pd*hideToolBar.acceleratorText:	Alt+T
+MGv*view_pd*hideToolBar.helpSection:			view-hidetoolbar
+MGv*view_pd*hideToolBar.helpChapter:			mgv-5
+
+MGv*menuBar*view_pd*closeZoom.labelString:	Close All Zooms
+MGv*menuBar*view_pd*closeZoom.mnemonic:		Z
+MGv*menuBar*view_pd*closeZoom.accelerator:	Ctrl<Key>Z
+MGv*menuBar*view_pd*closeZoom.acceleratorText:	Ctrl+Z
+MGv*view_pd*closeZoom.helpSection:		view-closezoom
+MGv*view_pd*closeZoom.helpChapter:		mgv-5
+
+!#
+!# Popup menu (almost same as the view menu except for the accelerators).
+!#
+MGv*popup*back.labelString:	Back
+MGv*popup*back.mnemonic:	B
+MGv*popup*back.accelerator:	Alt<Key>osfLeft
+MGv*popup*back.acceleratorText:	Alt+Left
+MGv*popup*back.helpSection:	popup-back
+MGv*popup*back.helpChapter:	mgv-12
+
+MGv*popup*forward.labelString:		Forward
+MGv*popup*forward.mnemonic:		F
+MGv*popup*forward.accelerator:		Alt<Key>osfRight
+MGv*popup*forward.acceleratorText:	Alt+Right
+MGv*popup*forward.helpSection:		popup-forward
+MGv*popup*forward.helpChapter:		mgv-12
+
+MGv*popup*hideLog.labelString:		Hide Log
+MGv*popup*hideLog.mnemonic:		L
+MGv*popup*hideLog.acceleratorText:	Ctrl+L
+MGv*popup*hideLog.helpSection:		view-hidelog
+MGv*popup*hideLog.helpChapter:		mgv-5
+
+MGv*popup*hideList.labelString:		Hide Page List
+MGv*popup*hideList.mnemonic:		P
+MGv*popup*hideList.acceleratorText:	Ctrl+G
+MGv*popup*hideList.helpSection:		view-hidelist
+MGv*popup*hideList.helpChapter:		mgv-5
+
+MGv*popup*hideStatus.labelString:	Hide Status Line
+MGv*popup*hideStatus.mnemonic:		S
+MGv*popup*hideStatus.acceleratorText:	Ctrl+T
+MGv*popup*hideStatus.helpSection:	view-hidestatus
+MGv*popup*hideStatus.helpChapter:	mgv-5
+
+MGv*popup*hideMenu.labelString:		Hide Menu Bar
+MGv*popup*hideMenu.mnemonic:		M
+MGv*popup*hideMenu.acceleratorText:	Ctrl+B
+MGv*popup*hideMenu.helpSection:		view-hidemenu
+MGv*popup*hideMenu.helpChapter:		mgv-5
+
+MGv*popup*hideToolBar.labelString:	Hide Tool Bar
+MGv*popup*hideToolBar.mnemonic:		T
+MGv*popup*hideToolBar.acceleratorText:	Alt+T
+MGv*popup*hideToolBar.helpSection:	view-hidetoolbar
+MGv*popup*hideToolBar.helpChapter:	mgv-5
+
+MGv*popup*closeZoom.labelString:	Close All Zooms
+MGv*popup*closeZoom.mnemonic:		Z
+MGv*popup*closeZoom.acceleratorText:	Ctrl+Z
+MGv*popup*closeZoom.helpSection:	view-closezoom
+MGv*popup*closeZoom.helpChapter:	mgv-5
+
+!#
+!# Help menu
+!#
+MGv*menuBar*help_pd*contents.labelString:	Contents
+MGv*menuBar*help_pd*contents.mnemonic:		C
+MGv*menuBar*help_pd*contents.helpSection:	toc1
+MGv*menuBar*help_pd*contents.helpChapter:	mgv
+MGv*help_pd*contents.helpSection:		toc1
+MGv*help_pd*contents.helpChapter:		mgv
+
+MGv*menuBar*help_pd*context.labelString:	On Context
+MGv*menuBar*help_pd*context.acceleratorText:	F1
+MGv*menuBar*help_pd*context.mnemonic:		x
+MGv*help_pd*context.helpSection:		help-context
+MGv*help_pd*context.helpChapter:		mgv-11
+
+MGv*menuBar*help_pd*appres.labelString:	On Application Resources
+MGv*menuBar*help_pd*appres.mnemonic:	A
+MGv*menuBar*help_pd*appres.helpChapter:	mgv-19
+MGv*help_pd*appres.helpChapter:		mgv-19
+
+MGv*menuBar*help_pd*cmdline.labelString:	On Command Line
+MGv*menuBar*help_pd*cmdline.mnemonic:		L
+MGv*menuBar*help_pd*cmdline.helpChapter:	mgv-21
+MGv*help_pd*cmdline.helpChapter:		mgv-21
+
+MGv*menuBar*help_pd*about.labelString:	About...
+MGv*menuBar*help_pd*about.mnemonic:	b
+MGv*help_pd*about.helpSection:		help-about
+MGv*help_pd*about.helpChapter:		mgv-11
+
+!#
+!# zoom popup menu
+!#
+MGv*zoomMenu*15.labelString:	1.5
+MGv*zoomMenu*20.labelString:	2
+MGv*zoomMenu*30.labelString:	3
+MGv*zoomMenu*40.labelString:	4
+MGv*zoomMenu*50.labelString:	5
+
+!#
+!# status line
+!#
+MGv*statusLine.bottomAttachment:	attach_form
+MGv*statusLine.leftAttachment:		attach_form
+MGv*statusLine.rightAttachment:		attach_form
+MGv*statusLine.verticalSpacing:		0
+MGv*statusLine.horizontalSpacing:	0
+
+MGv*statusLine*magstepFrame.shadowType:		shadow_in
+MGv*statusLine*magstepFrame.topAttachment:	attach_form
+MGv*statusLine*magstepFrame.bottomAttachment:	attach_form
+MGv*statusLine*magstepFrame.leftAttachment:	attach_form
+
+MGv*statusLine*magstepFrame*value.labelString:		000
+MGv*statusLine*magstepFrame*value.marginHeight:		0
+MGv*statusLine*magstepFrame*value.traversalOn:		False
+MGv*statusLine*magstepFrame*value.topAttachment:	attach_form
+MGv*statusLine*magstepFrame*value.bottomAttachment:	attach_form
+MGv*statusLine*magstepFrame*value.rightAttachment:	attach_form
+MGv*statusLine*magstepFrame*text.columns:		3
+MGv*statusLine*magstepFrame*text.shadowThickness:	0
+MGv*statusLine*magstepFrame*text.marginHeight:		0
+MGv*statusLine*magstepFrame*text.topAttachment:		attach_form
+MGv*statusLine*magstepFrame*text.bottomAttachment:	attach_form
+MGv*statusLine*magstepFrame*text.rightAttachment:	attach_form
+
+MGv*statusLine*magstepFrame*label.labelString:		Magstep:
+MGv*statusLine*magstepFrame*label.topAttachment:	attach_form
+MGv*statusLine*magstepFrame*label.bottomAttachment:	attach_form
+MGv*statusLine*magstepFrame*label.leftAttachment:	attach_form
+MGv*statusLine*magstepFrame*label.rightAttachment:	attach_widget
+MGv*statusLine*magstepFrame*label.rightWidget:		value
+MGv*statusLine*magstepFrame*label.marginWidth:		3
+MGv*statusLine*magstepFrame*label.marginHeight:		3
+
+MGv*statusLine*nameFrame.shadowType:		shadow_in
+MGv*statusLine*nameFrame.topAttachment:		attach_form
+MGv*statusLine*nameFrame.bottomAttachment:	attach_form
+MGv*statusLine*nameFrame.leftAttachment:	attach_widget
+MGv*statusLine*nameFrame.leftWidget:		magstepFrame
+MGv*statusLine*name.labelString:		?
+MGv*statusLine*name.marginWidth:		3
+MGv*statusLine*name.marginHeight:		3
+
+MGv*statusLine*dateFrame.shadowType:		shadow_in
+MGv*statusLine*dateFrame.topAttachment:		attach_form
+MGv*statusLine*dateFrame.bottomAttachment:	attach_form
+MGv*statusLine*dateFrame.leftAttachment:	attach_widget
+MGv*statusLine*dateFrame.leftWidget:		nameFrame
+MGv*statusLine*date.labelString:		?
+MGv*statusLine*date.marginWidth:		3
+MGv*statusLine*date.marginHeight:		3
+
+MGv*statusLine*trackerFrame.shadowType:		shadow_in
+MGv*statusLine*trackerFrame.topAttachment:	attach_form
+MGv*statusLine*trackerFrame.bottomAttachment:	attach_form
+MGv*statusLine*trackerFrame.leftAttachment:	attach_widget
+MGv*statusLine*trackerFrame.leftWidget:		dateFrame
+MGv*statusLine*trackerFrame.rightAttachment:	attach_form
+MGv*statusLine*tracker.labelString:		(?, ?)
+MGv*statusLine*tracker.marginWidth:		3
+MGv*statusLine*tracker.marginHeight:		3
+
+!#
+!# file open dialog
+!#
+MGv*fileOpen_popup.title:	MGv:  File Open
+MGv*fileOpen.pattern:		*.*ps*
+MGv*fileOpen.helpSection:	file-open
+MGv*fileOpen.helpChapter:	mgv-3
+MGv*fileOpen*okLabelString:	Open
+MGv*fileOpen*cancelLabelString:	Dismiss
+
+MGv*fileOpen*openForm.fractionBase:	2
+
+MGv*fileOpen*openBrowse.labelString:		Browse
+MGv*fileOpen*openBrowse.alignment:		alignment_beginning
+MGv*fileOpen*openBrowse.topAttachment:		attach_form
+MGv*fileOpen*openBrowse.bottomAttachment:	attach_form
+MGv*fileOpen*openBrowse.leftAttachment:		attach_position
+MGv*fileOpen*openBrowse.leftPosition:		0
+MGv*fileOpen*openBrowse.rightAttachment:	attach_position
+MGv*fileOpen*openBrowse.rightPosition:		1
+
+MGv*fileOpen*openNew.labelString:	New Window
+MGv*fileOpen*openNew.alignment:		alignment_beginning
+MGv*fileOpen*openNew.topAttachment:	attach_form
+MGv*fileOpen*openNew.bottomAttachment:	attach_form
+MGv*fileOpen*openNew.leftAttachment:	attach_position
+MGv*fileOpen*openNew.leftPosition:	1
+MGv*fileOpen*openNew.rightAttachment:	attach_position
+MGv*fileOpen*openNew.rightPosition:	2
+
+!#
+!# file save dialog
+!#
+MGv*fileSave_popup.title:	MGv:  File Save
+MGv*fileSave.pattern:		*.ps
+MGv*fileSave.helpSection:	file-save
+MGv*fileSave.helpChapter:	mgv-3
+MGv*fileSave.wlAutoDismiss:	True
+MGv*fileSave*okLabelString:	Save
+MGv*fileSave*cancelLabelString:	Dismiss
+
+MGv*fileSave*saveMarked.labelString:		Save Marked Pages Only
+MGv*fileSave*saveMarked.alignment:		alignment_beginning
+MGv*fileSave*saveMarked.topAttachment:		attach_form
+MGv*fileSave*saveMarked.leftAttachment:		attach_form
+MGv*fileSave*saveMarked.rightAttachment:	attach_form
+
+MGv*fileSave*saveUnmark.labelString:		Unmark Pages After Saving
+MGv*fileSave*saveUnmark.alignment:		alignment_beginning
+MGv*fileSave*saveUnmark.topAttachment:		attach_widget
+MGv*fileSave*saveUnmark.topWidget:		saveMarked
+MGv*fileSave*saveUnmark.leftAttachment:		attach_form
+MGv*fileSave*saveUnmark.rightAttachment:	attach_form
+MGv*fileSave*saveUnmark.bottomAttachment:	attach_form
+
+MGv*existOverwrite_popup.title:	MGv:  File Exists
+MGv*existOverwrite.helpSection:	file-save
+MGv*existOverwrite.helpChapter:	mgv-3
+
+!#
+!# about and build options dialogs
+!#
+MGv*aboutDialog_popup.title:	MGv:  About
+MGv*aboutDialog.helpSection:	help-about
+MGv*aboutDialog.helpChapter:	mgv-11
+! @(#)$Mu: wlib/wlib/about.ad 1.12 1998/08/27 02:58:21 $
+!#
+!# about.ad - application defaults for the wlib standard about box
+!#
+MGv*aboutDialog.autoUnmanage:	False
+MGv*aboutDialog.wlDefaultButton:	*options
+MGv*aboutDialog.wlCancelButton:	*dismiss
+MGv*aboutDialog.fractionBase:	7
+
+MGv*aboutDialog.options.labelString:	Build Options
+MGv*aboutDialog.options.leftAttachment:	attach_position
+MGv*aboutDialog.options.leftPosition:	1
+MGv*aboutDialog.options.rightAttachment:	attach_position
+MGv*aboutDialog.options.rightPosition:	3
+MGv*aboutDialog.options.bottomAttachment:	attach_form
+
+MGv*aboutDialog.dismiss.labelString:	Dismiss
+MGv*aboutDialog.dismiss.leftAttachment:	attach_position
+MGv*aboutDialog.dismiss.leftPosition:	4
+MGv*aboutDialog.dismiss.rightAttachment:	attach_position
+MGv*aboutDialog.dismiss.rightPosition:	6
+MGv*aboutDialog.dismiss.bottomAttachment:	attach_form
+
+MGv*aboutDialog.sep.rightAttachment:	attach_form
+MGv*aboutDialog.sep.rightOffset:		0
+MGv*aboutDialog.sep.leftAttachment:		attach_form
+MGv*aboutDialog.sep.leftOffset:		0
+MGv*aboutDialog.sep.bottomAttachment:	attach_widget
+MGv*aboutDialog.sep.bottomWidget:		dismiss
+
+MGv*aboutDialog*form.topAttachment:		attach_form
+MGv*aboutDialog*form.leftAttachment:	attach_form
+MGv*aboutDialog*form.rightAttachment:	attach_form
+
+MGv*aboutDialog*icon.topAttachment:		attach_form
+MGv*aboutDialog*icon.bottomAttachment:	attach_form
+MGv*aboutDialog*icon.leftAttachment:	attach_form
+
+MGv*aboutDialog*header.topAttachment:	attach_form
+MGv*aboutDialog*header.bottomAttachment:	attach_form
+MGv*aboutDialog*header.leftAttachment:	attach_widget
+MGv*aboutDialog*header.leftWidget:		icon
+MGv*aboutDialog*header.rightAttachment:	attach_form
+MGv*aboutDialog*header.alignment:		alignment_center
+
+MGv*aboutDialog.footer.leftAttachment:	attach_form
+MGv*aboutDialog.footer.rightAttachment:	attach_form
+MGv*aboutDialog.footer.bottomAttachment:	attach_widget
+MGv*aboutDialog.footer.bottomWidget:	sep
+
+MGv*aboutDialog.textSW.topAttachment:		attach_widget
+MGv*aboutDialog.textSW.topWidget:			form
+MGv*aboutDialog.textSW.leftAttachment:		attach_form
+MGv*aboutDialog.textSW.rightAttachment:		attach_form
+MGv*aboutDialog.textSW.bottomAttachment:		attach_widget
+MGv*aboutDialog.textSW.bottomWidget:		footer
+MGv*aboutDialog.textSW.scrollBarDisplayPolicy:	static
+
+MGv*aboutDialog.textSW.text*rows:		10
+MGv*aboutDialog.textSW.text*editable:	False
+MGv*aboutDialog.textSW.text*editMode:	multi_line_edit
+MGv*aboutDialog.textSW.text*fontList:	-*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1
+
+
+MGv*bldoptsDialog_popup.title:	MGv:  Build Options
+MGv*bldoptsDialog.helpSection:	help-bldopts
+MGv*bldoptsDialog.helpChapter:	mgv-11
+! @(#)$Mu: wlib/wlib/bldopts.ad 1.19 1998/08/27 02:58:21 $
+!#
+!# bldopts.ad - application defaults for the wlib standard build options box
+!#
+MGv*bldoptsDialog.wlDefaultButton:		*dismiss
+MGv*bldoptsDialog.wlCancelButton:		*dismiss
+
+MGv*bldoptsDialog.dismiss.labelString:	Dismiss
+MGv*bldoptsDialog.dismiss.bottomAttachment:	attach_form
+MGv*bldoptsDialog.dismiss.leftAttachment:	attach_form
+MGv*bldoptsDialog.dismiss.rightAttachment:	attach_form
+
+MGv*bldoptsDialog.sep.rightAttachment:	attach_form
+MGv*bldoptsDialog.sep.rightOffset:		0
+MGv*bldoptsDialog.sep.leftAttachment:	attach_form
+MGv*bldoptsDialog.sep.leftOffset:		0
+MGv*bldoptsDialog.sep.bottomAttachment:	attach_widget
+MGv*bldoptsDialog.sep.bottomWidget:		dismiss
+
+MGv*bldoptsDialog.textSW.topAttachment:		attach_form
+MGv*bldoptsDialog.textSW.leftAttachment:		attach_form
+MGv*bldoptsDialog.textSW.rightAttachment:		attach_form
+MGv*bldoptsDialog.textSW.bottomAttachment:		attach_widget
+MGv*bldoptsDialog.textSW.bottomWidget:		sep
+
+MGv*bldoptsDialog.textSW.text*rows:		8
+MGv*bldoptsDialog.textSW.text*columns:	70
+MGv*bldoptsDialog.textSW.text*editable:	False
+MGv*bldoptsDialog.textSW.text*editMode:	multi_line_edit
+MGv*bldoptsDialog.textSW.text*fontList:	-*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1
+
+
+!#
+!# error/warning/message dialogs
+!#
+MGv*wlError_popup.title:	MGv:  Error
+MGv*wlWarn_popup.title:		MGv:  Warning
+MGv*wlMessage_popup.title:	MGv:  Message
+
+!#
+!# the ghostscript message log
+!#
+! @(#)$Mu: wlib/wlib/log.ad 1.9 1998/08/27 02:58:21 $
+!#
+!# log.ad - application defaults for wlib standard log dialog
+!#
+MGv*log.autoUnmanage:	False
+MGv*log.fractionBase:	13
+
+MGv*log.hide.labelString:		Hide
+MGv*log.hide.leftAttachment:	attach_position
+MGv*log.hide.leftPosition:		1
+MGv*log.hide.rightAttachment:	attach_position
+MGv*log.hide.rightPosition:	3
+MGv*log.hide.bottomAttachment:	attach_form
+
+MGv*log.save.labelString:		Save
+MGv*log.save.leftAttachment:	attach_position
+MGv*log.save.leftPosition:		4
+MGv*log.save.rightAttachment:	attach_position
+MGv*log.save.rightPosition:	6
+MGv*log.save.bottomAttachment:	attach_form
+
+MGv*log.clear.labelString:		Clear
+MGv*log.clear.leftAttachment:	attach_position
+MGv*log.clear.leftPosition:	7
+MGv*log.clear.rightAttachment:	attach_position
+MGv*log.clear.rightPosition:	9
+MGv*log.clear.bottomAttachment:	attach_form
+
+MGv*log.help.labelString:		Help
+MGv*log.help.leftAttachment:	attach_position
+MGv*log.help.leftPosition:	10
+MGv*log.help.rightAttachment:	attach_position
+MGv*log.help.rightPosition:	12
+MGv*log.help.bottomAttachment:	attach_form
+
+MGv*log.sep.leftAttachment:		attach_form
+MGv*log.sep.leftOffset:		0
+MGv*log.sep.rightAttachment:	attach_form
+MGv*log.sep.rightOffset:		0
+MGv*log.sep.bottomAttachment:	attach_widget
+MGv*log.sep.bottomWidget:		help
+
+MGv*log.textSW.scrollBarDisplayPolicy:	static
+MGv*log.textSW.topAttachment:		attach_form
+MGv*log.textSW.leftAttachment:		attach_form
+MGv*log.textSW.rightAttachment:		attach_form
+MGv*log.textSW.bottomAttachment:		attach_widget
+MGv*log.textSW.bottomWidget:		sep
+
+MGv*log.textSW.text*rows:		15
+MGv*log.textSW.text*columns:	40
+MGv*log.textSW.text*editMode:	multi_line_edit
+MGv*log.textSW.text*fontList:	-*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1
+
+MGv*log_popup.title:		MGv:  Message Log
+MGv*log.helpChapter:		mgv-18
+MGv*log*logSave_popup.title:	MGv:  Log Save
+MGv*log*logSave.pattern:	*.txt
+MGv*log*logSave.helpChapter:	mgv-18
+
+!#
+!# main window layout/configuration
+!#
+MGv*mainWindow.helpChapter:		mgv-2
+MGv*mainWindow.menuBar.topAttachment:	attach_form
+MGv*mainWindow.menuBar.leftAttachment:	attach_form
+MGv*mainWindow.menuBar.rightAttachment:	attach_form
+
+MGv*mainWindow.toolBar.orientation:	XmHORIZONTAL
+MGv*mainWindow.toolBar.topAttachment:	attach_widget
+MGv*mainWindow.toolBar.topWidget:	menuBar
+MGv*mainWindow.toolBar.leftAttachment:	attach_form
+MGv*mainWindow.toolBar.rightAttachment:	attach_form
+
+!#
+!# the page list
+!#
+MGv*mainWindow.listSW.rightAttachment:			attach_form
+MGv*mainWindow.listSW.topAttachment:			attach_widget
+MGv*mainWindow.listSW.topWidget:			toolBar
+MGv*mainWindow.listSW.bottomAttachment:			attach_widget
+MGv*mainWindow.listSW.bottomWidget:			statusLine
+MGv*mainWindow.listSW.scrollBarPlacement:		bottom_right
+MGv*mainWindow.listSW.scrollBarDisplayPolicy:		static
+MGv*mainWindow.listSW.visualPolicy:			variable
+MGv*mainWindow.listSW.resizable:			True
+MGv*mainWindow.listSW*list.scrollBarDisplayPolicy:	static
+MGv*mainWindow.listSW*list.selectionPolicy:		browse_select
+MGv*mainWindow.listSW*list.resizePolicy:		variable
+MGv*mainWindow.listSW*list.fontList: -*-helvetica-medium-r-normal--12-*-*-*-*-*-iso8859-1=UNMARKED,-*-helvetica-bold-o-normal--12-*-*-*-*-*-iso8859-1=MARKED
+
+!#
+!# for the view widget (this is the main scrolled window)
+!#
+MGv*mainWindow.view*traversalOn:		false
+MGv*mainWindow.view.scrollBarDisplayPolicy:	static
+MGv*mainWindow.view.topAttachment:		attach_widget
+MGv*mainWindow.view.topWidget:			toolBar
+MGv*mainWindow.view.rightAttachment:		attach_widget
+MGv*mainWindow.view.rightWidget:		listSW
+MGv*mainWindow.view.leftAttachment:		attach_form
+MGv*mainWindow.view.bottomAttachment:		attach_widget
+MGv*mainWindow.view.bottomWidget:		statusLine
+MGv*mainWindow.view.scrollingPolicy:		automatic
+MGv*mainWindow.view.width:			400
+MGv*mainWindow.view.height:			400
+MGv*mainWindow.view.mgv.cursor:			crosshair
+MGv*mainWindow.view.mgv.busyCursor:		watch
+
+!#
+!# print dialog
+!#
+MGv*printDialog_popup.title:		MGv:  Print
+MGv*printDialog.fractionBase:		10
+MGv*printDialog.autoUnmanage:		False
+MGv*printDialog.wlInitialFocus:		*cmdText
+MGv*printDialog.wlDefaultButton:	*apply
+MGv*printDialog.wlCancelButton:		*dismiss
+MGv*printDialog.wlAutoDismiss:		True
+MGv*printDialog.helpChapter:		mgv-14
+
+MGv*printDialog.cmdForm.topAttachment:			attach_form
+MGv*printDialog.cmdForm.rightAttachment:		attach_form
+MGv*printDialog.cmdForm.leftAttachment:			attach_form
+MGv*printDialog.cmdForm.cmd.labelString:		Printer Command:
+MGv*printDialog.cmdForm.cmd.topAttachment:		attach_form
+MGv*printDialog.cmdForm.cmd.leftAttachment:		attach_form
+MGv*printDialog.cmdForm.cmd.bottomAttachment:		attach_form
+MGv*printDialog.cmdForm.cmdText.topAttachment:		attach_form
+MGv*printDialog.cmdForm.cmdText.rightAttachment:	attach_form
+MGv*printDialog.cmdForm.cmdText.bottomAttachment:	attach_form
+MGv*printDialog.cmdForm.cmdText.leftAttachment:		attach_widget
+MGv*printDialog.cmdForm.cmdText.leftWidget:		cmd
+
+MGv*printDialog.markedOnly.labelString:		Print Marked Pages Only
+MGv*printDialog.markedOnly.alignment:		alignment_beginning
+MGv*printDialog.markedOnly.topAttachment:	attach_widget
+MGv*printDialog.markedOnly.topWidget:		cmdForm
+MGv*printDialog.markedOnly.leftAttachment:	attach_form
+MGv*printDialog.markedOnly.rightAttachment:	attach_form
+
+MGv*printDialog.unmark.labelString:	Unmark Pages After Printing
+MGv*printDialog.unmark.alignment:	alignment_beginning
+MGv*printDialog.unmark.topAttachment:	attach_widget
+MGv*printDialog.unmark.topWidget:	markedOnly
+MGv*printDialog.unmark.leftAttachment:	attach_form
+MGv*printDialog.unmark.rightAttachment:	attach_form
+
+MGv*printDialog.apply.labelString:	Print
+MGv*printDialog.apply.leftAttachment:	attach_position
+MGv*printDialog.apply.leftPosition:	1
+MGv*printDialog.apply.rightAttachment:	attach_position
+MGv*printDialog.apply.rightPosition:	3
+MGv*printDialog.apply.bottomAttachment:	attach_form
+
+MGv*printDialog.dismiss.labelString:	Dismiss
+MGv*printDialog.dismiss.leftAttachment:	attach_position
+MGv*printDialog.dismiss.leftPosition:		4
+MGv*printDialog.dismiss.rightAttachment:	attach_position
+MGv*printDialog.dismiss.rightPosition:		6
+MGv*printDialog.dismiss.bottomAttachment:	attach_form
+
+MGv*printDialog.help.labelString:	Help
+MGv*printDialog.help.leftAttachment:	attach_position
+MGv*printDialog.help.leftPosition:	7
+MGv*printDialog.help.rightAttachment:	attach_position
+MGv*printDialog.help.rightPosition:	9
+MGv*printDialog.help.bottomAttachment:	attach_form
+
+MGv*printDialog.sep.topAttachment:	attach_widget
+MGv*printDialog.sep.topWidget:		unmark
+MGv*printDialog.sep.bottomAttachment:	attach_widget
+MGv*printDialog.sep.bottomWidget:	apply
+MGv*printDialog.sep.rightAttachment:	attach_form
+MGv*printDialog.sep.rightOffset:	0
+MGv*printDialog.sep.leftAttachment:	attach_form
+MGv*printDialog.sep.leftOffset:		0
+
+MGv*childStdout_popup.title:	MGv:  Child Status
+MGv*childStderr_popup.title:	MGv:  Child Errors
+
+!#
+!# document info dialog
+!#
+MGv*infoDialog_popup.title:	MGv:  Document Info
+MGv*infoDialog.fractionBase:	7
+MGv*infoDialog.autoUnmanage:	False
+MGv*infoDialog.wlDefaultButton:	*dismiss
+MGv*infoDialog.wlCancelButton:	*dismiss
+MGv*infoDialog.helpChapter:	mgv-3
+MGv*infoDialog.helpSection:	doc-info
+
+MGv*infoDialog*contents*XmTextField.columns:		10
+MGv*infoDialog*contents*XmTextField.editable:		False
+
+MGv*infoDialog*contents.orientation:		vertical
+MGv*infoDialog*contents.numColumns:		2
+MGv*infoDialog*contents.packing:		pack_column
+MGv*infoDialog*contents.orientation:		vertical
+MGv*infoDialog*contents.entryAlignment:		alignment_end
+MGv*infoDialog*contents.isAligned:		True
+MGv*infoDialog*contents.topAttachment:		attach_form
+MGv*infoDialog*contents.leftAttachment:		attach_form
+MGv*infoDialog*contents.rightAttachment:	attach_form
+
+MGv*infoDialog*contents*titleLabel.labelString:		Document Title:
+MGv*infoDialog*contents*dateLabel.labelString:		Creation Date:
+MGv*infoDialog*contents*forLabel.labelString:		For:
+MGv*infoDialog*contents*creatorLabel.labelString:	Document Creator:
+MGv*infoDialog*contents*mediaLabel.labelString:		Default Media:
+MGv*infoDialog*contents*pagesLabel.labelString:		Number Of Pages:
+MGv*infoDialog*contents*typeLabel.labelString:		Document Type:
+
+MGv*infoDialog*dismiss.labelString:		Dismiss
+MGv*infoDialog*dismiss.leftAttachment:		attach_position
+MGv*infoDialog*dismiss.leftPosition:		1
+MGv*infoDialog*dismiss.rightAttachment:		attach_position
+MGv*infoDialog*dismiss.rightPosition:		3
+MGv*infoDialog*dismiss.bottomAttachment:	attach_form
+
+MGv*infoDialog*help.labelString:	Help
+MGv*infoDialog*help.leftAttachment:	attach_position
+MGv*infoDialog*help.leftPosition:	4
+MGv*infoDialog*help.rightAttachment:	attach_position
+MGv*infoDialog*help.rightPosition:	6
+MGv*infoDialog*help.bottomAttachment:	attach_form
+
+MGv*infoDialog.sep.topAttachment:	attach_widget
+MGv*infoDialog.sep.topWidget:		contents
+MGv*infoDialog.sep.bottomAttachment:	attach_widget
+MGv*infoDialog.sep.bottomWidget:	dismiss
+MGv*infoDialog.sep.rightAttachment:	attach_form
+MGv*infoDialog.sep.rightOffset:		0
+MGv*infoDialog.sep.leftAttachment:	attach_form
+MGv*infoDialog.sep.leftOffset:		0
+
+!#
+!# zoom window
+!#
+MGv*zoomer_popup.title:		MGv:  Zoom Window
+MGv*zoomer.wlDefaultButton:	*dismiss
+MGv*zoomer.wlCancelButton:	*dismiss
+MGv*zoomer.mappedWhenManaged:	False
+MGv*zoomer.helpChapter:		mgv-15
+
+MGv*zoomer*dismiss.labelString:		Dismiss
+MGv*zoomer*dismiss.bottomAttachment:	attach_form
+MGv*zoomer*dismiss.rightAttachment:	attach_form
+MGv*zoomer*dismiss.leftAttachment:	attach_form
+MGv*zoomer*sep.leftAttachment:		attach_form
+MGv*zoomer*sep.leftOffset:		0
+MGv*zoomer*sep.rightAttachment:		attach_form
+MGv*zoomer*sep.rightOffset:		0
+MGv*zoomer*sep.bottomAttachment:	attach_widget
+MGv*zoomer*sep.bottomWidget:		dismiss
+MGv*zoomer*view.topAttachment:		attach_form
+MGv*zoomer*view.bottomAttachment:	attach_widget
+MGv*zoomer*view.bottomWidget:		sep
+MGv*zoomer*view.rightAttachment:	attach_form
+MGv*zoomer*view.leftAttachment:		attach_form
+
+!#
+!# magstep dialog
+!#
+MGv*magstepDialog_popup.title:		MGv:  Set Magstep
+MGv*magstepDialog.fractionBase:		10
+MGv*magstepDialog.autoUnmanage:		False
+MGv*magstepDialog.wlInitialFocus:	*text
+MGv*magstepDialog.wlDefaultButton:	*apply
+MGv*magstepDialog.wlCancelButton:	*dismiss
+MGv*magstepDialog.wlAutoDismiss:	True
+MGv*magstepDialog.helpChapter:		mgv-7
+MGv*magstepDialog.helpSection:		magstep-set
+
+MGv*magstepDialog.form.topAttachment:		attach_form
+MGv*magstepDialog.form.rightAttachment:		attach_form
+MGv*magstepDialog.form.leftAttachment:		attach_form
+MGv*magstepDialog.form.label.labelString:	Magstep:
+MGv*magstepDialog.form.label.topAttachment:	attach_form
+MGv*magstepDialog.form.label.leftAttachment:	attach_form
+MGv*magstepDialog.form.label.bottomAttachment:	attach_form
+
+MGv*magstepDialog.form.decr.arrowDirection:	arrow_down
+MGv*magstepDialog.form.decr.multiClick:		multiclick_keep
+MGv*magstepDialog.form.decr.topAttachment:	attach_form
+MGv*magstepDialog.form.decr.bottomAttachment:	attach_form
+MGv*magstepDialog.form.decr.rightAttachment:	attach_form
+
+MGv*magstepDialog.form.incr.arrowDirection:	arrow_up
+MGv*magstepDialog.form.incr.multiClick:		multiclick_keep
+MGv*magstepDialog.form.incr.topAttachment:	attach_form
+MGv*magstepDialog.form.incr.bottomAttachment:	attach_form
+MGv*magstepDialog.form.incr.rightAttachment:	attach_widget
+MGv*magstepDialog.form.incr.rightWidget:	decr
+
+MGv*magstepDialog.form.text.topAttachment:	attach_form
+MGv*magstepDialog.form.text.rightAttachment:	attach_widget
+MGv*magstepDialog.form.text.rightWidget:	incr
+MGv*magstepDialog.form.text.bottomAttachment:	attach_form
+MGv*magstepDialog.form.text.leftAttachment:	attach_widget
+MGv*magstepDialog.form.text.leftWidget:		label
+
+MGv*magstepDialog.apply.labelString:		OK
+MGv*magstepDialog.apply.leftAttachment:		attach_position
+MGv*magstepDialog.apply.leftPosition:		1
+MGv*magstepDialog.apply.rightAttachment:	attach_position
+MGv*magstepDialog.apply.rightPosition:		3
+MGv*magstepDialog.apply.bottomAttachment:	attach_form
+
+MGv*magstepDialog.dismiss.labelString:		Dismiss
+MGv*magstepDialog.dismiss.leftAttachment:	attach_position
+MGv*magstepDialog.dismiss.leftPosition:		4
+MGv*magstepDialog.dismiss.rightAttachment:	attach_position
+MGv*magstepDialog.dismiss.rightPosition:	6
+MGv*magstepDialog.dismiss.bottomAttachment:	attach_form
+
+MGv*magstepDialog.help.labelString:		Help
+MGv*magstepDialog.help.leftAttachment:		attach_position
+MGv*magstepDialog.help.leftPosition:		7
+MGv*magstepDialog.help.rightAttachment:		attach_position
+MGv*magstepDialog.help.rightPosition:		9
+MGv*magstepDialog.help.bottomAttachment:	attach_form
+
+MGv*magstepDialog.sep.topAttachment:	attach_widget
+MGv*magstepDialog.sep.topWidget:	form
+MGv*magstepDialog.sep.bottomAttachment:	attach_widget
+MGv*magstepDialog.sep.bottomWidget:	apply
+MGv*magstepDialog.sep.rightAttachment:	attach_form
+MGv*magstepDialog.sep.rightOffset:	0
+MGv*magstepDialog.sep.leftAttachment:	attach_form
+MGv*magstepDialog.sep.leftOffset:	0
+
+!#
+!# Standard help action.
+!#
+MGv*baseTranslations:	#override	\n\
+	<Key>osfHelp:	wlHelpContext()
+
+!##
+!## If you want MGv to scroll like most newsreaders (ie space will scroll
+!## down and move you to the next page), then you can add the following
+!## actions to the following action tables:
+!##
+!##	<Key>space:		mgvScroll(down, magical)
+!##	<Key>osfBackSpace:	mgvScroll(up, magical)
+!##
+!## If you want the space/backspace things to override the magic
+!## resistance, then use the force Luke! (ackk, I'm choking on cheese)
+!## (i.e. use the third "force" parameter):
+!##
+!##	<Key>space:		mgvScroll(down, magical, N)
+!##	<Key>osfBackSpace:	mgvScroll(up, magical, N)
+!##
+!## where "N" is a value greater than or equal to your chosen
+!## magicResistance.
+!##
+
+!#
+!# page marking action for the page list
+!#
+MGv*mainWindow.listSW*list.baseTranslations:	#override		\n\
+				<Key>osfHelp:	wlHelpContext()		\n\
+	Shift ~Ctrl ~Meta ~Alt	<Btn1Down>:	mgvMark()		\n\
+				<Key>osfUp:	mgvScroll(up, magical)	\n\
+				<Key>osfDown:	mgvScroll(down, magical)\n\
+				<Key>osfLeft:	mgvScroll(left)		\n\
+				<Key>osfRight:	mgvScroll(right)
+
+!#
+!# some translations for the view windows
+!#
+MGv*Ghostview.baseTranslations:	#replace		\n\
+	<Key>osfHelp:	wlHelpContext()			\n\
+	<Message>:	gvMessage()			\n\
+	!<Btn1Down>:	mgvZoom(begin)			\n\
+	!<Btn1Motion>:	mgvZoom(extend)			\n\
+	!<Btn1Up>:	mgvZoom(end)			\n\
+	<EnterWindow>:	gvNotify(0)			\n\
+	<LeaveWindow>:	gvNotify(0)			\n\
+	<MotionNotify>:	gvNotify(0)			\n\
+	<Key>osfUp:	mgvScroll(up, magical)		\n\
+	<Key>osfDown:	mgvScroll(down, magical)	\n\
+	<Key>osfLeft:	mgvScroll(left)			\n\
+	<Key>osfRight:	mgvScroll(right)
+
+MGv*XmScrolledWindow*Ghostview.baseTranslations: #replace \n\
+	<Key>osfHelp:	wlHelpContext()			\n\
+	<Message>:	gvMessage()			\n\
+	!<Btn1Down>:	mgvZoom(begin)			\n\
+	!<Btn1Motion>:	mgvZoom(extend)			\n\
+	!<Btn1Up>:	mgvZoom(end)			\n\
+	!<Btn2Down>:	mgvPan(begin)			\n\
+	!<Btn2Motion>:	mgvPan(pan)			\n\
+	!<Btn2Up>:	mgvPan(end)			\n\
+	<EnterWindow>:	gvNotify(0)			\n\
+	<LeaveWindow>:	gvNotify(0)			\n\
+	<MotionNotify>:	gvNotify(0)			\n\
+	<Key>osfUp:	mgvScroll(up, magical)		\n\
+	<Key>osfDown:	mgvScroll(down, magical)	\n\
+	<Key>osfLeft:	mgvScroll(left)			\n\
+	<Key>osfRight:	mgvScroll(right)
+
+
+!##
+!## Various appearance resources.  Sorry but the Motif defaults suck
+!## undead guinea pigs through a fire hose.
+!##
+
+!#
+!# Dialog space sanity.
+!#
+MGv*XmDialogShell.XmForm.horizontalSpacing: 10
+MGv*XmDialogShell.XmForm.verticalSpacing:   10
+
+!#
+!# Button margins.
+!#
+MGv*XmPushButton.marginHeight:       4
+MGv*XmPushButton.marginWidth:        4
+MGv*XmPushButtonGadget.marginHeight: 4
+MGv*XmPushButtonGadget.marginWidth:  4
+
+!#
+!# Margins for the menus.
+!#
+MGv*XmRowColumn*XmCascadeButton*XmToggleButton.marginWidth:             8
+MGv*XmRowColumn*XmCascadeButton*XmToggleButtonGadget.marginWidth:       8
+MGv*XmRowColumn*XmCascadeButtonGadget*XmToggleButton.marginWidth:       8
+MGv*XmRowColumn*XmCascadeButtonGadget*XmToggleButtonGadget.marginWidth: 8
+
+MGv*XmRowColumn*XmCascadeButton*XmPushButton.marginWidth:             8
+MGv*XmRowColumn*XmCascadeButton*XmPushButtonGadget.marginWidth:       8
+MGv*XmRowColumn*XmCascadeButtonGadget*XmPushButton.marginWidth:       8
+MGv*XmRowColumn*XmCascadeButtonGadget*XmPushButtonGadget.marginWidth: 8
+
+MGv*XmRowColumn*XmCascadeButton*XmCascadeButton.marginWidth:             8
+MGv*XmRowColumn*XmCascadeButton*XmCascadeButtonGadget.marginWidth:       8
+MGv*XmRowColumn*XmCascadeButtonGadget*XmCascadeButton.marginWidth:       8
+MGv*XmRowColumn*XmCascadeButtonGadget*XmCascadeButtonGadget.marginWidth: 8
+
+!#
+!# Fonts that appear on menus.
+!#
+MGv*XmCascadeButton.fontList:       -*-helvetica-medium-r-normal--12-*-*-*-*-*-iso8859-1
+MGv*XmCascadeButtonGadget.fontList: -*-helvetica-medium-r-normal--12-*-*-*-*-*-iso8859-1
+MGv*XmMenuShell*fontList:           -*-helvetica-medium-r-normal--12-*-*-*-*-*-iso8859-1
+
+!#
+!# Fonts that appear in dialogs etc...
+!#
+MGv*XmToggleButton.fontList:       -*-helvetica-bold-r-normal--12-*-*-*-*-*-iso8859-1
+MGv*XmToggleButtonGadget.fontList: -*-helvetica-bold-r-normal--12-*-*-*-*-*-iso8859-1
+MGv*XmLabel.fontList:              -*-helvetica-bold-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmLabelGadget.fontList:        -*-helvetica-bold-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmPushButton.fontList:         -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmPushButtonGadget.fontList:   -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmText.fontList:               -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmTextField.fontList:          -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmList.fontList:               -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmScale.fontList:              -*-helvetica-bold-r-normal--14-*-*-*-*-*-iso8859-1
+
+MGv*XmSelectionBox*fontList:                 -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmMessageBox*fontList:                   -*-helvetica-medium-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmMessageBox*Message*fontList:           -*-helvetica-bold-r-normal--14-*-*-*-*-*-iso8859-1
+MGv*XmFileSelectionBox*XmList*fontList:      -*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1
+MGv*XmFileSelectionBox*XmText*fontList:      -*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1
+MGv*XmFileSelectionBox*XmTextField*fontList: -*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: The Main Window</TITLE>
+ <LINK HREF="mgv-3.html" REL=next>
+ <LINK HREF="mgv-1.html" REL=previous>
+ <LINK HREF="mgv.html#toc2" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-3.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-1.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc2"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="s2">2. The Main Window</A></H2>
+
+<P>
+<FIGURE>
+<EPS FILE="mainwindow">
+<IMG SRC="mainwindow.gif">
+</FIGURE>
+<P>The main <B>mgv</B> window consists of a menu bar, a tool bar, a page selection
+list, a status line, and the main viewing area.  Everything in the main
+window except the viewing area can be shown or hidden via the
+<A HREF="mgv-5.html#view-menu">View</A> menu.
+<P>The menu bar is across the top of the <B>mgv</B> window; nothing exciting here.
+Note that if the menu bar is hidden, you can still activate it using any
+of the standard keyboard short cuts (such as <B>F10</B>); the visual effect
+may be a little strange but this functionality is quite useful.
+<P>The scrolled list along the left side contains the page numbers (if any)
+for the current document, selecting an entry in this list will display
+the selected page.
+Marked pages will appear in a different font as specified in the
+<B>fontList</B> resource for the list; the <B>fontList</B> for the list
+should contain two fonts named <B>MARKED</B> for marked pages and
+<B>UNMARKED</B> for unmarked pages.
+Shift-button1 will toggle the marked status of a page in the page list (see
+<A HREF="mgv-6.html#marking-pages">The Mark Menu</A> for more information
+on marking pages).
+If the <CODE>%%Page</CODE> comments in the current document
+contain page labels, then the page list can display the labels
+along with the raw page numbers; you can toggle between page numbers
+and labels and just page numbers using the 
+<A HREF="mgv-4.html#menu-page">Page</A>
+menu.
+<P>Along the bottom of the <B>mgv</B> window there is a status line which
+displays the name of the current document, the creation date (if
+available), and the current cursor position.
+If the document contains a <CODE>%%Title</CODE> comment,
+then that will be used as the name, otherwise, the name of the file
+is used.
+The status line also contains a 
+<A HREF="mgv-7.html#magstep-set">magstep</A>
+display and a button for changing the magstep.  When you press this
+button, the button will turn into a text field; type in your desired
+magstep and press <B>Enter</B> to activate it.  This button has the same
+effect as using the 
+<A HREF="mgv-7.html#magstep-set">Set...</A> entry on
+the <EM>Magstep</EM> menu.
+<P>The rest of the <B>mgv</B> window is the actual viewing area.
+Mouse button one will activate the zooming reticule when you are in
+this area (see 
+<A HREF="mgv-15.html#zooming">Zooming</A>) and mouse button
+two will activate panning.
+<P>Inside the viewing area and page list, the cursor keys will scroll the main
+window.
+<P>
+<P>
+<HR>
+<A HREF="mgv-3.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-1.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc2"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

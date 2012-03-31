@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Sticky Dialogs</TITLE>
+ <LINK HREF="mgv-18.html" REL=next>
+ <LINK HREF="mgv-16.html" REL=previous>
+ <LINK HREF="mgv.html#toc17" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-18.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-16.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc17"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="sticky-dialogs"></A> <A NAME="s17">17. Sticky Dialogs</A></H2>
+
+<P>Some of the dialogs in <B>mgv</B> can be configured to require explicit user
+action to dismiss them; generally, the dialogs will dismiss themselves
+after you press the <EM>OK</EM> or <EM>Apply</EM> button but some users dislike
+this behavior.  If you prefer to keep dialogs up until you explicitly
+dismiss them (via <EM>Cancel</EM> or <EM>Dismiss</EM> buttons), then you can
+use the <B>wlAutoDismiss</B> resource to keep the dialogs up (note that all
+of the dialogs in <B>mgv</B> are modeless so keeping the dialogs up will not
+interfere with normal application usage).
+<P>You can make all of the sticky-enabled dialogs sticky by setting the
+<B>wlAutoDismiss</B> resource to <B>False</B> with something like this:
+<PRE>
+        mgv*wlAutoDismiss: False
+</PRE>
+
+in your local resource file (probably
+&quot;<CODE>~/.Xresources</CODE>&quot;) or from the command line:
+<PRE>
+        mgv -xrm 'mgv*wlAutoDismiss: False'
+</PRE>
+<P>The following dialogs can be made sticky:
+<UL>
+<LI>
+<A HREF="mgv-3.html#file-save">File Save</A>
+(&quot;<CODE>mgv*fileSave.wlAutoDismiss: False</CODE>&quot;)</LI>
+<LI>
+<A HREF="mgv-7.html#magstep-set">Set Magstep</A>
+(&quot;<CODE>mgv*magstepDialog.wlAutoDismiss: False</CODE>&quot;)</LI>
+<LI>
+<A HREF="mgv-14.html#printing">Print</A>
+(&quot;<CODE>mgv*printDialog.wlAutoDismiss: False</CODE>&quot;)</LI>
+</UL>
+
+The 
+<A HREF="mgv-3.html#file-open">File Open</A> dialog offers similar functionality
+through its <EM>Browse</EM> toggle.
+<P>
+<HR>
+<A HREF="mgv-18.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-16.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc17"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

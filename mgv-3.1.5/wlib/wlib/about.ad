@@ -1,0 +1,72 @@
+! @(#)$Mu: wlib/wlib/about.ad 1.12 1998/08/27 02:58:21 $
+!#
+!# about.ad - application defaults for the wlib standard about box
+!#
+m4_dnl
+m4_dnl About box.  You should set the following resources in your application
+m4_dnl defaults file:
+m4_dnl
+m4_dnl	*aboutDialog_popup.title
+m4_dnl	*aboutDialog.helpChapter
+m4_dnl	*aboutDialog.helpSection
+m4_dnl
+m4_dnl __CLS__ should be changed to your application's class name.
+m4_dnl
+__CLS__*aboutDialog.autoUnmanage:	False
+__CLS__*aboutDialog.wlDefaultButton:	*options
+__CLS__*aboutDialog.wlCancelButton:	*dismiss
+__CLS__*aboutDialog.fractionBase:	7
+
+__CLS__*aboutDialog.options.labelString:	Build Options
+__CLS__*aboutDialog.options.leftAttachment:	attach_position
+__CLS__*aboutDialog.options.leftPosition:	1
+__CLS__*aboutDialog.options.rightAttachment:	attach_position
+__CLS__*aboutDialog.options.rightPosition:	3
+__CLS__*aboutDialog.options.bottomAttachment:	attach_form
+
+__CLS__*aboutDialog.dismiss.labelString:	Dismiss
+__CLS__*aboutDialog.dismiss.leftAttachment:	attach_position
+__CLS__*aboutDialog.dismiss.leftPosition:	4
+__CLS__*aboutDialog.dismiss.rightAttachment:	attach_position
+__CLS__*aboutDialog.dismiss.rightPosition:	6
+__CLS__*aboutDialog.dismiss.bottomAttachment:	attach_form
+
+__CLS__*aboutDialog.sep.rightAttachment:	attach_form
+__CLS__*aboutDialog.sep.rightOffset:		0
+__CLS__*aboutDialog.sep.leftAttachment:		attach_form
+__CLS__*aboutDialog.sep.leftOffset:		0
+__CLS__*aboutDialog.sep.bottomAttachment:	attach_widget
+__CLS__*aboutDialog.sep.bottomWidget:		dismiss
+
+__CLS__*aboutDialog*form.topAttachment:		attach_form
+__CLS__*aboutDialog*form.leftAttachment:	attach_form
+__CLS__*aboutDialog*form.rightAttachment:	attach_form
+
+__CLS__*aboutDialog*icon.topAttachment:		attach_form
+__CLS__*aboutDialog*icon.bottomAttachment:	attach_form
+__CLS__*aboutDialog*icon.leftAttachment:	attach_form
+
+__CLS__*aboutDialog*header.topAttachment:	attach_form
+__CLS__*aboutDialog*header.bottomAttachment:	attach_form
+__CLS__*aboutDialog*header.leftAttachment:	attach_widget
+__CLS__*aboutDialog*header.leftWidget:		icon
+__CLS__*aboutDialog*header.rightAttachment:	attach_form
+__CLS__*aboutDialog*header.alignment:		alignment_center
+
+__CLS__*aboutDialog.footer.leftAttachment:	attach_form
+__CLS__*aboutDialog.footer.rightAttachment:	attach_form
+__CLS__*aboutDialog.footer.bottomAttachment:	attach_widget
+__CLS__*aboutDialog.footer.bottomWidget:	sep
+
+__CLS__*aboutDialog.textSW.topAttachment:		attach_widget
+__CLS__*aboutDialog.textSW.topWidget:			form
+__CLS__*aboutDialog.textSW.leftAttachment:		attach_form
+__CLS__*aboutDialog.textSW.rightAttachment:		attach_form
+__CLS__*aboutDialog.textSW.bottomAttachment:		attach_widget
+__CLS__*aboutDialog.textSW.bottomWidget:		footer
+__CLS__*aboutDialog.textSW.scrollBarDisplayPolicy:	static
+
+__CLS__*aboutDialog.textSW.text*rows:		10
+__CLS__*aboutDialog.textSW.text*editable:	False
+__CLS__*aboutDialog.textSW.text*editMode:	multi_line_edit
+__CLS__*aboutDialog.textSW.text*fontList:	-*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1

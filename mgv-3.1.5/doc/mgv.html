@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer</TITLE>
+ <LINK HREF="mgv-1.html" REL=next>
+
+
+</HEAD>
+<BODY>
+<A HREF="mgv-1.html"><IMG SRC="next.gif" ALT="Next"></A>
+<IMG SRC="prev.gif" ALT="Previous">
+<IMG SRC="toc.gif" ALT="Contents">
+<HR>
+<H1>mgv 3.1.5: A Motif PostScript Viewer</H1>
+
+<H2>Eric A. Howe (<CODE>mu@trends.net</CODE>)</H2>1998/09/28
+<P><HR>
+<EM><B>mgv</B> is a <B>PostScript</B> viewer with a Motif user interface.
+<B>mgv</B> is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+This program is distributed in the hope that it will be useful,
+but <B>WITHOUT ANY WARRANTY</B>; without even the implied warranty of
+<B>MERCHANTABILITY</B> or <B>FITNESS FOR A PARTICULAR PURPOSE</B>.  See the
+<A HREF="mgv-31.html#GPL">GNU General Public License</A>
+for more details.
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.</EM>
+<HR>
+<P>
+<H2><A NAME="toc1">1.</A> <A HREF="mgv-1.html">Introduction</A></H2>
+
+<UL>
+<LI><A HREF="mgv-1.html#ss1.1">1.1 Running mgv</A>
+</UL>
+<P>
+<H2><A NAME="toc2">2.</A> <A HREF="mgv-2.html">The Main Window</A></H2>
+
+<P>
+<H2><A NAME="toc3">3.</A> <A HREF="mgv-3.html">The File Menu</A></H2>
+
+<UL>
+<LI><A HREF="mgv-3.html#ss3.1">3.1 The Document Information Dialog</A>
+</UL>
+<P>
+<H2><A NAME="toc4">4.</A> <A HREF="mgv-4.html">The Page Menu</A></H2>
+
+<P>
+<H2><A NAME="toc5">5.</A> <A HREF="mgv-5.html">The View Menu</A></H2>
+
+<P>
+<H2><A NAME="toc6">6.</A> <A HREF="mgv-6.html">The Mark Menu</A></H2>
+
+<P>
+<H2><A NAME="toc7">7.</A> <A HREF="mgv-7.html">The Magstep Menu</A></H2>
+
+<P>
+<H2><A NAME="toc8">8.</A> <A HREF="mgv-8.html">The Orientation Menu</A></H2>
+
+<P>
+<H2><A NAME="toc9">9.</A> <A HREF="mgv-9.html">The Media Menu</A></H2>
+
+<P>
+<H2><A NAME="toc10">10.</A> <A HREF="mgv-10.html">The Options Menu</A></H2>
+
+<P>
+<H2><A NAME="toc11">11.</A> <A HREF="mgv-11.html">The Help Menu</A></H2>
+
+<UL>
+<LI><A HREF="mgv-11.html#ss11.1">11.1 About Dialog</A>
+<LI><A HREF="mgv-11.html#ss11.2">11.2 Build Options Dialog</A>
+</UL>
+<P>
+<H2><A NAME="toc12">12.</A> <A HREF="mgv-12.html">The Popup Menu</A></H2>
+
+<P>
+<H2><A NAME="toc13">13.</A> <A HREF="mgv-13.html">The Tool Bar</A></H2>
+
+<P>
+<H2><A NAME="toc14">14.</A> <A HREF="mgv-14.html">Printing</A></H2>
+
+<P>
+<H2><A NAME="toc15">15.</A> <A HREF="mgv-15.html">Zooming</A></H2>
+
+<P>
+<H2><A NAME="toc16">16.</A> <A HREF="mgv-16.html">Reading From The Standard Input</A></H2>
+
+<P>
+<H2><A NAME="toc17">17.</A> <A HREF="mgv-17.html">Sticky Dialogs</A></H2>
+
+<P>
+<H2><A NAME="toc18">18.</A> <A HREF="mgv-18.html">The Ghostscript Message Log</A></H2>
+
+<P>
+<H2><A NAME="toc19">19.</A> <A HREF="mgv-19.html">Application Resources</A></H2>
+
+<UL>
+<LI><A HREF="mgv-19.html#ss19.1">19.1 Help Resources</A>
+<LI><A HREF="mgv-19.html#ss19.2">19.2 Rendering Resources</A>
+<LI><A HREF="mgv-19.html#ss19.3">19.3 Display Resources</A>
+<LI><A HREF="mgv-19.html#ss19.4">19.4 Colormap Resources</A>
+<LI><A HREF="mgv-19.html#ss19.5">19.5 Scrolling Resources</A>
+<LI><A HREF="mgv-19.html#ss19.6">19.6 Sizing Resources</A>
+<LI><A HREF="mgv-19.html#ss19.7">19.7 Splash Screen and Icon Resources</A>
+<LI><A HREF="mgv-19.html#ss19.8">19.8 Tool Bar Resources</A>
+<LI><A HREF="mgv-19.html#ss19.9">19.9 Miscellaneous Resources</A>
+<LI><A HREF="mgv-19.html#ss19.10">19.10 The Application Defaults File</A>
+</UL>
+<P>
+<H2><A NAME="toc20">20.</A> <A HREF="mgv-20.html">Actions</A></H2>
+
+<P>
+<H2><A NAME="toc21">21.</A> <A HREF="mgv-21.html">Command Line Switches</A></H2>
+
+<UL>
+<LI><A HREF="mgv-21.html#ss21.1">21.1 Help Switches</A>
+<LI><A HREF="mgv-21.html#ss21.2">21.2 Rendering Switches</A>
+<LI><A HREF="mgv-21.html#ss21.3">21.3 Display Switches</A>
+<LI><A HREF="mgv-21.html#ss21.4">21.4 Colormap Switches</A>
+<LI><A HREF="mgv-21.html#ss21.5">21.5 Scrolling Switches</A>
+<LI><A HREF="mgv-21.html#ss21.6">21.6 Sizing Switches</A>
+<LI><A HREF="mgv-21.html#ss21.7">21.7 Splash Screen and Icon Switches</A>
+<LI><A HREF="mgv-21.html#ss21.8">21.8 Tool Bar Switches</A>
+<LI><A HREF="mgv-21.html#ss21.9">21.9 Miscellaneous Switches</A>
+</UL>
+<P>
+<H2><A NAME="toc22">22.</A> <A HREF="mgv-22.html">Caveats and Bugs</A></H2>
+
+<UL>
+<LI><A HREF="mgv-22.html#ss22.1">22.1 Switches Pages Too Fast</A>
+<LI><A HREF="mgv-22.html#ss22.2">22.2 Modal Dialogs</A>
+<LI><A HREF="mgv-22.html#ss22.3">22.3 Anti-aliasing</A>
+<LI><A HREF="mgv-22.html#ss22.4">22.4 Non-DSC and PDF Documents</A>
+<LI><A HREF="mgv-22.html#ss22.5">22.5 Broken Windows PostScript Drivers</A>
+<LI><A HREF="mgv-22.html#ss22.6">22.6 DSC Parsing Problems</A>
+<LI><A HREF="mgv-22.html#ss22.7">22.7 Application Defaults Version Problems</A>
+<LI><A HREF="mgv-22.html#ss22.8">22.8 Non-Default Visuals on Irix 5.3</A>
+<LI><A HREF="mgv-22.html#ss22.9">22.9 Reporting Bugs</A>
+</UL>
+<P>
+<H2><A NAME="toc23">23.</A> <A HREF="mgv-23.html">Mathoms</A></H2>
+
+<UL>
+<LI><A HREF="mgv-23.html#ss23.1">23.1 Enlightening mgv</A>
+<LI><A HREF="mgv-23.html#ss23.2">23.2 Using mgv With Netscape</A>
+<LI><A HREF="mgv-23.html#ss23.3">23.3 Using mgv With CDE</A>
+<LI><A HREF="mgv-23.html#ss23.4">23.4 Splash Screen</A>
+<LI><A HREF="mgv-23.html#ss23.5">23.5 Binaries</A>
+</UL>
+<P>
+<H2><A NAME="toc24">24.</A> <A HREF="mgv-24.html">References</A></H2>
+
+<P>
+<H2><A NAME="toc25">25.</A> <A HREF="mgv-25.html">Availability</A></H2>
+
+<P>
+<H2><A NAME="toc26">26.</A> <A HREF="mgv-26.html">Acknowledgements</A></H2>
+
+<H2>Appendix</H2>
+<P>
+<H2><A NAME="toc27">27.</A> <A HREF="mgv-27.html">Installing and Porting</A></H2>
+
+<P>
+<H2><A NAME="toc28">28.</A> <A HREF="mgv-28.html">History</A></H2>
+
+<UL>
+<LI><A HREF="mgv-28.html#ss28.1">28.1 mgv 3.1.5: September 1998</A>
+<LI><A HREF="mgv-28.html#ss28.2">28.2 mgv 3.1.4: September 1998</A>
+<LI><A HREF="mgv-28.html#ss28.3">28.3 mgv 3.1.3: September 1998</A>
+<LI><A HREF="mgv-28.html#ss28.4">28.4 mgv 3.1.2: September 1998</A>
+<LI><A HREF="mgv-28.html#ss28.5">28.5 mgv 3.1.1: September 1998</A>
+<LI><A HREF="mgv-28.html#ss28.6">28.6 mgv 3.1.0: September 1998</A>
+<LI><A HREF="mgv-28.html#ss28.7">28.7 mgv 3.0.2: August 1998</A>
+<LI><A HREF="mgv-28.html#ss28.8">28.8 mgv 3.0.1: August 1998</A>
+<LI><A HREF="mgv-28.html#ss28.9">28.9 mgv 3.0.0: August 1998</A>
+<LI><A HREF="mgv-28.html#ss28.10">28.10 mgv 2.4.3: May 1998</A>
+<LI><A HREF="mgv-28.html#ss28.11">28.11 mgv 2.4.2: April 1998</A>
+<LI><A HREF="mgv-28.html#ss28.12">28.12 mgv 2.4.1: April 1998</A>
+<LI><A HREF="mgv-28.html#ss28.13">28.13 mgv 2.4: March 1998</A>
+<LI><A HREF="mgv-28.html#ss28.14">28.14 mgv 2.3.1: February 1998</A>
+<LI><A HREF="mgv-28.html#ss28.15">28.15 mgv 2.3: February 1998</A>
+<LI><A HREF="mgv-28.html#ss28.16">28.16 mgv 2.2.1: December 1997</A>
+<LI><A HREF="mgv-28.html#ss28.17">28.17 mgv 2.2: November 1997</A>
+<LI><A HREF="mgv-28.html#ss28.18">28.18 mgv 2.1: October 1997</A>
+<LI><A HREF="mgv-28.html#ss28.19">28.19 mgv 2.0.2: August 1997</A>
+<LI><A HREF="mgv-28.html#ss28.20">28.20 mgv 2.0.1: August 1997</A>
+<LI><A HREF="mgv-28.html#ss28.21">28.21 mgv 2.0: August 1997</A>
+<LI><A HREF="mgv-28.html#ss28.22">28.22 mgv 1.0: September 1996</A>
+</UL>
+<P>
+<H2><A NAME="toc29">29.</A> <A HREF="mgv-29.html">Wish List</A></H2>
+
+<P>
+<H2><A NAME="toc30">30.</A> <A HREF="mgv-30.html">The Interface to Ghostscript</A></H2>
+
+<UL>
+<LI><A HREF="mgv-30.html#ss30.1">30.1 The GHOSTVIEW Environment Variable</A>
+<LI><A HREF="mgv-30.html#ss30.2">30.2 The GHOSTVIEW Property</A>
+<LI><A HREF="mgv-30.html#ss30.3">30.3 Events from Ghostscript</A>
+</UL>
+<P>
+<H2><A NAME="toc31">31.</A> <A HREF="mgv-31.html">GNU General Public License</A></H2>
+
+<UL>
+<LI><A HREF="mgv-31.html#ss31.1">31.1 Philosophy</A>
+</UL>
+<HR>
+<A HREF="mgv-1.html"><IMG SRC="next.gif" ALT="Next"></A>
+<IMG SRC="prev.gif" ALT="Previous">
+<IMG SRC="toc.gif" ALT="Contents">
+</BODY>
+</HTML>

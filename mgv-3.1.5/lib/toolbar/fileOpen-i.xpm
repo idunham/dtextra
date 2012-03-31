@@ -1,0 +1,36 @@
+/* XPM */
+static char *fileOpen_i_xpm[] = {
+/* width height num_colors chars_per_pixel */
+"    24    24        5            1",
+/* colors */
+". s None c None",
+"# c #868686",
+"a c #3c3c3c",
+"b c #c3c3c3",
+"c c #959595",
+/* pixels */
+"........................",
+"............#a..........",
+"...........bb#a.........",
+"..........bbbb#a........",
+".....bbb#bbbbbb#a.......",
+"....b#c#bbbbbbbb#a......",
+"....bc#bbbbbbbbbb#accc..",
+"....b#bbbbbbbbbbbb#acca.",
+"...###############b#aca.",
+".bbbbbbbbbbbbbbbbbab#aa.",
+".#c#c#c#c#c#c#c#c#abb#a.",
+".c#c#c#c#c#c#c#c#c#abb#.",
+"..c#c#c#c#c#c#c#c#cab#a.",
+"..#c#c#c#c#c#c#c#c##aaa.",
+"..c#c#c#c#c#c#c#c#c#aca.",
+"...c#c#c#c#c#c#c#c#caca.",
+"...#c#c#c#c#c#c#c#c##aa.",
+"...c#c#c#c#c#c#c#c#c#aa.",
+"....c#c#c#c#c#c#c#c#caa.",
+"....#c#c#c#c#c#c#c#c##a.",
+"....cccccccccccccccccca.",
+".....aaaaaaaaaaaaaaaaa..",
+"........................",
+"........................"
+};

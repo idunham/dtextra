@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+ <META NAME="GENERATOR" CONTENT="SGML-Tools 1.0.6">
+ <TITLE>mgv 3.1.5: A Motif PostScript Viewer: Caveats and Bugs</TITLE>
+ <LINK HREF="mgv-23.html" REL=next>
+ <LINK HREF="mgv-21.html" REL=previous>
+ <LINK HREF="mgv.html#toc22" REL=contents>
+</HEAD>
+<BODY>
+<A HREF="mgv-23.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-21.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc22"><IMG SRC="toc.gif" ALT="Contents"></A>
+<HR>
+<H2><A NAME="caveats"></A> <A NAME="s22">22. Caveats and Bugs</A></H2>
+
+<P>
+<H2><A NAME="ss22.1">22.1 Switches Pages Too Fast</A>
+</H2>
+
+<P>I have had bug reports about crashes when you change pages too fast.  I
+have been able to reproduce the problem but I had to hold the <EM>PageDown</EM>
+key down to trigger the bug.  I think I know what's going on but I'm still
+thinking about the best way to fix the problem.  Since the bug only manifests
+itself under extreme circumstances and since I've only had one bug report
+about this, I'm not going to try and rush a fix out.  In the mean time,
+you can avoid the problem by not holding the <EM>PageDown</EM> or <EM>PageUp</EM>
+keys down, use the page list instead.  My apologies if this causes anyone
+grief.
+<P>
+<H2><A NAME="ss22.2">22.2 Modal Dialogs</A>
+</H2>
+
+<P><B>mgv</B> has no modal dialogs (even the <EM>overwrite confirmation</EM> dialog
+in <EM>File/Save...</EM> is modeless); modal dialogs are evil.  This really
+means that dialogs don't stop you from doing other things in the application:
+you don't have to back out of a dialog to change something and bring the
+dialog back--you just go and change things without leaving your current
+dialog.
+For people that have lived too long under the tyranny of modal dialogs
+this may be confusing.
+<P>
+<H2><A NAME="caveats-antialias"></A> <A NAME="ss22.3">22.3 Anti-aliasing</A>
+</H2>
+
+<P>The anti-aliasing support in newer versions of Ghostscript (version 3.33 GNU and
+higher) is a mixed blessing.
+For text documents, especially those produced by <B>dvips</B> from TeX DVI
+documents, the readability advantages are wonderful and easily overshadow
+the performance penalties (which aren't that noticeable with text anyway);
+however, anti-aliasing delivers a noticeable performance penalty on graphics
+and can actually make the images look worse, anti-aliasing can also seriously
+degrade any document which uses a lot of colors when viewed on an eight-bit
+display.
+If you find this happening to you, try using the <B>antialiasEPS</B> resource
+(or the <EM>-aliaseps</EM> and <EM>-noaliaseps</EM> switches) to change the 
+anti-aliasing of EPS files.
+<P>
+<H2><A NAME="ss22.4">22.4 Non-DSC and PDF Documents</A>
+</H2>
+
+<P>If the document does not begin with <CODE>%!PS-Adobe-</CODE>, it does not
+claim conformance to the document structuring convention; the functionality
+of <B>mgv</B> is severely limited when dealing with non-DSC conformant
+documents--about all you can do is move to the next page.
+Also, zooming in a non-DSC document will always display the first page.
+Since I haven't implemented a PDF parser, PDF files are effectively
+treated as non-DSC documents so that <B>mgv</B> is quite limited when viewing
+PDF files (xpdf or Adobe's Acroread are much better for PDF files).
+<P>
+<H2><A NAME="ss22.5">22.5 Broken Windows PostScript Drivers</A>
+</H2>
+
+<P>Some <B>PostScript</B> documents produced by the MS-Windows <B>PostScript</B> drivers will cause
+erroneous warnings about a lack of virtual memory.
+When trying to view such documents, you will only get a page telling you
+that you don't have enough memory in your printer and some steps (which will
+probably be useless if you don't have the original document) to correct the
+problem.
+A simple hack to fix this problem is to find a line that looks like
+<PRE>
+        30000 VM?
+</PRE>
+
+and remove it.
+The following perl filter should fix such documents:
+<PRE>
+        perl -pe 's/^(\d+\s+VM\?\r?)$/% \1/'
+</PRE>
+
+Thanks to Bart Robinson (<CODE>lomew@cs.utah.edu</CODE>) in comp.lang.postscript
+for this advice.
+<P>Windows printer drivers for <B>PostScript</B> also tend to produce incorrect DSC comments.
+The Windows PostScript driver builds the <B>NTPSOct94</B> dictionary which
+contains various functions; the required <CODE>NTPSOct94 begin</CODE> command appears
+between the <CODE>%%EndSetup</CODE> comment and the first
+<CODE>%%Page</CODE> comment so that neither <B>mgv</B> or Ghostview will pass
+<CODE>NTPSOct94 begin</CODE> to Ghostscript.  The simplest solution is to change
+<PRE>
+        %%EndSetup
+        NTPSOct94 begin
+        %%Page: 1 1
+</PRE>
+
+to
+<PRE>
+        NTPSOct94 begin
+        %%EndSetup
+        %%Page: 1 1
+</PRE>
+
+in the offending document (this is will leave your <B>PostScript</B> file <EM>less</EM>
+broken rather than fixed).
+A better solution--which the NT <B>PostScript</B> driver should probably be
+doing--is to remove the offending &quot;<CODE>NTPSOct94 begin</CODE>&quot;
+command and add &quot;<CODE>NTPSOct94 begin</CODE>&quot; at the beginning of
+each page and add an &quot;<CODE>end</CODE>&quot; at the end of each page.
+The following perl script should perform this transformation on its standard
+input and print the fixed file to its standard output:
+<PRE>
+        #!/usr/local/bin/perl
+        $first_page = 1;
+        $bogus      = "";
+        while($line = &lt;STDIN>) {
+                ##
+                ## Skip NT's brain damage (at least a little teeny tiny
+                ## part of it)
+                ##
+                if($line =~ /^NTPSOct9[45] begin/) {
+                        $bogus = $line;
+                        next;
+                }
+
+                ##
+                ## Insert appropriate begin/end pairs
+                ##
+                if($first_page &amp;&amp; $line =~ /%%Page:/) {
+                        print $line, $bogus;
+                        $first_page = 0;
+                }
+                elsif($line =~ /%%Page:/) {
+                        print "end\n", $line, $bogus;
+                }
+                elsif($line =~ /%%Trailer/) {
+                        print "end\n$line";
+                        # next line is the "end" that we want to kill
+                        $line = &lt;STDIN>;
+                }
+                else {
+                        print $line;
+                }
+        }
+        exit(0);
+</PRE>
+
+The same problem occurs with the <B>NTPSOct95</B> version of the <B>PostScript</B> driver
+but the above script should deal with that one too.
+<P>
+<H2><A NAME="ss22.6">22.6 DSC Parsing Problems</A>
+</H2>
+
+<P>The current DSC parser doesn't like Mac files (which use a single carriage
+return as end-of-line); if you want to view such files, change the
+carriage returns to line feeds with something like this:
+<PRE>
+        perl -pe 's/\r/\n/g' &lt; mac-file > unix-file
+</PRE>
+
+and try again.  I could attempt to fix the DSC parser but I'd rather not
+touch it until I have time to build a cleaner one.
+<P>Files with a PageOrder of <B>Special</B> will confuse the DSC parser--pages
+will be lost or out of order.  If you have to deal with such files, you'll
+have to use another viewer until I can rewrite the DSC parser.
+<P>
+<H2><A NAME="ss22.7">22.7 Application Defaults Version Problems</A>
+</H2>
+
+<P>The application defaults file specifies a significant portion of <B>mgv</B>'s
+behavior; hence, an incorrect application defaults file can cause many
+problems.  If <B>mgv</B> warns you about an incorrect version number, you
+should fix it--setting the 
+<A HREF="mgv-19.html#appres-applicationVersion">applicationVersion</A> will not fix the problem, it will only
+make the warning go away.
+<P>The correct version of the application defaults file should be installed
+in the same place as the documentation (look for a file called <CODE>MGv</CODE>)
+so you can fix the problem by running <B>mgv</B> like this:
+<PRE>
+        XENVIRONMENT=/path/to/mgv/library/files/MGv mgv
+</PRE>
+
+until the local administrator can fix the problem by removing the old
+application defaults file.  This problem should only be encountered by
+people that started with <B>mgv</B> version 1.x.
+<P>
+<H2><A NAME="ss22.8">22.8 Non-Default Visuals on Irix 5.3</A>
+</H2>
+
+<P>I have had reports of problems with non-default visuals under Irix 5.3
+when the root window has depth eight.  Everything works fine with Irix 6.2/6.4
+and other systems.  Private colormaps do work with Irix 5.3 so all is not
+lost.  As near as I can tell, this is a bug somewhere in SGI's Motif libraries
+and I don't know how to work around the problem.
+<P>
+<H2><A NAME="ss22.9">22.9 Reporting Bugs</A>
+</H2>
+
+<P>If you find any bugs in <B>mgv</B> please send a bug report to <CODE>mu@trends.net</CODE>
+which includes the following information:
+<UL>
+<LI><B>mgv</B> version number</LI>
+<LI>operating system name and release number</LI>
+<LI>Motif and X versions</LI>
+<LI>Ghostscript version</LI>
+<LI>clear and concise instructions to reproduce the bug (include sample
+<B>PostScript</B> files if possible)</LI>
+<LI>anything else that may be relevant</LI>
+</UL>
+
+The information in the build options dialog
+(see 
+<A HREF="mgv-11.html#help-bldopts">Build Options Dialog</A>) may be useful
+as well.  If you can fix the bug, a patch would be appreciated but please
+bear in mind that the author is somewhat fanatical about maintaining a
+consistent coding/naming style in the code so patches may be reformatted
+and/or torn apart before they get into the code.
+<P>I will try and respond to all bug reports quickly (where <EM>quickly</EM> is a
+function of how detailed the report is and how easy it is for me to
+reproduce) but don't be surprised if it takes me a few days to respond.
+<P>
+<P>
+<HR>
+<A HREF="mgv-23.html"><IMG SRC="next.gif" ALT="Next"></A>
+<A HREF="mgv-21.html"><IMG SRC="prev.gif" ALT="Previous"></A>
+<A HREF="mgv.html#toc22"><IMG SRC="toc.gif" ALT="Contents"></A>
+</BODY>
+</HTML>

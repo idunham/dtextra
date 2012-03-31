@@ -1,0 +1,69 @@
+! @(#)$Mu: wlib/wlib/log.ad 1.9 1998/08/27 02:58:21 $
+!#
+!# log.ad - application defaults for wlib standard log dialog
+!#
+m4_dnl The log dialog.  You should set the following resources in your
+m4_dnl application defaults file:
+m4_dnl
+m4_dnl	*log_popup.title
+m4_dnl	*log.helpChapter
+m4_dnl	*log.helpSection
+m4_dnl
+m4_dnl And the following resources for the log-save file selector:
+m4_dnl
+m4_dnl	*log*logSave_popup.title
+m4_dnl	*log*logSave.dirMask
+m4_dnl	*log*logSave.helpChapter
+m4_dnl	*log*logSave.helpSection
+m4_dnl
+m4_dnl __CLS__ should be substituted with your application's class name.
+m4_dnl
+__CLS__*log.autoUnmanage:	False
+__CLS__*log.fractionBase:	13
+
+__CLS__*log.hide.labelString:		Hide
+__CLS__*log.hide.leftAttachment:	attach_position
+__CLS__*log.hide.leftPosition:		1
+__CLS__*log.hide.rightAttachment:	attach_position
+__CLS__*log.hide.rightPosition:	3
+__CLS__*log.hide.bottomAttachment:	attach_form
+
+__CLS__*log.save.labelString:		Save
+__CLS__*log.save.leftAttachment:	attach_position
+__CLS__*log.save.leftPosition:		4
+__CLS__*log.save.rightAttachment:	attach_position
+__CLS__*log.save.rightPosition:	6
+__CLS__*log.save.bottomAttachment:	attach_form
+
+__CLS__*log.clear.labelString:		Clear
+__CLS__*log.clear.leftAttachment:	attach_position
+__CLS__*log.clear.leftPosition:	7
+__CLS__*log.clear.rightAttachment:	attach_position
+__CLS__*log.clear.rightPosition:	9
+__CLS__*log.clear.bottomAttachment:	attach_form
+
+__CLS__*log.help.labelString:		Help
+__CLS__*log.help.leftAttachment:	attach_position
+__CLS__*log.help.leftPosition:	10
+__CLS__*log.help.rightAttachment:	attach_position
+__CLS__*log.help.rightPosition:	12
+__CLS__*log.help.bottomAttachment:	attach_form
+
+__CLS__*log.sep.leftAttachment:		attach_form
+__CLS__*log.sep.leftOffset:		0
+__CLS__*log.sep.rightAttachment:	attach_form
+__CLS__*log.sep.rightOffset:		0
+__CLS__*log.sep.bottomAttachment:	attach_widget
+__CLS__*log.sep.bottomWidget:		help
+
+__CLS__*log.textSW.scrollBarDisplayPolicy:	static
+__CLS__*log.textSW.topAttachment:		attach_form
+__CLS__*log.textSW.leftAttachment:		attach_form
+__CLS__*log.textSW.rightAttachment:		attach_form
+__CLS__*log.textSW.bottomAttachment:		attach_widget
+__CLS__*log.textSW.bottomWidget:		sep
+
+__CLS__*log.textSW.text*rows:		15
+__CLS__*log.textSW.text*columns:	40
+__CLS__*log.textSW.text*editMode:	multi_line_edit
+__CLS__*log.textSW.text*fontList:	-*-lucidatypewriter-medium-r-normal-*-12-*-*-*-*-*-iso8859-1
