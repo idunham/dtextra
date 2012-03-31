@@ -1,0 +1,1 @@
+shlibs:Depends=libc6 (>= 2.15), libmotif4, libtinfo5, libx11-6, libxmu6, libxt6

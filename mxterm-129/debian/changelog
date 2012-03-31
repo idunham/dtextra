@@ -1,0 +1,18 @@
+mxterm (129-0u0xm2) precise; urgency=low
+
+  * Add ncurses-dev build-dep
+
+ -- Ibidem <ibid_ag@lavabit.com>  Sun, 12 Feb 2012 17:27:02 -0800
+
+mxterm (129-0u0xm1) precise; urgency=low
+
+  * Build the deb on Ubuntu Precise
+
+ -- Ibidem <ibid_ag@lavabit.com>  Sun, 12 Feb 2012 17:04:58 -0800
+
+mxterm (129) unstable; urgency=medium
+
+  * New upstream version.
+  * New maintainer.
+
+ -- Greg Schenzel <inittab@netizenweb.com>  Sun, 8 May 2005 10:40:50 -0400

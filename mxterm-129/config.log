@@ -1,0 +1,485 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:600: checking host system type
+configure:651: checking for gcc
+configure:764: checking whether the C compiler (gcc -O3 -Wall -Wl,-Bsymbolic-functions -Wl,-z,relro) works
+configure:780: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure:777:1: warning: return type defaults to 'int' [-Wreturn-type]
+configure:806: checking whether the C compiler (gcc -O3 -Wall -Wl,-Bsymbolic-functions -Wl,-z,relro) is a cross-compiler
+configure:811: checking whether we are using GNU C
+configure:820: gcc -E conftest.c
+configure:839: checking whether gcc accepts -g
+configure:871: checking how to run the C preprocessor
+configure:892: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:952: checking whether gcc needs -traditional
+configure:1009: checking for a BSD compatible install
+configure:1064: checking for AIX
+configure:1088: checking for POSIXized ISC
+configure:1110: checking for minix/config.h
+configure:1120: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1116:26: fatal error: minix/config.h: No such file or directory
+compilation terminated.
+configure: failed program was:
+#line 1115 "configure"
+#include "confdefs.h"
+#include <minix/config.h>
+configure:1167: checking for stdlib.h
+configure:1177: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1167: checking for termios.h
+configure:1177: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1167: checking for unistd.h
+configure:1177: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1207: checking for size_t in <sys/types.h> or <stdio.h>
+configure:1226: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:1222:8: warning: unused variable 'x' [-Wunused-variable]
+configure:1246: checking for ANSI C header files
+configure:1259: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1326: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure: In function 'main':
+configure:1321:1: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1321:67: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+configure:1350: checking for time_t
+configure:1393: checking for bcopy
+configure:1421: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure:1405:6: warning: conflicting types for built-in function 'bcopy' [enabled by default]
+configure:1393: checking for memmove
+configure:1421: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure:1405:6: warning: conflicting types for built-in function 'memmove' [enabled by default]
+configure:1393: checking for strerror
+configure:1421: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure:1393: checking for tcgetattr
+configure:1421: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure:1393: checking for waitpid
+configure:1421: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure:1447: checking for memmove
+configure:1598: checking for full tgetent function
+configure:1627: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  1>&5
+configure: In function 'main':
+configure:1623:2: warning: implicit declaration of function 'tgetent' [-Wimplicit-function-declaration]
+configure:1624:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1624:2: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+/tmp/ccUPdlMs.o: In function `main':
+conftest.c:(.text.startup+0x30): undefined reference to `tgetent'
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1613 "configure"
+#include "confdefs.h"
+
+/* terminfo implementations ignore the buffer argument, making it useless for
+ * the xterm application, which uses this information to make a new TERMCAP
+ * environment variable.
+ */
+int main()
+{
+	char buffer[1024];
+	buffer[0] = 0;
+	tgetent(buffer, "vt100");
+	exit(buffer[0] == 0); }
+no, there is no termcap/tgetent in 
+configure:1627: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermcap 1>&5
+configure: In function 'main':
+configure:1623:2: warning: implicit declaration of function 'tgetent' [-Wimplicit-function-declaration]
+configure:1624:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1624:2: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+configure: failed program was:
+#line 1613 "configure"
+#include "confdefs.h"
+
+/* terminfo implementations ignore the buffer argument, making it useless for
+ * the xterm application, which uses this information to make a new TERMCAP
+ * environment variable.
+ */
+int main()
+{
+	char buffer[1024];
+	buffer[0] = 0;
+	tgetent(buffer, "vt100");
+	exit(buffer[0] == 0); }
+no, there is no termcap/tgetent in termcap
+configure:1627: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermlib 1>&5
+configure: In function 'main':
+configure:1623:2: warning: implicit declaration of function 'tgetent' [-Wimplicit-function-declaration]
+configure:1624:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1624:2: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+/usr/bin/ld.bfd.real: cannot find -ltermlib
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 1613 "configure"
+#include "confdefs.h"
+
+/* terminfo implementations ignore the buffer argument, making it useless for
+ * the xterm application, which uses this information to make a new TERMCAP
+ * environment variable.
+ */
+int main()
+{
+	char buffer[1024];
+	buffer[0] = 0;
+	tgetent(buffer, "vt100");
+	exit(buffer[0] == 0); }
+no, there is no termcap/tgetent in termlib
+configure:1627: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -lncurses 1>&5
+configure: In function 'main':
+configure:1623:2: warning: implicit declaration of function 'tgetent' [-Wimplicit-function-declaration]
+configure:1624:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1624:2: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+configure: failed program was:
+#line 1613 "configure"
+#include "confdefs.h"
+
+/* terminfo implementations ignore the buffer argument, making it useless for
+ * the xterm application, which uses this information to make a new TERMCAP
+ * environment variable.
+ */
+int main()
+{
+	char buffer[1024];
+	buffer[0] = 0;
+	tgetent(buffer, "vt100");
+	exit(buffer[0] == 0); }
+no, there is no termcap/tgetent in ncurses
+configure:1627: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -lcurses 1>&5
+configure: In function 'main':
+configure:1623:2: warning: implicit declaration of function 'tgetent' [-Wimplicit-function-declaration]
+configure:1624:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:1624:2: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+configure: failed program was:
+#line 1613 "configure"
+#include "confdefs.h"
+
+/* terminfo implementations ignore the buffer argument, making it useless for
+ * the xterm application, which uses this information to make a new TERMCAP
+ * environment variable.
+ */
+int main()
+{
+	char buffer[1024];
+	buffer[0] = 0;
+	tgetent(buffer, "vt100");
+	exit(buffer[0] == 0); }
+no, there is no termcap/tgetent in curses
+configure:1692: checking for partial tgetent function
+configure:1708: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermcap 1>&5
+configure: In function 'main':
+configure:1704:1: warning: implicit declaration of function 'tgetent' [-Wimplicit-function-declaration]
+there is a terminfo/tgetent in termcap
+configure:1731: checking for termcap.h
+configure:1741: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1782: checking for lastlog.h
+configure:1792: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1782: checking for paths.h
+configure:1792: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:1819: checking for lastlog path
+configure:1840: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:1836:7: warning: unused variable 'path' [-Wunused-variable]
+configure:1867: checking for utmp implementation
+configure:1891: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+In file included from /usr/include/lastlog.h:4:0,
+                 from configure:1881:
+/usr/include/utmp.h:63:21: error: conflicting types for 'getutxent'
+/usr/include/utmpx.h:66:22: note: previous declaration of 'getutxent' was here
+configure: In function 'main':
+configure:1886:9: warning: unused variable 'name' [-Wunused-variable]
+configure: failed program was:
+#line 1875 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmpx.h>
+#define getutent getutxent
+#ifdef USE_LASTLOG
+#include <lastlog.h>	/* may conflict with utmpx.h on Linux */
+#endif
+
+int main() {
+struct utmpx x;
+	 char *name = x.ut_name; /* utmp.h and compatible definitions */
+	
+; return 0; }
+configure:1917: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+In file included from /usr/include/lastlog.h:4:0,
+                 from configure:1907:
+/usr/include/utmp.h:63:21: error: conflicting types for 'getutxent'
+/usr/include/utmpx.h:66:22: note: previous declaration of 'getutxent' was here
+configure: In function 'main':
+configure:1912:9: warning: unused variable 'name' [-Wunused-variable]
+configure: failed program was:
+#line 1901 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmpx.h>
+#define getutent getutxent
+#ifdef USE_LASTLOG
+#include <lastlog.h>	/* may conflict with utmpx.h on Linux */
+#endif
+
+int main() {
+struct utmpx x;
+	 char *name = x.ut_user; /* utmpx.h must declare this */
+	
+; return 0; }
+configure:1891: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:1886:9: warning: unused variable 'name' [-Wunused-variable]
+configure:1952: checking if utmp.ut_host is declared
+configure:1967: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:1963:22: warning: unused variable 'y' [-Wunused-variable]
+configure:1991: checking for exit-status in utmp
+configure:2012: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2008:34: error: 'struct exit_status' has no member named '__e_exit'
+configure:2008:21: warning: unused variable 'y' [-Wunused-variable]
+configure:2008:13: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+configure: failed program was:
+#line 2003 "configure"
+#include "confdefs.h"
+
+#include <sys/types.h>
+#include <utmp.h>
+int main() {
+struct utmp x; long y = x.ut_exit.__e_exit = 0
+; return 0; }
+configure:2012: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2008:21: warning: unused variable 'y' [-Wunused-variable]
+configure:2044: checking if utmp.ut_xtime is declared
+configure:2059: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2055:21: warning: unused variable 'y' [-Wunused-variable]
+configure:2111: checking if utmp.ut_session is declared
+configure:2126: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2122:21: warning: unused variable 'y' [-Wunused-variable]
+configure:2151: checking if utmp is SYSV flavor
+configure:2172: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermcap 1>&5
+configure:2195: checking if you want to link with utempter
+configure:2260: checking if POSIX VDISABLE symbol should be used
+configure:2310: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermcap 1>&5
+configure: In function 'main':
+configure:2306:1: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:2306:14: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+configure:2336: checking if external errno is declared
+configure:2355: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2351:6: warning: unused variable 'x' [-Wunused-variable]
+configure:2386: checking if external errno exists
+configure:2402: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermcap 1>&5
+/usr/bin/ld.bfd.real: errno: TLS definition in /lib/i386-linux-gnu/libc.so.6 section .tbss mismatches non-TLS reference in /tmp/ccGgx1YG.o
+/lib/i386-linux-gnu/libc.so.6: could not read symbols: Bad value
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 2392 "configure"
+#include "confdefs.h"
+
+#undef errno
+extern int errno;
+
+int main() {
+errno = 2
+; return 0; }
+configure:2434: checking for tty group
+configure:2457: gcc -o conftest -O3 -Wall -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c  -ltermcap 1>&5
+configure: In function 'main':
+configure:2452:2: warning: implicit declaration of function 'exit' [-Wimplicit-function-declaration]
+configure:2452:2: warning: incompatible implicit declaration of built-in function 'exit' [enabled by default]
+configure:2482: checking for gcc option to accept ANSI C
+configure:2522: gcc -c -O3 -Wall -DCC_HAS_PROTOS -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure:2549: checking for working const
+configure:2603: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2577:15: warning: unused variable 's' [-Wunused-variable]
+configure:2597:13: warning: unused variable 'foo' [-Wunused-variable]
+configure:2565:27: warning: unused variable 'zero' [-Wunused-variable]
+configure:2559:39: warning: unused variable 'x' [-Wunused-variable]
+configure:2579:8: warning: 't' is used uninitialized in this function [-Wuninitialized]
+configure:2594:21: warning: 'b' is used uninitialized in this function [-Wuninitialized]
+configure:2627: checking for sys/wait.h that is POSIX.1 compatible
+configure:2648: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure:2671: checking if we must define _GNU_SOURCE
+configure:2687: gcc -c -O3 -Wall -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2682:1: error: unknown type name 'make'
+configure:2682:9: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'error'
+configure: failed program was:
+#line 2677 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+int main() {
+
+#ifndef _XOPEN_SOURCE
+make an error
+#endif
+; return 0; }
+configure:2707: gcc -c -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:2702:1: error: unknown type name 'make'
+configure:2702:9: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'error'
+configure: failed program was:
+#line 2697 "configure"
+#include "confdefs.h"
+#include <sys/types.h>
+int main() {
+
+#ifdef _XOPEN_SOURCE
+make an error
+#endif
+; return 0; }
+configure:2732: checking for X
+configure:2800: gcc -E -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:2876: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lXt  -ltermcap 1>&5
+configure: In function 'main':
+configure:2872:1: warning: implicit declaration of function 'XtMalloc' [-Wimplicit-function-declaration]
+configure:3180: checking for socket in -lsocket
+configure:3199: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lsocket   -ltermcap 1>&5
+/usr/bin/ld.bfd.real: cannot find -lsocket
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 3188 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char socket();
+
+int main() {
+socket()
+; return 0; }
+configure:3227: checking for gethostname in -lnsl
+configure:3246: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lnsl   -ltermcap 1>&5
+configure:3362: checking for dnet_ntoa in -ldnet
+configure:3381: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -ldnet  -lnsl  -ltermcap 1>&5
+/usr/bin/ld.bfd.real: cannot find -ldnet
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 3370 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dnet_ntoa();
+
+int main() {
+dnet_ntoa()
+; return 0; }
+configure:3403: checking for dnet_ntoa in -ldnet_stub
+configure:3422: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -ldnet_stub  -lnsl  -ltermcap 1>&5
+/usr/bin/ld.bfd.real: cannot find -ldnet_stub
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 3411 "configure"
+#include "confdefs.h"
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char dnet_ntoa();
+
+int main() {
+dnet_ntoa()
+; return 0; }
+configure:3451: checking for gethostbyname
+configure:3479: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lnsl  -ltermcap 1>&5
+configure:3549: checking for connect
+configure:3577: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lnsl  -ltermcap 1>&5
+configure:3641: checking for remove
+configure:3669: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lnsl  -ltermcap 1>&5
+configure:3733: checking for shmat
+configure:3761: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lnsl  -ltermcap 1>&5
+configure:3834: checking for IceConnectionNumber in -lICE
+configure:3853: gcc -o conftest -O3 -Wall -D_GNU_SOURCE -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro conftest.c -lICE  -lnsl  -ltermcap 1>&5
+configure:3880: checking for XOpenDisplay in -lX11
+configure:3899: gcc -o conftest -O3 -Wall -D_GNU_SOURCE  -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lX11  -lSM -lICE -lnsl  -ltermcap  -lnsl  -ltermcap 1>&5
+configure:3920: checking for XtAppInitialize in -lXt
+configure:3939: gcc -o conftest -O3 -Wall -D_GNU_SOURCE  -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lXt  -lSM -lICE -lX11 -lnsl  -ltermcap  -lX11 -lnsl  -ltermcap 1>&5
+configure:3995: checking for X11/DECkeysym.h
+configure:4005: gcc -E  -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:3995: checking for X11/Xpoll.h
+configure:4005: gcc -E  -D_FORTIFY_SOURCE=2 conftest.c >/dev/null 2>conftest.out
+configure:4053: checking for XextCreateExtension in -lXext
+configure:4072: gcc -o conftest -O3 -Wall -D_GNU_SOURCE   -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lXext  -lXt  -lSM -lICE -lX11 -lnsl  -ltermcap 1>&5
+configure:4111: checking for X11/Xaw/SimpleMenu.h
+configure:4123: gcc -c -O3 -Wall -D_GNU_SOURCE   -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure:4153: checking for XawSimpleMenuAddGlobalActions in -lXaw -lXmu -lXpm
+configure:4163: gcc -o conftest -O3 -Wall -D_GNU_SOURCE   -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lXaw -lXmu -lXpm -lXext -lXt  -lSM -lICE -lX11 -lnsl  -ltermcap 1>&5
+configure: In function 'main':
+configure:4159:1: warning: implicit declaration of function 'XawSimpleMenuAddGlobalActions' [-Wimplicit-function-declaration]
+configure:4201: checking for declaration of fd_set
+trying sys/types alone
+configure:4215: gcc -c -O3 -Wall -D_GNU_SOURCE   -D_FORTIFY_SOURCE=2 conftest.c 1>&5
+configure: In function 'main':
+configure:4211:8: warning: unused variable 'x' [-Wunused-variable]
+configure:4286: checking for grantpt
+configure:4314: gcc -o conftest -O3 -Wall -D_GNU_SOURCE  -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lXaw -lXmu -lXpm -lXext -lXt  -lSM -lICE -lX11 -lnsl  -ltermcap  1>&5
+configure:4389: checking for xterm
+configure:4427: checking for XkbStdBell
+configure:4455: gcc -o conftest -O3 -Wall -D_GNU_SOURCE  -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lXaw -lXmu -lXpm -lXext -lXt  -lSM -lICE -lX11 -lnsl  -ltermcap  1>&5
+/tmp/ccM06dlw.o: In function `main':
+conftest.c:(.text.startup+0x7): undefined reference to `XkbStdBell'
+collect2: ld returned 1 exit status
+configure: failed program was:
+#line 4432 "configure"
+#include "confdefs.h"
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char XkbStdBell(); below.  */
+#include <assert.h>
+/* Override any gcc2 internal prototype to avoid an error.  */
+/* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+char XkbStdBell();
+
+int main() {
+
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined (__stub_XkbStdBell) || defined (__stub___XkbStdBell)
+choke me
+#else
+XkbStdBell();
+#endif
+
+; return 0; }
+configure:4481: checking if we should use imake to help
+configure:4506: checking for xmkmf
+configure:4645: checking for default terminal-id
+configure:4666: checking for default terminal-type
+configure:4683: checking for private terminfo-directory
+configure:4722: checking if you want active-icons
+configure:4748: checking if you want ANSI color
+configure:4774: checking if you want 16 colors like aixterm
+configure:4798: checking if you want 256 colors
+configure:4825: checking if you want 88 colors
+configure:4856: checking if you want blinking cursor
+configure:4882: checking if you want bold colors mapped like IBM PC
+configure:4906: checking if you want color-mode enabled by default
+configure:4932: checking if you want support for color highlighting
+configure:4956: checking if you want support for doublesize characters
+configure:4980: checking if you want fallback-support for box characters
+configure:5004: checking if you want support for HP-style function keys
+configure:5030: checking if you want support for SCO-style function keys
+configure:5056: checking if you want support for internationalization
+configure:5082: checking if you want support for initial-erase setup
+configure:5108: checking if you want support for input-method
+configure:5128: checking if X libraries support input-method
+configure:5161: gcc -o conftest -O3 -Wall -D_GNU_SOURCE  -D_FORTIFY_SOURCE=2 -Wl,-Bsymbolic-functions -Wl,-z,relro  conftest.c -lXaw -lXmu -lXpm -lXext -lXt  -lSM -lICE -lX11 -lnsl  -ltermcap  1>&5
+configure: In function 'main':
+configure:5148:11: warning: variable 'input_style' set but not used [-Wunused-but-set-variable]
+configure:5184: checking if you want support for logging
+configure:5235: checking if you want support for iconify/maximize translations
+configure:5259: checking if you want NumLock to override keyboard tables
+configure:5283: checking if you want support for right-scrollbar
+configure:5309: checking if you want check for redundant name-change
+configure:5333: checking if you want support for tek4014
+configure:5363: checking if you want pulldown menus with a toolbar
+configure:5387: checking if you want VT52 emulation
+configure:5411: checking if you want wide-character support
+configure:5440: checking if you want DECterm Locator support
+configure:5466: checking if you want -ziconbeep option
+configure:5491: checking if you want debugging traces
+configure:5520: checking if you want to see long compiling messages
+configure:5560: checking if you want magic cookie emulation
+configure:5589: checking if you want to turn on gcc warnings

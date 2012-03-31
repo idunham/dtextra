@@ -1,0 +1,11 @@
+Package: mxterm
+Version: 129-0u0xm1
+Architecture: i386
+Maintainer: Greg Schenzel <inittab@netizenweb.com>
+Installed-Size: 300
+Depends: libc6 (>= 2.15), libmotif4, libtinfo5, libx11-6, libxmu6, libxt6, base-passwd (>= 2.0.3.4), libxaw7, xterm
+Provides: x-terminal-emulator
+Section: x11
+Priority: optional
+Description: xterm, VT52, tek4014 terminal emulator in Motif
+ Color xterm replacement based on Motif for the X Window System.
